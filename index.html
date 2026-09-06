@@ -82,130 +82,213 @@
 
     <!-- ================= 模块 1：设备维修价格 ================= -->
     <section id="section-prices" class="tab-section">
-      <!-- 1. 一级设备分类 Pills 与 搜索框 -->
-      <div class="controls-bar">
-        <!-- 分类 Pills: {{ cat }} -->
-        <div class="filter-pills-scroll" id="category-pills" role="toolbar" aria-label="设备分类">
-          <!-- 动态渲染分类 -->
+
+      <!-- Apple 官网同款“选取你的设备”互动估价器 -->
+      <div class="apple-estimator-card">
+        <div class="estimator-header">
+          <h2 class="estimator-title">选取你的设备</h2>
         </div>
 
-        <!-- 搜索框 -->
-        <div class="search-wrapper">
-          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="11" cy="11" r="8"></circle>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-          </svg>
-          <input
-            type="text"
-            id="search-input"
-            class="search-input"
-            placeholder="搜索具体机型或配件 (如 16 Pro、电池、屏幕)..."
-            aria-label="搜索"
-          >
-          <button id="search-clear-btn" class="search-clear-btn" style="display: none;" title="清空搜索">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="18" y1="6" x2="6" y2="18"></line>
-              <line x1="6" y1="6" x2="18" y2="18"></line>
-            </svg>
+        <div class="estimator-selectors-box">
+          <!-- 1. 设备类型 -->
+          <div class="apple-floating-field">
+            <label for="estimator-series-select" class="floating-label">设备类型</label>
+            <select id="estimator-series-select" class="apple-select-input" aria-label="设备类型">
+              <!-- 动态填充设备系列 -->
+            </select>
+            <span class="field-chevron">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </span>
+          </div>
+
+          <!-- 2. 具体机型 -->
+          <div class="apple-floating-field">
+            <label for="estimator-model-select" class="floating-label">机型</label>
+            <select id="estimator-model-select" class="apple-select-input" aria-label="具体机型">
+              <!-- 动态联动机型 -->
+            </select>
+            <span class="field-chevron">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </span>
+          </div>
+        </div>
+
+        <!-- 协助识别机型链接 -->
+        <div class="estimator-help-row">
+          <button type="button" id="btn-help-identify" class="apple-link-btn">
+            协助识别你的机型 <span class="arrow">&rsaquo;</span>
+          </button>
+        </div>
+
+        <!-- 官方估价结果面板 (左侧设备渲染，右侧预估费用清单) -->
+        <div class="estimator-result-card" id="estimator-result-card">
+          <!-- 左侧：设备渲染图 -->
+          <div class="estimator-device-side">
+            <div class="device-render-canvas" id="estimator-device-visual">
+              <!-- 动态设备 SVG 渲染 -->
+            </div>
+            <div class="device-render-name" id="estimator-device-title">iPhone 16 Pro Max</div>
+          </div>
+
+          <!-- 右侧：预估服务费用清单 -->
+          <div class="estimator-pricing-side">
+            <div class="pricing-header-row">
+              <span class="pricing-headline">预估服务费用</span>
+              <div class="ac-compare-pill">
+                <span class="ac-pill-dot"></span>
+                <span>包含 AppleCare+ 优惠参考</span>
+              </div>
+            </div>
+
+            <!-- 费用项明细列表 -->
+            <div class="pricing-table-list" id="estimator-pricing-list">
+              <!-- 动态费用行 -->
+            </div>
+          </div>
+        </div>
+
+        <!-- 底部行动按钮 -->
+        <div class="estimator-action-bar">
+          <button type="button" id="btn-estimator-get-service" class="apple-blue-pill-btn">
+            获取服务
           </button>
         </div>
       </div>
 
-      <!-- 2. 二级系列速选与配件快速筛选 -->
-      <div class="secondary-filters-panel">
-        <!-- 二级机型/系列选择胶囊 -->
-        <div class="filter-row">
-          <span class="filter-label">系列速选：</span>
-          <div class="filter-pills-scroll sub-pills" id="series-pills" role="toolbar" aria-label="系列速选">
-            <!-- 动态渲染系列胶囊 -->
-          </div>
-        </div>
+      <!-- 全局机型横向对比折叠器 (满足多机型比价需求) -->
+      <div class="all-models-explorer">
+        <button type="button" id="toggle-explorer-btn" class="explorer-toggle-btn" aria-expanded="false">
+          <span class="explorer-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+          </span>
+          <span class="explorer-text">展开全部机型横向对比与自由搜索</span>
+          <span class="explorer-arrow">▾</span>
+        </button>
 
-        <!-- 热门故障配件选择胶囊 -->
-        <div class="filter-row">
-          <span class="filter-label">维修配件：</span>
-          <div class="filter-pills-scroll sub-pills" id="part-pills" role="toolbar" aria-label="维修配件">
-            <!-- 动态渲染配件胶囊 -->
-          </div>
-        </div>
+        <div id="explorer-content" class="explorer-content" style="display: none;">
+          <!-- 1. 一级设备分类 Pills 与 搜索框 -->
+          <div class="controls-bar">
+            <!-- 分类 Pills: {{ cat }} -->
+            <div class="filter-pills-scroll" id="category-pills" role="toolbar" aria-label="设备分类">
+              <!-- 动态渲染分类 -->
+            </div>
 
-        <!-- 快捷搜索热词推荐 -->
-        <div class="quick-tags-row">
-          <span class="quick-tags-label">热门推荐：</span>
-          <div class="quick-tags-list" id="quick-search-tags">
-            <button type="button" class="quick-tag" data-tag="iPhone 16 Pro">iPhone 16 Pro</button>
-            <button type="button" class="quick-tag" data-tag="电池">换电池</button>
-            <button type="button" class="quick-tag" data-tag="屏幕">换屏幕</button>
-            <button type="button" class="quick-tag" data-tag="MacBook Air">MacBook Air</button>
-            <button type="button" class="quick-tag" data-tag="iPad Pro">iPad Pro</button>
-            <button type="button" class="quick-tag" data-tag="Ultra">Watch Ultra</button>
+            <!-- 搜索框 -->
+            <div class="search-wrapper">
+              <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input
+                type="text"
+                id="search-input"
+                class="search-input"
+                placeholder="搜索具体机型或配件 (如 16 Pro、电池、屏幕)..."
+                aria-label="搜索"
+              >
+              <button id="search-clear-btn" class="search-clear-btn" style="display: none;" title="清空搜索">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </button>
+            </div>
           </div>
-        </div>
-      </div>
 
-      <!-- 3. 统计与视图切换工具条 -->
-      <div class="price-view-toolbar">
-        <div class="count-bar" id="filtered-prices-count">
-          共显示 0 款机型 · 0 项维修方案
-        </div>
-        <div class="view-switch-group">
-          <button type="button" id="btn-view-cards" class="view-switch-btn active" title="机型卡片聚合视图">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="3" y="3" width="7" height="7"></rect>
-              <rect x="14" y="3" width="7" height="7"></rect>
-              <rect x="14" y="14" width="7" height="7"></rect>
-              <rect x="3" y="14" width="7" height="7"></rect>
+          <!-- 2. 二级系列速选与配件快速筛选 -->
+          <div class="secondary-filters-panel">
+            <div class="filter-row">
+              <span class="filter-label">系列速选：</span>
+              <div class="filter-pills-scroll sub-pills" id="series-pills" role="toolbar" aria-label="系列速选">
+                <!-- 动态渲染系列胶囊 -->
+              </div>
+            </div>
+
+            <div class="filter-row">
+              <span class="filter-label">维修配件：</span>
+              <div class="filter-pills-scroll sub-pills" id="part-pills" role="toolbar" aria-label="维修配件">
+                <!-- 动态渲染配件胶囊 -->
+              </div>
+            </div>
+
+            <div class="quick-tags-row">
+              <span class="quick-tags-label">热门推荐：</span>
+              <div class="quick-tags-list" id="quick-search-tags">
+                <button type="button" class="quick-tag" data-tag="iPhone 16 Pro">iPhone 16 Pro</button>
+                <button type="button" class="quick-tag" data-tag="电池">换电池</button>
+                <button type="button" class="quick-tag" data-tag="屏幕">换屏幕</button>
+                <button type="button" class="quick-tag" data-tag="MacBook Air">MacBook Air</button>
+                <button type="button" class="quick-tag" data-tag="iPad Pro">iPad Pro</button>
+                <button type="button" class="quick-tag" data-tag="Ultra">Watch Ultra</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. 统计与视图切换工具条 -->
+          <div class="price-view-toolbar">
+            <div class="count-bar" id="filtered-prices-count">
+              共显示 0 款机型 · 0 项维修方案
+            </div>
+            <div class="view-switch-group">
+              <button type="button" id="btn-view-cards" class="view-switch-btn active" title="机型卡片聚合视图">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="3" width="7" height="7"></rect>
+                  <rect x="14" y="3" width="7" height="7"></rect>
+                  <rect x="14" y="14" width="7" height="7"></rect>
+                  <rect x="3" y="14" width="7" height="7"></rect>
+                </svg>
+                <span>⊞ 卡片聚合</span>
+              </button>
+              <button type="button" id="btn-view-table" class="view-switch-btn" title="详细数据对比表格">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="8" y1="6" x2="21" y2="6"></line>
+                  <line x1="8" y1="12" x2="21" y2="12"></line>
+                  <line x1="8" y1="18" x2="21" y2="18"></line>
+                  <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                  <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                  <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                </svg>
+                <span>☰ 详细表格</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 4. 视图 A：机型专属卡片聚合网格 -->
+          <div id="prices-cards-grid" class="model-cards-grid">
+            <!-- 动态渲染按机型收拢的专属卡片 -->
+          </div>
+
+          <!-- 5. 视图 B：维修价格平铺表格 (备用切换) -->
+          <div id="prices-table-card" class="table-card" style="display: none;">
+            <div class="table-responsive">
+              <table class="apple-table">
+                <thead>
+                  <tr>
+                    <th>设备分类</th>
+                    <th>具体机型</th>
+                    <th>维修配件 / 故障类型</th>
+                    <th>保外预估价格</th>
+                    <th>AppleCare+ 预估自付</th>
+                  </tr>
+                </thead>
+                <tbody id="prices-tbody">
+                  <!-- 数据行动态渲染 -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- 空状态 -->
+          <div id="prices-empty" class="empty-state" style="display: none;">
+            <svg class="empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              <line x1="8" y1="11" x2="14" y2="11"></line>
             </svg>
-            <span>⊞ 卡片聚合</span>
-          </button>
-          <button type="button" id="btn-view-table" class="view-switch-btn" title="详细数据对比表格">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="8" y1="6" x2="21" y2="6"></line>
-              <line x1="8" y1="12" x2="21" y2="12"></line>
-              <line x1="8" y1="18" x2="21" y2="18"></line>
-              <line x1="3" y1="6" x2="3.01" y2="6"></line>
-              <line x1="3" y1="12" x2="3.01" y2="12"></line>
-              <line x1="3" y1="18" x2="3.01" y2="18"></line>
-            </svg>
-            <span>☰ 详细表格</span>
-          </button>
+            <p class="empty-text">未匹配到相关机型或零件，请尝试修改筛选条件</p>
+            <button type="button" class="empty-btn" id="btn-clear-price-search">重置搜索筛选</button>
+          </div>
         </div>
-      </div>
-
-      <!-- 4. 视图 A：机型专属卡片聚合网格 (默认展示) -->
-      <div id="prices-cards-grid" class="model-cards-grid">
-        <!-- 动态渲染按机型收拢的专属卡片 -->
-      </div>
-
-      <!-- 5. 视图 B：维修价格平铺表格 (备用切换) -->
-      <div id="prices-table-card" class="table-card" style="display: none;">
-        <div class="table-responsive">
-          <table class="apple-table">
-            <thead>
-              <tr>
-                <th>设备分类</th>
-                <th>具体机型</th>
-                <th>维修配件 / 故障类型</th>
-                <th>保外预估价格</th>
-                <th>AppleCare+ 预估自付</th>
-              </tr>
-            </thead>
-            <tbody id="prices-tbody">
-              <!-- 数据行动态渲染 -->
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- 空状态 -->
-      <div id="prices-empty" class="empty-state" style="display: none;">
-        <svg class="empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <circle cx="11" cy="11" r="8"></circle>
-          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-          <line x1="8" y1="11" x2="14" y2="11"></line>
-        </svg>
-        <p class="empty-text">未匹配到相关机型或零件，请尝试修改筛选条件</p>
-        <button type="button" class="empty-btn" id="btn-clear-price-search">重置搜索筛选</button>
       </div>
     </section>
 
@@ -315,6 +398,44 @@
   <footer class="site-footer">
     <p>© Apple 官方维修价格与服务网点快查 · 预估报价基于 Apple 官网公开指导价，最终以门店检测单为准 · 实时服务商授权资质请以 <a href="https://locate.apple.com/cn/zh/" target="_blank" rel="noopener noreferrer" style="color: var(--apple-blue); text-decoration: underline;">Apple 官网支持系统 (locate.apple.com)</a> 为准</p>
   </footer>
+
+  <!-- 协助识别机型弹窗 (Modal) -->
+  <div id="identify-modal" class="apple-modal-overlay" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="modal-identify-title">
+    <div class="apple-modal-card">
+      <div class="modal-header">
+        <h3 id="modal-identify-title" class="modal-title">如何查找你的设备型号</h3>
+        <button type="button" id="modal-close-btn" class="modal-close-btn" aria-label="关闭">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="identify-step-item">
+          <div class="step-icon">📱</div>
+          <div class="step-text">
+            <strong>iPhone / iPad</strong>
+            <p>打开【设置】➔【通用】➔【关于本机】，直接查看“型号名称”（例如 iPhone 16 Pro Max）。</p>
+          </div>
+        </div>
+        <div class="identify-step-item">
+          <div class="step-icon">💻</div>
+          <div class="step-text">
+            <strong>Mac 电脑</strong>
+            <p>点击屏幕左上角苹果标志  ➔【关于本机】，第一行即可看到具体机型（如 MacBook Pro 16 英寸）。</p>
+          </div>
+        </div>
+        <div class="identify-step-item">
+          <div class="step-icon">⌚️</div>
+          <div class="step-text">
+            <strong>Apple Watch</strong>
+            <p>在配对的 iPhone 上打开 Watch App ➔【我的手表】➔【通用】➔【关于本机】。</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="modal-confirm-btn" class="apple-blue-pill-btn modal-btn">我知道了</button>
+      </div>
+    </div>
+  </div>
 
   <!-- 全局 Toast 提示容器 -->
   <div id="toast-container" class="toast-container" aria-live="polite"></div>

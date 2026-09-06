@@ -1506,3 +1506,501 @@ body {
     padding: 12px 14px;
   }
 }
+
+/* ================================================================
+   Apple 官方“选取你的设备”互动估价器样式 (Apple Official Estimator)
+   ================================================================ */
+.apple-estimator-card {
+  background: var(--bg-card-solid);
+  border: 1px solid var(--border-color);
+  border-radius: 24px;
+  padding: 36px 40px;
+  margin-bottom: 28px;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-base);
+}
+
+.estimator-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.estimator-title {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.018em;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.estimator-selectors-box {
+  max-width: 580px;
+  margin: 0 auto 16px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.apple-floating-field {
+  position: relative;
+  background: var(--bg-card-solid);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  padding: 8px 18px;
+  transition: all var(--transition-fast);
+}
+
+.apple-floating-field:hover {
+  border-color: rgba(0, 0, 0, 0.22);
+}
+
+@media (prefers-color-scheme: dark) {
+  .apple-floating-field:hover {
+    border-color: rgba(255, 255, 255, 0.25);
+  }
+}
+
+.apple-floating-field:focus-within {
+  border-color: var(--apple-blue);
+  box-shadow: 0 0 0 3px var(--apple-blue-light);
+}
+
+.floating-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  line-height: 1.2;
+  margin-bottom: 2px;
+}
+
+.apple-select-input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  padding: 2px 28px 2px 0;
+  font-family: inherit;
+}
+
+.field-chevron {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-secondary);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+}
+
+.estimator-help-row {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.apple-link-btn {
+  background: none;
+  border: none;
+  color: var(--apple-blue);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 4px 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: opacity 0.15s ease;
+}
+
+.apple-link-btn:hover {
+  text-decoration: underline;
+  opacity: 0.85;
+}
+
+.apple-link-btn .arrow {
+  font-size: 16px;
+  line-height: 1;
+}
+
+/* 估价结果面板 (左侧设备图，右侧价格表) */
+.estimator-result-card {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  background: rgba(0, 0, 0, 0.015);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 32px 36px;
+  margin-bottom: 28px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .estimator-result-card {
+    background: rgba(255, 255, 255, 0.02);
+  }
+}
+
+.estimator-device-side {
+  flex: 0 0 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 8px;
+}
+
+.device-render-canvas {
+  width: 160px;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.14));
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.device-render-canvas:hover {
+  transform: translateY(-3px) scale(1.02);
+}
+
+.device-render-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-top: 14px;
+  text-align: center;
+}
+
+.estimator-pricing-side {
+  flex: 1;
+  width: 100%;
+}
+
+.pricing-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 4px;
+}
+
+.pricing-headline {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: 0.01em;
+}
+
+.ac-compare-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--apple-blue);
+  background: var(--apple-blue-light);
+  padding: 4px 12px;
+  border-radius: 12px;
+}
+
+.ac-pill-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--apple-blue);
+}
+
+.pricing-table-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.quote-item-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 4px;
+  border-bottom: 1px solid var(--border-color);
+  transition: background 0.15s ease;
+}
+
+.quote-item-row:last-child {
+  border-bottom: none;
+}
+
+.quote-item-row:hover {
+  background: rgba(0, 0, 0, 0.018);
+  border-radius: 8px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .quote-item-row:hover {
+    background: rgba(255, 255, 255, 0.03);
+  }
+}
+
+.quote-part-col {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.quote-part-name {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.quote-part-hint {
+  font-size: 12px;
+  color: var(--text-tertiary);
+}
+
+.quote-price-col {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.quote-price-val {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text-primary);
+  font-feature-settings: "tnum";
+}
+
+.quote-ac-sub {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--apple-blue);
+}
+
+.quote-ac-sub .savings {
+  color: var(--apple-green);
+  margin-left: 4px;
+}
+
+.estimator-action-bar {
+  text-align: center;
+  margin-top: 24px;
+}
+
+.apple-blue-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 42px;
+  border-radius: 9999px;
+  background: var(--apple-blue);
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 113, 227, 0.32);
+  transition: all var(--transition-fast);
+}
+
+.apple-blue-pill-btn:hover {
+  background: var(--apple-blue-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(0, 113, 227, 0.42);
+}
+
+.apple-blue-pill-btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* 全机型折叠器 */
+.all-models-explorer {
+  margin-top: 16px;
+}
+
+.explorer-toggle-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 13px 20px;
+  background: var(--bg-card);
+  border: 1px dashed var(--border-color);
+  border-radius: 14px;
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.explorer-toggle-btn:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+  border-color: rgba(0, 0, 0, 0.25);
+}
+
+.explorer-arrow {
+  transition: transform 0.2s ease;
+}
+
+.explorer-toggle-btn.expanded .explorer-arrow {
+  transform: rotate(180deg);
+}
+
+.explorer-content {
+  margin-top: 20px;
+  animation: fadeIn 0.25s ease;
+}
+
+/* 协助识别弹窗 */
+.apple-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.apple-modal-card {
+  background: var(--bg-card-solid);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  animation: modalScaleIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalScaleIn {
+  from { opacity: 0; transform: scale(0.94) translateY(10px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.modal-title {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.modal-close-btn {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  border-radius: 50%;
+  transition: background 0.15s;
+}
+
+.modal-close-btn:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.modal-body {
+  padding: 22px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.identify-step-item {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.step-icon {
+  font-size: 22px;
+  line-height: 1.2;
+}
+
+.step-text strong {
+  display: block;
+  font-size: 15px;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.step-text p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.modal-footer {
+  padding: 16px 24px;
+  background: rgba(0, 0, 0, 0.02);
+  border-top: 1px solid var(--border-color);
+  text-align: right;
+}
+
+.modal-btn {
+  padding: 8px 24px;
+  font-size: 14px;
+}
+
+/* 手机端适配 */
+@media (max-width: 768px) {
+  .apple-estimator-card {
+    padding: 24px 18px;
+    border-radius: 18px;
+  }
+  .estimator-title {
+    font-size: 24px;
+  }
+  .estimator-result-card {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 16px;
+    gap: 20px;
+  }
+  .estimator-device-side {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+  .device-render-canvas {
+    width: 140px;
+    height: 180px;
+  }
+  .quote-part-name {
+    font-size: 14px;
+  }
+  .quote-price-val {
+    font-size: 15px;
+  }
+  .quote-item-row {
+    padding: 12px 2px;
+  }
+}
+

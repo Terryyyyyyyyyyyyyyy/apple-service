@@ -28,21 +28,221 @@
   const POPULAR_CITIES = [
     "全部",
     "无锡",
+    "江阴",
     "苏州",
+    "常熟",
     "常州",
-    "南京",
     "上海",
-    "杭州",
-    "宁波",
-    "北京",
-    "深圳",
-    "广州",
-    "成都",
-    "重庆",
-    "武汉",
-    "西安"
+    "北京"
   ];
   const STORE_TYPES = ["全部类型", "Apple Store 直营店", "授权服务商 (AASP)"];
+
+  // ================= 官方“选取你的设备”互动估价器配置 =================
+  const ESTIMATOR_SERIES = [
+    {
+      name: "iPhone 16 系列",
+      category: "iPhone",
+      models: ["iPhone 16 Pro Max", "iPhone 16 Pro", "iPhone 16 Plus", "iPhone 16"]
+    },
+    {
+      name: "iPhone 15 系列",
+      category: "iPhone",
+      models: ["iPhone 15 Pro Max", "iPhone 15 Pro", "iPhone 15"]
+    },
+    {
+      name: "iPhone 14 系列",
+      category: "iPhone",
+      models: ["iPhone 14 Pro", "iPhone 14"]
+    },
+    {
+      name: "iPhone 13 / SE 系列",
+      category: "iPhone",
+      models: ["iPhone 13 Pro", "iPhone 13", "iPhone SE (第 3 代)"]
+    },
+    {
+      name: "MacBook Pro",
+      category: "Mac",
+      models: ["MacBook Pro 16 英寸 (M3/M4)", "MacBook Pro 14 英寸 (M3/M4)"]
+    },
+    {
+      name: "MacBook Air / Mac mini",
+      category: "Mac",
+      models: ["MacBook Air 15 英寸 (M2/M3)", "MacBook Air 13 英寸 (M2/M3)", "Mac mini (M2/M4)"]
+    },
+    {
+      name: "iPad Pro",
+      category: "iPad",
+      models: ["iPad Pro 13 英寸 (M4)", "iPad Pro 11 英寸 (M4)"]
+    },
+    {
+      name: "iPad Air / iPad / mini",
+      category: "iPad",
+      models: ["iPad Air 11 英寸 (M2)", "iPad (第 10 代)", "iPad mini (第 6 代 / A17 Pro)"]
+    },
+    {
+      name: "Apple Watch",
+      category: "Apple Watch",
+      models: [
+        "Apple Watch Ultra 2",
+        "Apple Watch Series 10 (46毫米)",
+        "Apple Watch Series 10 (42毫米)",
+        "Apple Watch SE (第 2 代)"
+      ]
+    },
+    {
+      name: "AirPods",
+      category: "AirPods",
+      models: [
+        "AirPods Pro (第 2 代)",
+        "AirPods 4 (主动降噪款)",
+        "AirPods Max"
+      ]
+    }
+  ];
+
+  // 生成高精度设备矢量渲染图 (1:1 官方视觉)
+  function getDeviceSVG(model, category) {
+    const isPhone = category === "iPhone" || model.includes("iPhone");
+    const isMac = category === "Mac" || model.includes("Mac");
+    const isPad = category === "iPad" || model.includes("iPad");
+    const isWatch = category === "Apple Watch" || model.includes("Watch");
+    const isAirPods = category === "AirPods" || model.includes("AirPods");
+
+    if (isPhone) {
+      const isPro = model.includes("Pro");
+      const isPlusOrMax = model.includes("Max") || model.includes("Plus");
+      const scale = isPlusOrMax ? 1.05 : 0.96;
+      return `
+        <svg viewBox="0 0 160 220" width="160" height="220" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="phoneGrad_${isPro ? 'pro' : 'base'}" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="${isPro ? '#383a3e' : '#1f2022'}"/>
+              <stop offset="50%" stop-color="${isPro ? '#222326' : '#111214'}"/>
+              <stop offset="100%" stop-color="#090a0b"/>
+            </linearGradient>
+            <linearGradient id="islandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#46494f"/>
+              <stop offset="100%" stop-color="#242629"/>
+            </linearGradient>
+            <linearGradient id="lensRing" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#8e929a"/>
+              <stop offset="100%" stop-color="#3c3e42"/>
+            </linearGradient>
+            <radialGradient id="lensGlass" cx="35%" cy="35%" r="65%">
+              <stop offset="0%" stop-color="#2c4d7d"/>
+              <stop offset="60%" stop-color="#0b1422"/>
+              <stop offset="100%" stop-color="#02050a"/>
+            </radialGradient>
+          </defs>
+          <g transform="translate(80, 110) scale(${scale}) translate(-80, -110)">
+            <!-- 手机背板 -->
+            <rect x="25" y="10" width="110" height="200" rx="23" fill="url(#phoneGrad_${isPro ? 'pro' : 'base'})" stroke="rgba(255,255,255,0.18)" stroke-width="1.2"/>
+            <!-- 镜头模组凸起 -->
+            <rect x="32" y="17" width="${isPro ? 48 : 38}" height="${isPro ? 48 : 52}" rx="13" fill="url(#islandGrad)" stroke="rgba(255,255,255,0.12)" stroke-width="0.8"/>
+            ${isPro ? `
+              <!-- Pro 三摄 -->
+              <circle cx="45" cy="30" r="8" fill="url(#lensRing)"/>
+              <circle cx="45" cy="30" r="6.2" fill="url(#lensGlass)"/>
+              <circle cx="43.5" cy="28.5" r="2" fill="#ffffff" opacity="0.45"/>
+              <circle cx="45" cy="52" r="8" fill="url(#lensRing)"/>
+              <circle cx="45" cy="52" r="6.2" fill="url(#lensGlass)"/>
+              <circle cx="43.5" cy="50.5" r="2" fill="#ffffff" opacity="0.45"/>
+              <circle cx="68" cy="41" r="8" fill="url(#lensRing)"/>
+              <circle cx="68" cy="41" r="6.2" fill="url(#lensGlass)"/>
+              <circle cx="66.5" cy="39.5" r="2" fill="#ffffff" opacity="0.45"/>
+              <circle cx="68" cy="25" r="3.2" fill="#ffe082"/>
+              <circle cx="68" cy="56" r="3" fill="#111315" stroke="#333" stroke-width="0.8"/>
+            ` : `
+              <!-- 数字版 双摄 -->
+              <circle cx="51" cy="30" r="8" fill="url(#lensRing)"/>
+              <circle cx="51" cy="30" r="6.2" fill="url(#lensGlass)"/>
+              <circle cx="49.5" cy="28.5" r="2" fill="#ffffff" opacity="0.45"/>
+              <circle cx="51" cy="54" r="8" fill="url(#lensRing)"/>
+              <circle cx="51" cy="54" r="6.2" fill="url(#lensGlass)"/>
+              <circle cx="49.5" cy="52.5" r="2" fill="#ffffff" opacity="0.45"/>
+              <circle cx="51" cy="42" r="2.5" fill="#ffe082"/>
+            `}
+            <!-- 居中 苹果 Logo -->
+            <g transform="translate(73, 100) scale(0.018)">
+              <path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76.5 0-103.7 40.8-165.9 40.8s-105.6-57-155.5-127C46.7 790.7 0 663 0 541.8c0-194.4 126.4-297.5 250.8-297.5 66.1 0 121.2 43.4 162.7 43.4 39.5 0 101.1-46 176.3-46 28.5 0 130.9 2.6 198.3 99.2zm-234-181.5c31.1-36.9 53.1-88.1 53.1-139.3 0-7.1-.6-14.3-1.9-20.1-50.6 1.9-110.8 33.7-147.1 75.8-28.5 32.4-55.1 83.6-55.1 135.5 0 7.8 1.3 15.6 1.9 18.1 3.2.6 8.4 1.3 13.6 1.3 45.4 0 102.5-30.4 135.5-71.3z" fill="#9da1a8" opacity="0.8"/>
+            </g>
+          </g>
+        </svg>
+      `;
+    }
+
+    if (isMac) {
+      return `
+        <svg viewBox="0 0 180 180" width="180" height="180" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="macWall" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#e06236"/>
+              <stop offset="50%" stop-color="#af2b68"/>
+              <stop offset="100%" stop-color="#241a4a"/>
+            </linearGradient>
+          </defs>
+          <!-- 屏幕外壳 -->
+          <rect x="22" y="32" width="136" height="92" rx="9" fill="#141416" stroke="#48484a" stroke-width="1.8"/>
+          <!-- 屏幕壁纸 -->
+          <rect x="26" y="36" width="128" height="84" rx="6" fill="url(#macWall)"/>
+          <!-- 顶部刘海 -->
+          <rect x="83" y="36" width="14" height="4.5" rx="1.5" fill="#141416"/>
+          <!-- 键盘机身底座 -->
+          <path d="M10 125 L170 125 L160 142 L20 142 Z" fill="#2c2c2e" stroke="#5a5a5e" stroke-width="1.2"/>
+          <rect x="80" y="125" width="20" height="2.5" rx="1" fill="#48484a"/>
+          <rect x="74" y="131" width="32" height="8" rx="1.5" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="0.8"/>
+        </svg>
+      `;
+    }
+
+    if (isPad) {
+      return `
+        <svg viewBox="0 0 160 220" width="160" height="220" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="padWall" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#0071e3"/>
+              <stop offset="50%" stop-color="#5856d6"/>
+              <stop offset="100%" stop-color="#af52de"/>
+            </linearGradient>
+          </defs>
+          <rect x="20" y="15" width="120" height="190" rx="16" fill="#18181a" stroke="#505054" stroke-width="1.5"/>
+          <rect x="24" y="19" width="112" height="182" rx="12" fill="url(#padWall)"/>
+          <circle cx="80" cy="23" r="1.5" fill="#333"/>
+        </svg>
+      `;
+    }
+
+    if (isWatch) {
+      return `
+        <svg viewBox="0 0 160 200" width="160" height="200" xmlns="http://www.w3.org/2000/svg">
+          <!-- 表带 -->
+          <rect x="58" y="10" width="44" height="35" rx="5" fill="#34373d"/>
+          <rect x="58" y="155" width="44" height="35" rx="5" fill="#34373d"/>
+          <!-- 表壳 -->
+          <rect x="42" y="42" width="76" height="106" rx="24" fill="#1c1c1e" stroke="#5a5a60" stroke-width="2"/>
+          <!-- 数码表冠与按键 -->
+          <rect x="119" y="58" width="5" height="18" rx="2" fill="#888a90"/>
+          <rect x="119" y="86" width="3.5" height="16" rx="1.5" fill="#505054"/>
+          <!-- 屏幕表盘 -->
+          <rect x="46" y="46" width="68" height="98" rx="20" fill="#000000"/>
+          <text x="80" y="86" fill="#ffffff" font-size="20" font-weight="700" text-anchor="middle" font-family="system-ui">09:41</text>
+          <!-- 健身三色圆环 -->
+          <circle cx="80" cy="114" r="14" fill="none" stroke="#fa114f" stroke-width="2.5"/>
+          <circle cx="80" cy="114" r="10" fill="none" stroke="#a1ff00" stroke-width="2.5"/>
+          <circle cx="80" cy="114" r="6" fill="none" stroke="#00f0ff" stroke-width="2.5"/>
+        </svg>
+      `;
+    }
+
+    // AirPods 默认渲染
+    return `
+      <svg viewBox="0 0 160 180" width="160" height="180" xmlns="http://www.w3.org/2000/svg">
+        <rect x="40" y="50" width="80" height="95" rx="26" fill="#f5f5f7" stroke="#d2d2d7" stroke-width="1.5"/>
+        <line x1="40" y1="80" x2="120" y2="80" stroke="#e0e0e5" stroke-width="1"/>
+        <circle cx="80" cy="94" r="2.2" fill="#34c759"/>
+      </svg>
+    `;
+  }
 
   // 设备类别图标
   function getCategoryIcon(cat) {
@@ -894,8 +1094,197 @@
         });
     }
 
+    // ================= 官方互动估价器逻辑 (Apple Estimator) =================
+    const seriesSelect = document.getElementById("estimator-series-select");
+    const modelSelect = document.getElementById("estimator-model-select");
+    const deviceVisual = document.getElementById("estimator-device-visual");
+    const deviceTitle = document.getElementById("estimator-device-title");
+    const pricingList = document.getElementById("estimator-pricing-list");
+    const btnGetService = document.getElementById("btn-estimator-get-service");
+    const btnHelpIdentify = document.getElementById("btn-help-identify");
+    const identifyModal = document.getElementById("identify-modal");
+    const modalCloseBtn = document.getElementById("modal-close-btn");
+    const modalConfirmBtn = document.getElementById("modal-confirm-btn");
+    const toggleExplorerBtn = document.getElementById("toggle-explorer-btn");
+    const explorerContent = document.getElementById("explorer-content");
+
+    // 格式化价格
+    function formatMoney(amount) {
+      if (typeof amount !== "number") return "--";
+      return `RMB ${amount.toLocaleString("en-US")}`;
+    }
+
+    // 格式化部件名称为官网规范术语
+    function normalizePartName(part) {
+      if (part.includes("电池")) return "电池服务";
+      if (part.includes("屏幕维修") || part === "屏幕") return "屏幕损坏";
+      if (part.includes("背面玻璃") && part.includes("屏幕")) return "屏幕和背面玻璃损坏";
+      if (part.includes("背面玻璃")) return "背面玻璃损坏";
+      if (part.includes("后置相机") || part.includes("相机")) return "后置相机损坏";
+      if (part.includes("其他损坏") || part.includes("主板")) return "其他损坏";
+      return part;
+    }
+
+    function initEstimator() {
+      if (!seriesSelect || !modelSelect) return;
+
+      // 填充设备类型下拉框
+      seriesSelect.innerHTML = ESTIMATOR_SERIES.map((s, idx) => {
+        return `<option value="${idx}">${s.name}</option>`;
+      }).join("");
+
+      // 更新机型下拉框
+      function updateModelsForSeries(seriesIndex) {
+        const seriesObj = ESTIMATOR_SERIES[seriesIndex] || ESTIMATOR_SERIES[0];
+        modelSelect.innerHTML = seriesObj.models.map((m) => {
+          return `<option value="${m}">${m}</option>`;
+        }).join("");
+        renderEstimatorQuote(seriesObj.models[0], seriesObj.category);
+      }
+
+      // 渲染选定机型的官方费用清单
+      function renderEstimatorQuote(modelName, category) {
+        if (!deviceTitle || !deviceVisual || !pricingList) return;
+
+        deviceTitle.textContent = modelName;
+        deviceVisual.innerHTML = getDeviceSVG(modelName, category);
+
+        // 提取该机型所有维修报价项
+        const modelItems = state.pricesData.filter((p) => p.model === modelName);
+
+        if (modelItems.length === 0) {
+          pricingList.innerHTML = `<div class="empty-quote-tip" style="padding: 24px; text-align: center; color: var(--text-tertiary);">暂无该机型的官方预估报价</div>`;
+          return;
+        }
+
+        // 部件排序权重 (电池 -> 背面玻璃 -> 相机 -> 屏幕 -> 屏幕+背面 -> 其他)
+        const partWeights = {
+          "电池服务": 1,
+          "背面玻璃损坏": 2,
+          "后置相机损坏": 3,
+          "屏幕损坏": 4,
+          "屏幕和背面玻璃损坏": 5,
+          "其他损坏": 6
+        };
+
+        const sortedItems = [...modelItems].sort((a, b) => {
+          const nameA = normalizePartName(a.part);
+          const nameB = normalizePartName(b.part);
+          const weightA = partWeights[nameA] || 99;
+          const weightB = partWeights[nameB] || 99;
+          return weightA - weightB;
+        });
+
+        pricingList.innerHTML = sortedItems.map((item) => {
+          const displayPartName = normalizePartName(item.part);
+          const outPrice = formatMoney(item.out_of_warranty);
+          
+          let acSub = "";
+          if (typeof item.applecare === "number") {
+            const savings = Math.max(0, item.out_of_warranty - item.applecare);
+            const acPriceStr = formatMoney(item.applecare);
+            acSub = `
+              <div class="quote-ac-sub">
+                AppleCare+：${acPriceStr}
+                ${savings > 0 ? `<span class="savings">(省 ${formatMoney(savings)})</span>` : ""}
+              </div>
+            `;
+          }
+
+          return `
+            <div class="quote-item-row">
+              <div class="quote-part-col">
+                <span class="quote-part-name">${displayPartName}</span>
+                <span class="quote-part-hint">原厂官方配件 · 质保承保</span>
+              </div>
+              <div class="quote-price-col">
+                <span class="quote-price-val">${outPrice}</span>
+                ${acSub}
+              </div>
+            </div>
+          `;
+        }).join("");
+      }
+
+      // 监听系列变更
+      seriesSelect.addEventListener("change", () => {
+        const seriesIdx = parseInt(seriesSelect.value, 10) || 0;
+        updateModelsForSeries(seriesIdx);
+      });
+
+      // 监听机型变更
+      modelSelect.addEventListener("change", () => {
+        const seriesIdx = parseInt(seriesSelect.value, 10) || 0;
+        const seriesObj = ESTIMATOR_SERIES[seriesIdx] || ESTIMATOR_SERIES[0];
+        renderEstimatorQuote(modelSelect.value, seriesObj.category);
+      });
+
+      // 初始化第一次渲染
+      updateModelsForSeries(0);
+
+      // 获取服务按钮点击：平滑跳转到网点并激活
+      if (btnGetService) {
+        btnGetService.addEventListener("click", () => {
+          state.activeTab = "stores";
+          render();
+          const storesSec = document.getElementById("section-stores");
+          if (storesSec) {
+            storesSec.scrollIntoView({ behavior: "smooth" });
+          }
+          showToast(
+            "已直达官方服务网点",
+            "可直接在下方查找无锡及附近的官方直营店或原厂授权服务商",
+            "📍"
+          );
+        });
+      }
+
+      // 协助识别机型弹窗控制
+      if (btnHelpIdentify && identifyModal) {
+        btnHelpIdentify.addEventListener("click", () => {
+          identifyModal.style.display = "flex";
+        });
+      }
+      if (modalCloseBtn && identifyModal) {
+        modalCloseBtn.addEventListener("click", () => {
+          identifyModal.style.display = "none";
+        });
+      }
+      if (modalConfirmBtn && identifyModal) {
+        modalConfirmBtn.addEventListener("click", () => {
+          identifyModal.style.display = "none";
+        });
+      }
+      if (identifyModal) {
+        identifyModal.addEventListener("click", (e) => {
+          if (e.target === identifyModal) {
+            identifyModal.style.display = "none";
+          }
+        });
+      }
+
+      // 全系列对比折叠器控制
+      if (toggleExplorerBtn && explorerContent) {
+        toggleExplorerBtn.addEventListener("click", () => {
+          const isExpanded = explorerContent.style.display !== "none";
+          if (isExpanded) {
+            explorerContent.style.display = "none";
+            toggleExplorerBtn.classList.remove("expanded");
+            toggleExplorerBtn.setAttribute("aria-expanded", "false");
+            toggleExplorerBtn.querySelector(".explorer-text").textContent = "展开全部机型横向对比与自由搜索";
+          } else {
+            explorerContent.style.display = "block";
+            toggleExplorerBtn.classList.add("expanded");
+            toggleExplorerBtn.setAttribute("aria-expanded", "true");
+            toggleExplorerBtn.querySelector(".explorer-text").textContent = "收起全系列机型对比";
+          }
+        });
+      }
+    }
+
     // 初始化渲染
     initCityDropdown();
+    initEstimator();
     render();
   }
 
