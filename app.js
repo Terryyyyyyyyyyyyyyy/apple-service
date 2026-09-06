@@ -407,7 +407,12 @@
       storesData: storesData,
       allCities: allUniqueCities,
       priorityCities: presentPriority,
-      otherCities: otherCities
+      otherCities: otherCities,
+      thirdPartyCategory: "全部",
+      thirdPartySearchQuery: "",
+      thirdPartyBrands: window.thirdPartyBrands || (typeof thirdPartyBrands !== "undefined" ? thirdPartyBrands : []),
+      hotAccSubTab: "top",
+      hotAccessoriesData: window.hotAccessoriesData || (typeof hotAccessoriesData !== "undefined" ? hotAccessoriesData : [])
     };
 
     // 筛选维修价格
@@ -504,27 +509,37 @@
     }
 
     function render() {
-      // 1. Tab 切换状态
-      const tabPrices = document.getElementById("tab-btn-prices");
-      const tabStores = document.getElementById("tab-btn-stores");
-      const secPrices = document.getElementById("section-prices");
-      const secStores = document.getElementById("section-stores");
+      // 1. Tab 切换状态 (支持四大核心模块)
+      const tabs = [
+        { id: "prices", tabEl: document.getElementById("tab-prices") || document.getElementById("tab-btn-prices"), secEl: document.getElementById("section-prices") },
+        { id: "stores", tabEl: document.getElementById("tab-stores") || document.getElementById("tab-btn-stores"), secEl: document.getElementById("section-stores") },
+        { id: "thirdparty", tabEl: document.getElementById("tab-thirdparty"), secEl: document.getElementById("section-thirdparty") },
+        { id: "hotacc", tabEl: document.getElementById("tab-hotacc"), secEl: document.getElementById("section-hotacc") }
+      ];
 
-      if (state.activeTab === "prices") {
-        tabPrices.classList.add("active");
-        tabStores.classList.remove("active");
-        secPrices.style.display = "block";
-        secStores.style.display = "none";
-      } else {
-        tabPrices.classList.remove("active");
-        tabStores.classList.add("active");
-        secPrices.style.display = "none";
-        secStores.style.display = "block";
-      }
+      tabs.forEach((t) => {
+        if (!t.tabEl || !t.secEl) return;
+        const isActive = state.activeTab === t.id;
+        if (isActive) {
+          t.tabEl.classList.add("active");
+          t.tabEl.setAttribute("aria-selected", "true");
+          t.secEl.style.display = "block";
+        } else {
+          t.tabEl.classList.remove("active");
+          t.tabEl.setAttribute("aria-selected", "false");
+          t.secEl.style.display = "none";
+        }
+      });
 
       // 2. 统计 Badge
-      document.getElementById("prices-count-badge").innerText = state.pricesData.length;
-      document.getElementById("stores-count-badge").innerText = state.storesData.length;
+      const pricesBadge = document.getElementById("prices-count-badge");
+      if (pricesBadge) pricesBadge.innerText = state.pricesData.length;
+      const storesBadge = document.getElementById("stores-count-badge");
+      if (storesBadge) storesBadge.innerText = state.storesData.length;
+      const tpBadge = document.getElementById("thirdparty-count-badge");
+      if (tpBadge) tpBadge.innerText = state.thirdPartyBrands.length;
+      const hotBadge = document.getElementById("hotacc-count-badge");
+      if (hotBadge) hotBadge.innerText = state.hotAccessoriesData.length;
 
       // 3. 价格分类 Pills
       const catContainer = document.getElementById("category-pills");
@@ -731,20 +746,507 @@
           })
           .join("");
       }
+
+      // 8. 模块 3：第三方在售配件售后列表渲染
+      renderThirdPartyBrands();
+
+      // 9. 模块 4：当季新品与畅销导购话术渲染
+      renderHotAccessories();
+    }
+
+    // ================================================================
+    // 模块 3：第三方在售配件售后辅助函数与模态抽屉
+    // ================================================================
+    const TP_CATEGORIES = ["全部", "保护类", "电源与线缆", "键鼠与游戏", "音乐与影像", "存储设备", "家居与健康"];
+
+    function renderTpCategoryPills() {
+      const container = document.getElementById("tp-category-pills");
+      if (!container) return;
+      container.innerHTML = TP_CATEGORIES.map((cat) => {
+        const activeClass = state.thirdPartyCategory === cat ? "active" : "";
+        return `<button type="button" class="filter-pill ${activeClass}" data-tp-cat="${cat}">${cat}</button>`;
+      }).join("");
+    }
+
+    function getFilteredThirdPartyBrands() {
+      const q = state.thirdPartySearchQuery.trim().toLowerCase();
+      return state.thirdPartyBrands.filter((b) => {
+        const matchCat = state.thirdPartyCategory === "全部" || b.c === state.thirdPartyCategory;
+        const matchQ =
+          !q ||
+          b.n.toLowerCase().includes(q) ||
+          (b.cn && b.cn.toLowerCase().includes(q)) ||
+          (b.c && b.c.toLowerCase().includes(q)) ||
+          (b.sn && b.sn.toLowerCase().includes(q)) ||
+          (b.s && b.s.join(" ").toLowerCase().includes(q));
+        return matchCat && matchQ;
+      });
+    }
+
+    function renderThirdPartyBrands() {
+      renderTpCategoryPills();
+      const container = document.getElementById("tp-brands-container");
+      const emptyEl = document.getElementById("tp-empty");
+      const countEl = document.getElementById("tp-brands-count");
+      if (!container) return;
+
+      const brands = getFilteredThirdPartyBrands();
+      if (countEl) {
+        countEl.innerText = `共显示 ${brands.length} 个官方在售配件品牌`;
+      }
+
+      if (brands.length === 0) {
+        container.innerHTML = "";
+        if (emptyEl) emptyEl.style.display = "block";
+      } else {
+        if (emptyEl) emptyEl.style.display = "none";
+        container.innerHTML = brands
+          .map((b) => {
+            const logoSrc = `logos/${b.img}`;
+            return `
+            <div class="tp-brand-card" data-brand-name="${encodeURIComponent(b.n)}">
+              <div class="tp-brand-logo-box">
+                <img src="${logoSrc}" alt="${b.n}" onerror="this.src='logos/icon.png'">
+              </div>
+              <div class="tp-brand-info">
+                <div class="tp-brand-names">
+                  <span class="tp-brand-name">${b.n}</span>
+                  ${b.cn ? `<span class="tp-brand-cn">${b.cn}</span>` : ""}
+                </div>
+                <div class="tp-brand-meta">
+                  <span class="tp-warranty-pill">质保: ${b.t}</span>
+                  <span class="tp-cat-tag"># ${b.c}</span>
+                </div>
+              </div>
+              <div class="tp-arrow">›</div>
+            </div>
+          `;
+          })
+          .join("");
+      }
+    }
+
+    function openTpDetailModal(brand) {
+      const modal = document.getElementById("tp-detail-modal");
+      if (!modal) return;
+
+      document.getElementById("tp-modal-logo").innerHTML = `<img src="logos/${brand.img}" alt="${brand.n}" onerror="this.src='logos/icon.png'">`;
+      document.getElementById("tp-modal-title").innerText = brand.n;
+      document.getElementById("tp-modal-cn").innerText = brand.cn ? `中文名称：${brand.cn}` : "";
+      document.getElementById("tp-modal-cat").innerText = brand.c;
+      document.getElementById("tp-modal-warranty").innerText = `官方质保期：${brand.t}`;
+
+      const snEl = document.getElementById("tp-modal-sn");
+      if (snEl) {
+        snEl.innerText = brand.sn || "凭购买凭证或包装条码";
+      }
+
+      const stepsEl = document.getElementById("tp-modal-steps");
+      if (stepsEl && brand.s) {
+        stepsEl.innerHTML = brand.s
+          .map((step, idx) => {
+            return `
+            <div class="tp-step-item">
+              <div class="tp-step-num">${idx + 1}</div>
+              <div class="tp-step-text">${step}</div>
+            </div>
+          `;
+          })
+          .join("");
+      }
+
+      modal.style.display = "flex";
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeTpDetailModal() {
+      const modal = document.getElementById("tp-detail-modal");
+      if (modal) {
+        modal.style.display = "none";
+        document.body.style.overflow = "";
+      }
+    }
+
+    // ================================================================
+    // 模块 4：当季新品与畅销榜导购话术辅助函数与模态抽屉
+    // ================================================================
+    function getFilteredHotAccessories() {
+      const sub = state.hotAccSubTab;
+      if (sub === "top") {
+        return state.hotAccessoriesData
+          .filter((item) => item.category === "top")
+          .sort((a, b) => (a.rank || 99) - (b.rank || 99));
+      } else {
+        return state.hotAccessoriesData.filter((item) => item.category === "new");
+      }
+    }
+
+    function renderHotAccessories() {
+      const btnNew = document.getElementById("btn-hot-new");
+      const btnTop = document.getElementById("btn-hot-top");
+      if (btnNew && btnTop) {
+        if (state.hotAccSubTab === "top") {
+          btnTop.classList.add("active");
+          btnNew.classList.remove("active");
+        } else {
+          btnNew.classList.add("active");
+          btnTop.classList.remove("active");
+        }
+      }
+
+      const container = document.getElementById("hotacc-list-container");
+      if (!container) return;
+
+      const items = getFilteredHotAccessories();
+      container.innerHTML = items
+        .map((item) => {
+          let rankBadge = "";
+          if (item.rank) {
+            const topClass = item.rank <= 3 ? `top-${item.rank}` : "";
+            rankBadge = `<span class="rank-badge ${topClass}">#${item.rank}</span>`;
+          }
+
+          const featuresHtml = item.features
+            ? item.features
+                .slice(0, 2)
+                .map(
+                  (f) => `
+            <div class="hot-feature-row">
+              <span>${f.icon}</span>
+              <span>${f.text}</span>
+            </div>
+          `
+                )
+                .join("")
+            : "";
+
+          return `
+          <div class="hot-card" data-hot-id="${item.id}">
+            <div class="hot-card-top">
+              <div class="hot-img-box">
+                <img src="logos/${item.img}" alt="${item.name}" onerror="this.src='logos/icon.png'">
+                ${rankBadge}
+              </div>
+              <div class="hot-card-info">
+                <span class="hot-tag-pill">${item.tag || "热卖"}</span>
+                <div class="hot-card-title">${item.name}</div>
+                <div class="hot-card-price">${item.price}</div>
+              </div>
+            </div>
+            ${featuresHtml ? `<div class="hot-features-summary">${featuresHtml}</div>` : ""}
+            <div class="hot-action-bar">
+              <span class="hot-pitch-hint">💬 查看一击必中话术与连带建议</span>
+              <span class="tp-arrow">›</span>
+            </div>
+          </div>
+        `;
+        })
+        .join("");
+    }
+
+    function openHotDetailModal(item) {
+      const modal = document.getElementById("hot-detail-modal");
+      if (!modal) return;
+
+      document.getElementById("hot-modal-tag").innerText =
+        item.tag || (item.category === "top" ? `畅销 Top ${item.rank}` : "当季新品");
+      document.getElementById("hot-modal-title").innerText = item.name;
+      document.getElementById("hot-modal-price").innerText = item.price;
+
+      const featuresEl = document.getElementById("hot-modal-features");
+      if (featuresEl && item.features) {
+        featuresEl.innerHTML = item.features
+          .map(
+            (f) => `
+          <div class="hot-feature-item">
+            <span style="font-size: 16px;">${f.icon}</span>
+            <span>${f.text}</span>
+          </div>
+        `
+          )
+          .join("");
+      }
+
+      const pitchesEl = document.getElementById("hot-modal-pitches");
+      if (pitchesEl && item.pitches) {
+        pitchesEl.innerHTML = item.pitches
+          .map(
+            (p) => `
+          <div class="pitch-bubble ${p.style || "gray"}">
+            <span class="pitch-bubble-label">💡 ${p.type}</span>
+            <div>${p.text}</div>
+          </div>
+        `
+          )
+          .join("");
+      }
+
+      const crossEl = document.getElementById("hot-modal-cross");
+      if (crossEl) {
+        crossEl.innerHTML = item.crossSell || "暂无推荐搭配";
+      }
+
+      modal.style.display = "flex";
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeHotDetailModal() {
+      const modal = document.getElementById("hot-detail-modal");
+      if (modal) {
+        modal.style.display = "none";
+        document.body.style.overflow = "";
+      }
+    }
+
+    // ================================================================
+    // 全量离线自动保存下载器 (Auto-Download Offline Assets)
+    // ================================================================
+    async function downloadAllOfflineAssets() {
+      const statusEl = document.getElementById("offline-status-badge");
+      if (!('caches' in window)) {
+        if (statusEl) statusEl.innerText = "✓ 基础离线缓存已就绪";
+        return;
+      }
+
+      const CACHE_NAME = 'apple-service-v4.0';
+      let cache;
+      try {
+        cache = await caches.open(CACHE_NAME);
+      } catch (err) {
+        console.warn("Caches open failed", err);
+        return;
+      }
+
+      const urlsToCache = [
+        './',
+        './index.html',
+        './style.css',
+        './app.js',
+        './data.js',
+        './manifest.json',
+        './icon.svg',
+        './apple-touch-icon.png',
+        './logos/icon.png'
+      ];
+
+      // 添加所有第三方品牌 Logo 与二维码
+      if (state.thirdPartyBrands && state.thirdPartyBrands.length > 0) {
+        state.thirdPartyBrands.forEach((b) => {
+          if (b.img) urlsToCache.push(`logos/${b.img}`);
+          if (b.s) {
+            b.s.forEach((step) => {
+              const match = step.match(/src=["']([^"']+)["']/);
+              if (match && match[1]) urlsToCache.push(match[1]);
+            });
+          }
+        });
+      }
+
+      // 添加所有热门配件商品图
+      if (state.hotAccessoriesData && state.hotAccessoriesData.length > 0) {
+        state.hotAccessoriesData.forEach((h) => {
+          if (h.img) urlsToCache.push(`logos/${h.img}`);
+        });
+      }
+
+      const uniqueUrls = Array.from(new Set(urlsToCache));
+      let loaded = 0;
+      const total = uniqueUrls.length;
+
+      for (const url of uniqueUrls) {
+        try {
+          const matched = await cache.match(url);
+          if (!matched) {
+            await cache.add(url);
+          }
+          loaded++;
+          if (statusEl && loaded % 3 === 0) {
+            statusEl.innerText = `⏳ 正在准备离线环境: ${Math.floor((loaded / total) * 100)}%`;
+          }
+        } catch (e) {
+          loaded++;
+        }
+      }
+
+      if (statusEl) {
+        statusEl.innerText = "✅ 100% 离线就绪，可断网使用";
+        statusEl.style.color = "#34c759";
+        statusEl.style.borderColor = "rgba(52, 199, 89, 0.35)";
+        statusEl.style.background = "rgba(52, 199, 89, 0.08)";
+      }
+    }
+
+    async function forceUpdateApp() {
+      const btn = document.getElementById("btn-force-update-app");
+      const statusEl = document.getElementById("offline-status-badge");
+      if (btn) btn.innerText = "正在清除旧缓存...";
+      if (statusEl) statusEl.innerText = "⏳ 正在拉取最新版本...";
+
+      if ('caches' in window) {
+        try {
+          const keys = await caches.keys();
+          await Promise.all(keys.map((k) => caches.delete(k)));
+        } catch (e) {}
+      }
+
+      if ('serviceWorker' in navigator) {
+        try {
+          const registrations = await navigator.serviceWorker.getRegistrations();
+          for (const reg of registrations) {
+            await reg.update();
+          }
+        } catch (e) {}
+      }
+
+      setTimeout(() => {
+        window.location.reload(true);
+      }, 400);
     }
 
     // ================= 事件监听绑定 =================
 
-    // Tab 切换
-    document.getElementById("tab-btn-prices").addEventListener("click", () => {
-      state.activeTab = "prices";
-      render();
+    // 核心四大 Tab 切换
+    document.querySelectorAll(".main-tab-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const tab = btn.getAttribute("data-tab");
+        if (tab) {
+          state.activeTab = tab;
+          render();
+        }
+      });
     });
 
-    document.getElementById("tab-btn-stores").addEventListener("click", () => {
-      state.activeTab = "stores";
-      render();
+    // 第三方配件分类 Pills 点击
+    const tpCatContainer = document.getElementById("tp-category-pills");
+    if (tpCatContainer) {
+      tpCatContainer.addEventListener("click", (e) => {
+        const btn = e.target.closest("button[data-tp-cat]");
+        if (btn) {
+          state.thirdPartyCategory = btn.getAttribute("data-tp-cat");
+          render();
+        }
+      });
+    }
+
+    // 第三方配件搜索
+    const tpSearchInput = document.getElementById("tp-search-input");
+    const tpClearBtn = document.getElementById("tp-search-clear-btn");
+    const tpResetBtn = document.getElementById("btn-clear-tp-search");
+
+    if (tpSearchInput) {
+      tpSearchInput.addEventListener("input", (e) => {
+        state.thirdPartySearchQuery = e.target.value;
+        if (tpClearBtn) {
+          tpClearBtn.style.display = e.target.value ? "flex" : "none";
+        }
+        renderThirdPartyBrands();
+      });
+    }
+
+    if (tpClearBtn && tpSearchInput) {
+      tpClearBtn.addEventListener("click", () => {
+        tpSearchInput.value = "";
+        state.thirdPartySearchQuery = "";
+        tpClearBtn.style.display = "none";
+        renderThirdPartyBrands();
+      });
+    }
+
+    if (tpResetBtn && tpSearchInput) {
+      tpResetBtn.addEventListener("click", () => {
+        tpSearchInput.value = "";
+        state.thirdPartySearchQuery = "";
+        state.thirdPartyCategory = "全部";
+        if (tpClearBtn) tpClearBtn.style.display = "none";
+        render();
+      });
+    }
+
+    // 第三方配件卡片点击弹出抽屉
+    const tpBrandsContainer = document.getElementById("tp-brands-container");
+    if (tpBrandsContainer) {
+      tpBrandsContainer.addEventListener("click", (e) => {
+        const card = e.target.closest(".tp-brand-card");
+        if (!card) return;
+        const brandName = decodeURIComponent(card.getAttribute("data-brand-name") || "");
+        const brand = state.thirdPartyBrands.find((b) => b.n === brandName);
+        if (brand) {
+          openTpDetailModal(brand);
+        }
+      });
+    }
+
+    // 第三方弹窗关闭
+    const tpCloseBtn = document.getElementById("tp-modal-close-btn");
+    const tpModal = document.getElementById("tp-detail-modal");
+    if (tpCloseBtn) {
+      tpCloseBtn.addEventListener("click", closeTpDetailModal);
+    }
+    if (tpModal) {
+      tpModal.addEventListener("click", (e) => {
+        if (e.target === tpModal) {
+          closeTpDetailModal();
+        }
+      });
+    }
+
+    // 热门配件当季新品 vs Top 10 切换
+    const btnHotNew = document.getElementById("btn-hot-new");
+    const btnHotTop = document.getElementById("btn-hot-top");
+    if (btnHotNew) {
+      btnHotNew.addEventListener("click", () => {
+        state.hotAccSubTab = "new";
+        renderHotAccessories();
+      });
+    }
+    if (btnHotTop) {
+      btnHotTop.addEventListener("click", () => {
+        state.hotAccSubTab = "top";
+        renderHotAccessories();
+      });
+    }
+
+    // 热门配件卡片点击弹出详情话术抽屉
+    const hotListContainer = document.getElementById("hotacc-list-container");
+    if (hotListContainer) {
+      hotListContainer.addEventListener("click", (e) => {
+        const card = e.target.closest(".hot-card");
+        if (!card) return;
+        const hotId = card.getAttribute("data-hot-id");
+        const item = state.hotAccessoriesData.find((h) => h.id === hotId);
+        if (item) {
+          openHotDetailModal(item);
+        }
+      });
+    }
+
+    // 热门弹窗关闭
+    const hotCloseBtn = document.getElementById("hot-modal-close-btn");
+    const hotModal = document.getElementById("hot-detail-modal");
+    if (hotCloseBtn) {
+      hotCloseBtn.addEventListener("click", closeHotDetailModal);
+    }
+    if (hotModal) {
+      hotModal.addEventListener("click", (e) => {
+        if (e.target === hotModal) {
+          closeHotDetailModal();
+        }
+      });
+    }
+
+    // 全局 ESC 键关闭抽屉弹窗
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        closeTpDetailModal();
+        closeHotDetailModal();
+      }
     });
+
+    // 离线更新按钮绑定
+    const btnForceUpdate = document.getElementById("btn-force-update-app");
+    if (btnForceUpdate) {
+      btnForceUpdate.addEventListener("click", forceUpdateApp);
+    }
 
     // 价格一级大类 Pills 点击
     document.getElementById("category-pills").addEventListener("click", (e) => {
@@ -1088,9 +1590,10 @@
 
     // PWA Service Worker 离线注册 (在 http/https 环境下生效，强制检查并即时应用最新版本)
     if ("serviceWorker" in navigator && (window.location.protocol === "http:" || window.location.protocol === "https:")) {
-      navigator.serviceWorker.register("./sw.js?v=202609062250")
+      navigator.serviceWorker.register("./sw.js?v=202609070000")
         .then((reg) => {
           reg.update();
+          setTimeout(downloadAllOfflineAssets, 500);
           reg.addEventListener("updatefound", () => {
             const newWorker = reg.installing;
             if (newWorker) {
@@ -1105,11 +1608,14 @@
         })
         .catch((err) => {
           console.warn("[PWA] Service Worker 注册跳过:", err);
+          setTimeout(downloadAllOfflineAssets, 500);
         });
 
       navigator.serviceWorker.addEventListener("controllerchange", () => {
         window.location.reload();
       });
+    } else {
+      setTimeout(downloadAllOfflineAssets, 500);
     }
 
     // 绑定强制刷新与缓存清除逻辑

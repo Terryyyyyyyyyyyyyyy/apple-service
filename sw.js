@@ -4,7 +4,7 @@
  * 连线时自动拉取最新版本刷新缓存，离线时 100% 正常运行
  */
 
-const CACHE_NAME = 'apple-service-v3.0';
+const CACHE_NAME = 'apple-service-v4.0';
 const PRECACHE_ASSETS = [
   './',
   'index.html',
