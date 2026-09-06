@@ -411,28 +411,23 @@ body {
 }
 
 .filter-pill.active {
-  background: var(--text-primary);
-  color: var(--bg-primary);
-  border-color: var(--text-primary);
-  font-weight: 600;
-}
-
-.filter-pill.pill-wuxi {
+  background: var(--apple-blue);
+  color: #ffffff;
   border-color: var(--apple-blue);
-  color: var(--apple-blue);
   font-weight: 600;
-  background: var(--apple-blue-light);
+  box-shadow: 0 2px 8px rgba(0, 113, 227, 0.3);
 }
 
-.filter-pill.pill-wuxi:hover {
-  background: rgba(0, 113, 227, 0.18);
-  color: var(--apple-blue);
+/* 无锡作为本地区域，未选中时与所有城市保持统一的未激活外观，选中时才高亮 */
+.filter-pill.pill-wuxi {
+  font-weight: 500;
 }
 
 .filter-pill.pill-wuxi.active {
   background: var(--apple-blue);
   color: #ffffff;
   border-color: var(--apple-blue);
+  box-shadow: 0 2px 8px rgba(0, 113, 227, 0.35);
 }
 
 /* Search Box */
