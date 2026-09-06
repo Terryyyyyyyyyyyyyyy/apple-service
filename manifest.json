@@ -1,18 +1,27 @@
 {
   "name": "Apple 官方维修价格与服务网点快查",
-  "short_name": "Apple 服务快查",
-  "description": "即时查询 Apple 全系设备官方原厂维修价格与全国 64+ 重点城市官方授权服务网点，支持离线高速访问与智能后台同步",
+  "short_name": "Apple服务快查",
+  "description": "即时查询 Apple 全系设备官方原厂维修价格与全国 65+ 重点城市官方授权服务网点，支持离线高速访问与智能后台同步",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#f5f5f7",
-  "theme_color": "#ffffff",
+  "background_color": "#0071e3",
+  "theme_color": "#0071e3",
   "orientation": "any",
   "icons": [
     {
-      "src": "icon.svg",
-      "sizes": "192x192 512x512",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
     }
   ],
   "categories": ["utilities", "productivity"]

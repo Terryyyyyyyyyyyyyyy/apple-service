@@ -4,7 +4,7 @@
  * 连线时自动拉取最新版本刷新缓存，离线时 100% 正常运行
  */
 
-const CACHE_NAME = 'apple-service-v1.1';
+const CACHE_NAME = 'apple-service-v1.2';
 const PRECACHE_ASSETS = [
   './',
   'index.html',
@@ -12,7 +12,10 @@ const PRECACHE_ASSETS = [
   'app.js',
   'data.js',
   'manifest.json',
-  'icon.svg'
+  'icon.svg',
+  'apple-touch-icon.png',
+  'icon-192.png',
+  'icon-512.png'
 ];
 
 // 1. 安装阶段：预缓存应用核心资产

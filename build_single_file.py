@@ -32,14 +32,19 @@ def bundle():
     with open(APP_JS, "r", encoding="utf-8") as f:
         app_js = f.read()
 
-    # 将 icon.svg 转为 base64 data URI
-    icon_b64 = ""
+    # 将 icon.svg 与 apple-touch-icon.png 转为 base64 data URI
+    touch_icon_png = os.path.join(DIR, "apple-touch-icon.png")
+    if os.path.exists(touch_icon_png):
+        with open(touch_icon_png, "rb") as f:
+            png_b64 = base64.b64encode(f.read()).decode("utf-8")
+        png_data_uri = f"data:image/png;base64,{png_b64}"
+        html = re.sub(r'<link rel="apple-touch-icon"[^>]*>', f'<link rel="apple-touch-icon" sizes="180x180" href="{png_data_uri}">', html)
+
     if os.path.exists(ICON_SVG):
         with open(ICON_SVG, "rb") as f:
             icon_b64 = base64.b64encode(f.read()).decode("utf-8")
         icon_data_uri = f"data:image/svg+xml;base64,{icon_b64}"
-        html = re.sub(r'<link rel="icon" [^>]+>', f'<link rel="icon" type="image/svg+xml" href="{icon_data_uri}">', html)
-        html = re.sub(r'<link rel="apple-touch-icon" [^>]+>', f'<link rel="apple-touch-icon" href="{icon_data_uri}">', html)
+        html = re.sub(r'<link rel="icon" type="image/svg\+xml"[^>]*>', f'<link rel="icon" type="image/svg+xml" href="{icon_data_uri}">', html)
 
     # 替换样式表为内联样式
     style_tag = f"<style>\n/* Apple Service Styles */\n{css}\n</style>"
