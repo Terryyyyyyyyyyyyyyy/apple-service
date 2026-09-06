@@ -1,0 +1,4978 @@
+{
+  "iPhone": {
+    "getSupportProductUrl": "https://getsupport.apple.com/?caller=sfaqlnd&SG=SG003",
+    "helpLink": "https://support.apple.com/108044",
+    "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=PL133&size=240x240",
+    "products": [
+      {
+        "product_tag_id": "TAG_1760016472060",
+        "product_eng_title": "iPhone Air",
+        "product_loc_title": "iPhone Air",
+        "children_present": true,
+        "sort_order": "16",
+        "isDefault": false,
+        "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=PRICE115&size=240x240",
+        "showEstimateDisclaimer": false,
+        "childrenProducts": [
+          {
+            "product_tag_id": "TAG_1760017610488",
+            "product_eng_title": "iPhone Air",
+            "product_loc_title": "iPhone Air",
+            "children_present": false,
+            "sort_order": "1",
+            "isDefault": true,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301244&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 969",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "背面玻璃损坏",
+                "price": "RMB 1,298",
+                "sortOrder": "14"
+              },
+              {
+                "serviceLabel": "后置相机损坏",
+                "price": "RMB 1,299",
+                "sortOrder": "12"
+              },
+              {
+                "serviceLabel": "屏幕损坏",
+                "price": "RMB 2,698",
+                "sortOrder": "10"
+              },
+              {
+                "serviceLabel": "屏幕和背面玻璃损坏",
+                "price": "RMB 3,429",
+                "sortOrder": "8"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 5,699",
+                "sortOrder": "4"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "product_tag_id": "TAG_1760016472265",
+        "product_eng_title": "iPhone 17",
+        "product_loc_title": "iPhone 17",
+        "children_present": true,
+        "sort_order": "15",
+        "isDefault": true,
+        "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=PRICE114&size=240x240",
+        "showEstimateDisclaimer": false,
+        "childrenProducts": [
+          {
+            "product_tag_id": "TAG_1760017610887",
+            "product_eng_title": "iPhone 17 Pro Max",
+            "product_loc_title": "iPhone 17 Pro Max",
+            "children_present": false,
+            "sort_order": "4",
+            "isDefault": true,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301246&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 969",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "背面玻璃损坏",
+                "price": "RMB 1,298",
+                "sortOrder": "14"
+              },
+              {
+                "serviceLabel": "后置相机损坏",
+                "price": "RMB 1,949",
+                "sortOrder": "12"
+              },
+              {
+                "serviceLabel": "屏幕损坏",
+                "price": "RMB 3,198",
+                "sortOrder": "10"
+              },
+              {
+                "serviceLabel": "屏幕和背面玻璃损坏",
+                "price": "RMB 3,929",
+                "sortOrder": "8"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 6,499",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1760017611086",
+            "product_eng_title": "iPhone 17 Pro",
+            "product_loc_title": "iPhone 17 Pro",
+            "children_present": false,
+            "sort_order": "3",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301245&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 969",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "背面玻璃损坏",
+                "price": "RMB 1,298",
+                "sortOrder": "14"
+              },
+              {
+                "serviceLabel": "后置相机损坏",
+                "price": "RMB 1,949",
+                "sortOrder": "12"
+              },
+              {
+                "serviceLabel": "屏幕损坏",
+                "price": "RMB 2,698",
+                "sortOrder": "10"
+              },
+              {
+                "serviceLabel": "屏幕和背面玻璃损坏",
+                "price": "RMB 3,429",
+                "sortOrder": "8"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 6,099",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1760017610687",
+            "product_eng_title": "iPhone 17",
+            "product_loc_title": "iPhone 17",
+            "children_present": false,
+            "sort_order": "2",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301247&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "背面玻璃损坏",
+                "price": "RMB 1,298",
+                "sortOrder": "14"
+              },
+              {
+                "serviceLabel": "后置相机损坏",
+                "price": "RMB 1,299",
+                "sortOrder": "12"
+              },
+              {
+                "serviceLabel": "屏幕损坏",
+                "price": "RMB 2,698",
+                "sortOrder": "10"
+              },
+              {
+                "serviceLabel": "屏幕和背面玻璃损坏",
+                "price": "RMB 3,429",
+                "sortOrder": "8"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 4,699",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1772519701558",
+            "product_eng_title": "iPhone 17e",
+            "product_loc_title": "iPhone 17e",
+            "children_present": false,
+            "sort_order": "1",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301285&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "背面玻璃损坏",
+                "price": "RMB 1,298",
+                "sortOrder": "14"
+              },
+              {
+                "serviceLabel": "后置相机损坏",
+                "price": "RMB 1,059",
+                "sortOrder": "12"
+              },
+              {
+                "serviceLabel": "屏幕损坏",
+                "price": "RMB 1,879",
+                "sortOrder": "10"
+              },
+              {
+                "serviceLabel": "屏幕和背面玻璃损坏",
+                "price": "RMB 2,599",
+                "sortOrder": "8"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 3,449",
+                "sortOrder": "4"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "product_tag_id": "TAG_1754518888986",
+        "product_eng_title": "iPhone 16",
+        "product_loc_title": "iPhone 16",
+        "children_present": true,
+        "sort_order": "14",
+        "isDefault": false,
+        "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=PRICE113&size=240x240",
+        "showEstimateDisclaimer": false,
+        "childrenProducts": [
+          {
+            "product_tag_id": "TAG_1754519564322",
+            "product_eng_title": "iPhone 16 Pro Max",
+            "product_loc_title": "iPhone 16 Pro Max",
+            "children_present": false,
+            "sort_order": "5",
+            "isDefault": true,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301048&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 969",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "背面玻璃损坏",
+                "price": "RMB 1,298",
+                "sortOrder": "14"
+              },
+              {
+                "serviceLabel": "后置相机损坏",
+                "price": "RMB 1,949",
+                "sortOrder": "12"
+              },
+              {
+                "serviceLabel": "屏幕损坏",
+                "price": "RMB 3,198",
+                "sortOrder": "10"
+              },
+              {
+                "serviceLabel": "屏幕和背面玻璃损坏",
+                "price": "RMB 3,929",
+                "sortOrder": "8"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 6,099",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1754519564124",
+            "product_eng_title": "iPhone 16 Pro",
+            "product_loc_title": "iPhone 16 Pro",
+            "children_present": false,
+            "sort_order": "4",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301047&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 969",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "背面玻璃损坏",
+                "price": "RMB 1,298",
+                "sortOrder": "14"
+              },
+              {
+                "serviceLabel": "后置相机损坏",
+                "price": "RMB 1,949",
+                "sortOrder": "12"
+              },
+              {
+                "serviceLabel": "屏幕损坏",
+                "price": "RMB 2,698",
+                "sortOrder": "10"
+              },
+              {
+                "serviceLabel": "屏幕和背面玻璃损坏",
+                "price": "RMB 3,429",
+                "sortOrder": "8"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 5,299",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1754519563923",
+            "product_eng_title": "iPhone 16 Plus",
+            "product_loc_title": "iPhone 16 Plus",
+            "children_present": false,
+            "sort_order": "3",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301046&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "背面玻璃损坏",
+                "price": "RMB 1,298",
+                "sortOrder": "14"
+              },
+              {
+                "serviceLabel": "后置相机损坏",
+                "price": "RMB 1,299",
+                "sortOrder": "12"
+              },
+              {
+                "serviceLabel": "屏幕损坏",
+                "price": "RMB 2,698",
+                "sortOrder": "10"
+              },
+              {
+                "serviceLabel": "屏幕和背面玻璃损坏",
+                "price": "RMB 3,429",
+                "sortOrder": "8"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 4,699",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1754519563723",
+            "product_eng_title": "iPhone 16",
+            "product_loc_title": "iPhone 16",
+            "children_present": false,
+            "sort_order": "2",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301045&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "背面玻璃损坏",
+                "price": "RMB 1,298",
+                "sortOrder": "14"
+              },
+              {
+                "serviceLabel": "后置相机损坏",
+                "price": "RMB 1,299",
+                "sortOrder": "12"
+              },
+              {
+                "serviceLabel": "屏幕损坏",
+                "price": "RMB 2,298",
+                "sortOrder": "10"
+              },
+              {
+                "serviceLabel": "屏幕和背面玻璃损坏",
+                "price": "RMB 2,998",
+                "sortOrder": "8"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 4,399",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1754519564518",
+            "product_eng_title": "iPhone 16e",
+            "product_loc_title": "iPhone 16e",
+            "children_present": false,
+            "sort_order": "1",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301076&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "背面玻璃损坏",
+                "price": "RMB 1,298",
+                "sortOrder": "14"
+              },
+              {
+                "serviceLabel": "后置相机损坏",
+                "price": "RMB 1,059",
+                "sortOrder": "12"
+              },
+              {
+                "serviceLabel": "屏幕损坏",
+                "price": "RMB 1,879",
+                "sortOrder": "10"
+              },
+              {
+                "serviceLabel": "屏幕和背面玻璃损坏",
+                "price": "RMB 2,599",
+                "sortOrder": "8"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 3,449",
+                "sortOrder": "4"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "product_tag_id": "TAG_1754518888786",
+        "product_eng_title": "iPhone 15",
+        "product_loc_title": "iPhone 15",
+        "children_present": true,
+        "sort_order": "13",
+        "isDefault": false,
+        "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=PRICE112&size=240x240",
+        "showEstimateDisclaimer": false,
+        "childrenProducts": [
+          {
+            "product_tag_id": "TAG_1754519563525",
+            "product_eng_title": "iPhone 15 Pro Max",
+            "product_loc_title": "iPhone 15 Pro Max",
+            "children_present": false,
+            "sort_order": "4",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301003&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "背面玻璃损坏",
+                "price": "RMB 1,298",
+                "sortOrder": "14"
+              },
+              {
+                "serviceLabel": "后置相机损坏",
+                "price": "RMB 1,949",
+                "sortOrder": "12"
+              },
+              {
+                "serviceLabel": "屏幕损坏",
+                "price": "RMB 3,198",
+                "sortOrder": "10"
+              },
+              {
+                "serviceLabel": "屏幕和背面玻璃损坏",
+                "price": "RMB 3,929",
+                "sortOrder": "8"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 5,699",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1754519563325",
+            "product_eng_title": "iPhone 15 Pro",
+            "product_loc_title": "iPhone 15 Pro",
+            "children_present": false,
+            "sort_order": "3",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300993&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "背面玻璃损坏",
+                "price": "RMB 1,298",
+                "sortOrder": "14"
+              },
+              {
+                "serviceLabel": "后置相机损坏",
+                "price": "RMB 1,748",
+                "sortOrder": "12"
+              },
+              {
+                "serviceLabel": "屏幕损坏",
+                "price": "RMB 2,698",
+                "sortOrder": "10"
+              },
+              {
+                "serviceLabel": "屏幕和背面玻璃损坏",
+                "price": "RMB 3,429",
+                "sortOrder": "8"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 5,299",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1754519563125",
+            "product_eng_title": "iPhone 15 Plus",
+            "product_loc_title": "iPhone 15 Plus",
+            "children_present": false,
+            "sort_order": "2",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301004&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "背面玻璃损坏",
+                "price": "RMB 1,298",
+                "sortOrder": "14"
+              },
+              {
+                "serviceLabel": "后置相机损坏",
+                "price": "RMB 1,299",
+                "sortOrder": "12"
+              },
+              {
+                "serviceLabel": "屏幕损坏",
+                "price": "RMB 2,698",
+                "sortOrder": "10"
+              },
+              {
+                "serviceLabel": "屏幕和背面玻璃损坏",
+                "price": "RMB 3,429",
+                "sortOrder": "8"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 4,699",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1754519562929",
+            "product_eng_title": "iPhone 15",
+            "product_loc_title": "iPhone 15",
+            "children_present": false,
+            "sort_order": "1",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300991&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "背面玻璃损坏",
+                "price": "RMB 1,298",
+                "sortOrder": "14"
+              },
+              {
+                "serviceLabel": "后置相机损坏",
+                "price": "RMB 1,299",
+                "sortOrder": "12"
+              },
+              {
+                "serviceLabel": "屏幕损坏",
+                "price": "RMB 2,298",
+                "sortOrder": "10"
+              },
+              {
+                "serviceLabel": "屏幕和背面玻璃损坏",
+                "price": "RMB 2,998",
+                "sortOrder": "8"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 4,399",
+                "sortOrder": "4"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "product_tag_id": "TAG_1754518888586",
+        "product_eng_title": "iPhone 14",
+        "product_loc_title": "iPhone 14",
+        "children_present": true,
+        "sort_order": "12",
+        "isDefault": false,
+        "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=PRICE111&size=240x240",
+        "showEstimateDisclaimer": false,
+        "childrenProducts": [
+          {
+            "product_tag_id": "TAG_1754519562734",
+            "product_eng_title": "iPhone 14 Pro Max",
+            "product_loc_title": "iPhone 14 Pro Max",
+            "children_present": false,
+            "sort_order": "4",
+            "isDefault": true,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300881&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "背面玻璃损坏",
+                "price": "RMB 3,998",
+                "sortOrder": "14"
+              },
+              {
+                "serviceLabel": "后置相机损坏",
+                "price": "RMB 1,748",
+                "sortOrder": "12"
+              },
+              {
+                "serviceLabel": "屏幕损坏",
+                "price": "RMB 3,198",
+                "sortOrder": "10"
+              },
+              {
+                "serviceLabel": "屏幕和背面玻璃损坏",
+                "price": "RMB 4,998",
+                "sortOrder": "8"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 5,699",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1754519562536",
+            "product_eng_title": "iPhone 14 Pro",
+            "product_loc_title": "iPhone 14 Pro",
+            "children_present": false,
+            "sort_order": "3",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300880&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "背面玻璃损坏",
+                "price": "RMB 3,598",
+                "sortOrder": "14"
+              },
+              {
+                "serviceLabel": "后置相机损坏",
+                "price": "RMB 1,748",
+                "sortOrder": "12"
+              },
+              {
+                "serviceLabel": "屏幕损坏",
+                "price": "RMB 2,698",
+                "sortOrder": "10"
+              },
+              {
+                "serviceLabel": "屏幕和背面玻璃损坏",
+                "price": "RMB 4,598",
+                "sortOrder": "8"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 5,299",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1754519562341",
+            "product_eng_title": "iPhone 14 Plus",
+            "product_loc_title": "iPhone 14 Plus",
+            "children_present": false,
+            "sort_order": "2",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300879&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "背面玻璃损坏",
+                "price": "RMB 1,298",
+                "sortOrder": "14"
+              },
+              {
+                "serviceLabel": "后置相机损坏",
+                "price": "RMB 1,299",
+                "sortOrder": "12"
+              },
+              {
+                "serviceLabel": "屏幕损坏",
+                "price": "RMB 2,698",
+                "sortOrder": "10"
+              },
+              {
+                "serviceLabel": "屏幕和背面玻璃损坏",
+                "price": "RMB 3,429",
+                "sortOrder": "8"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 4,699",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1754519562140",
+            "product_eng_title": "iPhone 14",
+            "product_loc_title": "iPhone 14",
+            "children_present": false,
+            "sort_order": "1",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300878&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "背面玻璃损坏",
+                "price": "RMB 1,298",
+                "sortOrder": "14"
+              },
+              {
+                "serviceLabel": "后置相机损坏",
+                "price": "RMB 1,299",
+                "sortOrder": "12"
+              },
+              {
+                "serviceLabel": "屏幕损坏",
+                "price": "RMB 2,298",
+                "sortOrder": "10"
+              },
+              {
+                "serviceLabel": "屏幕和背面玻璃损坏",
+                "price": "RMB 2,998",
+                "sortOrder": "8"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 3,799",
+                "sortOrder": "4"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "product_tag_id": "TAG_1754518888387",
+        "product_eng_title": "iPhone 13",
+        "product_loc_title": "iPhone 13",
+        "children_present": true,
+        "sort_order": "11",
+        "isDefault": false,
+        "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=PRICE110&size=240x240",
+        "showEstimateDisclaimer": false,
+        "childrenProducts": [
+          {
+            "product_tag_id": "TAG_1754519561943",
+            "product_eng_title": "iPhone 13 Pro Max",
+            "product_loc_title": "iPhone 13 Pro Max",
+            "children_present": false,
+            "sort_order": "4",
+            "isDefault": true,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300430&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 729",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "背面玻璃损坏",
+                "price": "RMB 3,598",
+                "sortOrder": "14"
+              },
+              {
+                "serviceLabel": "后置相机损坏",
+                "price": "RMB 1,548",
+                "sortOrder": "12"
+              },
+              {
+                "serviceLabel": "屏幕损坏",
+                "price": "RMB 2,698",
+                "sortOrder": "10"
+              },
+              {
+                "serviceLabel": "屏幕和背面玻璃损坏",
+                "price": "RMB 4,699",
+                "sortOrder": "8"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 4,699",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1754519561745",
+            "product_eng_title": "iPhone 13 Pro",
+            "product_loc_title": "iPhone 13 Pro",
+            "children_present": false,
+            "sort_order": "3",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300429&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 729",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "背面玻璃损坏",
+                "price": "RMB 3,148",
+                "sortOrder": "14"
+              },
+              {
+                "serviceLabel": "后置相机损坏",
+                "price": "RMB 1,548",
+                "sortOrder": "12"
+              },
+              {
+                "serviceLabel": "屏幕损坏",
+                "price": "RMB 2,298",
+                "sortOrder": "10"
+              },
+              {
+                "serviceLabel": "屏幕和背面玻璃损坏",
+                "price": "RMB 3,799",
+                "sortOrder": "8"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 3,799",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1754519561350",
+            "product_eng_title": "iPhone 13",
+            "product_loc_title": "iPhone 13",
+            "children_present": false,
+            "sort_order": "2",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300428&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 729",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "背面玻璃损坏",
+                "price": "RMB 2,498",
+                "sortOrder": "14"
+              },
+              {
+                "serviceLabel": "后置相机损坏",
+                "price": "RMB 1,299",
+                "sortOrder": "12"
+              },
+              {
+                "serviceLabel": "屏幕损坏",
+                "price": "RMB 2,298",
+                "sortOrder": "10"
+              },
+              {
+                "serviceLabel": "屏幕和背面玻璃损坏",
+                "price": "RMB 3,448",
+                "sortOrder": "8"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 3,448",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1754519561551",
+            "product_eng_title": "iPhone 13 mini",
+            "product_loc_title": "iPhone 13 mini",
+            "children_present": false,
+            "sort_order": "1",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300426&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 729",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "背面玻璃损坏",
+                "price": "RMB 2,198",
+                "sortOrder": "14"
+              },
+              {
+                "serviceLabel": "后置相机损坏",
+                "price": "RMB 1,299",
+                "sortOrder": "12"
+              },
+              {
+                "serviceLabel": "屏幕损坏",
+                "price": "RMB 1,798",
+                "sortOrder": "10"
+              },
+              {
+                "serviceLabel": "屏幕和背面玻璃损坏",
+                "price": "RMB 3,098",
+                "sortOrder": "8"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 3,098",
+                "sortOrder": "4"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "product_tag_id": "TAG_1754518888192",
+        "product_eng_title": "iPhone 12",
+        "product_loc_title": "iPhone 12",
+        "children_present": true,
+        "sort_order": "10",
+        "isDefault": false,
+        "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=PRICE109&size=240x240",
+        "showEstimateDisclaimer": false,
+        "childrenProducts": [
+          {
+            "product_tag_id": "TAG_1754519561153",
+            "product_eng_title": "iPhone 12 Pro Max",
+            "product_loc_title": "iPhone 12 Pro Max",
+            "children_present": false,
+            "sort_order": "4",
+            "isDefault": true,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300240&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 729",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "背面玻璃损坏",
+                "price": "RMB 3,598",
+                "sortOrder": "14"
+              },
+              {
+                "serviceLabel": "后置相机损坏",
+                "price": "RMB 1,548",
+                "sortOrder": "12"
+              },
+              {
+                "serviceLabel": "屏幕损坏",
+                "price": "RMB 2,698",
+                "sortOrder": "10"
+              },
+              {
+                "serviceLabel": "屏幕和背面玻璃损坏",
+                "price": "RMB 4,699",
+                "sortOrder": "8"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 4,699",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1754519560952",
+            "product_eng_title": "iPhone 12 Pro",
+            "product_loc_title": "iPhone 12 Pro",
+            "children_present": false,
+            "sort_order": "3",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300242&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 729",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "背面玻璃损坏",
+                "price": "RMB 3,148",
+                "sortOrder": "14"
+              },
+              {
+                "serviceLabel": "后置相机损坏",
+                "price": "RMB 1,548",
+                "sortOrder": "12"
+              },
+              {
+                "serviceLabel": "屏幕损坏",
+                "price": "RMB 2,298",
+                "sortOrder": "10"
+              },
+              {
+                "serviceLabel": "屏幕和背面玻璃损坏",
+                "price": "RMB 3,799",
+                "sortOrder": "8"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 3,799",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1754519560557",
+            "product_eng_title": "iPhone 12",
+            "product_loc_title": "iPhone 12",
+            "children_present": false,
+            "sort_order": "2",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300241&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 729",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "背面玻璃损坏",
+                "price": "RMB 2,498",
+                "sortOrder": "14"
+              },
+              {
+                "serviceLabel": "后置相机损坏",
+                "price": "RMB 1,299",
+                "sortOrder": "12"
+              },
+              {
+                "serviceLabel": "屏幕损坏",
+                "price": "RMB 2,298",
+                "sortOrder": "10"
+              },
+              {
+                "serviceLabel": "屏幕和背面玻璃损坏",
+                "price": "RMB 3,448",
+                "sortOrder": "8"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 3,448",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1754519560755",
+            "product_eng_title": "iPhone 12 mini",
+            "product_loc_title": "iPhone 12 mini",
+            "children_present": false,
+            "sort_order": "1",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300239&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 729",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "背面玻璃损坏",
+                "price": "RMB 2,198",
+                "sortOrder": "14"
+              },
+              {
+                "serviceLabel": "后置相机损坏",
+                "price": "RMB 1,299",
+                "sortOrder": "12"
+              },
+              {
+                "serviceLabel": "屏幕损坏",
+                "price": "RMB 1,798",
+                "sortOrder": "10"
+              },
+              {
+                "serviceLabel": "屏幕和背面玻璃损坏",
+                "price": "RMB 3,098",
+                "sortOrder": "8"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 3,098",
+                "sortOrder": "4"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "product_tag_id": "TAG_1754518887992",
+        "product_eng_title": "iPhone 11",
+        "product_loc_title": "iPhone 11",
+        "children_present": true,
+        "sort_order": "9",
+        "isDefault": false,
+        "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=PTI108&size=240x240",
+        "showEstimateDisclaimer": false,
+        "childrenProducts": [
+          {
+            "product_tag_id": "TAG_1754519559949",
+            "product_eng_title": "iPhone 11",
+            "product_loc_title": "iPhone 11",
+            "children_present": false,
+            "sort_order": "1",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=507882&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 729",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "屏幕损坏",
+                "price": "RMB 1,598",
+                "sortOrder": "10"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 3,098",
+                "sortOrder": "4"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "product_tag_id": "TAG_1760016472465",
+        "product_eng_title": "iPhone XR",
+        "product_loc_title": "iPhone XR",
+        "children_present": false,
+        "sort_order": "7",
+        "isDefault": false,
+        "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=505602&size=240x240",
+        "showEstimateDisclaimer": false,
+        "services": [
+          {
+            "serviceLabel": "电池服务",
+            "price": "RMB 729",
+            "sortOrder": "50"
+          },
+          {
+            "serviceLabel": "屏幕损坏",
+            "price": "RMB 1,598",
+            "sortOrder": "10"
+          },
+          {
+            "serviceLabel": "其他损坏",
+            "price": "RMB 3,098",
+            "sortOrder": "4"
+          }
+        ]
+      },
+      {
+        "product_tag_id": "TAG_1754518889973",
+        "product_eng_title": "iPhone SE",
+        "product_loc_title": "iPhone SE",
+        "children_present": true,
+        "sort_order": "2",
+        "isDefault": false,
+        "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=PRICE103&size=240x240",
+        "showEstimateDisclaimer": false,
+        "childrenProducts": [
+          {
+            "product_tag_id": "TAG_1754519567299",
+            "product_eng_title": "iPhone SE (3rd generation)",
+            "product_loc_title": "iPhone SE（第 3 代）",
+            "children_present": false,
+            "sort_order": "3",
+            "isDefault": true,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300865&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 559",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "屏幕损坏",
+                "price": "RMB 1,048",
+                "sortOrder": "10"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 2,398",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1754519567101",
+            "product_eng_title": "iPhone SE (2nd generation)",
+            "product_loc_title": "iPhone SE（第 2 代）",
+            "children_present": false,
+            "sort_order": "2",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=509370&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 559",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "屏幕损坏",
+                "price": "RMB 1,048",
+                "sortOrder": "10"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 2,198",
+                "sortOrder": "4"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "iPad": {
+    "getSupportProductUrl": "https://getsupport.apple.com/?caller=sfaqlnd&SG=SG004",
+    "helpLink": "https://support.apple.com/108043",
+    "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=PF22&size=240x240",
+    "products": [
+      {
+        "product_tag_id": "TAG_1750382131421",
+        "product_eng_title": "iPad Pro",
+        "product_loc_title": "iPad Pro",
+        "children_present": true,
+        "sort_order": "5",
+        "isDefault": false,
+        "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=PTI204&size=240x240",
+        "showEstimateDisclaimer": false,
+        "childrenProducts": [
+          {
+            "product_tag_id": "TAG_1762420508018",
+            "product_eng_title": "iPad Pro 13-inch (M5) Wi-Fi",
+            "product_loc_title": "13 英寸 iPad Pro (M5) 无线局域网机型",
+            "children_present": false,
+            "sort_order": "24",
+            "isDefault": true,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301272&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 1,629",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 9,329",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1762420508218",
+            "product_eng_title": "iPad Pro 13-inch (M5) Wi-Fi + Cellular",
+            "product_loc_title": "13 英寸 iPad Pro (M5) 无线局域网 + 蜂窝网络机型",
+            "children_present": false,
+            "sort_order": "23",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301273&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 1,629",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 9,729",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1762420508420",
+            "product_eng_title": "iPad Pro 11-inch (M5) Wi-Fi",
+            "product_loc_title": "11 英寸 iPad Pro (M5) 无线局域网机型",
+            "children_present": false,
+            "sort_order": "22",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301270&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 1,448",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 8,099",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1762420508622",
+            "product_eng_title": "iPad Pro 11-inch (M5) Wi-Fi + Cellular",
+            "product_loc_title": "11 英寸 iPad Pro (M5) 无线局域网 + 蜂窝网络机型",
+            "children_present": false,
+            "sort_order": "21",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301271&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 1,448",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 8,509",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1750383134701",
+            "product_eng_title": "iPad Pro 13-inch (M4) Wi-Fi",
+            "product_loc_title": "13 英寸 iPad Pro（M4）无线局域网机型",
+            "children_present": false,
+            "sort_order": "20",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301033&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 1,629",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 8,949",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1750383134897",
+            "product_eng_title": "iPad Pro 13-inch (M4) Wi-Fi + Cellular",
+            "product_loc_title": "13 英寸 iPad Pro（M4）无线局域网 + 蜂窝网络机型",
+            "children_present": false,
+            "sort_order": "19",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301034&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 1,629",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 9,349",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1750383132696",
+            "product_eng_title": "iPad Pro 11-inch (M4) Wi-Fi",
+            "product_loc_title": "11 英寸 iPad Pro（M4）无线局域网机型",
+            "children_present": false,
+            "sort_order": "18",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301031&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 1,448",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 7,719",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1750383132896",
+            "product_eng_title": "iPad Pro 11-inch (M4) Wi-Fi + Cellular",
+            "product_loc_title": "11 英寸 iPad Pro（M4）无线局域网 + 蜂窝网络机型",
+            "children_present": false,
+            "sort_order": "17",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301032&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 1,448",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 8,129",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1750383134300",
+            "product_eng_title": "iPad Pro 12.9-inch (6th generation) Wi-Fi",
+            "product_loc_title": "12.9 英寸 iPad Pro（第 6 代）无线局域网机型",
+            "children_present": false,
+            "sort_order": "16",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300908&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 1,448",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 6,759",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1750383134501",
+            "product_eng_title": "iPad Pro 12.9-inch (6th generation) Wi-Fi + Cellular",
+            "product_loc_title": "12.9 英寸 iPad Pro（第 6 代）无线局域网 + 蜂窝网络机型",
+            "children_present": false,
+            "sort_order": "15",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300910&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 1,448",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 7,159",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1750383133899",
+            "product_eng_title": "iPad Pro 12.9-inch (5th generation) Wi-Fi",
+            "product_loc_title": "12.9 英寸 iPad Pro（第 5 代）无线局域网机型",
+            "children_present": false,
+            "sort_order": "14",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300349&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 948",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 6,759",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1750383134099",
+            "product_eng_title": "iPad Pro 12.9-inch (5th generation) Wi-Fi + Cellular",
+            "product_loc_title": "12.9 英寸 iPad Pro（第 5 代）无线局域网 + 蜂窝网络机型",
+            "children_present": false,
+            "sort_order": "13",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300350&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 948",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 7,159",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1750383133698",
+            "product_eng_title": "iPad Pro 12.9-inch (4th generation)",
+            "product_loc_title": "12.9 英寸 iPad Pro（第 4 代）",
+            "children_present": false,
+            "sort_order": "12",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=509192&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 948",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 5,448",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1750383132296",
+            "product_eng_title": "iPad Pro 11-inch (4th generation) Wi-Fi",
+            "product_loc_title": "11 英寸 iPad Pro（第 4 代）无线局域网机型",
+            "children_present": false,
+            "sort_order": "8",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300905&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 1,198",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 5,159",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1750383132497",
+            "product_eng_title": "iPad Pro 11-inch (4th generation) Wi-Fi + Cellular",
+            "product_loc_title": "11 英寸 iPad Pro（第 4 代）无线局域网 + 蜂窝网络机型",
+            "children_present": false,
+            "sort_order": "7",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300907&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 1,198",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 5,609",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1750383131899",
+            "product_eng_title": "iPad Pro 11-inch (3rd generation) Wi-Fi",
+            "product_loc_title": "11 英寸 iPad Pro（第 3 代）无线局域网机型",
+            "children_present": false,
+            "sort_order": "6",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300346&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 948",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 5,159",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1750383132099",
+            "product_eng_title": "iPad Pro 11-inch (3rd generation) Wi-Fi + Cellular",
+            "product_loc_title": "11 英寸 iPad Pro（第 3 代）无线局域网 + 蜂窝网络机型",
+            "children_present": false,
+            "sort_order": "5",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300348&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 948",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 5,609",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1750383131701",
+            "product_eng_title": "iPad Pro 11-inch (2nd generation)",
+            "product_loc_title": "11 英寸 iPad Pro（第 2 代）",
+            "children_present": false,
+            "sort_order": "4",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=509181&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 948",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 4,148",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1750383131502",
+            "product_eng_title": "iPad Pro 11-inch",
+            "product_loc_title": "11 英寸 iPad Pro",
+            "children_present": false,
+            "sort_order": "3",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=506083&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 948",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 4,148",
+                "sortOrder": "4"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "product_tag_id": "TAG_1750382117860",
+        "product_eng_title": "iPad mini",
+        "product_loc_title": "iPad mini",
+        "children_present": true,
+        "sort_order": "4",
+        "isDefault": false,
+        "showEstimateDisclaimer": false,
+        "childrenProducts": [
+          {
+            "product_tag_id": "TAG_1750383130310",
+            "product_eng_title": "iPad mini (A17 Pro) Wi-Fi",
+            "product_loc_title": "iPad mini（A17 Pro）无线局域网机型",
+            "children_present": false,
+            "sort_order": "9",
+            "isDefault": true,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301063&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 948",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 3,479",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1750383130507",
+            "product_eng_title": "iPad mini (A17 Pro) Wi-Fi + Cellular",
+            "product_loc_title": "iPad mini（A17 Pro）无线局域网 + 蜂窝网络机型",
+            "children_present": false,
+            "sort_order": "8",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301064&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 948",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 3,759",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1750383129907",
+            "product_eng_title": "iPad mini (6th generation) Wi-Fi",
+            "product_loc_title": "iPad mini（第 6 代）无线局域网机型",
+            "children_present": false,
+            "sort_order": "7",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300425&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 948",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 3,269",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1750383130111",
+            "product_eng_title": "iPad mini (6th generation) Wi-Fi + Cellular",
+            "product_loc_title": "iPad mini（第 6 代）无线局域网 + 蜂窝网络机型",
+            "children_present": false,
+            "sort_order": "6",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300427&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 948",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 3,549",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1750383129709",
+            "product_eng_title": "iPad mini (5th generation)",
+            "product_loc_title": "iPad mini（第 5 代）",
+            "children_present": false,
+            "sort_order": "5",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=506704&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 948",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 2,459",
+                "sortOrder": "4"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "product_tag_id": "TAG_1750382107110",
+        "product_eng_title": "iPad Air",
+        "product_loc_title": "iPad Air",
+        "children_present": true,
+        "sort_order": "3",
+        "isDefault": true,
+        "showEstimateDisclaimer": false,
+        "childrenProducts": [
+          {
+            "product_tag_id": "TAG_1772520719102",
+            "product_eng_title": "iPad Air 13-inch (M4) Wi-Fi",
+            "product_loc_title": "13 英寸 iPad Air (M4) 无线局域网机型",
+            "children_present": false,
+            "sort_order": "17",
+            "isDefault": true,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301283&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 1,198",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 5,759",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1772520769996",
+            "product_eng_title": "iPad Air 13-inch (M4) Wi-Fi + Cellular",
+            "product_loc_title": "13 英寸 iPad Air (M4) 无线局域网 + 蜂窝网络机型",
+            "children_present": false,
+            "sort_order": "16",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301284&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 1,198",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 6,209",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1772520795348",
+            "product_eng_title": "iPad Air 11-inch (M4) Wi-Fi",
+            "product_loc_title": "11 英寸 iPad Air (M4) 无线局域网机型",
+            "children_present": false,
+            "sort_order": "15",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301281&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 1,048",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 4,509",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1772520813373",
+            "product_eng_title": "iPad Air 11-inch (M4) Wi-Fi + Cellular",
+            "product_loc_title": "11 英寸 iPad Air (M4) 无线局域网 + 蜂窝网络机型",
+            "children_present": false,
+            "sort_order": "14",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301282&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 1,048",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 4,909",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1750383128914",
+            "product_eng_title": "iPad Air 13-inch (M3) Wi-Fi",
+            "product_loc_title": "13 英寸 iPad Air（M3）无线局域网机型",
+            "children_present": false,
+            "sort_order": "13",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301083&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 1,198",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 5,609",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1750383129112",
+            "product_eng_title": "iPad Air 13-inch (M3) Wi-Fi + Cellular",
+            "product_loc_title": "13 英寸 iPad Air（M3）无线局域网 + 蜂窝网络机型",
+            "children_present": false,
+            "sort_order": "12",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301084&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 1,198",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 6,059",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1750383128110",
+            "product_eng_title": "iPad Air 11-inch (M3) Wi-Fi",
+            "product_loc_title": "11 英寸 iPad Air（M3）无线局域网机型",
+            "children_present": false,
+            "sort_order": "11",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301081&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 948",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 4,359",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1750383128311",
+            "product_eng_title": "iPad Air 11-inch (M3) Wi-Fi + Cellular",
+            "product_loc_title": "11 英寸 iPad Air（M3）无线局域网 + 蜂窝网络机型",
+            "children_present": false,
+            "sort_order": "10",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301082&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 948",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 4,759",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1750383128513",
+            "product_eng_title": "iPad Air 13-inch (M2) Wi-Fi",
+            "product_loc_title": "13 英寸 iPad Air（M2）无线局域网机型",
+            "children_present": false,
+            "sort_order": "9",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301029&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 1,198",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 5,609",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1750383128713",
+            "product_eng_title": "iPad Air 13-inch (M2) Wi-Fi + Cellular",
+            "product_loc_title": "13 英寸 iPad Air（M2）无线局域网 + 蜂窝网络机型",
+            "children_present": false,
+            "sort_order": "8",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301030&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 1,198",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 6,059",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1750383127711",
+            "product_eng_title": "iPad Air 11-inch (M2) Wi-Fi",
+            "product_loc_title": "11 英寸 iPad Air（M2）无线局域网机型",
+            "children_present": false,
+            "sort_order": "7",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301027&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 948",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 4,359",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1750383127910",
+            "product_eng_title": "iPad Air 11-inch (M2) Wi-Fi + Cellular",
+            "product_loc_title": "11 英寸 iPad Air（M2）无线局域网 + 蜂窝网络机型",
+            "children_present": false,
+            "sort_order": "6",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301028&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 948",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 4,759",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1750383127311",
+            "product_eng_title": "iPad Air (5th generation) Wi-Fi",
+            "product_loc_title": "iPad Air（第 5 代）无线局域网机型",
+            "children_present": false,
+            "sort_order": "5",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300866&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 948",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 4,009",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1750383127513",
+            "product_eng_title": "iPad Air (5th generation) Wi-Fi + Cellular",
+            "product_loc_title": "iPad Air（第 5 代）无线局域网 + 蜂窝网络机型",
+            "children_present": false,
+            "sort_order": "4",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300867&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 948",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 4,509",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1750383127111",
+            "product_eng_title": "iPad Air (4th generation)",
+            "product_loc_title": "iPad Air（第 4 代）",
+            "children_present": false,
+            "sort_order": "3",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300202&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 948",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 3,398",
+                "sortOrder": "4"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "product_tag_id": "TAG_1750382093463",
+        "product_eng_title": "iPad",
+        "product_loc_title": "iPad",
+        "children_present": true,
+        "sort_order": "2",
+        "isDefault": false,
+        "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=PL220&size=240x240",
+        "showEstimateDisclaimer": false,
+        "childrenProducts": [
+          {
+            "product_tag_id": "TAG_1750383123525",
+            "product_eng_title": "iPad (A16) Wi-Fi",
+            "product_loc_title": "iPad（A16）无线局域网机型",
+            "children_present": false,
+            "sort_order": "10",
+            "isDefault": true,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301079&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 948",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 3,069",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1750383123726",
+            "product_eng_title": "iPad (A16) Wi-Fi + Cellular",
+            "product_loc_title": "iPad（A16）无线局域网 + 蜂窝网络机型",
+            "children_present": false,
+            "sort_order": "9",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301080&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 948",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 3,479",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1750383122126",
+            "product_eng_title": "iPad (10th generation) Wi-Fi",
+            "product_loc_title": "iPad（第 10 代）无线局域网机型",
+            "children_present": false,
+            "sort_order": "8",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300902&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 948",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 2,859",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1750383122325",
+            "product_eng_title": "iPad (10th generation) Wi-Fi + Cellular",
+            "product_loc_title": "iPad（第 10 代）无线局域网 + 蜂窝网络机型",
+            "children_present": false,
+            "sort_order": "7",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300904&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 948",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 3,269",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1750383123326",
+            "product_eng_title": "iPad (9th generation)",
+            "product_loc_title": "iPad（第 9 代）",
+            "children_present": false,
+            "sort_order": "6",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300423&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 799",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 2,499",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1750383123125",
+            "product_eng_title": "iPad (8th generation)",
+            "product_loc_title": "iPad（第 8 代）",
+            "children_present": false,
+            "sort_order": "5",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300200&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 799",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 2,098",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1750383122924",
+            "product_eng_title": "iPad (7th generation)",
+            "product_loc_title": "iPad（第 7 代）",
+            "children_present": false,
+            "sort_order": "4",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=507974&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 799",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 2,098",
+                "sortOrder": "4"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "product_tag_id": "TAG_1750382155231",
+        "product_eng_title": "iPad Accessory",
+        "product_loc_title": "iPad 配件",
+        "children_present": true,
+        "sort_order": "1",
+        "isDefault": false,
+        "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=PL221&size=240x240",
+        "showEstimateDisclaimer": false,
+        "childrenProducts": [
+          {
+            "product_tag_id": "TAG_1750383124726",
+            "product_eng_title": "Apple Pencil Pro",
+            "product_loc_title": "Apple Pencil Pro",
+            "children_present": false,
+            "sort_order": "14",
+            "isDefault": true,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301035&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 239",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 888",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1750383124527",
+            "product_eng_title": "Apple Pencil (USB-C)",
+            "product_loc_title": "Apple Pencil (USB-C)",
+            "children_present": false,
+            "sort_order": "13",
+            "isDefault": true,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301007&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 239",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 579",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1750383124927",
+            "product_eng_title": "Magic Keyboard Folio for iPad (10th generation)",
+            "product_loc_title": "Magic Keyboard Folio for iPad (10th generation)",
+            "children_present": false,
+            "sort_order": "12",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300900&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 1,729",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1750383125325",
+            "product_eng_title": "Magic Keyboard for iPad Pro 12.9-inch",
+            "product_loc_title": "适用于 12.9 英寸 iPad Pro 的妙控键盘",
+            "children_present": false,
+            "sort_order": "11",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300174&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 2,379",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1750383125124",
+            "product_eng_title": "Magic Keyboard for iPad Pro 11-inch",
+            "product_loc_title": "适用于 11 英寸 iPad Pro 的妙控键盘",
+            "children_present": false,
+            "sort_order": "10",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300173&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 2,039",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1750383125723",
+            "product_eng_title": "Magic Keyboard for iPad Pro 13-inch (M4)",
+            "product_loc_title": "适用于 13 英寸 iPad Pro（M4） 的妙控键盘",
+            "children_present": false,
+            "sort_order": "9",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301037&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 2,379",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1750383125524",
+            "product_eng_title": "Magic Keyboard for iPad Pro 11-inch (M4)",
+            "product_loc_title": "适用于 11 英寸 iPad Pro（M4） 的妙控键盘",
+            "children_present": false,
+            "sort_order": "8",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301036&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 2,039",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1750383126317",
+            "product_eng_title": "Smart Keyboard Folio for iPad Pro 12.9-inch",
+            "product_loc_title": "适用于 12.9 英寸 iPad Pro 的键盘式智能双面夹",
+            "children_present": false,
+            "sort_order": "7",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=PP124&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 1,359",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1750383124326",
+            "product_eng_title": "Apple Pencil (2nd generation)",
+            "product_loc_title": "Apple Pencil（第 2 代）",
+            "children_present": false,
+            "sort_order": "6",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=3001111&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 239",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 888",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1750383126121",
+            "product_eng_title": "Smart Keyboard Folio for iPad Pro 11-inch",
+            "product_loc_title": "Smart Keyboard Folio for iPad Pro 11-inch",
+            "children_present": false,
+            "sort_order": "5",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=PP123&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 1,189",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1750383126517",
+            "product_eng_title": "Smart Keyboard for iPad Pro (10.5-inch)",
+            "product_loc_title": "适用于 iPad Pro（10.5 英寸）的智能键盘",
+            "children_present": false,
+            "sort_order": "4",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=PP218&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 1,062",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1750383124125",
+            "product_eng_title": "Apple Pencil",
+            "product_loc_title": "Apple Pencil",
+            "children_present": false,
+            "sort_order": "3",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300014&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 239",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 708",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1750383126717",
+            "product_eng_title": "Smart Keyboard for iPad Pro (9.7-inch)",
+            "product_loc_title": "适用于 iPad Pro（9.7 英寸）的智能键盘",
+            "children_present": false,
+            "sort_order": "1",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=3000020&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 1,002",
+                "sortOrder": "4"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "Apple Watch": {
+    "getSupportProductUrl": "https://getsupport.apple.com/?caller=sfaqlnd&SG=SG008",
+    "helpLink": "https://support.apple.com/108056",
+    "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=PF28&size=240x240",
+    "products": [
+      {
+        "product_tag_id": "TAG_1755238559104",
+        "product_eng_title": "Apple Watch Ultra",
+        "product_loc_title": "Apple Watch Ultra",
+        "children_present": true,
+        "sort_order": "15",
+        "isDefault": false,
+        "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=PL294&size=240x240",
+        "showEstimateDisclaimer": false,
+        "childrenProducts": [
+          {
+            "product_tag_id": "TAG_1761293739144",
+            "product_eng_title": "Apple Watch Hermès Ultra 3",
+            "product_loc_title": "Apple Watch Hermès Ultra 3",
+            "children_present": false,
+            "sort_order": "5",
+            "isDefault": true,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301264&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 3,949",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1761293719482",
+            "product_eng_title": "Apple Watch Ultra 3",
+            "product_loc_title": "Apple Watch Ultra 3",
+            "children_present": false,
+            "sort_order": "4",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301254&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 3,949",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239112934",
+            "product_eng_title": "Apple Watch Hermès Ultra 2",
+            "product_loc_title": "Apple Watch Hermès Ultra 2",
+            "children_present": false,
+            "sort_order": "3",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301062&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 3,949",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239113353",
+            "product_eng_title": "Apple Watch Ultra 2",
+            "product_loc_title": "Apple Watch Ultra 2",
+            "children_present": false,
+            "sort_order": "2",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301002&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 3,949",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239113145",
+            "product_eng_title": "Apple Watch Ultra",
+            "product_loc_title": "Apple Watch Ultra",
+            "children_present": false,
+            "sort_order": "1",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300895&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 3,949",
+                "sortOrder": "4"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "product_tag_id": "TAG_1761293078613",
+        "product_eng_title": "Apple Watch Series 11",
+        "product_loc_title": "Apple Watch Series 11",
+        "children_present": true,
+        "sort_order": "11",
+        "isDefault": true,
+        "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=PL652&size=240x240",
+        "showEstimateDisclaimer": false,
+        "childrenProducts": [
+          {
+            "product_tag_id": "TAG_1761842128942",
+            "product_eng_title": "Apple Watch Hermès Series 11 GPS + Cellular 42mm",
+            "product_loc_title": "Apple Watch Hermès Series 11 GPS + 蜂窝网络 42 毫米",
+            "children_present": false,
+            "sort_order": "8",
+            "isDefault": true,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301263&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 3,198",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1761842143607",
+            "product_eng_title": "Apple Watch Hermès Series 11 GPS + Cellular 46mm",
+            "product_loc_title": "Apple Watch Hermès Series 11 GPS + 蜂窝网络 46 毫米",
+            "children_present": false,
+            "sort_order": "7",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301261&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 3,198",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1761842155118",
+            "product_eng_title": "Apple Watch Series 11 GPS + Cellular Titanium 42mm",
+            "product_loc_title": "Apple Watch Series 11 GPS + 蜂窝网络 钛金属 42 毫米",
+            "children_present": false,
+            "sort_order": "6",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301262&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 3,198",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1761842165353",
+            "product_eng_title": "Apple Watch Series 11 GPS + Cellular Titanium 46mm",
+            "product_loc_title": "Apple Watch Series 11 GPS + 蜂窝网络 钛金属 46 毫米",
+            "children_present": false,
+            "sort_order": "5",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301260&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 3,198",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1761842174642",
+            "product_eng_title": "Apple Watch Series 11 GPS + Cellular Aluminum 42mm",
+            "product_loc_title": "Apple Watch Series 11 GPS + 蜂窝网络 铝金属 42 毫米",
+            "children_present": false,
+            "sort_order": "4",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301259&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 2,679",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1761842187032",
+            "product_eng_title": "Apple Watch Series 11 GPS + Cellular Aluminum 46mm",
+            "product_loc_title": "Apple Watch Series 11 GPS + 蜂窝网络 铝金属 46 毫米",
+            "children_present": false,
+            "sort_order": "3",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301253&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 2,679",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1761842200118",
+            "product_eng_title": "Apple Watch Series 11 GPS Aluminum 42mm",
+            "product_loc_title": "Apple Watch Series 11 GPS 铝金属 42 毫米",
+            "children_present": false,
+            "sort_order": "2",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301252&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 2,309",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1761842212886",
+            "product_eng_title": "Apple Watch Series 11 GPS Aluminum 46mm",
+            "product_loc_title": "Apple Watch Series 11 GPS 铝金属 46 毫米",
+            "children_present": false,
+            "sort_order": "1",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301251&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 2,309",
+                "sortOrder": "4"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "product_tag_id": "TAG_1755238557235",
+        "product_eng_title": "Apple Watch Series 10",
+        "product_loc_title": "Apple Watch Series 10",
+        "children_present": true,
+        "sort_order": "10",
+        "isDefault": false,
+        "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=PL213&size=240x240",
+        "showEstimateDisclaimer": false,
+        "childrenProducts": [
+          {
+            "product_tag_id": "TAG_1755239091233",
+            "product_eng_title": "Apple Watch Hermès Series 10 GPS + Cellular 42mm",
+            "product_loc_title": "Apple Watch Hermès Series 10 GPS + 蜂窝网络 42 毫米",
+            "children_present": false,
+            "sort_order": "8",
+            "isDefault": true,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301059&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 3,198",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239091441",
+            "product_eng_title": "Apple Watch Hermès Series 10 GPS + Cellular 46mm",
+            "product_loc_title": "Apple Watch Hermès Series 10 GPS + 蜂窝网络 46 毫米",
+            "children_present": false,
+            "sort_order": "7",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301056&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 3,198",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239092063",
+            "product_eng_title": "Apple Watch Series 10 GPS + Cellular Titanium 42mm",
+            "product_loc_title": "Apple Watch Series 10 GPS + 蜂窝网络 钛金属 42 毫米",
+            "children_present": false,
+            "sort_order": "6",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301058&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 3,198",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239092270",
+            "product_eng_title": "Apple Watch Series 10 GPS + Cellular Titanium 46mm",
+            "product_loc_title": "Apple Watch Series 10 GPS + 蜂窝网络 钛金属 46 毫米",
+            "children_present": false,
+            "sort_order": "5",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301055&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 3,198",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239091649",
+            "product_eng_title": "Apple Watch Series 10 GPS + Cellular Aluminum 42mm",
+            "product_loc_title": "Apple Watch Series 10 GPS + 蜂窝网络 铝金属 42 毫米",
+            "children_present": false,
+            "sort_order": "4",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301057&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 2,679",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239091856",
+            "product_eng_title": "Apple Watch Series 10 GPS + Cellular Aluminum 46mm",
+            "product_loc_title": "Apple Watch Series 10 GPS + 蜂窝网络 铝金属 46 毫米",
+            "children_present": false,
+            "sort_order": "3",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301054&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 2,679",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239092478",
+            "product_eng_title": "Apple Watch Series 10 GPS Aluminum 42mm",
+            "product_loc_title": "Apple Watch Series 10 GPS 铝金属 42 毫米",
+            "children_present": false,
+            "sort_order": "2",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301053&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 2,309",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239092686",
+            "product_eng_title": "Apple Watch Series 10 GPS Aluminum 46mm",
+            "product_loc_title": "Apple Watch Series 10 GPS 铝金属 46 毫米",
+            "children_present": false,
+            "sort_order": "1",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301052&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 2,309",
+                "sortOrder": "4"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "product_tag_id": "TAG_1755238558896",
+        "product_eng_title": "Apple Watch Series 9",
+        "product_loc_title": "Apple Watch Series 9",
+        "children_present": true,
+        "sort_order": "9",
+        "isDefault": false,
+        "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=PL207&size=240x240",
+        "showEstimateDisclaimer": false,
+        "childrenProducts": [
+          {
+            "product_tag_id": "TAG_1755239111269",
+            "product_eng_title": "Apple Watch Hermès Series 9 GPS + Cellular 41mm",
+            "product_loc_title": "Apple Watch Hermès Series 9 GPS + 蜂窝网络 41 毫米",
+            "children_present": false,
+            "sort_order": "8",
+            "isDefault": true,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301001&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 3,198",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239111477",
+            "product_eng_title": "Apple Watch Hermès Series 9 GPS + Cellular 45mm",
+            "product_loc_title": "Apple Watch Hermès Series 9 GPS + 蜂窝网络 45 毫米",
+            "children_present": false,
+            "sort_order": "7",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300998&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 3,198",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239112101",
+            "product_eng_title": "Apple Watch Series 9 GPS + Cellular Stainless Steel 41mm",
+            "product_loc_title": "Apple Watch Series 9 GPS + 蜂窝网络 不锈钢 41 毫米",
+            "children_present": false,
+            "sort_order": "6",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301000&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 3,198",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239112309",
+            "product_eng_title": "Apple Watch Series 9 GPS + Cellular Stainless Steel 45mm",
+            "product_loc_title": "Apple Watch Series 9 GPS + 蜂窝网络 不锈钢 45 毫米",
+            "children_present": false,
+            "sort_order": "5",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300997&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 3,198",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239111685",
+            "product_eng_title": "Apple Watch Series 9 GPS + Cellular Aluminum 41mm",
+            "product_loc_title": "Apple Watch Series 9 GPS + 蜂窝网络 铝金属 41 毫米",
+            "children_present": false,
+            "sort_order": "4",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300999&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 2,679",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239111893",
+            "product_eng_title": "Apple Watch Series 9 GPS + Cellular Aluminum 45mm",
+            "product_loc_title": "Apple Watch Series 9 GPS + 蜂窝网络 铝金属 45 毫米",
+            "children_present": false,
+            "sort_order": "3",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300996&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 2,679",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239112517",
+            "product_eng_title": "Apple Watch Series 9 GPS Aluminum 41mm",
+            "product_loc_title": "Apple Watch Series 9 GPS 铝金属 41 毫米",
+            "children_present": false,
+            "sort_order": "2",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300995&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 2,309",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239112725",
+            "product_eng_title": "Apple Watch Series 9 GPS Aluminum 45mm",
+            "product_loc_title": "Apple Watch Series 9 GPS 铝金属 45 毫米",
+            "children_present": false,
+            "sort_order": "1",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300994&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 2,309",
+                "sortOrder": "4"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "product_tag_id": "TAG_1755238558688",
+        "product_eng_title": "Apple Watch Series 8",
+        "product_loc_title": "Apple Watch Series 8",
+        "children_present": true,
+        "sort_order": "8",
+        "isDefault": false,
+        "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=PL293&size=240x240",
+        "showEstimateDisclaimer": false,
+        "childrenProducts": [
+          {
+            "product_tag_id": "TAG_1755239109601",
+            "product_eng_title": "Apple Watch Hermès Series 8 (GPS + Cellular) 41 mm",
+            "product_loc_title": "Apple Watch Hermès Series 8（GPS + 蜂窝网络）41 毫米",
+            "children_present": false,
+            "sort_order": "8",
+            "isDefault": true,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300894&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 3,198",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239109809",
+            "product_eng_title": "Apple Watch Hermès Series 8 (GPS + Cellular) 45 mm",
+            "product_loc_title": "Apple Watch Hermès Series 8（GPS + 蜂窝网络）45 毫米",
+            "children_present": false,
+            "sort_order": "7",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300891&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 3,198",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239110437",
+            "product_eng_title": "Apple Watch Series 8 (GPS + Cellular) (Stainless Steel) 41 mm",
+            "product_loc_title": "Apple Watch Series 8（GPS + 蜂窝网络）（不锈钢）41 毫米",
+            "children_present": false,
+            "sort_order": "6",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300893&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 3,198",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239110645",
+            "product_eng_title": "Apple Watch Series 8 (GPS + Cellular) (Stainless Steel) 45 mm",
+            "product_loc_title": "Apple Watch Series 8（GPS + 蜂窝网络）（不锈钢）45 毫米",
+            "children_present": false,
+            "sort_order": "5",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300890&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 3,198",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239110021",
+            "product_eng_title": "Apple Watch Series 8 (GPS + Cellular) (Aluminum) 41 mm",
+            "product_loc_title": "Apple Watch Series 8（GPS + 蜂窝网络）（铝金属）41 毫米",
+            "children_present": false,
+            "sort_order": "4",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300892&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 2,679",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239110229",
+            "product_eng_title": "Apple Watch Series 8 (GPS + Cellular) (Aluminum) 45 mm",
+            "product_loc_title": "Apple Watch Series 8（GPS + 蜂窝网络）（铝金属）45 毫米",
+            "children_present": false,
+            "sort_order": "3",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300889&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 2,679",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239110853",
+            "product_eng_title": "Apple Watch Series 8 (GPS) (Aluminum) 41 mm",
+            "product_loc_title": "Apple Watch Series 8 (GPS)（铝金属）41 毫米",
+            "children_present": false,
+            "sort_order": "2",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300888&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 2,309",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239111061",
+            "product_eng_title": "Apple Watch Series 8 (GPS) (Aluminum) 45 mm",
+            "product_loc_title": "Apple Watch Series 8 (GPS)（铝金属）45 毫米",
+            "children_present": false,
+            "sort_order": "1",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300887&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 2,309",
+                "sortOrder": "4"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "product_tag_id": "TAG_1755238558481",
+        "product_eng_title": "Apple Watch Series 7",
+        "product_loc_title": "Apple Watch Series 7",
+        "children_present": true,
+        "sort_order": "7",
+        "isDefault": false,
+        "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=PL194&size=240x240",
+        "showEstimateDisclaimer": false,
+        "childrenProducts": [
+          {
+            "product_tag_id": "TAG_1755239106682",
+            "product_eng_title": "Apple Watch Edition Series 7 (GPS + Cellular) (Titanium) 41 mm",
+            "product_loc_title": "Apple Watch Edition Series 7（GPS + 蜂窝网络）（钛金属）41 毫米",
+            "children_present": false,
+            "sort_order": "14",
+            "isDefault": true,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300448&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 3,998",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239106890",
+            "product_eng_title": "Apple Watch Edition Series 7 (GPS + Cellular) (Titanium) 45 mm",
+            "product_loc_title": "Apple Watch Edition Series 7（GPS + 蜂窝网络）（钛金属）45 毫米",
+            "children_present": false,
+            "sort_order": "13",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300440&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 3,998",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239107100",
+            "product_eng_title": "Apple Watch Hermes Series 7 (GPS + Cellular) 41 mm",
+            "product_loc_title": "Apple Watch Hermes Series 7（GPS + 蜂窝网络）41 毫米",
+            "children_present": false,
+            "sort_order": "12",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300442&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 3,198",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239107308",
+            "product_eng_title": "Apple Watch Hermes Series 7 (GPS + Cellular) 45 mm",
+            "product_loc_title": "Apple Watch Hermes Series 7（GPS + 蜂窝网络）45 毫米",
+            "children_present": false,
+            "sort_order": "11",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300441&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 3,198",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239107518",
+            "product_eng_title": "Apple Watch Nike Series 7 (GPS + Cellular) 41 mm",
+            "product_loc_title": "Apple Watch Nike Series 7（GPS + 蜂窝网络）41 毫米",
+            "children_present": false,
+            "sort_order": "10",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300446&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 2,679",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239107727",
+            "product_eng_title": "Apple Watch Nike Series 7 (GPS + Cellular) 45 mm",
+            "product_loc_title": "Apple Watch Nike Series 7（GPS + 蜂窝网络）45 毫米",
+            "children_present": false,
+            "sort_order": "9",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300444&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 2,679",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239107937",
+            "product_eng_title": "Apple Watch Nike Series 7 (GPS) 41 mm",
+            "product_loc_title": "Apple Watch Nike Series 7 (GPS) 41 毫米",
+            "children_present": false,
+            "sort_order": "8",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300435&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 2,309",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239108145",
+            "product_eng_title": "Apple Watch Nike Series 7 (GPS) 45 mm",
+            "product_loc_title": "Apple Watch Nike Series 7 (GPS) 45 毫米",
+            "children_present": false,
+            "sort_order": "7",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300437&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 2,309",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239108354",
+            "product_eng_title": "Apple Watch Series 7 (GPS + Cellular) (Aluminum) 41 mm",
+            "product_loc_title": "Apple Watch Series 7（GPS + 蜂窝网络）（铝金属）41 毫米",
+            "children_present": false,
+            "sort_order": "6",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300445&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 2,679",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239108562",
+            "product_eng_title": "Apple Watch Series 7 (GPS + Cellular) (Aluminum) 45 mm",
+            "product_loc_title": "Apple Watch Series 7（GPS + 蜂窝网络）（铝金属）45 毫米",
+            "children_present": false,
+            "sort_order": "5",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300439&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 2,679",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239108770",
+            "product_eng_title": "Apple Watch Series 7 (GPS + Cellular) (Stainless Steel) 41 mm",
+            "product_loc_title": "Apple Watch Series 7（GPS + 蜂窝网络）（不锈钢）41 毫米",
+            "children_present": false,
+            "sort_order": "4",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300447&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 3,198",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239108977",
+            "product_eng_title": "Apple Watch Series 7 (GPS + Cellular) (Stainless Steel) 45 mm",
+            "product_loc_title": "Apple Watch Series 7（GPS + 蜂窝网络）（不锈钢）45 毫米",
+            "children_present": false,
+            "sort_order": "3",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300443&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 3,198",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239109185",
+            "product_eng_title": "Apple Watch Series 7 (GPS) (Aluminum) 41 mm",
+            "product_loc_title": "Apple Watch Series 7 (GPS)（铝金属）41 毫米",
+            "children_present": false,
+            "sort_order": "2",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300436&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 2,309",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239109393",
+            "product_eng_title": "Apple Watch Series 7 (GPS) (Aluminum) 45 mm",
+            "product_loc_title": "Apple Watch Series 7 (GPS)（铝金属）45 毫米",
+            "children_present": false,
+            "sort_order": "1",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300438&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 2,309",
+                "sortOrder": "4"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "product_tag_id": "TAG_1755238558274",
+        "product_eng_title": "Apple Watch Series 6",
+        "product_loc_title": "Apple Watch Series 6",
+        "children_present": true,
+        "sort_order": "6",
+        "isDefault": false,
+        "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=PL291&size=240x240",
+        "showEstimateDisclaimer": false,
+        "childrenProducts": [
+          {
+            "product_tag_id": "TAG_1755239105427",
+            "product_eng_title": "Apple Watch Series 6 (GPS + Cellular) (Aluminum) 40 mm",
+            "product_loc_title": "Apple Watch Series 6（GPS + 蜂窝网络）（铝金属）40 毫米",
+            "children_present": false,
+            "sort_order": "14",
+            "isDefault": true,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300206&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 2,679",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239105635",
+            "product_eng_title": "Apple Watch Series 6 (GPS + Cellular) (Aluminum) 44 mm",
+            "product_loc_title": "Apple Watch Series 6（GPS + 蜂窝网络）（铝金属）44 毫米",
+            "children_present": false,
+            "sort_order": "13",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300216&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 2,679",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239105844",
+            "product_eng_title": "Apple Watch Series 6 (GPS + Cellular) (Stainless Steel) 40 mm",
+            "product_loc_title": "Apple Watch Series 6（GPS + 蜂窝网络）（不锈钢）40 毫米",
+            "children_present": false,
+            "sort_order": "12",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300221&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 3,198",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239106053",
+            "product_eng_title": "Apple Watch Series 6 (GPS + Cellular) (Stainless Steel) 44 mm",
+            "product_loc_title": "Apple Watch Series 6（GPS + 蜂窝网络）（不锈钢）44 毫米",
+            "children_present": false,
+            "sort_order": "11",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300217&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 3,198",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239106262",
+            "product_eng_title": "Apple Watch Series 6 (GPS) (Aluminum) 40 mm",
+            "product_loc_title": "Apple Watch Series 6 (GPS)（铝金属）40 毫米",
+            "children_present": false,
+            "sort_order": "10",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300214&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 2,309",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239106473",
+            "product_eng_title": "Apple Watch Series 6 (GPS) (Aluminum) 44 mm",
+            "product_loc_title": "Apple Watch Series 6 (GPS)（铝金属）44 毫米",
+            "children_present": false,
+            "sort_order": "9",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300205&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 2,309",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239103747",
+            "product_eng_title": "Apple Watch Edition Series 6 (GPS + Cellular) (Titanium) 40 mm",
+            "product_loc_title": "Apple Watch Edition Series 6（GPS + 蜂窝网络）（钛金属）40 毫米",
+            "children_present": false,
+            "sort_order": "8",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300222&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 3,998",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239103956",
+            "product_eng_title": "Apple Watch Edition Series 6 (GPS + Cellular) (Titanium) 44 mm",
+            "product_loc_title": "Apple Watch Edition Series 6（GPS + 蜂窝网络）（钛金属）44 毫米",
+            "children_present": false,
+            "sort_order": "7",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300218&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 3,998",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239104167",
+            "product_eng_title": "Apple Watch Hermes Series 6 (GPS + Cellular) 40 mm",
+            "product_loc_title": "Apple Watch Hermes Series 6（GPS + 蜂窝网络）40 毫米",
+            "children_present": false,
+            "sort_order": "6",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300223&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 3,198",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239104378",
+            "product_eng_title": "Apple Watch Hermes Series 6 (GPS + Cellular) 44 mm",
+            "product_loc_title": "Apple Watch Hermes Series 6（GPS + 蜂窝网络）44 毫米",
+            "children_present": false,
+            "sort_order": "5",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300219&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 3,198",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239104588",
+            "product_eng_title": "Apple Watch Nike Series 6 (GPS + Cellular) 40 mm",
+            "product_loc_title": "Apple Watch Nike Series 6（GPS + 蜂窝网络）40 毫米",
+            "children_present": false,
+            "sort_order": "4",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300220&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 2,679",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239104798",
+            "product_eng_title": "Apple Watch Nike Series 6 (GPS + Cellular) 44 mm",
+            "product_loc_title": "Apple Watch Nike Series 6（GPS + 蜂窝网络）44 毫米",
+            "children_present": false,
+            "sort_order": "3",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300224&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 2,679",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239105008",
+            "product_eng_title": "Apple Watch Nike Series 6 (GPS) 40 mm",
+            "product_loc_title": "Apple Watch Nike Series 6 (GPS) 40 毫米",
+            "children_present": false,
+            "sort_order": "2",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300215&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 2,309",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239105218",
+            "product_eng_title": "Apple Watch Nike Series 6 (GPS) 44 mm",
+            "product_loc_title": "Apple Watch Nike Series 6 (GPS) 44 毫米",
+            "children_present": false,
+            "sort_order": "1",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300213&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 2,309",
+                "sortOrder": "4"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "product_tag_id": "TAG_1755238557027",
+        "product_eng_title": "Apple Watch SE",
+        "product_loc_title": "Apple Watch SE",
+        "children_present": true,
+        "sort_order": "1",
+        "isDefault": false,
+        "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=PL290&size=240x240",
+        "showEstimateDisclaimer": false,
+        "childrenProducts": [
+          {
+            "product_tag_id": "TAG_1761842277565",
+            "product_eng_title": "Apple Watch SE 3 GPS + Cellular 40mm",
+            "product_loc_title": "Apple Watch SE 3 GPS + 蜂窝网络 40 毫米",
+            "children_present": false,
+            "sort_order": "16",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301258&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 1,798",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1761842285216",
+            "product_eng_title": "Apple Watch SE 3 GPS + Cellular 44mm",
+            "product_loc_title": "Apple Watch SE 3 GPS + 蜂窝网络 44 毫米",
+            "children_present": false,
+            "sort_order": "15",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301257&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 1,798",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1761842293649",
+            "product_eng_title": "Apple Watch SE 3 GPS 40mm",
+            "product_loc_title": "Apple Watch SE 3 GPS 40 毫米",
+            "children_present": false,
+            "sort_order": "14",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301256&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 1,529",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1761842301496",
+            "product_eng_title": "Apple Watch SE 3 GPS 44mm",
+            "product_loc_title": "Apple Watch SE 3 GPS 44 毫米",
+            "children_present": false,
+            "sort_order": "13",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301255&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 1,529",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239089568",
+            "product_eng_title": "Apple Watch SE (2nd generation) GPS + Cellular 40mm",
+            "product_loc_title": "Apple Watch SE（第 2 代）（GPS + 蜂窝网络）40 毫米",
+            "children_present": false,
+            "sort_order": "12",
+            "isDefault": true,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300886&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 1,798",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239089776",
+            "product_eng_title": "Apple Watch SE (2nd generation) GPS + Cellular 44mm",
+            "product_loc_title": "Apple Watch SE（第 2 代）（GPS + 蜂窝网络）44 毫米",
+            "children_present": false,
+            "sort_order": "11",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300885&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 1,798",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239089984",
+            "product_eng_title": "Apple Watch SE (2nd generation) GPS 40mm",
+            "product_loc_title": "Apple Watch SE（第 2 代）(GPS) 40 毫米",
+            "children_present": false,
+            "sort_order": "10",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300884&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 1,529",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239090192",
+            "product_eng_title": "Apple Watch SE (2nd generation) GPS 44mm",
+            "product_loc_title": "Apple Watch SE（第 2 代）(GPS) 44 毫米",
+            "children_present": false,
+            "sort_order": "9",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300883&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 1,529",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239088738",
+            "product_eng_title": "Apple Watch Nike SE (GPS +  Cellular) 40 mm",
+            "product_loc_title": "Apple Watch Nike SE（GPS + 蜂窝网络）40 毫米",
+            "children_present": false,
+            "sort_order": "8",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300212&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 2,048",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239088945",
+            "product_eng_title": "Apple Watch Nike SE (GPS + Cellular) 44 mm",
+            "product_loc_title": "Apple Watch Nike SE（GPS + 蜂窝网络）44 毫米",
+            "children_present": false,
+            "sort_order": "7",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300210&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 2,048",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239089153",
+            "product_eng_title": "Apple Watch Nike SE (GPS) 40 mm",
+            "product_loc_title": "Apple Watch Nike SE (GPS) 40 毫米",
+            "children_present": false,
+            "sort_order": "6",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300209&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 1,798",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239089360",
+            "product_eng_title": "Apple Watch Nike SE (GPS) 44 mm",
+            "product_loc_title": "Apple Watch Nike SE (GPS) 44 毫米",
+            "children_present": false,
+            "sort_order": "5",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300208&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 1,798",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239090400",
+            "product_eng_title": "Apple Watch SE (GPS + Cellular) (Aluminum) 40 mm",
+            "product_loc_title": "Apple Watch SE（GPS + 蜂窝网络）（铝金属）40 毫米",
+            "children_present": false,
+            "sort_order": "4",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300211&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 2,048",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239090610",
+            "product_eng_title": "Apple Watch SE (GPS + Cellular) (Aluminum) 44 mm",
+            "product_loc_title": "Apple Watch SE（GPS + 蜂窝网络）（铝金属）44 毫米",
+            "children_present": false,
+            "sort_order": "3",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300204&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 2,048",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239090819",
+            "product_eng_title": "Apple Watch SE (GPS) (Aluminum) 40 mm",
+            "product_loc_title": "Apple Watch SE (GPS)（铝金属）40 毫米",
+            "children_present": false,
+            "sort_order": "2",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300207&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 1,798",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755239091026",
+            "product_eng_title": "Apple Watch SE (GPS) (Aluminum) 44 mm",
+            "product_loc_title": "Apple Watch SE (GPS)（铝金属）44 毫米",
+            "children_present": false,
+            "sort_order": "1",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300199&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 809",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 1,798",
+                "sortOrder": "4"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "AirPods": {
+    "getSupportProductUrl": "https://getsupport.apple.com/?caller=sfaqlnd&PGF=PGF32003",
+    "helpLink": "https://support.apple.com/109525",
+    "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=PP70&size=240x240",
+    "products": [
+      {
+        "product_tag_id": "TAG_1773729120143",
+        "product_eng_title": "AirPods Max 2",
+        "product_loc_title": "AirPods Max 2",
+        "children_present": false,
+        "sort_order": "16",
+        "isDefault": true,
+        "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301293&size=240x240",
+        "showEstimateDisclaimer": true,
+        "services": [
+          {
+            "serviceLabel": "电池服务",
+            "price": "RMB 599",
+            "sortOrder": "50"
+          },
+          {
+            "serviceLabel": "其他损坏*",
+            "price": "—",
+            "sortOrder": "2"
+          }
+        ]
+      },
+      {
+        "product_tag_id": "TAG_1749057564612",
+        "product_eng_title": "AirPods Max 1",
+        "product_loc_title": "AirPods Max 1",
+        "children_present": false,
+        "sort_order": "15",
+        "isDefault": false,
+        "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300273&size=240x240",
+        "showEstimateDisclaimer": true,
+        "services": [
+          {
+            "serviceLabel": "电池服务",
+            "price": "RMB 599",
+            "sortOrder": "50"
+          },
+          {
+            "serviceLabel": "其他损坏*",
+            "price": "—",
+            "sortOrder": "2"
+          }
+        ]
+      },
+      {
+        "product_tag_id": "TAG_1759476702251",
+        "product_eng_title": "AirPods Pro 3",
+        "product_loc_title": "AirPods Pro 3",
+        "children_present": false,
+        "sort_order": "14",
+        "isDefault": false,
+        "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301265&size=240x240",
+        "showEstimateDisclaimer": false,
+        "services": [
+          {
+            "serviceLabel": "电池服务",
+            "price": "RMB 399",
+            "sortOrder": "50"
+          },
+          {
+            "serviceLabel": "AirPod (左侧或右侧) 损坏",
+            "price": "RMB 679",
+            "sortOrder": "46"
+          },
+          {
+            "serviceLabel": "充电盒损坏",
+            "price": "RMB 679",
+            "sortOrder": "20"
+          },
+          {
+            "serviceLabel": "AirPod (左侧或右侧) 丢失",
+            "price": "RMB 679",
+            "sortOrder": "17"
+          },
+          {
+            "serviceLabel": "充电盒丢失",
+            "price": "RMB 749",
+            "sortOrder": "16"
+          }
+        ]
+      },
+      {
+        "product_tag_id": "TAG_1749057565437",
+        "product_eng_title": "AirPods Pro 2 (USB-C)",
+        "product_loc_title": "AirPods Pro 2 (USB-C)",
+        "children_present": false,
+        "sort_order": "13",
+        "isDefault": false,
+        "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300992&size=240x240",
+        "showEstimateDisclaimer": false,
+        "services": [
+          {
+            "serviceLabel": "电池服务",
+            "price": "RMB 399",
+            "sortOrder": "50"
+          },
+          {
+            "serviceLabel": "AirPod (左侧或右侧) 损坏",
+            "price": "RMB 679",
+            "sortOrder": "46"
+          },
+          {
+            "serviceLabel": "充电盒损坏",
+            "price": "RMB 679",
+            "sortOrder": "20"
+          },
+          {
+            "serviceLabel": "AirPod (左侧或右侧) 丢失",
+            "price": "RMB 679",
+            "sortOrder": "17"
+          },
+          {
+            "serviceLabel": "充电盒丢失",
+            "price": "RMB 749",
+            "sortOrder": "16"
+          }
+        ]
+      },
+      {
+        "product_tag_id": "TAG_1749057565230",
+        "product_eng_title": "AirPods Pro 2 (Lightning)",
+        "product_loc_title": "AirPods Pro 2（闪电）",
+        "children_present": false,
+        "sort_order": "12",
+        "isDefault": false,
+        "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300882&size=240x240",
+        "showEstimateDisclaimer": false,
+        "services": [
+          {
+            "serviceLabel": "电池服务",
+            "price": "RMB 399",
+            "sortOrder": "50"
+          },
+          {
+            "serviceLabel": "AirPod (左侧或右侧) 损坏",
+            "price": "RMB 679",
+            "sortOrder": "46"
+          },
+          {
+            "serviceLabel": "充电盒损坏",
+            "price": "RMB 679",
+            "sortOrder": "20"
+          },
+          {
+            "serviceLabel": "AirPod (左侧或右侧) 丢失",
+            "price": "RMB 679",
+            "sortOrder": "17"
+          },
+          {
+            "serviceLabel": "充电盒丢失",
+            "price": "RMB 749",
+            "sortOrder": "16"
+          }
+        ]
+      },
+      {
+        "product_tag_id": "TAG_1749057564818",
+        "product_eng_title": "AirPods Pro 1 (MagSafe)",
+        "product_loc_title": "AirPods Pro 1 (MagSafe)",
+        "children_present": false,
+        "sort_order": "10",
+        "isDefault": false,
+        "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300454&size=240x240",
+        "showEstimateDisclaimer": false,
+        "services": [
+          {
+            "serviceLabel": "电池服务",
+            "price": "RMB 399",
+            "sortOrder": "50"
+          },
+          {
+            "serviceLabel": "AirPod (左侧或右侧) 损坏",
+            "price": "RMB 679",
+            "sortOrder": "46"
+          },
+          {
+            "serviceLabel": "充电盒损坏",
+            "price": "RMB 679",
+            "sortOrder": "20"
+          },
+          {
+            "serviceLabel": "AirPod (左侧或右侧) 丢失",
+            "price": "RMB 679",
+            "sortOrder": "17"
+          },
+          {
+            "serviceLabel": "充电盒丢失",
+            "price": "RMB 749",
+            "sortOrder": "16"
+          }
+        ]
+      },
+      {
+        "product_tag_id": "TAG_1749057565024",
+        "product_eng_title": "AirPods Pro 1 (Wireless)",
+        "product_loc_title": "AirPods Pro 1（无线）",
+        "children_present": false,
+        "sort_order": "9",
+        "isDefault": false,
+        "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300145&size=240x240",
+        "showEstimateDisclaimer": false,
+        "services": [
+          {
+            "serviceLabel": "电池服务",
+            "price": "RMB 399",
+            "sortOrder": "50"
+          },
+          {
+            "serviceLabel": "AirPod (左侧或右侧) 损坏",
+            "price": "RMB 679",
+            "sortOrder": "46"
+          },
+          {
+            "serviceLabel": "充电盒损坏",
+            "price": "RMB 679",
+            "sortOrder": "20"
+          },
+          {
+            "serviceLabel": "AirPod (左侧或右侧) 丢失",
+            "price": "RMB 679",
+            "sortOrder": "17"
+          },
+          {
+            "serviceLabel": "充电盒丢失",
+            "price": "RMB 749",
+            "sortOrder": "16"
+          }
+        ]
+      },
+      {
+        "product_tag_id": "TAG_1749057564407",
+        "product_eng_title": "AirPods 4 (ANC)",
+        "product_loc_title": "AirPods 4 (ANC)",
+        "children_present": false,
+        "sort_order": "8",
+        "isDefault": false,
+        "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301051&size=240x240",
+        "showEstimateDisclaimer": false,
+        "services": [
+          {
+            "serviceLabel": "电池服务",
+            "price": "RMB 399",
+            "sortOrder": "50"
+          },
+          {
+            "serviceLabel": "AirPod (左侧或右侧) 损坏",
+            "price": "RMB 599",
+            "sortOrder": "46"
+          },
+          {
+            "serviceLabel": "充电盒损坏",
+            "price": "RMB 599",
+            "sortOrder": "20"
+          },
+          {
+            "serviceLabel": "AirPod (左侧或右侧) 丢失",
+            "price": "RMB 599",
+            "sortOrder": "17"
+          },
+          {
+            "serviceLabel": "充电盒丢失",
+            "price": "RMB 661",
+            "sortOrder": "16"
+          }
+        ]
+      },
+      {
+        "product_tag_id": "TAG_1749057564202",
+        "product_eng_title": "AirPods 4",
+        "product_loc_title": "AirPods 4",
+        "children_present": false,
+        "sort_order": "7",
+        "isDefault": false,
+        "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301050&size=240x240",
+        "showEstimateDisclaimer": false,
+        "services": [
+          {
+            "serviceLabel": "电池服务",
+            "price": "RMB 399",
+            "sortOrder": "50"
+          },
+          {
+            "serviceLabel": "AirPod (左侧或右侧) 损坏",
+            "price": "RMB 599",
+            "sortOrder": "46"
+          },
+          {
+            "serviceLabel": "充电盒损坏",
+            "price": "RMB 479",
+            "sortOrder": "20"
+          },
+          {
+            "serviceLabel": "AirPod (左侧或右侧) 丢失",
+            "price": "RMB 599",
+            "sortOrder": "17"
+          },
+          {
+            "serviceLabel": "充电盒丢失",
+            "price": "RMB 599",
+            "sortOrder": "16"
+          }
+        ]
+      },
+      {
+        "product_tag_id": "TAG_1749057563996",
+        "product_eng_title": "AirPods 3 (MagSafe)",
+        "product_loc_title": "AirPods 3 (MagSafe)",
+        "children_present": false,
+        "sort_order": "6",
+        "isDefault": false,
+        "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300453&size=240x240",
+        "showEstimateDisclaimer": false,
+        "services": [
+          {
+            "serviceLabel": "电池服务",
+            "price": "RMB 399",
+            "sortOrder": "50"
+          },
+          {
+            "serviceLabel": "AirPod (左侧或右侧) 损坏",
+            "price": "RMB 599",
+            "sortOrder": "46"
+          },
+          {
+            "serviceLabel": "充电盒损坏",
+            "price": "RMB 599",
+            "sortOrder": "20"
+          },
+          {
+            "serviceLabel": "AirPod (左侧或右侧) 丢失",
+            "price": "RMB 599",
+            "sortOrder": "17"
+          },
+          {
+            "serviceLabel": "充电盒丢失",
+            "price": "RMB 661",
+            "sortOrder": "16"
+          }
+        ]
+      },
+      {
+        "product_tag_id": "TAG_1749057563791",
+        "product_eng_title": "AirPods 3 (Lightning)",
+        "product_loc_title": "AirPods 3（闪电）",
+        "children_present": false,
+        "sort_order": "5",
+        "isDefault": false,
+        "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300896&size=240x240",
+        "showEstimateDisclaimer": false,
+        "services": [
+          {
+            "serviceLabel": "电池服务",
+            "price": "RMB 399",
+            "sortOrder": "50"
+          },
+          {
+            "serviceLabel": "AirPod (左侧或右侧) 损坏",
+            "price": "RMB 599",
+            "sortOrder": "46"
+          },
+          {
+            "serviceLabel": "充电盒损坏",
+            "price": "RMB 479",
+            "sortOrder": "20"
+          },
+          {
+            "serviceLabel": "AirPod (左侧或右侧) 丢失",
+            "price": "RMB 599",
+            "sortOrder": "17"
+          },
+          {
+            "serviceLabel": "充电盒丢失",
+            "price": "RMB 599",
+            "sortOrder": "16"
+          }
+        ]
+      },
+      {
+        "product_tag_id": "TAG_1749057563585",
+        "product_eng_title": "AirPods 2 (Wireless)",
+        "product_loc_title": "AirPods 2（无线）",
+        "children_present": false,
+        "sort_order": "4",
+        "isDefault": false,
+        "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300122&size=240x240",
+        "showEstimateDisclaimer": false,
+        "services": [
+          {
+            "serviceLabel": "电池服务",
+            "price": "RMB 399",
+            "sortOrder": "50"
+          },
+          {
+            "serviceLabel": "AirPod (左侧或右侧) 损坏",
+            "price": "RMB 599",
+            "sortOrder": "46"
+          },
+          {
+            "serviceLabel": "充电盒损坏",
+            "price": "RMB 599",
+            "sortOrder": "20"
+          },
+          {
+            "serviceLabel": "AirPod (左侧或右侧) 丢失",
+            "price": "RMB 599",
+            "sortOrder": "17"
+          },
+          {
+            "serviceLabel": "充电盒丢失",
+            "price": "RMB 661",
+            "sortOrder": "16"
+          }
+        ]
+      },
+      {
+        "product_tag_id": "TAG_1749057563380",
+        "product_eng_title": "AirPods 2 (Lightning)",
+        "product_loc_title": "AirPods 2（闪电）",
+        "children_present": false,
+        "sort_order": "3",
+        "isDefault": false,
+        "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300121&size=240x240",
+        "showEstimateDisclaimer": false,
+        "services": [
+          {
+            "serviceLabel": "电池服务",
+            "price": "RMB 399",
+            "sortOrder": "50"
+          },
+          {
+            "serviceLabel": "AirPod (左侧或右侧) 损坏",
+            "price": "RMB 599",
+            "sortOrder": "46"
+          },
+          {
+            "serviceLabel": "充电盒损坏",
+            "price": "RMB 479",
+            "sortOrder": "20"
+          },
+          {
+            "serviceLabel": "AirPod (左侧或右侧) 丢失",
+            "price": "RMB 599",
+            "sortOrder": "17"
+          },
+          {
+            "serviceLabel": "充电盒丢失",
+            "price": "RMB 479",
+            "sortOrder": "16"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1139,8 +1139,10 @@
       const categoryBar = document.getElementById("estimator-category-bar");
       let activeCategory = "iPhone";
 
-      function getSeriesByCategory(cat) {
-        return ESTIMATOR_SERIES.filter((s) => s.category === cat);
+      const catalogData = (typeof ESTIMATOR_CATALOG !== "undefined") ? ESTIMATOR_CATALOG : {};
+
+      function getSeriesList() {
+        return catalogData[activeCategory] || [];
       }
 
       // 渲染大品类切换胶囊栏
@@ -1157,86 +1159,55 @@
         }).join("");
       }
 
-      // 刷新“系列 / 家族”下拉框
+      // 刷新“系列 / 家族”下拉框 (按 Apple 官网顺序：iPhone Air, 17, 16, 15... SE)
       function populateSeriesDropdown() {
-        const seriesList = getSeriesByCategory(activeCategory);
+        const seriesList = getSeriesList();
         seriesSelect.innerHTML = seriesList.map((s, idx) => {
-          return `<option value="${idx}">${s.name}</option>`;
+          return `<option value="${idx}">${s.series}</option>`;
         }).join("");
         updateModelsForSeries(0);
       }
 
       // 更新机型下拉框
       function updateModelsForSeries(seriesSubIndex) {
-        const seriesList = getSeriesByCategory(activeCategory);
-        const seriesObj = seriesList[seriesSubIndex] || seriesList[0] || ESTIMATOR_SERIES[0];
-        if (!seriesObj) return;
+        const seriesList = getSeriesList();
+        const seriesObj = seriesList[seriesSubIndex] || seriesList[0];
+        if (!seriesObj || !seriesObj.models) return;
 
-        modelSelect.innerHTML = seriesObj.models.map((m) => {
-          return `<option value="${m}">${m}</option>`;
+        modelSelect.innerHTML = seriesObj.models.map((m, idx) => {
+          return `<option value="${idx}">${m.name}</option>`;
         }).join("");
-        renderEstimatorQuote(seriesObj.models[0], seriesObj.category);
+
+        renderEstimatorQuote(seriesObj.models[0]);
       }
 
-      // 渲染选定机型的官方费用清单
-      function renderEstimatorQuote(modelName, category) {
-        if (!deviceTitle || !deviceVisual || !pricingList) return;
+      // 渲染选定机型的官方费用清单 (1:1 官方支持排版：官方正品渲染图 + 预估服务费用)
+      function renderEstimatorQuote(modelObj) {
+        if (!modelObj || !deviceVisual || !pricingList) return;
 
-        deviceTitle.textContent = modelName;
-        deviceVisual.innerHTML = getDeviceSVG(modelName, category);
+        if (deviceTitle) {
+          deviceTitle.textContent = modelObj.name;
+        }
 
-        // 提取该机型所有维修报价项
-        const modelItems = state.pricesData.filter((p) => p.model === modelName);
+        // 渲染 Apple 官方正品实机渲染图，备用 SVG 回退
+        const fallbackSvg = getDeviceSVG(modelObj.name, activeCategory);
+        deviceVisual.innerHTML = `
+          <img src="${modelObj.imageUrl}" alt="${modelObj.name}" class="device-official-photo" onerror="this.style.display='none'; if (this.nextElementSibling) this.nextElementSibling.style.display='block';" />
+          <div class="device-svg-fallback" style="display:none; width:100%; height:100%;">${fallbackSvg}</div>
+        `;
 
-        if (modelItems.length === 0) {
+        const services = modelObj.services || [];
+        if (services.length === 0) {
           pricingList.innerHTML = `<div class="empty-quote-tip" style="padding: 24px; text-align: center; color: var(--text-tertiary);">暂无该机型的官方预估报价</div>`;
           return;
         }
 
-        // 部件排序权重 (电池 -> 背面玻璃 -> 相机 -> 屏幕 -> 屏幕+背面 -> 其他)
-        const partWeights = {
-          "电池服务": 1,
-          "背面玻璃损坏": 2,
-          "后置相机损坏": 3,
-          "屏幕损坏": 4,
-          "屏幕和背面玻璃损坏": 5,
-          "其他损坏": 6
-        };
-
-        const sortedItems = [...modelItems].sort((a, b) => {
-          const nameA = normalizePartName(a.part);
-          const nameB = normalizePartName(b.part);
-          const weightA = partWeights[nameA] || 99;
-          const weightB = partWeights[nameB] || 99;
-          return weightA - weightB;
-        });
-
-        pricingList.innerHTML = sortedItems.map((item) => {
-          const displayPartName = normalizePartName(item.part);
-          const outPrice = formatMoney(item.out_of_warranty);
-          
-          let acSub = "";
-          if (typeof item.applecare === "number") {
-            const savings = Math.max(0, item.out_of_warranty - item.applecare);
-            const acPriceStr = formatMoney(item.applecare);
-            acSub = `
-              <div class="quote-ac-sub">
-                AppleCare+：${acPriceStr}
-                ${savings > 0 ? `<span class="savings">(省 ${formatMoney(savings)})</span>` : ""}
-              </div>
-            `;
-          }
-
+        // 1:1 还原 Apple 官方支持界面排版：仅展示“维修项名称”与“RMB 预估价格”，无冗余副标题
+        pricingList.innerHTML = services.map((item) => {
           return `
             <div class="quote-item-row">
-              <div class="quote-part-col">
-                <span class="quote-part-name">${displayPartName}</span>
-                <span class="quote-part-hint">原厂官方配件 · 质保承保</span>
-              </div>
-              <div class="quote-price-col">
-                <span class="quote-price-val">${outPrice}</span>
-                ${acSub}
-              </div>
+              <span class="quote-part-name">${item.name}</span>
+              <span class="quote-price-val">${item.price}</span>
             </div>
           `;
         }).join("");
@@ -1265,9 +1236,12 @@
       // 监听机型变更
       modelSelect.addEventListener("change", () => {
         const seriesIdx = parseInt(seriesSelect.value, 10) || 0;
-        const seriesList = getSeriesByCategory(activeCategory);
-        const seriesObj = seriesList[seriesIdx] || seriesList[0] || ESTIMATOR_SERIES[0];
-        renderEstimatorQuote(modelSelect.value, seriesObj.category);
+        const modelIdx = parseInt(modelSelect.value, 10) || 0;
+        const seriesList = getSeriesList();
+        const seriesObj = seriesList[seriesIdx] || seriesList[0];
+        if (seriesObj && seriesObj.models && seriesObj.models[modelIdx]) {
+          renderEstimatorQuote(seriesObj.models[modelIdx]);
+        }
       });
 
       // 初始化第一次渲染

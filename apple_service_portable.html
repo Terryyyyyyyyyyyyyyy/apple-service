@@ -1801,34 +1801,30 @@ body {
 }
 
 .estimator-device-side {
-  flex: 0 0 180px;
+  flex: 0 0 170px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-top: 8px;
+  padding-top: 10px;
 }
 
 .device-render-canvas {
-  width: 160px;
-  height: 220px;
+  width: 150px;
+  height: 190px;
   display: flex;
   align-items: center;
   justify-content: center;
-  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.14));
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.device-render-canvas:hover {
-  transform: translateY(-3px) scale(1.02);
-}
-
-.device-render-name {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--text-secondary);
-  margin-top: 14px;
-  text-align: center;
+.device-official-photo {
+  max-width: 140px;
+  max-height: 190px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.12));
+  transition: transform 0.25s ease;
 }
 
 .estimator-pricing-side {
@@ -1840,35 +1836,22 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--border-color);
-  margin-bottom: 4px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  margin-bottom: 2px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .pricing-header-row {
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+  }
 }
 
 .pricing-headline {
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 13px;
+  font-weight: 500;
   color: var(--text-secondary);
   letter-spacing: 0.01em;
-}
-
-.ac-compare-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--apple-blue);
-  background: var(--apple-blue-light);
-  padding: 4px 12px;
-  border-radius: 12px;
-}
-
-.ac-pill-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--apple-blue);
 }
 
 .pricing-table-list {
@@ -1880,9 +1863,15 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 4px;
-  border-bottom: 1px solid var(--border-color);
+  padding: 13px 2px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   transition: background 0.15s ease;
+}
+
+@media (prefers-color-scheme: dark) {
+  .quote-item-row {
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+  }
 }
 
 .quote-item-row:last-child {
@@ -1890,57 +1879,21 @@ body {
 }
 
 .quote-item-row:hover {
-  background: rgba(0, 0, 0, 0.018);
-  border-radius: 8px;
-}
-
-@media (prefers-color-scheme: dark) {
-  .quote-item-row:hover {
-    background: rgba(255, 255, 255, 0.03);
-  }
-}
-
-.quote-part-col {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
+  background: rgba(0, 0, 0, 0.015);
 }
 
 .quote-part-name {
-  font-size: 16px;
-  font-weight: 500;
+  font-size: 15px;
+  font-weight: 400;
   color: var(--text-primary);
-}
-
-.quote-part-hint {
-  font-size: 12px;
-  color: var(--text-tertiary);
-}
-
-.quote-price-col {
-  text-align: right;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 2px;
 }
 
 .quote-price-val {
-  font-size: 17px;
-  font-weight: 600;
+  font-size: 15px;
+  font-weight: 400;
   color: var(--text-primary);
   font-feature-settings: "tnum";
-}
-
-.quote-ac-sub {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--apple-blue);
-}
-
-.quote-ac-sub .savings {
-  color: var(--apple-green);
-  margin-left: 4px;
+  text-align: right;
 }
 
 .estimator-action-bar {
@@ -2268,29 +2221,24 @@ body {
           </button>
         </div>
 
-        <!-- 官方估价结果面板 (左侧设备渲染，右侧预估费用清单) -->
+        <!-- 官方估价结果面板 (左侧官方正品图，右侧预估费用清单) -->
         <div class="estimator-result-card" id="estimator-result-card">
-          <!-- 左侧：设备渲染图 -->
+          <!-- 左侧：官方设备实机渲染图 -->
           <div class="estimator-device-side">
             <div class="device-render-canvas" id="estimator-device-visual">
-              <!-- 动态设备 SVG 渲染 -->
+              <!-- 动态设备官方图 -->
             </div>
-            <div class="device-render-name" id="estimator-device-title">iPhone 16 Pro Max</div>
           </div>
 
           <!-- 右侧：预估服务费用清单 -->
           <div class="estimator-pricing-side">
             <div class="pricing-header-row">
               <span class="pricing-headline">预估服务费用</span>
-              <div class="ac-compare-pill">
-                <span class="ac-pill-dot"></span>
-                <span>包含 AppleCare+ 优惠参考</span>
-              </div>
             </div>
 
             <!-- 费用项明细列表 -->
             <div class="pricing-table-list" id="estimator-pricing-list">
-              <!-- 动态费用行 -->
+              <!-- 动态官方费用行 -->
             </div>
           </div>
         </div>
@@ -6840,6 +6788,9 @@ var storesData = [
 ];
 if (typeof window !== "undefined") window.storesData = storesData;
 
+var ESTIMATOR_CATALOG = {"iPhone": [{"series": "iPhone Air", "models": [{"name": "iPhone Air", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301244&size=240x240", "services": [{"name": "电池服务", "price": "RMB 969"}, {"name": "背面玻璃损坏", "price": "RMB 1,298"}, {"name": "后置相机损坏", "price": "RMB 1,299"}, {"name": "屏幕损坏", "price": "RMB 2,698"}, {"name": "屏幕和背面玻璃损坏", "price": "RMB 3,429"}, {"name": "其他损坏", "price": "RMB 5,699"}]}]}, {"series": "iPhone 17", "models": [{"name": "iPhone 17 Pro Max", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301246&size=240x240", "services": [{"name": "电池服务", "price": "RMB 969"}, {"name": "背面玻璃损坏", "price": "RMB 1,298"}, {"name": "后置相机损坏", "price": "RMB 1,949"}, {"name": "屏幕损坏", "price": "RMB 3,198"}, {"name": "屏幕和背面玻璃损坏", "price": "RMB 3,929"}, {"name": "其他损坏", "price": "RMB 6,499"}]}, {"name": "iPhone 17 Pro", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301245&size=240x240", "services": [{"name": "电池服务", "price": "RMB 969"}, {"name": "背面玻璃损坏", "price": "RMB 1,298"}, {"name": "后置相机损坏", "price": "RMB 1,949"}, {"name": "屏幕损坏", "price": "RMB 2,698"}, {"name": "屏幕和背面玻璃损坏", "price": "RMB 3,429"}, {"name": "其他损坏", "price": "RMB 6,099"}]}, {"name": "iPhone 17", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301247&size=240x240", "services": [{"name": "电池服务", "price": "RMB 809"}, {"name": "背面玻璃损坏", "price": "RMB 1,298"}, {"name": "后置相机损坏", "price": "RMB 1,299"}, {"name": "屏幕损坏", "price": "RMB 2,698"}, {"name": "屏幕和背面玻璃损坏", "price": "RMB 3,429"}, {"name": "其他损坏", "price": "RMB 4,699"}]}, {"name": "iPhone 17e", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301285&size=240x240", "services": [{"name": "电池服务", "price": "RMB 809"}, {"name": "背面玻璃损坏", "price": "RMB 1,298"}, {"name": "后置相机损坏", "price": "RMB 1,059"}, {"name": "屏幕损坏", "price": "RMB 1,879"}, {"name": "屏幕和背面玻璃损坏", "price": "RMB 2,599"}, {"name": "其他损坏", "price": "RMB 3,449"}]}]}, {"series": "iPhone 16", "models": [{"name": "iPhone 16 Pro Max", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301048&size=240x240", "services": [{"name": "电池服务", "price": "RMB 969"}, {"name": "背面玻璃损坏", "price": "RMB 1,298"}, {"name": "后置相机损坏", "price": "RMB 1,949"}, {"name": "屏幕损坏", "price": "RMB 3,198"}, {"name": "屏幕和背面玻璃损坏", "price": "RMB 3,929"}, {"name": "其他损坏", "price": "RMB 6,099"}]}, {"name": "iPhone 16 Pro", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301047&size=240x240", "services": [{"name": "电池服务", "price": "RMB 969"}, {"name": "背面玻璃损坏", "price": "RMB 1,298"}, {"name": "后置相机损坏", "price": "RMB 1,949"}, {"name": "屏幕损坏", "price": "RMB 2,698"}, {"name": "屏幕和背面玻璃损坏", "price": "RMB 3,429"}, {"name": "其他损坏", "price": "RMB 5,299"}]}, {"name": "iPhone 16 Plus", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301046&size=240x240", "services": [{"name": "电池服务", "price": "RMB 809"}, {"name": "背面玻璃损坏", "price": "RMB 1,298"}, {"name": "后置相机损坏", "price": "RMB 1,299"}, {"name": "屏幕损坏", "price": "RMB 2,698"}, {"name": "屏幕和背面玻璃损坏", "price": "RMB 3,429"}, {"name": "其他损坏", "price": "RMB 4,699"}]}, {"name": "iPhone 16", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301045&size=240x240", "services": [{"name": "电池服务", "price": "RMB 809"}, {"name": "背面玻璃损坏", "price": "RMB 1,298"}, {"name": "后置相机损坏", "price": "RMB 1,299"}, {"name": "屏幕损坏", "price": "RMB 2,298"}, {"name": "屏幕和背面玻璃损坏", "price": "RMB 2,998"}, {"name": "其他损坏", "price": "RMB 4,399"}]}, {"name": "iPhone 16e", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301076&size=240x240", "services": [{"name": "电池服务", "price": "RMB 809"}, {"name": "背面玻璃损坏", "price": "RMB 1,298"}, {"name": "后置相机损坏", "price": "RMB 1,059"}, {"name": "屏幕损坏", "price": "RMB 1,879"}, {"name": "屏幕和背面玻璃损坏", "price": "RMB 2,599"}, {"name": "其他损坏", "price": "RMB 3,449"}]}]}, {"series": "iPhone 15", "models": [{"name": "iPhone 15 Pro Max", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301003&size=240x240", "services": [{"name": "电池服务", "price": "RMB 809"}, {"name": "背面玻璃损坏", "price": "RMB 1,298"}, {"name": "后置相机损坏", "price": "RMB 1,949"}, {"name": "屏幕损坏", "price": "RMB 3,198"}, {"name": "屏幕和背面玻璃损坏", "price": "RMB 3,929"}, {"name": "其他损坏", "price": "RMB 5,699"}]}, {"name": "iPhone 15 Pro", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300993&size=240x240", "services": [{"name": "电池服务", "price": "RMB 809"}, {"name": "背面玻璃损坏", "price": "RMB 1,298"}, {"name": "后置相机损坏", "price": "RMB 1,748"}, {"name": "屏幕损坏", "price": "RMB 2,698"}, {"name": "屏幕和背面玻璃损坏", "price": "RMB 3,429"}, {"name": "其他损坏", "price": "RMB 5,299"}]}, {"name": "iPhone 15 Plus", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301004&size=240x240", "services": [{"name": "电池服务", "price": "RMB 809"}, {"name": "背面玻璃损坏", "price": "RMB 1,298"}, {"name": "后置相机损坏", "price": "RMB 1,299"}, {"name": "屏幕损坏", "price": "RMB 2,698"}, {"name": "屏幕和背面玻璃损坏", "price": "RMB 3,429"}, {"name": "其他损坏", "price": "RMB 4,699"}]}, {"name": "iPhone 15", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300991&size=240x240", "services": [{"name": "电池服务", "price": "RMB 809"}, {"name": "背面玻璃损坏", "price": "RMB 1,298"}, {"name": "后置相机损坏", "price": "RMB 1,299"}, {"name": "屏幕损坏", "price": "RMB 2,298"}, {"name": "屏幕和背面玻璃损坏", "price": "RMB 2,998"}, {"name": "其他损坏", "price": "RMB 4,399"}]}]}, {"series": "iPhone 14", "models": [{"name": "iPhone 14 Pro Max", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300881&size=240x240", "services": [{"name": "电池服务", "price": "RMB 809"}, {"name": "背面玻璃损坏", "price": "RMB 3,998"}, {"name": "后置相机损坏", "price": "RMB 1,748"}, {"name": "屏幕损坏", "price": "RMB 3,198"}, {"name": "屏幕和背面玻璃损坏", "price": "RMB 4,998"}, {"name": "其他损坏", "price": "RMB 5,699"}]}, {"name": "iPhone 14 Pro", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300880&size=240x240", "services": [{"name": "电池服务", "price": "RMB 809"}, {"name": "背面玻璃损坏", "price": "RMB 3,598"}, {"name": "后置相机损坏", "price": "RMB 1,748"}, {"name": "屏幕损坏", "price": "RMB 2,698"}, {"name": "屏幕和背面玻璃损坏", "price": "RMB 4,598"}, {"name": "其他损坏", "price": "RMB 5,299"}]}, {"name": "iPhone 14 Plus", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300879&size=240x240", "services": [{"name": "电池服务", "price": "RMB 809"}, {"name": "背面玻璃损坏", "price": "RMB 1,298"}, {"name": "后置相机损坏", "price": "RMB 1,299"}, {"name": "屏幕损坏", "price": "RMB 2,698"}, {"name": "屏幕和背面玻璃损坏", "price": "RMB 3,429"}, {"name": "其他损坏", "price": "RMB 4,699"}]}, {"name": "iPhone 14", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300878&size=240x240", "services": [{"name": "电池服务", "price": "RMB 809"}, {"name": "背面玻璃损坏", "price": "RMB 1,298"}, {"name": "后置相机损坏", "price": "RMB 1,299"}, {"name": "屏幕损坏", "price": "RMB 2,298"}, {"name": "屏幕和背面玻璃损坏", "price": "RMB 2,998"}, {"name": "其他损坏", "price": "RMB 3,799"}]}]}, {"series": "iPhone 13", "models": [{"name": "iPhone 13 Pro Max", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300430&size=240x240", "services": [{"name": "电池服务", "price": "RMB 729"}, {"name": "背面玻璃损坏", "price": "RMB 3,598"}, {"name": "后置相机损坏", "price": "RMB 1,548"}, {"name": "屏幕损坏", "price": "RMB 2,698"}, {"name": "屏幕和背面玻璃损坏", "price": "RMB 4,699"}, {"name": "其他损坏", "price": "RMB 4,699"}]}, {"name": "iPhone 13 Pro", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300429&size=240x240", "services": [{"name": "电池服务", "price": "RMB 729"}, {"name": "背面玻璃损坏", "price": "RMB 3,148"}, {"name": "后置相机损坏", "price": "RMB 1,548"}, {"name": "屏幕损坏", "price": "RMB 2,298"}, {"name": "屏幕和背面玻璃损坏", "price": "RMB 3,799"}, {"name": "其他损坏", "price": "RMB 3,799"}]}, {"name": "iPhone 13", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300428&size=240x240", "services": [{"name": "电池服务", "price": "RMB 729"}, {"name": "背面玻璃损坏", "price": "RMB 2,498"}, {"name": "后置相机损坏", "price": "RMB 1,299"}, {"name": "屏幕损坏", "price": "RMB 2,298"}, {"name": "屏幕和背面玻璃损坏", "price": "RMB 3,448"}, {"name": "其他损坏", "price": "RMB 3,448"}]}, {"name": "iPhone 13 mini", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300426&size=240x240", "services": [{"name": "电池服务", "price": "RMB 729"}, {"name": "背面玻璃损坏", "price": "RMB 2,198"}, {"name": "后置相机损坏", "price": "RMB 1,299"}, {"name": "屏幕损坏", "price": "RMB 1,798"}, {"name": "屏幕和背面玻璃损坏", "price": "RMB 3,098"}, {"name": "其他损坏", "price": "RMB 3,098"}]}]}, {"series": "iPhone 12", "models": [{"name": "iPhone 12 Pro Max", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300240&size=240x240", "services": [{"name": "电池服务", "price": "RMB 729"}, {"name": "背面玻璃损坏", "price": "RMB 3,598"}, {"name": "后置相机损坏", "price": "RMB 1,548"}, {"name": "屏幕损坏", "price": "RMB 2,698"}, {"name": "屏幕和背面玻璃损坏", "price": "RMB 4,699"}, {"name": "其他损坏", "price": "RMB 4,699"}]}, {"name": "iPhone 12 Pro", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300242&size=240x240", "services": [{"name": "电池服务", "price": "RMB 729"}, {"name": "背面玻璃损坏", "price": "RMB 3,148"}, {"name": "后置相机损坏", "price": "RMB 1,548"}, {"name": "屏幕损坏", "price": "RMB 2,298"}, {"name": "屏幕和背面玻璃损坏", "price": "RMB 3,799"}, {"name": "其他损坏", "price": "RMB 3,799"}]}, {"name": "iPhone 12", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300241&size=240x240", "services": [{"name": "电池服务", "price": "RMB 729"}, {"name": "背面玻璃损坏", "price": "RMB 2,498"}, {"name": "后置相机损坏", "price": "RMB 1,299"}, {"name": "屏幕损坏", "price": "RMB 2,298"}, {"name": "屏幕和背面玻璃损坏", "price": "RMB 3,448"}, {"name": "其他损坏", "price": "RMB 3,448"}]}, {"name": "iPhone 12 mini", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300239&size=240x240", "services": [{"name": "电池服务", "price": "RMB 729"}, {"name": "背面玻璃损坏", "price": "RMB 2,198"}, {"name": "后置相机损坏", "price": "RMB 1,299"}, {"name": "屏幕损坏", "price": "RMB 1,798"}, {"name": "屏幕和背面玻璃损坏", "price": "RMB 3,098"}, {"name": "其他损坏", "price": "RMB 3,098"}]}]}, {"series": "iPhone 11", "models": [{"name": "iPhone 11", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=507882&size=240x240", "services": [{"name": "电池服务", "price": "RMB 729"}, {"name": "屏幕损坏", "price": "RMB 1,598"}, {"name": "其他损坏", "price": "RMB 3,098"}]}]}, {"series": "iPhone XR", "models": [{"name": "iPhone XR", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=505602&size=240x240", "services": [{"name": "电池服务", "price": "RMB 729"}, {"name": "屏幕损坏", "price": "RMB 1,598"}, {"name": "其他损坏", "price": "RMB 3,098"}]}]}, {"series": "iPhone SE", "models": [{"name": "iPhone SE（第 3 代）", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300865&size=240x240", "services": [{"name": "电池服务", "price": "RMB 559"}, {"name": "屏幕损坏", "price": "RMB 1,048"}, {"name": "其他损坏", "price": "RMB 2,398"}]}, {"name": "iPhone SE（第 2 代）", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=509370&size=240x240", "services": [{"name": "电池服务", "price": "RMB 559"}, {"name": "屏幕损坏", "price": "RMB 1,048"}, {"name": "其他损坏", "price": "RMB 2,198"}]}]}], "Mac": [{"series": "MacBook Pro", "models": [{"name": "MacBook Pro 16 英寸 (M3/M4)", "imageUrl": "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/mbp14-spaceblack-select-202410?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1730141673896", "services": [{"name": "电池服务", "price": "RMB 1,999"}, {"name": "屏幕损坏", "price": "RMB 5,998"}, {"name": "其他损坏 (主板/硬件)", "price": "RMB 7,499"}]}, {"name": "MacBook Pro 14 英寸 (M3/M4)", "imageUrl": "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/mbp14-spaceblack-select-202410?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1730141673896", "services": [{"name": "电池服务", "price": "RMB 1,999"}, {"name": "屏幕损坏", "price": "RMB 5,298"}, {"name": "其他损坏 (主板/硬件)", "price": "RMB 6,899"}]}]}, {"series": "MacBook Air / Mac mini", "models": [{"name": "MacBook Air 15 英寸 (M2/M3)", "imageUrl": "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/mba13-midnight-select-202402?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1708367688034", "services": [{"name": "电池服务", "price": "RMB 1,299"}, {"name": "屏幕损坏", "price": "RMB 3,998"}, {"name": "其他损坏 (主板/硬件)", "price": "RMB 4,899"}]}, {"name": "MacBook Air 13 英寸 (M2/M3)", "imageUrl": "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/mba13-midnight-select-202402?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1708367688034", "services": [{"name": "电池服务", "price": "RMB 1,299"}, {"name": "屏幕损坏", "price": "RMB 3,598"}, {"name": "其他损坏 (主板/硬件)", "price": "RMB 4,299"}]}, {"name": "Mac mini (M2/M4)", "imageUrl": "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/mac-mini-202410-gallery-1?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1728938959648", "services": [{"name": "电源模块损坏", "price": "RMB 899"}, {"name": "主板及其他硬件损坏", "price": "RMB 2,999"}]}]}], "iPad": [{"series": "iPad Pro", "models": [{"name": "13 英寸 iPad Pro (M5)", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301272&size=240x240", "services": [{"name": "电池服务", "price": "RMB 1,629"}, {"name": "其他损坏", "price": "RMB 9,329"}]}, {"name": "11 英寸 iPad Pro (M5)", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301270&size=240x240", "services": [{"name": "电池服务", "price": "RMB 1,448"}, {"name": "其他损坏", "price": "RMB 8,099"}]}, {"name": "13 英寸 iPad Pro（M4）无线局域网机型", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301033&size=240x240", "services": [{"name": "电池服务", "price": "RMB 1,629"}, {"name": "其他损坏", "price": "RMB 8,949"}]}, {"name": "11 英寸 iPad Pro（M4）无线局域网机型", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301031&size=240x240", "services": [{"name": "电池服务", "price": "RMB 1,448"}, {"name": "其他损坏", "price": "RMB 7,719"}]}, {"name": "12.9 英寸 iPad Pro（第 6 代）无线局域网机型", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300908&size=240x240", "services": [{"name": "电池服务", "price": "RMB 1,448"}, {"name": "其他损坏", "price": "RMB 6,759"}]}, {"name": "12.9 英寸 iPad Pro（第 5 代）无线局域网机型", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300349&size=240x240", "services": [{"name": "电池服务", "price": "RMB 948"}, {"name": "其他损坏", "price": "RMB 6,759"}]}, {"name": "11 英寸 iPad Pro（第 4 代）无线局域网机型", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300905&size=240x240", "services": [{"name": "电池服务", "price": "RMB 1,198"}, {"name": "其他损坏", "price": "RMB 5,159"}]}, {"name": "11 英寸 iPad Pro（第 3 代）无线局域网机型", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300346&size=240x240", "services": [{"name": "电池服务", "price": "RMB 948"}, {"name": "其他损坏", "price": "RMB 5,159"}]}]}, {"series": "iPad mini", "models": [{"name": "iPad mini（A17 Pro）无线局域网机型", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301063&size=240x240", "services": [{"name": "电池服务", "price": "RMB 948"}, {"name": "其他损坏", "price": "RMB 3,479"}]}, {"name": "iPad mini（第 6 代）无线局域网机型", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300425&size=240x240", "services": [{"name": "电池服务", "price": "RMB 948"}, {"name": "其他损坏", "price": "RMB 3,269"}]}]}, {"series": "iPad Air", "models": [{"name": "13 英寸 iPad Air (M4)", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301283&size=240x240", "services": [{"name": "电池服务", "price": "RMB 1,198"}, {"name": "其他损坏", "price": "RMB 5,759"}]}, {"name": "11 英寸 iPad Air (M4)", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301281&size=240x240", "services": [{"name": "电池服务", "price": "RMB 1,048"}, {"name": "其他损坏", "price": "RMB 4,509"}]}, {"name": "13 英寸 iPad Air（M3）无线局域网机型", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301083&size=240x240", "services": [{"name": "电池服务", "price": "RMB 1,198"}, {"name": "其他损坏", "price": "RMB 5,609"}]}, {"name": "11 英寸 iPad Air（M3）无线局域网机型", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301081&size=240x240", "services": [{"name": "电池服务", "price": "RMB 948"}, {"name": "其他损坏", "price": "RMB 4,359"}]}, {"name": "13 英寸 iPad Air（M2）无线局域网机型", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301029&size=240x240", "services": [{"name": "电池服务", "price": "RMB 1,198"}, {"name": "其他损坏", "price": "RMB 5,609"}]}, {"name": "11 英寸 iPad Air（M2）无线局域网机型", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301027&size=240x240", "services": [{"name": "电池服务", "price": "RMB 948"}, {"name": "其他损坏", "price": "RMB 4,359"}]}, {"name": "iPad Air（第 5 代）无线局域网机型", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300866&size=240x240", "services": [{"name": "电池服务", "price": "RMB 948"}, {"name": "其他损坏", "price": "RMB 4,009"}]}]}, {"series": "iPad", "models": [{"name": "iPad（A16）无线局域网机型", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301079&size=240x240", "services": [{"name": "电池服务", "price": "RMB 948"}, {"name": "其他损坏", "price": "RMB 3,069"}]}, {"name": "iPad（第 10 代）无线局域网机型", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300902&size=240x240", "services": [{"name": "电池服务", "price": "RMB 948"}, {"name": "其他损坏", "price": "RMB 2,859"}]}]}], "Apple Watch": [{"series": "Apple Watch Ultra", "models": [{"name": "Apple Watch Ultra 3", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301254&size=240x240", "services": [{"name": "电池服务", "price": "RMB 809"}, {"name": "其他损坏", "price": "RMB 3,949"}]}, {"name": "Apple Watch Ultra 2", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301002&size=240x240", "services": [{"name": "电池服务", "price": "RMB 809"}, {"name": "其他损坏", "price": "RMB 3,949"}]}, {"name": "Apple Watch Ultra", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300895&size=240x240", "services": [{"name": "电池服务", "price": "RMB 809"}, {"name": "其他损坏", "price": "RMB 3,949"}]}]}, {"series": "Apple Watch Series 11", "models": [{"name": "Apple Watch Series 11 GPS + 蜂窝网络 钛金属 42 毫米", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301262&size=240x240", "services": [{"name": "电池服务", "price": "RMB 809"}, {"name": "其他损坏", "price": "RMB 3,198"}]}, {"name": "Apple Watch Series 11 GPS + 蜂窝网络 钛金属 46 毫米", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301260&size=240x240", "services": [{"name": "电池服务", "price": "RMB 809"}, {"name": "其他损坏", "price": "RMB 3,198"}]}, {"name": "Apple Watch Series 11 GPS + 蜂窝网络 铝金属 42 毫米", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301259&size=240x240", "services": [{"name": "电池服务", "price": "RMB 809"}, {"name": "其他损坏", "price": "RMB 2,679"}]}, {"name": "Apple Watch Series 11 GPS + 蜂窝网络 铝金属 46 毫米", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301253&size=240x240", "services": [{"name": "电池服务", "price": "RMB 809"}, {"name": "其他损坏", "price": "RMB 2,679"}]}, {"name": "Apple Watch Series 11 GPS 铝金属 42 毫米", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301252&size=240x240", "services": [{"name": "电池服务", "price": "RMB 809"}, {"name": "其他损坏", "price": "RMB 2,309"}]}, {"name": "Apple Watch Series 11 GPS 铝金属 46 毫米", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301251&size=240x240", "services": [{"name": "电池服务", "price": "RMB 809"}, {"name": "其他损坏", "price": "RMB 2,309"}]}]}, {"series": "Apple Watch Series 10", "models": [{"name": "Apple Watch Series 10 GPS + 蜂窝网络 钛金属 42 毫米", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301058&size=240x240", "services": [{"name": "电池服务", "price": "RMB 809"}, {"name": "其他损坏", "price": "RMB 3,198"}]}, {"name": "Apple Watch Series 10 GPS + 蜂窝网络 钛金属 46 毫米", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301055&size=240x240", "services": [{"name": "电池服务", "price": "RMB 809"}, {"name": "其他损坏", "price": "RMB 3,198"}]}, {"name": "Apple Watch Series 10 GPS + 蜂窝网络 铝金属 42 毫米", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301057&size=240x240", "services": [{"name": "电池服务", "price": "RMB 809"}, {"name": "其他损坏", "price": "RMB 2,679"}]}, {"name": "Apple Watch Series 10 GPS + 蜂窝网络 铝金属 46 毫米", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301054&size=240x240", "services": [{"name": "电池服务", "price": "RMB 809"}, {"name": "其他损坏", "price": "RMB 2,679"}]}, {"name": "Apple Watch Series 10 GPS 铝金属 42 毫米", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301053&size=240x240", "services": [{"name": "电池服务", "price": "RMB 809"}, {"name": "其他损坏", "price": "RMB 2,309"}]}, {"name": "Apple Watch Series 10 GPS 铝金属 46 毫米", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301052&size=240x240", "services": [{"name": "电池服务", "price": "RMB 809"}, {"name": "其他损坏", "price": "RMB 2,309"}]}]}, {"series": "Apple Watch Series 9", "models": [{"name": "Apple Watch Series 9 GPS + 蜂窝网络 不锈钢 41 毫米", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301000&size=240x240", "services": [{"name": "电池服务", "price": "RMB 809"}, {"name": "其他损坏", "price": "RMB 3,198"}]}, {"name": "Apple Watch Series 9 GPS + 蜂窝网络 不锈钢 45 毫米", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300997&size=240x240", "services": [{"name": "电池服务", "price": "RMB 809"}, {"name": "其他损坏", "price": "RMB 3,198"}]}, {"name": "Apple Watch Series 9 GPS + 蜂窝网络 铝金属 41 毫米", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300999&size=240x240", "services": [{"name": "电池服务", "price": "RMB 809"}, {"name": "其他损坏", "price": "RMB 2,679"}]}, {"name": "Apple Watch Series 9 GPS + 蜂窝网络 铝金属 45 毫米", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300996&size=240x240", "services": [{"name": "电池服务", "price": "RMB 809"}, {"name": "其他损坏", "price": "RMB 2,679"}]}, {"name": "Apple Watch Series 9 GPS 铝金属 41 毫米", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300995&size=240x240", "services": [{"name": "电池服务", "price": "RMB 809"}, {"name": "其他损坏", "price": "RMB 2,309"}]}, {"name": "Apple Watch Series 9 GPS 铝金属 45 毫米", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300994&size=240x240", "services": [{"name": "电池服务", "price": "RMB 809"}, {"name": "其他损坏", "price": "RMB 2,309"}]}]}], "AirPods": [{"series": "AirPods Pro", "models": [{"name": "AirPods Pro 2 (USB-C)", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300992&size=240x240", "services": [{"name": "电池服务", "price": "RMB 409"}, {"name": "AirPod 单只损坏", "price": "RMB 729"}, {"name": "充电盒损坏", "price": "RMB 729"}, {"name": "AirPod 单只丢失", "price": "RMB 729"}, {"name": "充电盒丢失", "price": "RMB 789"}]}]}, {"series": "AirPods", "models": [{"name": "AirPods 4 (主动降噪款)", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301051&size=240x240", "services": [{"name": "电池服务", "price": "RMB 379"}, {"name": "AirPod 单只损坏", "price": "RMB 599"}, {"name": "充电盒损坏", "price": "RMB 599"}]}, {"name": "AirPods 4 (标准款)", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301050&size=240x240", "services": [{"name": "电池服务", "price": "RMB 379"}, {"name": "AirPod 单只损坏", "price": "RMB 529"}, {"name": "充电盒损坏", "price": "RMB 529"}]}]}, {"series": "AirPods Max", "models": [{"name": "AirPods Max (USB-C)", "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301293&size=240x240", "services": [{"name": "电池服务", "price": "RMB 699"}, {"name": "其他损坏 (整机更换)", "price": "RMB 2,399"}]}]}]};
+if (typeof window !== "undefined") window.ESTIMATOR_CATALOG = ESTIMATOR_CATALOG;
+
 
 /* 应用逻辑 app.js */
 /**
@@ -7983,8 +7934,10 @@ if (typeof window !== "undefined") window.storesData = storesData;
       const categoryBar = document.getElementById("estimator-category-bar");
       let activeCategory = "iPhone";
 
-      function getSeriesByCategory(cat) {
-        return ESTIMATOR_SERIES.filter((s) => s.category === cat);
+      const catalogData = (typeof ESTIMATOR_CATALOG !== "undefined") ? ESTIMATOR_CATALOG : {};
+
+      function getSeriesList() {
+        return catalogData[activeCategory] || [];
       }
 
       // 渲染大品类切换胶囊栏
@@ -8001,86 +7954,55 @@ if (typeof window !== "undefined") window.storesData = storesData;
         }).join("");
       }
 
-      // 刷新“系列 / 家族”下拉框
+      // 刷新“系列 / 家族”下拉框 (按 Apple 官网顺序：iPhone Air, 17, 16, 15... SE)
       function populateSeriesDropdown() {
-        const seriesList = getSeriesByCategory(activeCategory);
+        const seriesList = getSeriesList();
         seriesSelect.innerHTML = seriesList.map((s, idx) => {
-          return `<option value="${idx}">${s.name}</option>`;
+          return `<option value="${idx}">${s.series}</option>`;
         }).join("");
         updateModelsForSeries(0);
       }
 
       // 更新机型下拉框
       function updateModelsForSeries(seriesSubIndex) {
-        const seriesList = getSeriesByCategory(activeCategory);
-        const seriesObj = seriesList[seriesSubIndex] || seriesList[0] || ESTIMATOR_SERIES[0];
-        if (!seriesObj) return;
+        const seriesList = getSeriesList();
+        const seriesObj = seriesList[seriesSubIndex] || seriesList[0];
+        if (!seriesObj || !seriesObj.models) return;
 
-        modelSelect.innerHTML = seriesObj.models.map((m) => {
-          return `<option value="${m}">${m}</option>`;
+        modelSelect.innerHTML = seriesObj.models.map((m, idx) => {
+          return `<option value="${idx}">${m.name}</option>`;
         }).join("");
-        renderEstimatorQuote(seriesObj.models[0], seriesObj.category);
+
+        renderEstimatorQuote(seriesObj.models[0]);
       }
 
-      // 渲染选定机型的官方费用清单
-      function renderEstimatorQuote(modelName, category) {
-        if (!deviceTitle || !deviceVisual || !pricingList) return;
+      // 渲染选定机型的官方费用清单 (1:1 官方支持排版：官方正品渲染图 + 预估服务费用)
+      function renderEstimatorQuote(modelObj) {
+        if (!modelObj || !deviceVisual || !pricingList) return;
 
-        deviceTitle.textContent = modelName;
-        deviceVisual.innerHTML = getDeviceSVG(modelName, category);
+        if (deviceTitle) {
+          deviceTitle.textContent = modelObj.name;
+        }
 
-        // 提取该机型所有维修报价项
-        const modelItems = state.pricesData.filter((p) => p.model === modelName);
+        // 渲染 Apple 官方正品实机渲染图，备用 SVG 回退
+        const fallbackSvg = getDeviceSVG(modelObj.name, activeCategory);
+        deviceVisual.innerHTML = `
+          <img src="${modelObj.imageUrl}" alt="${modelObj.name}" class="device-official-photo" onerror="this.style.display='none'; if (this.nextElementSibling) this.nextElementSibling.style.display='block';" />
+          <div class="device-svg-fallback" style="display:none; width:100%; height:100%;">${fallbackSvg}</div>
+        `;
 
-        if (modelItems.length === 0) {
+        const services = modelObj.services || [];
+        if (services.length === 0) {
           pricingList.innerHTML = `<div class="empty-quote-tip" style="padding: 24px; text-align: center; color: var(--text-tertiary);">暂无该机型的官方预估报价</div>`;
           return;
         }
 
-        // 部件排序权重 (电池 -> 背面玻璃 -> 相机 -> 屏幕 -> 屏幕+背面 -> 其他)
-        const partWeights = {
-          "电池服务": 1,
-          "背面玻璃损坏": 2,
-          "后置相机损坏": 3,
-          "屏幕损坏": 4,
-          "屏幕和背面玻璃损坏": 5,
-          "其他损坏": 6
-        };
-
-        const sortedItems = [...modelItems].sort((a, b) => {
-          const nameA = normalizePartName(a.part);
-          const nameB = normalizePartName(b.part);
-          const weightA = partWeights[nameA] || 99;
-          const weightB = partWeights[nameB] || 99;
-          return weightA - weightB;
-        });
-
-        pricingList.innerHTML = sortedItems.map((item) => {
-          const displayPartName = normalizePartName(item.part);
-          const outPrice = formatMoney(item.out_of_warranty);
-          
-          let acSub = "";
-          if (typeof item.applecare === "number") {
-            const savings = Math.max(0, item.out_of_warranty - item.applecare);
-            const acPriceStr = formatMoney(item.applecare);
-            acSub = `
-              <div class="quote-ac-sub">
-                AppleCare+：${acPriceStr}
-                ${savings > 0 ? `<span class="savings">(省 ${formatMoney(savings)})</span>` : ""}
-              </div>
-            `;
-          }
-
+        // 1:1 还原 Apple 官方支持界面排版：仅展示“维修项名称”与“RMB 预估价格”，无冗余副标题
+        pricingList.innerHTML = services.map((item) => {
           return `
             <div class="quote-item-row">
-              <div class="quote-part-col">
-                <span class="quote-part-name">${displayPartName}</span>
-                <span class="quote-part-hint">原厂官方配件 · 质保承保</span>
-              </div>
-              <div class="quote-price-col">
-                <span class="quote-price-val">${outPrice}</span>
-                ${acSub}
-              </div>
+              <span class="quote-part-name">${item.name}</span>
+              <span class="quote-price-val">${item.price}</span>
             </div>
           `;
         }).join("");
@@ -8109,9 +8031,12 @@ if (typeof window !== "undefined") window.storesData = storesData;
       // 监听机型变更
       modelSelect.addEventListener("change", () => {
         const seriesIdx = parseInt(seriesSelect.value, 10) || 0;
-        const seriesList = getSeriesByCategory(activeCategory);
-        const seriesObj = seriesList[seriesIdx] || seriesList[0] || ESTIMATOR_SERIES[0];
-        renderEstimatorQuote(modelSelect.value, seriesObj.category);
+        const modelIdx = parseInt(modelSelect.value, 10) || 0;
+        const seriesList = getSeriesList();
+        const seriesObj = seriesList[seriesIdx] || seriesList[0];
+        if (seriesObj && seriesObj.models && seriesObj.models[modelIdx]) {
+          renderEstimatorQuote(seriesObj.models[modelIdx]);
+        }
       });
 
       // 初始化第一次渲染
