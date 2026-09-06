@@ -1126,11 +1126,31 @@
     }
 
     const ESTIMATOR_CATEGORIES = [
-      { id: "iPhone", label: "iPhone", icon: "📱" },
-      { id: "Mac", label: "Mac", icon: "💻" },
-      { id: "iPad", label: "iPad", icon: "📟" },
-      { id: "Apple Watch", label: "Watch", icon: "⌚️" },
-      { id: "AirPods", label: "AirPods", icon: "🎧" }
+      {
+        id: "iPhone",
+        label: "iPhone",
+        svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5.5" y="2" width="13" height="20" rx="3"/><path d="M10.5 4.5h3" stroke-width="1.6"/><line x1="10" y1="19.5" x2="14" y2="19.5" stroke-width="1.6"/></svg>`
+      },
+      {
+        id: "Mac",
+        label: "Mac",
+        svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="11" rx="1.5"/><path d="M2 18.5h20"/><path d="M10 18.5v.5a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-.5"/></svg>`
+      },
+      {
+        id: "iPad",
+        label: "iPad",
+        svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="2.5" width="17" height="19" rx="2.5"/><circle cx="12" cy="4.5" r="0.6" fill="currentColor"/><line x1="9.5" y1="19.2" x2="14.5" y2="19.2" stroke-width="1.6"/></svg>`
+      },
+      {
+        id: "Apple Watch",
+        label: "Watch",
+        svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5.5" y="5.5" width="13" height="13" rx="3.5"/><path d="M9 5.5V2h6v3.5"/><path d="M9 18.5V22h6v-3.5"/><line x1="19.5" y1="9" x2="19.5" y2="11.5" stroke-width="2"/></svg>`
+      },
+      {
+        id: "AirPods",
+        label: "AirPods",
+        svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3.5a3 3 0 0 1 3 3v8a1.5 1.5 0 0 1-3 0V6.5a3 3 0 0 1 0-3z"/><path d="M18 3.5a3 3 0 0 0-3 3v8a1.5 1.5 0 0 0 3 0V6.5a3 3 0 0 0 0-3z"/></svg>`
+      }
     ];
 
     function initEstimator() {
@@ -1152,7 +1172,7 @@
           const isActive = cat.id === activeCategory;
           return `
             <button type="button" class="estimator-cat-btn ${isActive ? "active" : ""}" data-category="${cat.id}" role="tab" aria-selected="${isActive}">
-              <span class="cat-icon">${cat.icon}</span>
+              <span class="cat-icon">${cat.svg}</span>
               <span class="cat-label">${cat.label}</span>
             </button>
           `;
