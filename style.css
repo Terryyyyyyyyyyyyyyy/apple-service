@@ -819,7 +819,7 @@ body {
 .city-controls-bar {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
   margin-bottom: 24px;
 }
 
@@ -831,8 +831,67 @@ body {
   }
 }
 
-.city-select-wrapper {
-  flex-shrink: 0;
+/* 快捷城市多排平铺自适应 (解决手机端左右滑动的痛点) */
+#city-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  overflow-x: visible;
+  padding-bottom: 0;
+}
+
+#city-pills .filter-pill {
+  flex: 0 0 auto;
+  text-align: center;
+  padding: 8px 16px;
+  font-size: 13px;
+  border-radius: var(--radius-pill);
+}
+
+@media (max-width: 640px) {
+  #city-pills {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    width: 100%;
+  }
+
+  #city-pills .filter-pill {
+    padding: 10px 2px;
+    font-size: 13px;
+    width: 100%;
+    margin: 0;
+    text-align: center;
+    white-space: nowrap;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .city-select-wrapper {
+    width: 100%;
+  }
+
+  .city-select {
+    width: 100%;
+    text-align: center;
+    padding: 10px 36px 10px 16px;
+    font-size: 14px;
+  }
+
+  .type-filter-group {
+    display: flex;
+    width: 100%;
+  }
+
+  .type-filter-btn {
+    flex: 1;
+    text-align: center;
+    padding: 8px 4px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
 }
 
 .city-select {
