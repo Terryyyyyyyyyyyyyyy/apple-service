@@ -1607,6 +1607,86 @@ body {
   margin: 0;
 }
 
+/* 估价器大品类切换胶囊栏 */
+.estimator-category-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 0 auto 24px auto;
+  max-width: 580px;
+  flex-wrap: wrap;
+}
+
+.estimator-cat-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  border-radius: var(--radius-pill);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  backdrop-filter: blur(10px);
+}
+
+.estimator-cat-btn:hover {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border-color: rgba(0, 0, 0, 0.18);
+}
+
+.estimator-cat-btn.active {
+  background: var(--apple-blue);
+  color: #ffffff;
+  border-color: var(--apple-blue);
+  font-weight: 600;
+  box-shadow: 0 3px 10px rgba(0, 113, 227, 0.32);
+}
+
+.estimator-cat-btn .cat-icon {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.estimator-cat-btn .cat-label {
+  line-height: 1.2;
+}
+
+@media (max-width: 640px) {
+  .estimator-category-bar {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 6px;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .estimator-cat-btn {
+    padding: 8px 2px;
+    font-size: 12px;
+    flex-direction: column;
+    gap: 4px;
+    border-radius: 12px;
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .estimator-cat-btn .cat-icon {
+    font-size: 18px;
+  }
+
+  .estimator-cat-btn .cat-label {
+    font-size: 11px;
+    white-space: nowrap;
+  }
+}
+
 .estimator-selectors-box {
   max-width: 580px;
   margin: 0 auto 16px auto;
@@ -2152,12 +2232,17 @@ body {
           <h2 class="estimator-title">选取你的设备</h2>
         </div>
 
+        <!-- 1. 大品类快捷切换 (iPhone / Mac / iPad / Watch / AirPods) -->
+        <div class="estimator-category-bar" id="estimator-category-bar" role="tablist" aria-label="选择设备品类">
+          <!-- 动态渲染 5 大品类胶囊 -->
+        </div>
+
         <div class="estimator-selectors-box">
-          <!-- 1. 设备类型 -->
+          <!-- 2. 系列 -->
           <div class="apple-floating-field">
-            <label for="estimator-series-select" class="floating-label">设备类型</label>
-            <select id="estimator-series-select" class="apple-select-input" aria-label="设备类型">
-              <!-- 动态填充设备系列 -->
+            <label for="estimator-series-select" class="floating-label">系列 / 家族</label>
+            <select id="estimator-series-select" class="apple-select-input" aria-label="选择系列">
+              <!-- 动态填充系列 -->
             </select>
             <span class="field-chevron">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
@@ -6839,7 +6924,7 @@ if (typeof window !== "undefined") window.storesData = storesData;
       models: ["iPad Air 11 英寸 (M2)", "iPad (第 10 代)", "iPad mini (第 6 代 / A17 Pro)"]
     },
     {
-      name: "Apple Watch",
+      name: "Apple Watch 全系列",
       category: "Apple Watch",
       models: [
         "Apple Watch Ultra 2",
@@ -6849,7 +6934,7 @@ if (typeof window !== "undefined") window.storesData = storesData;
       ]
     },
     {
-      name: "AirPods",
+      name: "AirPods 全系列",
       category: "AirPods",
       models: [
         "AirPods Pro (第 2 代)",
@@ -7884,17 +7969,53 @@ if (typeof window !== "undefined") window.storesData = storesData;
       return part;
     }
 
+    const ESTIMATOR_CATEGORIES = [
+      { id: "iPhone", label: "iPhone", icon: "📱" },
+      { id: "Mac", label: "Mac", icon: "💻" },
+      { id: "iPad", label: "iPad", icon: "📟" },
+      { id: "Apple Watch", label: "Watch", icon: "⌚️" },
+      { id: "AirPods", label: "AirPods", icon: "🎧" }
+    ];
+
     function initEstimator() {
       if (!seriesSelect || !modelSelect) return;
 
-      // 填充设备类型下拉框
-      seriesSelect.innerHTML = ESTIMATOR_SERIES.map((s, idx) => {
-        return `<option value="${idx}">${s.name}</option>`;
-      }).join("");
+      const categoryBar = document.getElementById("estimator-category-bar");
+      let activeCategory = "iPhone";
+
+      function getSeriesByCategory(cat) {
+        return ESTIMATOR_SERIES.filter((s) => s.category === cat);
+      }
+
+      // 渲染大品类切换胶囊栏
+      function renderCategoryBar() {
+        if (!categoryBar) return;
+        categoryBar.innerHTML = ESTIMATOR_CATEGORIES.map((cat) => {
+          const isActive = cat.id === activeCategory;
+          return `
+            <button type="button" class="estimator-cat-btn ${isActive ? "active" : ""}" data-category="${cat.id}" role="tab" aria-selected="${isActive}">
+              <span class="cat-icon">${cat.icon}</span>
+              <span class="cat-label">${cat.label}</span>
+            </button>
+          `;
+        }).join("");
+      }
+
+      // 刷新“系列 / 家族”下拉框
+      function populateSeriesDropdown() {
+        const seriesList = getSeriesByCategory(activeCategory);
+        seriesSelect.innerHTML = seriesList.map((s, idx) => {
+          return `<option value="${idx}">${s.name}</option>`;
+        }).join("");
+        updateModelsForSeries(0);
+      }
 
       // 更新机型下拉框
-      function updateModelsForSeries(seriesIndex) {
-        const seriesObj = ESTIMATOR_SERIES[seriesIndex] || ESTIMATOR_SERIES[0];
+      function updateModelsForSeries(seriesSubIndex) {
+        const seriesList = getSeriesByCategory(activeCategory);
+        const seriesObj = seriesList[seriesSubIndex] || seriesList[0] || ESTIMATOR_SERIES[0];
+        if (!seriesObj) return;
+
         modelSelect.innerHTML = seriesObj.models.map((m) => {
           return `<option value="${m}">${m}</option>`;
         }).join("");
@@ -7965,6 +8086,20 @@ if (typeof window !== "undefined") window.storesData = storesData;
         }).join("");
       }
 
+      // 绑定大品类点击事件
+      if (categoryBar) {
+        categoryBar.addEventListener("click", (e) => {
+          const btn = e.target.closest(".estimator-cat-btn");
+          if (!btn) return;
+          const catId = btn.getAttribute("data-category");
+          if (!catId || catId === activeCategory) return;
+
+          activeCategory = catId;
+          renderCategoryBar();
+          populateSeriesDropdown();
+        });
+      }
+
       // 监听系列变更
       seriesSelect.addEventListener("change", () => {
         const seriesIdx = parseInt(seriesSelect.value, 10) || 0;
@@ -7974,12 +8109,14 @@ if (typeof window !== "undefined") window.storesData = storesData;
       // 监听机型变更
       modelSelect.addEventListener("change", () => {
         const seriesIdx = parseInt(seriesSelect.value, 10) || 0;
-        const seriesObj = ESTIMATOR_SERIES[seriesIdx] || ESTIMATOR_SERIES[0];
+        const seriesList = getSeriesByCategory(activeCategory);
+        const seriesObj = seriesList[seriesIdx] || seriesList[0] || ESTIMATOR_SERIES[0];
         renderEstimatorQuote(modelSelect.value, seriesObj.category);
       });
 
       // 初始化第一次渲染
-      updateModelsForSeries(0);
+      renderCategoryBar();
+      populateSeriesDropdown();
 
       // 获取服务按钮点击：平滑跳转到网点并激活
       if (btnGetService) {

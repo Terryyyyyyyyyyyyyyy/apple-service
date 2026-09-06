@@ -1587,6 +1587,86 @@ body {
   margin: 0;
 }
 
+/* 估价器大品类切换胶囊栏 */
+.estimator-category-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 0 auto 24px auto;
+  max-width: 580px;
+  flex-wrap: wrap;
+}
+
+.estimator-cat-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  border-radius: var(--radius-pill);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  backdrop-filter: blur(10px);
+}
+
+.estimator-cat-btn:hover {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border-color: rgba(0, 0, 0, 0.18);
+}
+
+.estimator-cat-btn.active {
+  background: var(--apple-blue);
+  color: #ffffff;
+  border-color: var(--apple-blue);
+  font-weight: 600;
+  box-shadow: 0 3px 10px rgba(0, 113, 227, 0.32);
+}
+
+.estimator-cat-btn .cat-icon {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.estimator-cat-btn .cat-label {
+  line-height: 1.2;
+}
+
+@media (max-width: 640px) {
+  .estimator-category-bar {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 6px;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .estimator-cat-btn {
+    padding: 8px 2px;
+    font-size: 12px;
+    flex-direction: column;
+    gap: 4px;
+    border-radius: 12px;
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .estimator-cat-btn .cat-icon {
+    font-size: 18px;
+  }
+
+  .estimator-cat-btn .cat-label {
+    font-size: 11px;
+    white-space: nowrap;
+  }
+}
+
 .estimator-selectors-box {
   max-width: 580px;
   margin: 0 auto 16px auto;
