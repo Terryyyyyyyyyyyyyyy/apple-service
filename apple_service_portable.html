@@ -134,22 +134,26 @@ body {
 .top-nav {
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 1000;
   background: var(--bg-card);
   backdrop-filter: saturate(180%) blur(20px);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
   border-bottom: 1px solid var(--border-color);
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
   transition: background-color var(--transition-base), border-color var(--transition-base);
 }
 
 .nav-content {
   max-width: 1140px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 20px;
   height: var(--nav-height);
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 10px;
 }
 
 .nav-brand {
@@ -161,6 +165,8 @@ body {
   color: var(--text-primary);
   text-decoration: none;
   letter-spacing: -0.01em;
+  flex-shrink: 1;
+  min-width: 0;
 }
 
 .nav-brand svg {
@@ -244,6 +250,95 @@ body {
 
 .theme-toggle-btn:active {
   transform: scale(0.92);
+}
+
+.btn-sync-data {
+  background: var(--apple-blue-light);
+  color: var(--apple-blue);
+  border: 1px solid rgba(0, 113, 227, 0.25);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.btn-sync-data:hover {
+  background: var(--apple-blue);
+  color: #ffffff;
+}
+
+.btn-sync-data.syncing svg {
+  animation: ptrSpin 0.75s linear infinite;
+}
+
+/* iOS 触感原生下拉刷新 (Pull-to-Refresh) 浮动胶囊 */
+.ptr-indicator {
+  position: fixed;
+  top: calc(env(safe-area-inset-top, 0px) + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-70px);
+  background: var(--bg-card-solid);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-md);
+  padding: 8px 18px;
+  border-radius: var(--radius-pill);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 2000;
+  pointer-events: none;
+  opacity: 0;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s;
+  color: var(--text-primary);
+  font-size: 13px;
+  font-weight: 500;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.ptr-icon-wrap {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ptr-arrow {
+  width: 16px;
+  height: 16px;
+  color: var(--apple-blue);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ptr-spinner {
+  display: none;
+  width: 15px;
+  height: 15px;
+  border: 2px solid var(--border-color);
+  border-top-color: var(--apple-blue);
+  border-radius: 50%;
+  animation: ptrSpin 0.65s linear infinite;
+}
+
+@keyframes ptrSpin {
+  to { transform: rotate(360deg); }
+}
+
+.ptr-indicator.active {
+  opacity: 1;
+}
+
+.ptr-indicator.ready .ptr-arrow {
+  transform: rotate(180deg);
+}
+
+.ptr-indicator.refreshing .ptr-arrow {
+  display: none;
+}
+
+.ptr-indicator.refreshing .ptr-spinner {
+  display: block;
 }
 
 /* Container */
@@ -2353,12 +2448,80 @@ body {
   .ac-feature-row {
     font-size: 12px;
   }
+
+  /* 移动端顶部导航栏与按钮安全适配 */
+  .top-nav {
+    padding-top: max(env(safe-area-inset-top, 0px), 12px);
+  }
+
+  .nav-content {
+    padding: 0 14px;
+    height: 48px;
+    gap: 8px;
+  }
+
+  .nav-brand {
+    font-size: 14.5px;
+    gap: 6px;
+    flex-shrink: 1;
+    min-width: 0;
+  }
+
+  .nav-brand svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+
+  .nav-brand span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 140px;
+  }
+
+  .nav-actions {
+    gap: 6px;
+    flex-shrink: 0;
+  }
+
+  .network-status-pill {
+    padding: 6px 7px;
+    gap: 0;
+  }
+
+  .network-status-pill .network-text {
+    display: none; /* 移动端隐藏“在线”汉字，只保留灵动绿点，留出空间给刷新与主题按钮 */
+  }
+
+  .theme-toggle-btn {
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+  }
+
+  .btn-sync-data {
+    display: flex !important;
+    visibility: visible !important;
+  }
 }
 
 
 </style>
 </head>
 <body>
+
+  <!-- iOS 触感下拉刷新浮动胶囊 -->
+  <div id="ptr-indicator" class="ptr-indicator" aria-hidden="true">
+    <div class="ptr-icon-wrap">
+      <svg class="ptr-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="12" y1="5" x2="12" y2="19"></line>
+        <polyline points="19 12 12 19 5 12"></polyline>
+      </svg>
+      <div class="ptr-spinner"></div>
+    </div>
+    <span id="ptr-text">下拉即可刷新</span>
+  </div>
 
   <!-- 顶部导航栏 -->
   <header class="top-nav">
@@ -8186,7 +8349,7 @@ if (typeof window !== "undefined") window.ESTIMATOR_CATALOG = ESTIMATOR_CATALOG;
 
     // PWA Service Worker 离线注册 (在 http/https 环境下生效，强制检查并即时应用最新版本)
     if ("serviceWorker" in navigator && (window.location.protocol === "http:" || window.location.protocol === "https:")) {
-      navigator.serviceWorker.register("./sw.js?v=202609062145")
+      navigator.serviceWorker.register("./sw.js?v=202609062250")
         .then((reg) => {
           reg.update();
           reg.addEventListener("updatefound", () => {
@@ -8210,24 +8373,101 @@ if (typeof window !== "undefined") window.ESTIMATOR_CATALOG = ESTIMATOR_CATALOG;
       });
     }
 
-    // 绑定顶部刷新缓存按钮
+    // 绑定强制刷新与缓存清除逻辑
     const btnForceRefresh = document.getElementById("btn-force-refresh");
-    if (btnForceRefresh) {
-      btnForceRefresh.addEventListener("click", () => {
-        showToast("正在拉取最新数据与界面...", "已自动清除本地离线缓存", "🔄");
-        if ("caches" in window) {
-          caches.keys().then((keys) => {
-            return Promise.all(keys.map((k) => caches.delete(k)));
-          }).then(() => {
-            setTimeout(() => {
-              window.location.reload(true);
-            }, 500);
-          });
-        } else {
-          window.location.reload(true);
+    function triggerForceRefresh() {
+      if (btnForceRefresh) btnForceRefresh.classList.add("syncing");
+      showToast("正在拉取最新数据与界面...", "已自动清除本地离线缓存", "🔄");
+      
+      const doReload = () => {
+        // 强制清除本地缓存，并在 URL 附加时间戳绕过 WebKit 缓存
+        try {
+          const url = new URL(window.location.href);
+          url.searchParams.set("_t", Date.now());
+          window.location.replace(url.toString());
+        } catch (e) {
+          window.location.reload();
         }
-      });
+      };
+
+      if ("caches" in window) {
+        caches.keys().then((keys) => {
+          return Promise.all(keys.map((k) => caches.delete(k)));
+        }).then(() => {
+          if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.getRegistrations().then((registrations) => {
+              return Promise.all(registrations.map(r => r.update()));
+            }).finally(() => {
+              setTimeout(doReload, 400);
+            });
+          } else {
+            setTimeout(doReload, 400);
+          }
+        }).catch(() => {
+          setTimeout(doReload, 300);
+        });
+      } else {
+        setTimeout(doReload, 300);
+      }
     }
+
+    if (btnForceRefresh) {
+      btnForceRefresh.addEventListener("click", triggerForceRefresh);
+    }
+
+    // iOS 原生手感下拉刷新 (Pull-to-Refresh)
+    const ptrIndicator = document.getElementById("ptr-indicator");
+    const ptrText = document.getElementById("ptr-text");
+    let touchStartY = 0;
+    let isPulling = false;
+    let isRefreshing = false;
+
+    window.addEventListener("touchstart", (e) => {
+      if (window.scrollY <= 0 && !isRefreshing && e.touches.length === 1) {
+        touchStartY = e.touches[0].clientY;
+        isPulling = true;
+      } else {
+        isPulling = false;
+      }
+    }, { passive: true });
+
+    window.addEventListener("touchmove", (e) => {
+      if (!isPulling || isRefreshing || window.scrollY > 0) return;
+      const currentY = e.touches[0].clientY;
+      const diffY = currentY - touchStartY;
+      if (diffY > 10) {
+        const translateY = Math.min(diffY * 0.4, 75);
+        if (ptrIndicator) {
+          ptrIndicator.style.transform = `translateX(-50%) translateY(${translateY - 70}px)`;
+          ptrIndicator.classList.add("active");
+          if (translateY >= 48) {
+            ptrIndicator.classList.add("ready");
+            if (ptrText) ptrText.textContent = "松开即可刷新";
+          } else {
+            ptrIndicator.classList.remove("ready");
+            if (ptrText) ptrText.textContent = "下拉即可刷新";
+          }
+        }
+      }
+    }, { passive: true });
+
+    window.addEventListener("touchend", (e) => {
+      if (!isPulling || isRefreshing) return;
+      isPulling = false;
+      if (ptrIndicator && ptrIndicator.classList.contains("ready")) {
+        isRefreshing = true;
+        ptrIndicator.classList.remove("ready");
+        ptrIndicator.classList.add("refreshing");
+        ptrIndicator.style.transform = `translateX(-50%) translateY(0px)`;
+        if (ptrText) ptrText.textContent = "正在同步最新数据...";
+        setTimeout(() => {
+          triggerForceRefresh();
+        }, 350);
+      } else if (ptrIndicator) {
+        ptrIndicator.style.transform = "";
+        ptrIndicator.classList.remove("active", "ready");
+      }
+    }, { passive: true });
 
     // ================= 官方互动估价器逻辑 (Apple Estimator) =================
     const seriesSelect = document.getElementById("estimator-series-select");

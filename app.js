@@ -1088,7 +1088,7 @@
 
     // PWA Service Worker 离线注册 (在 http/https 环境下生效，强制检查并即时应用最新版本)
     if ("serviceWorker" in navigator && (window.location.protocol === "http:" || window.location.protocol === "https:")) {
-      navigator.serviceWorker.register("./sw.js?v=202609062145")
+      navigator.serviceWorker.register("./sw.js?v=202609062250")
         .then((reg) => {
           reg.update();
           reg.addEventListener("updatefound", () => {
@@ -1112,24 +1112,101 @@
       });
     }
 
-    // 绑定顶部刷新缓存按钮
+    // 绑定强制刷新与缓存清除逻辑
     const btnForceRefresh = document.getElementById("btn-force-refresh");
-    if (btnForceRefresh) {
-      btnForceRefresh.addEventListener("click", () => {
-        showToast("正在拉取最新数据与界面...", "已自动清除本地离线缓存", "🔄");
-        if ("caches" in window) {
-          caches.keys().then((keys) => {
-            return Promise.all(keys.map((k) => caches.delete(k)));
-          }).then(() => {
-            setTimeout(() => {
-              window.location.reload(true);
-            }, 500);
-          });
-        } else {
-          window.location.reload(true);
+    function triggerForceRefresh() {
+      if (btnForceRefresh) btnForceRefresh.classList.add("syncing");
+      showToast("正在拉取最新数据与界面...", "已自动清除本地离线缓存", "🔄");
+      
+      const doReload = () => {
+        // 强制清除本地缓存，并在 URL 附加时间戳绕过 WebKit 缓存
+        try {
+          const url = new URL(window.location.href);
+          url.searchParams.set("_t", Date.now());
+          window.location.replace(url.toString());
+        } catch (e) {
+          window.location.reload();
         }
-      });
+      };
+
+      if ("caches" in window) {
+        caches.keys().then((keys) => {
+          return Promise.all(keys.map((k) => caches.delete(k)));
+        }).then(() => {
+          if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.getRegistrations().then((registrations) => {
+              return Promise.all(registrations.map(r => r.update()));
+            }).finally(() => {
+              setTimeout(doReload, 400);
+            });
+          } else {
+            setTimeout(doReload, 400);
+          }
+        }).catch(() => {
+          setTimeout(doReload, 300);
+        });
+      } else {
+        setTimeout(doReload, 300);
+      }
     }
+
+    if (btnForceRefresh) {
+      btnForceRefresh.addEventListener("click", triggerForceRefresh);
+    }
+
+    // iOS 原生手感下拉刷新 (Pull-to-Refresh)
+    const ptrIndicator = document.getElementById("ptr-indicator");
+    const ptrText = document.getElementById("ptr-text");
+    let touchStartY = 0;
+    let isPulling = false;
+    let isRefreshing = false;
+
+    window.addEventListener("touchstart", (e) => {
+      if (window.scrollY <= 0 && !isRefreshing && e.touches.length === 1) {
+        touchStartY = e.touches[0].clientY;
+        isPulling = true;
+      } else {
+        isPulling = false;
+      }
+    }, { passive: true });
+
+    window.addEventListener("touchmove", (e) => {
+      if (!isPulling || isRefreshing || window.scrollY > 0) return;
+      const currentY = e.touches[0].clientY;
+      const diffY = currentY - touchStartY;
+      if (diffY > 10) {
+        const translateY = Math.min(diffY * 0.4, 75);
+        if (ptrIndicator) {
+          ptrIndicator.style.transform = `translateX(-50%) translateY(${translateY - 70}px)`;
+          ptrIndicator.classList.add("active");
+          if (translateY >= 48) {
+            ptrIndicator.classList.add("ready");
+            if (ptrText) ptrText.textContent = "松开即可刷新";
+          } else {
+            ptrIndicator.classList.remove("ready");
+            if (ptrText) ptrText.textContent = "下拉即可刷新";
+          }
+        }
+      }
+    }, { passive: true });
+
+    window.addEventListener("touchend", (e) => {
+      if (!isPulling || isRefreshing) return;
+      isPulling = false;
+      if (ptrIndicator && ptrIndicator.classList.contains("ready")) {
+        isRefreshing = true;
+        ptrIndicator.classList.remove("ready");
+        ptrIndicator.classList.add("refreshing");
+        ptrIndicator.style.transform = `translateX(-50%) translateY(0px)`;
+        if (ptrText) ptrText.textContent = "正在同步最新数据...";
+        setTimeout(() => {
+          triggerForceRefresh();
+        }, 350);
+      } else if (ptrIndicator) {
+        ptrIndicator.style.transform = "";
+        ptrIndicator.classList.remove("active", "ready");
+      }
+    }, { passive: true });
 
     // ================= 官方互动估价器逻辑 (Apple Estimator) =================
     const seriesSelect = document.getElementById("estimator-series-select");

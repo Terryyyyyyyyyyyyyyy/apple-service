@@ -16,9 +16,21 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#161617" media="(prefers-color-scheme: dark)">
-  <link rel="stylesheet" href="style.css?v=202609062145">
+  <link rel="stylesheet" href="style.css?v=202609062250">
 </head>
 <body>
+
+  <!-- iOS 触感下拉刷新浮动胶囊 -->
+  <div id="ptr-indicator" class="ptr-indicator" aria-hidden="true">
+    <div class="ptr-icon-wrap">
+      <svg class="ptr-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="12" y1="5" x2="12" y2="19"></line>
+        <polyline points="19 12 12 19 5 12"></polyline>
+      </svg>
+      <div class="ptr-spinner"></div>
+    </div>
+    <span id="ptr-text">下拉即可刷新</span>
+  </div>
 
   <!-- 顶部导航栏 -->
   <header class="top-nav">
@@ -500,7 +512,7 @@
   <div id="toast-container" class="toast-container" aria-live="polite"></div>
 
   <!-- 数据源与逻辑脚本 -->
-  <script src="data.js?v=202609062145"></script>
-  <script src="app.js?v=202609062145"></script>
+  <script src="data.js?v=202609062250"></script>
+  <script src="app.js?v=202609062250"></script>
 </body>
 </html>
