@@ -16,7 +16,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#161617" media="(prefers-color-scheme: dark)">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=202609062145">
 </head>
 <body>
 
@@ -36,6 +36,15 @@
           <span class="network-dot"></span>
           <span id="network-status-text" class="network-text">在线</span>
         </div>
+
+        <!-- 强制拉取最新数据与清除缓存按钮 -->
+        <button id="btn-force-refresh" class="theme-toggle-btn btn-sync-data" title="刷新并拉取最新官网数据与图标" aria-label="强制刷新缓存">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="23 4 23 10 17 10"></polyline>
+            <polyline points="1 20 1 14 7 14"></polyline>
+            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+          </svg>
+        </button>
 
         <button id="theme-toggle" class="theme-toggle-btn" title="切换深色/浅色模式" aria-label="切换深色/浅色模式">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -58,24 +67,36 @@
   <main class="container" id="app">
     <!-- Hero 标题区域 -->
     <section class="hero">
-      <div class="hero-tag">官方维修 · 透明预估 · 一站直达</div>
-      <h1 class="hero-title">Apple 官方维修价格与服务网点快查</h1>
-      <p class="hero-subtitle">无需层层点击，开箱即查所有设备估价与全国授权服务点</p>
-      <div class="hero-notice">
-        <span>数据来源于 Apple 官网公开信息 · 最终以门店检测为准</span>
+      <div class="hero-content">
+        <h1 class="hero-title">Apple 官方服务快查</h1>
+        <p class="hero-subtitle">
+          直连 Apple 官方技术支持服务标准 · 官方原厂价格与正规服务网点极速核准
+        </p>
       </div>
     </section>
 
-    <!-- 分段切换导航 (Segmented Control Tabs) -->
-    <div class="segmented-wrapper">
-      <div class="segmented-control" role="tablist">
-        <button id="tab-btn-prices" class="segment-tab active" role="tab" aria-selected="true">
-          <span>🛠 设备维修价格</span>
-          <span class="tab-badge" id="prices-count-badge">0</span>
+    <!-- 顶层主标签切换 (设备维修价格 / 服务网点查询) -->
+    <div class="main-tabs-wrapper">
+      <div class="main-tabs" role="tablist">
+        <button
+          class="main-tab-btn active"
+          id="tab-prices"
+          data-tab="prices"
+          role="tab"
+          aria-selected="true"
+        >
+          <span>设备维修价格</span>
+          <span class="tab-badge" id="prices-count-badge">89</span>
         </button>
-        <button id="tab-btn-stores" class="segment-tab" role="tab" aria-selected="false">
-          <span>📍 授权服务网点</span>
-          <span class="tab-badge" id="stores-count-badge">0</span>
+        <button
+          class="main-tab-btn"
+          id="tab-stores"
+          data-tab="stores"
+          role="tab"
+          aria-selected="false"
+        >
+          <span>服务网点查询</span>
+          <span class="tab-badge" id="stores-count-badge">300</span>
         </button>
       </div>
     </div>
@@ -89,9 +110,38 @@
           <h2 class="estimator-title">选取你的设备</h2>
         </div>
 
-        <!-- 1. 大品类快捷切换 (iPhone / Mac / iPad / Watch / AirPods) -->
+        <!-- 1. 大品类快捷切换 (iPhone / Mac / iPad / Watch / AirPods) - 原生内置 Apple SF Symbols 矢量图标 -->
         <div class="estimator-category-bar" id="estimator-category-bar" role="tablist" aria-label="选择设备品类">
-          <!-- 动态渲染 5 大品类胶囊 -->
+          <button type="button" class="estimator-cat-btn active" data-category="iPhone" role="tab" aria-selected="true">
+            <span class="cat-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5.5" y="2" width="13" height="20" rx="3"/><path d="M10.5 4.5h3" stroke-width="1.6"/><line x1="10" y1="19.5" x2="14" y2="19.5" stroke-width="1.6"/></svg>
+            </span>
+            <span class="cat-label">iPhone</span>
+          </button>
+          <button type="button" class="estimator-cat-btn" data-category="Mac" role="tab" aria-selected="false">
+            <span class="cat-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="11" rx="1.5"/><path d="M2 18.5h20"/><path d="M10 18.5v.5a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-.5"/></svg>
+            </span>
+            <span class="cat-label">Mac</span>
+          </button>
+          <button type="button" class="estimator-cat-btn" data-category="iPad" role="tab" aria-selected="false">
+            <span class="cat-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="2.5" width="17" height="19" rx="2.5"/><circle cx="12" cy="4.5" r="0.6" fill="currentColor"/><line x1="9.5" y1="19.2" x2="14.5" y2="19.2" stroke-width="1.6"/></svg>
+            </span>
+            <span class="cat-label">iPad</span>
+          </button>
+          <button type="button" class="estimator-cat-btn" data-category="Apple Watch" role="tab" aria-selected="false">
+            <span class="cat-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5.5" y="5.5" width="13" height="13" rx="3.5"/><path d="M9 5.5V2h6v3.5"/><path d="M9 18.5V22h6v-3.5"/><line x1="19.5" y1="9" x2="19.5" y2="11.5" stroke-width="2"/></svg>
+            </span>
+            <span class="cat-label">Watch</span>
+          </button>
+          <button type="button" class="estimator-cat-btn" data-category="AirPods" role="tab" aria-selected="false">
+            <span class="cat-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3.5a3 3 0 0 1 3 3v8a1.5 1.5 0 0 1-3 0V6.5a3 3 0 0 1 0-3z"/><path d="M18 3.5a3 3 0 0 0-3 3v8a1.5 1.5 0 0 0 3 0V6.5a3 3 0 0 0 0-3z"/></svg>
+            </span>
+            <span class="cat-label">AirPods</span>
+          </button>
         </div>
 
         <div class="estimator-selectors-box">
@@ -125,7 +175,7 @@
           </button>
         </div>
 
-        <!-- 官方估价结果面板 (左侧官方正品图，右侧预估费用清单) -->
+        <!-- 官方估价结果面板 (左侧官方正品图，右侧预估费用清单与 AppleCare+) -->
         <div class="estimator-result-card" id="estimator-result-card">
           <!-- 左侧：官方设备实机渲染图 -->
           <div class="estimator-device-side">
@@ -134,15 +184,24 @@
             </div>
           </div>
 
-          <!-- 右侧：预估服务费用清单 -->
+          <!-- 右侧：预估服务费用清单与 AppleCare+ 详情 -->
           <div class="estimator-pricing-side">
             <div class="pricing-header-row">
               <span class="pricing-headline">预估服务费用</span>
+              <div class="pricing-legend-badges">
+                <span class="legend-badge out">保外预估</span>
+                <span class="legend-badge ac">AppleCare+</span>
+              </div>
             </div>
 
-            <!-- 费用项明细列表 -->
+            <!-- 费用项明细列表 (双列价格对比) -->
             <div class="pricing-table-list" id="estimator-pricing-list">
               <!-- 动态官方费用行 -->
+            </div>
+
+            <!-- 在整体维修价格下方：AppleCare+ 计划与购买价格卡片 -->
+            <div class="estimator-applecare-card" id="estimator-applecare-card">
+              <!-- 动态填充该机型 AppleCare+ 权益与购买价格 -->
             </div>
           </div>
         </div>
@@ -441,7 +500,7 @@
   <div id="toast-container" class="toast-container" aria-live="polite"></div>
 
   <!-- 数据源与逻辑脚本 -->
-  <script src="data.js"></script>
-  <script src="app.js"></script>
+  <script src="data.js?v=202609062145"></script>
+  <script src="app.js?v=202609062145"></script>
 </body>
 </html>

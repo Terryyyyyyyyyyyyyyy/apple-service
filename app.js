@@ -244,22 +244,25 @@
     `;
   }
 
-  // 设备类别图标
+  // 设备类别图标 (Apple 官方 SF Symbols 矢量规范，杜绝系统 Emoji 差异与寻呼机问题)
   function getCategoryIcon(cat) {
-    switch ((cat || "").toLowerCase()) {
-      case "iphone":
-        return "📱";
-      case "mac":
-        return "💻";
-      case "ipad":
-        return "📟";
-      case "apple watch":
-        return "⌚";
-      case "airpods":
-        return "🎧";
-      default:
-        return "🍎";
+    const c = (cat || "").toLowerCase();
+    if (c.includes("iphone")) {
+      return `<svg class="category-inline-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5.5" y="2" width="13" height="20" rx="3"/><path d="M10.5 4.5h3" stroke-width="1.6"/><line x1="10" y1="19.5" x2="14" y2="19.5" stroke-width="1.6"/></svg>`;
     }
+    if (c.includes("mac")) {
+      return `<svg class="category-inline-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="11" rx="1.5"/><path d="M2 18.5h20"/><path d="M10 18.5v.5a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-.5"/></svg>`;
+    }
+    if (c.includes("ipad")) {
+      return `<svg class="category-inline-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="2.5" width="17" height="19" rx="2.5"/><circle cx="12" cy="4.5" r="0.6" fill="currentColor"/><line x1="9.5" y1="19.2" x2="14.5" y2="19.2" stroke-width="1.6"/></svg>`;
+    }
+    if (c.includes("watch")) {
+      return `<svg class="category-inline-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5.5" y="5.5" width="13" height="13" rx="3.5"/><path d="M9 5.5V2h6v3.5"/><path d="M9 18.5V22h6v-3.5"/><line x1="19.5" y1="9" x2="19.5" y2="11.5" stroke-width="2"/></svg>`;
+    }
+    if (c.includes("airpods")) {
+      return `<svg class="category-inline-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3.5a3 3 0 0 1 3 3v8a1.5 1.5 0 0 1-3 0V6.5a3 3 0 0 1 0-3z"/><path d="M18 3.5a3 3 0 0 0-3 3v8a1.5 1.5 0 0 0 3 0V6.5a3 3 0 0 0 0-3z"/></svg>`;
+    }
+    return ``;
   }
 
   // 配件分类图标
@@ -1083,15 +1086,49 @@
     });
     }
 
-    // PWA Service Worker 离线注册 (在 http/https 环境下生效)
+    // PWA Service Worker 离线注册 (在 http/https 环境下生效，强制检查并即时应用最新版本)
     if ("serviceWorker" in navigator && (window.location.protocol === "http:" || window.location.protocol === "https:")) {
-      navigator.serviceWorker.register("./sw.js")
+      navigator.serviceWorker.register("./sw.js?v=202609062145")
         .then((reg) => {
-          console.log("[PWA] Service Worker 离线工作线程就绪:", reg.scope);
+          reg.update();
+          reg.addEventListener("updatefound", () => {
+            const newWorker = reg.installing;
+            if (newWorker) {
+              newWorker.addEventListener("statechange", () => {
+                if (newWorker.state === "installed" && navigator.serviceWorker.controller) {
+                  console.log("[PWA] 检测到最新资源，自动应用更新");
+                  window.location.reload();
+                }
+              });
+            }
+          });
         })
         .catch((err) => {
           console.warn("[PWA] Service Worker 注册跳过:", err);
         });
+
+      navigator.serviceWorker.addEventListener("controllerchange", () => {
+        window.location.reload();
+      });
+    }
+
+    // 绑定顶部刷新缓存按钮
+    const btnForceRefresh = document.getElementById("btn-force-refresh");
+    if (btnForceRefresh) {
+      btnForceRefresh.addEventListener("click", () => {
+        showToast("正在拉取最新数据与界面...", "已自动清除本地离线缓存", "🔄");
+        if ("caches" in window) {
+          caches.keys().then((keys) => {
+            return Promise.all(keys.map((k) => caches.delete(k)));
+          }).then(() => {
+            setTimeout(() => {
+              window.location.reload(true);
+            }, 500);
+          });
+        } else {
+          window.location.reload(true);
+        }
+      });
     }
 
     // ================= 官方互动估价器逻辑 (Apple Estimator) =================
@@ -1100,6 +1137,7 @@
     const deviceVisual = document.getElementById("estimator-device-visual");
     const deviceTitle = document.getElementById("estimator-device-title");
     const pricingList = document.getElementById("estimator-pricing-list");
+    const appleCareCard = document.getElementById("estimator-applecare-card");
     const btnGetService = document.getElementById("btn-estimator-get-service");
     const btnHelpIdentify = document.getElementById("btn-help-identify");
     const identifyModal = document.getElementById("identify-modal");
@@ -1123,6 +1161,337 @@
       if (part.includes("后置相机") || part.includes("相机")) return "后置相机损坏";
       if (part.includes("其他损坏") || part.includes("主板")) return "其他损坏";
       return part;
+    }
+
+    // 计算指定机型与部件的官方 AppleCare+ 服务费 (自付金)
+    function getAppleCareServiceFee(category, modelName, partName) {
+      const cat = (category || "").toLowerCase();
+      const m = (modelName || "").toLowerCase();
+      const p = (partName || "").toLowerCase();
+
+      // 1. 电池服务：全品类只要容量低于 80%，AppleCare+ 均提供免费更换
+      if (p.includes("电池")) {
+        return { price: "RMB 0", isFree: true, label: "RMB 0 (免费)" };
+      }
+
+      // 2. iPhone
+      if (cat.includes("iphone") || m.includes("iphone")) {
+        if (p.includes("屏幕和背面玻璃")) {
+          return { price: "RMB 376", isFree: false, label: "RMB 376" };
+        }
+        if (p.includes("屏幕") || p.includes("背面玻璃")) {
+          return { price: "RMB 188", isFree: false, label: "RMB 188" };
+        }
+        // 后置相机、其他损坏、整机主板
+        return { price: "RMB 628", isFree: false, label: "RMB 628" };
+      }
+
+      // 3. Mac
+      if (cat.includes("mac") || m.includes("mac")) {
+        if (p.includes("屏幕") || p.includes("外壳") || p.includes("键盘")) {
+          return { price: "RMB 799", isFree: false, label: "RMB 799" };
+        }
+        return { price: "RMB 2,299", isFree: false, label: "RMB 2,299" };
+      }
+
+      // 4. iPad
+      if (cat.includes("ipad") || m.includes("ipad")) {
+        if (m.includes("pencil") || m.includes("keyboard") || m.includes("键盘") || p.includes("pencil") || p.includes("键盘")) {
+          return { price: "RMB 188", isFree: false, label: "RMB 188" };
+        }
+        return { price: "RMB 368", isFree: false, label: "RMB 368" };
+      }
+
+      // 5. Apple Watch
+      if (cat.includes("watch") || m.includes("watch")) {
+        if (m.includes("ultra") || m.includes("hermès") || m.includes("hermes") || m.includes("edition")) {
+          return { price: "RMB 628", isFree: false, label: "RMB 628" };
+        }
+        return { price: "RMB 528", isFree: false, label: "RMB 528" };
+      }
+
+      // 6. AirPods
+      if (cat.includes("airpods") || m.includes("airpods")) {
+        return { price: "RMB 199", isFree: false, label: "RMB 199" };
+      }
+
+      return { price: "RMB 188", isFree: false, label: "官方自付金" };
+    }
+
+    // 获取机型对应的 AppleCare+ 官方选购价格与核心保障权益
+    function getAppleCarePlanInfo(category, modelName) {
+      const cat = (category || "").toLowerCase();
+      const m = (modelName || "").toLowerCase();
+
+      // iPhone 系列
+      if (cat.includes("iphone") || m.includes("iphone")) {
+        if (m.includes("pro max") || m.includes("pro")) {
+          return {
+            planPrice: "RMB 1,499",
+            period: "2 年期（或 RMB 74.9/月）",
+            features: [
+              "屏幕或背面玻璃损坏：每次收取 RMB 188 服务费",
+              "后置相机或其他意外损坏：每次收取 RMB 628 服务费",
+              "电池最大容量低于 80%：免费更换原厂电池",
+              "保障期内享受不限次数意外损坏保修与 24/7 优先技术支持"
+            ]
+          };
+        }
+        if (m.includes("se")) {
+          return {
+            planPrice: "RMB 599",
+            period: "2 年期",
+            features: [
+              "屏幕损坏：每次收取 RMB 188 服务费",
+              "其他意外损坏：每次收取 RMB 628 服务费",
+              "电池最大容量低于 80%：免费更换原厂电池",
+              "保障期内享受不限次数意外损坏保修与 24/7 优先技术支持"
+            ]
+          };
+        }
+        if (m.includes("16e") || m.includes("17e")) {
+          return {
+            planPrice: "RMB 899",
+            period: "2 年期",
+            features: [
+              "屏幕或背面玻璃损坏：每次收取 RMB 188 服务费",
+              "其他意外损坏：每次收取 RMB 628 服务费",
+              "电池最大容量低于 80%：免费更换原厂电池",
+              "保障期内享受不限次数意外损坏保修与 24/7 优先技术支持"
+            ]
+          };
+        }
+        return {
+          planPrice: "RMB 1,199",
+          period: "2 年期（或 RMB 59.9/月）",
+          features: [
+            "屏幕或背面玻璃损坏：每次收取 RMB 188 服务费",
+            "其他意外损坏：每次收取 RMB 628 服务费",
+            "电池最大容量低于 80%：免费更换原厂电池",
+            "保障期内享受不限次数意外损坏保修与 24/7 优先技术支持"
+          ]
+        };
+      }
+
+      // Mac 系列
+      if (cat.includes("mac") || m.includes("mac")) {
+        if (m.includes("16 英寸") || m.includes("16-inch")) {
+          return {
+            planPrice: "RMB 2,799",
+            period: "3 年期（或 RMB 999/年）",
+            features: [
+              "屏幕或外壳损坏：每次收取 RMB 799 服务费",
+              "主板或其他硬件损坏：每次收取 RMB 2,299 服务费",
+              "电池容量低于 80%：免费更换原厂电池",
+              "保障期内享受不限次数意外损坏保修与全球联保"
+            ]
+          };
+        }
+        if (m.includes("14 英寸") || m.includes("14-inch")) {
+          return {
+            planPrice: "RMB 1,999",
+            period: "3 年期（或 RMB 799/年）",
+            features: [
+              "屏幕或外壳损坏：每次收取 RMB 799 服务费",
+              "主板或其他硬件损坏：每次收取 RMB 2,299 服务费",
+              "电池容量低于 80%：免费更换原厂电池",
+              "保障期内享受不限次数意外损坏保修与全球联保"
+            ]
+          };
+        }
+        if (m.includes("air 15")) {
+          return {
+            planPrice: "RMB 1,599",
+            period: "3 年期",
+            features: [
+              "屏幕或外壳损坏：每次收取 RMB 799 服务费",
+              "主板或其他硬件损坏：每次收取 RMB 2,299 服务费",
+              "电池容量低于 80%：免费更换原厂电池",
+              "保障期内享受不限次数意外损坏保修与全球联保"
+            ]
+          };
+        }
+        if (m.includes("air 13")) {
+          return {
+            planPrice: "RMB 1,399",
+            period: "3 年期",
+            features: [
+              "屏幕或外壳损坏：每次收取 RMB 799 服务费",
+              "主板或其他硬件损坏：每次收取 RMB 2,299 服务费",
+              "电池容量低于 80%：免费更换原厂电池",
+              "保障期内享受不限次数意外损坏保修与全球联保"
+            ]
+          };
+        }
+        if (m.includes("mini")) {
+          return {
+            planPrice: "RMB 699",
+            period: "3 年期",
+            features: [
+              "电源或主板硬件损坏：每次收取 RMB 799 ~ 2,299 服务费",
+              "覆盖电源线及随附配件官方保修",
+              "保障期内享受不限次数意外损坏保修与优先技术支持"
+            ]
+          };
+        }
+        return {
+          planPrice: "RMB 1,299",
+          period: "3 年期",
+          features: [
+            "屏幕或外壳损坏：每次收取 RMB 799 服务费",
+            "主板及其他硬件损坏：每次收取 RMB 2,299 服务费",
+            "保障期内享受不限次数意外损坏保修与优先技术支持"
+          ]
+        };
+      }
+
+      // iPad 系列
+      if (cat.includes("ipad") || m.includes("ipad")) {
+        if (m.includes("pro 13") || m.includes("pro 12.9") || m.includes("13 英寸") || m.includes("12.9 英寸")) {
+          return {
+            planPrice: "RMB 1,199",
+            period: "2 年期（或 RMB 599/年）",
+            features: [
+              "iPad 意外损坏：每次收取 RMB 368 服务费",
+              "Apple Pencil 或妙控键盘损坏：每次收取 RMB 188 服务费",
+              "电池容量低于 80%：免费更换原厂电池",
+              "保障期内享受不限次数意外损坏保修与优先支持"
+            ]
+          };
+        }
+        if (m.includes("pro 11") || m.includes("11 英寸 ipad pro")) {
+          return {
+            planPrice: "RMB 999",
+            period: "2 年期",
+            features: [
+              "iPad 意外损坏：每次收取 RMB 368 服务费",
+              "Apple Pencil 或妙控键盘损坏：每次收取 RMB 188 服务费",
+              "电池容量低于 80%：免费更换原厂电池",
+              "保障期内享受不限次数意外损坏保修与优先支持"
+            ]
+          };
+        }
+        if (m.includes("air")) {
+          return {
+            planPrice: "RMB 599",
+            period: "2 年期",
+            features: [
+              "iPad 意外损坏：每次收取 RMB 368 服务费",
+              "Apple Pencil 或键盘损坏：每次收取 RMB 188 服务费",
+              "电池容量低于 80%：免费更换原厂电池",
+              "保障期内享受不限次数意外损坏保修与优先支持"
+            ]
+          };
+        }
+        if (m.includes("pencil") || m.includes("keyboard") || m.includes("键盘")) {
+          return {
+            planPrice: "随 iPad 计划共享",
+            period: "与对应 iPad 共享保修",
+            features: [
+              "配件意外损坏：每次收取 RMB 188 服务费",
+              "电池衰减低于 80% 免费更换"
+            ]
+          };
+        }
+        return {
+          planPrice: "RMB 499",
+          period: "2 年期",
+          features: [
+            "iPad 意外损坏：每次收取 RMB 368 服务费",
+            "Apple Pencil 损坏：每次收取 RMB 188 服务费",
+            "电池容量低于 80%：免费更换原厂电池",
+            "保障期内享受不限次数意外损坏保修与优先支持"
+          ]
+        };
+      }
+
+      // Apple Watch 系列
+      if (cat.includes("watch") || m.includes("watch")) {
+        if (m.includes("ultra")) {
+          return {
+            planPrice: "RMB 799",
+            period: "2 年期",
+            features: [
+              "Apple Watch Ultra 意外损坏：每次收取 RMB 628 服务费",
+              "电池容量低于 80%：免费更换原厂电池",
+              "原厂随附表带意外损坏保修",
+              "保障期内享受不限次数意外损坏保修与优先支持"
+            ]
+          };
+        }
+        if (m.includes("hermès") || m.includes("hermes") || m.includes("edition") || m.includes("钛金属") || m.includes("不锈钢")) {
+          return {
+            planPrice: "RMB 1,299",
+            period: "2 年期",
+            features: [
+              "意外损坏维修：每次收取 RMB 528 ~ 628 服务费",
+              "电池容量低于 80%：免费更换原厂电池",
+              "保障期内享受不限次数意外损坏保修与专属支持"
+            ]
+          };
+        }
+        if (m.includes("se")) {
+          return {
+            planPrice: "RMB 399",
+            period: "2 年期",
+            features: [
+              "意外损坏维修：每次收取 RMB 528 服务费",
+              "电池容量低于 80%：免费更换原厂电池",
+              "保障期内享受不限次数意外损坏保修与优先支持"
+            ]
+          };
+        }
+        return {
+          planPrice: "RMB 529",
+          period: "2 年期",
+          features: [
+            "意外损坏维修：每次收取 RMB 528 服务费",
+            "电池容量低于 80%：免费更换原厂电池",
+            "保障期内享受不限次数意外损坏保修与优先支持"
+          ]
+        };
+      }
+
+      // AirPods 系列
+      if (cat.includes("airpods") || m.includes("airpods")) {
+        if (m.includes("max")) {
+          return {
+            planPrice: "RMB 479",
+            period: "2 年期",
+            features: [
+              "AirPods Max 意外损坏：每次收取 RMB 199 服务费",
+              "电池容量低于 80%：免费更换原厂电池",
+              "保障期内享受不限次数意外损坏保修与优先支持"
+            ]
+          };
+        }
+        if (m.includes("pro")) {
+          return {
+            planPrice: "RMB 299",
+            period: "2 年期",
+            features: [
+              "单耳耳机或充电盒意外损坏：每次收取 RMB 199 服务费",
+              "耳机或充电盒电池衰减低于 80%：免费更换",
+              "保障期内享受不限次数意外损坏保修与优先支持"
+            ]
+          };
+        }
+        return {
+          planPrice: "RMB 199",
+          period: "2 年期",
+          features: [
+            "耳机或充电盒意外损坏：每次收取 RMB 199 服务费",
+            "电池容量低于 80%：免费更换原厂电池",
+            "保障期内享受不限次数意外损坏保修与优先支持"
+          ]
+        };
+      }
+
+      return {
+        planPrice: "官方建议零售价",
+        period: "2 年官方保障期",
+        features: ["享受 Apple 官方原厂保修与优先技术支持"]
+      };
     }
 
     const ESTIMATOR_CATEGORIES = [
@@ -1168,15 +1537,25 @@
       // 渲染大品类切换胶囊栏
       function renderCategoryBar() {
         if (!categoryBar) return;
-        categoryBar.innerHTML = ESTIMATOR_CATEGORIES.map((cat) => {
-          const isActive = cat.id === activeCategory;
-          return `
-            <button type="button" class="estimator-cat-btn ${isActive ? "active" : ""}" data-category="${cat.id}" role="tab" aria-selected="${isActive}">
-              <span class="cat-icon">${cat.svg}</span>
-              <span class="cat-label">${cat.label}</span>
-            </button>
-          `;
-        }).join("");
+        const existingButtons = categoryBar.querySelectorAll(".estimator-cat-btn");
+        if (existingButtons.length === ESTIMATOR_CATEGORIES.length) {
+          existingButtons.forEach((btn) => {
+            const catId = btn.getAttribute("data-category");
+            const isActive = catId === activeCategory;
+            btn.classList.toggle("active", isActive);
+            btn.setAttribute("aria-selected", isActive ? "true" : "false");
+          });
+        } else {
+          categoryBar.innerHTML = ESTIMATOR_CATEGORIES.map((cat) => {
+            const isActive = cat.id === activeCategory;
+            return `
+              <button type="button" class="estimator-cat-btn ${isActive ? "active" : ""}" data-category="${cat.id}" role="tab" aria-selected="${isActive}">
+                <span class="cat-icon">${cat.svg}</span>
+                <span class="cat-label">${cat.label}</span>
+              </button>
+            `;
+          }).join("");
+        }
       }
 
       // 刷新“系列 / 家族”下拉框 (按 Apple 官网顺序：iPhone Air, 17, 16, 15... SE)
@@ -1201,7 +1580,7 @@
         renderEstimatorQuote(seriesObj.models[0]);
       }
 
-      // 渲染选定机型的官方费用清单 (1:1 官方支持排版：官方正品渲染图 + 预估服务费用)
+      // 渲染选定机型的官方费用清单与 AppleCare+ 详情
       function renderEstimatorQuote(modelObj) {
         if (!modelObj || !deviceVisual || !pricingList) return;
 
@@ -1219,18 +1598,56 @@
         const services = modelObj.services || [];
         if (services.length === 0) {
           pricingList.innerHTML = `<div class="empty-quote-tip" style="padding: 24px; text-align: center; color: var(--text-tertiary);">暂无该机型的官方预估报价</div>`;
+          if (appleCareCard) appleCareCard.style.display = "none";
           return;
         }
 
-        // 1:1 还原 Apple 官方支持界面排版：仅展示“维修项名称”与“RMB 预估价格”，无冗余副标题
+        // 渲染每一项官方服务价格行：左侧服务项，右侧并列展示【保外预估】与【AppleCare+ 服务费】
         pricingList.innerHTML = services.map((item) => {
+          const acFee = getAppleCareServiceFee(activeCategory, modelObj.name, item.name);
           return `
             <div class="quote-item-row">
               <span class="quote-part-name">${item.name}</span>
-              <span class="quote-price-val">${item.price}</span>
+              <div class="quote-price-group">
+                <span class="price-val-out">${item.price}</span>
+                <span class="price-val-ac ${acFee.isFree ? "is-free" : ""}">${acFee.label}</span>
+              </div>
             </div>
           `;
         }).join("");
+
+        // 在整体维修价格下方，渲染该机型对应的 AppleCare+ 官方选购价格与保障权益卡片
+        if (appleCareCard) {
+          appleCareCard.style.display = "block";
+          const plan = getAppleCarePlanInfo(activeCategory, modelObj.name);
+          appleCareCard.innerHTML = `
+            <div class="ac-card-header">
+              <div class="ac-title-group">
+                <div class="ac-badge-icon">
+                  <svg viewBox="0 0 170 170" width="18" height="18" fill="currentColor">
+                    <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.04-7.7-7.85-12.01-14.43-6.24-9.56-11.14-20.59-14.71-33.09-3.57-12.5-5.36-24.32-5.36-35.46 0-15.54 3.79-28.52 11.37-38.93 7.58-10.42 17.15-15.76 28.71-16.03 4.25 0 9.28 1.14 15.09 3.42 5.8 2.29 9.53 3.48 11.19 3.57 1.83 0 5.79-1.29 11.87-3.87 6.09-2.58 11.25-3.72 15.49-3.42 13.82.98 24.64 5.92 32.46 14.82-12.18 7.37-18.17 17.51-17.96 30.43.21 10.22 4.11 18.81 11.71 25.77 7.6 6.96 16.73 10.97 27.39 12.03-2.11 6.53-4.68 13.17-7.72 19.92zM119.22 33.08c0-7.39 2.68-14.41 8.04-21.06 5.36-6.65 12.06-10.99 20.1-13.02.32 1.33.48 2.58.48 3.75 0 7.32-2.8 14.41-8.4 21.27-5.6 6.86-12.35 11.13-20.22 12.82-.21-1.25-.32-2.5-.32-3.76z"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="ac-main-title">AppleCare+ 服务计划</div>
+                  <div class="ac-period-tag">${plan.period} · 官方全方位保障</div>
+                </div>
+              </div>
+              <div class="ac-price-box">
+                <span class="ac-price-label">计划选购价格</span>
+                <span class="ac-price-number">${plan.planPrice}</span>
+              </div>
+            </div>
+            <div class="ac-features-list">
+              ${plan.features.map(f => `
+                <div class="ac-feature-row">
+                  <span class="ac-feature-check">✓</span>
+                  <span>${f}</span>
+                </div>
+              `).join("")}
+            </div>
+          `;
+        }
       }
 
       // 绑定大品类点击事件

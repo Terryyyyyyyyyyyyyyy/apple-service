@@ -1842,6 +1842,14 @@ body {
   margin-bottom: 2px;
 }
 
+.pricing-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
 @media (prefers-color-scheme: dark) {
   .pricing-header-row {
     border-bottom-color: rgba(255, 255, 255, 0.08);
@@ -1853,6 +1861,37 @@ body {
   font-weight: 500;
   color: var(--text-secondary);
   letter-spacing: 0.01em;
+}
+
+.pricing-legend-badges {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.legend-badge {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  letter-spacing: 0.02em;
+}
+
+.legend-badge.out {
+  min-width: 80px;
+  text-align: right;
+}
+
+.legend-badge.ac {
+  min-width: 85px;
+  text-align: right;
+  color: #0071e3;
+  font-weight: 600;
+}
+
+@media (prefers-color-scheme: dark) {
+  .legend-badge.ac {
+    color: #2997ff;
+  }
 }
 
 .pricing-table-list {
@@ -1887,14 +1926,164 @@ body {
   font-size: 15px;
   font-weight: 400;
   color: var(--text-primary);
+  flex: 1;
 }
 
-.quote-price-val {
+.quote-price-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+.price-val-out {
   font-size: 15px;
   font-weight: 400;
   color: var(--text-primary);
   font-feature-settings: "tnum";
+  min-width: 80px;
   text-align: right;
+}
+
+.price-val-ac {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #0071e3;
+  font-feature-settings: "tnum";
+  min-width: 85px;
+  text-align: right;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: rgba(0, 113, 227, 0.08);
+  display: inline-block;
+  box-sizing: border-box;
+}
+
+.price-val-ac.is-free {
+  color: #248a3d;
+  background: rgba(52, 199, 89, 0.14);
+}
+
+@media (prefers-color-scheme: dark) {
+  .price-val-ac {
+    color: #2997ff;
+    background: rgba(41, 151, 255, 0.16);
+  }
+  .price-val-ac.is-free {
+    color: #30d158;
+    background: rgba(48, 209, 88, 0.18);
+  }
+}
+
+/* 在整体维修价格下方的 AppleCare+ 权益与购买价格卡片 */
+.estimator-applecare-card {
+  margin-top: 20px;
+  border-radius: 16px;
+  background: rgba(0, 113, 227, 0.035);
+  border: 1px solid rgba(0, 113, 227, 0.16);
+  padding: 16px 18px;
+  transition: all 0.2s ease;
+}
+
+@media (prefers-color-scheme: dark) {
+  .estimator-applecare-card {
+    background: rgba(41, 151, 255, 0.07);
+    border-color: rgba(41, 151, 255, 0.24);
+  }
+}
+
+.ac-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(0, 113, 227, 0.12);
+  margin-bottom: 10px;
+}
+
+.ac-title-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ac-badge-icon {
+  width: 20px;
+  height: 20px;
+  color: #0071e3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (prefers-color-scheme: dark) {
+  .ac-badge-icon {
+    color: #2997ff;
+  }
+}
+
+.ac-main-title {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.ac-period-tag {
+  font-size: 11.5px;
+  color: var(--text-secondary);
+}
+
+.ac-price-box {
+  text-align: right;
+}
+
+.ac-price-label {
+  font-size: 11px;
+  color: var(--text-secondary);
+  display: block;
+}
+
+.ac-price-number {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0071e3;
+  font-feature-settings: "tnum";
+}
+
+@media (prefers-color-scheme: dark) {
+  .ac-price-number {
+    color: #2997ff;
+  }
+}
+
+.ac-features-list {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.ac-feature-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
+
+.ac-feature-check {
+  color: #248a3d;
+  font-weight: 700;
+  font-size: 13px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .ac-feature-check {
+    color: #30d158;
+  }
 }
 
 .estimator-action-bar {
@@ -2102,13 +2291,47 @@ body {
     height: 180px;
   }
   .quote-part-name {
-    font-size: 14px;
-  }
-  .quote-price-val {
-    font-size: 15px;
+    font-size: 13.5px;
   }
   .quote-item-row {
-    padding: 12px 2px;
+    padding: 11px 2px;
+  }
+  .pricing-legend-badges {
+    gap: 8px;
+  }
+  .legend-badge.out {
+    min-width: 65px;
+    font-size: 11px;
+  }
+  .legend-badge.ac {
+    min-width: 72px;
+    font-size: 11px;
+  }
+  .quote-price-group {
+    gap: 8px;
+  }
+  .price-val-out {
+    font-size: 13.5px;
+    min-width: 65px;
+  }
+  .price-val-ac {
+    font-size: 12.5px;
+    min-width: 72px;
+    padding: 2px 6px;
+  }
+  .ac-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  .ac-price-box {
+    text-align: left;
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+  }
+  .ac-feature-row {
+    font-size: 12px;
   }
 }
 
