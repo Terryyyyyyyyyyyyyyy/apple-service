@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Apple 官方维修价格与服务网点快查</title>
-  <meta name="description" content="无需层层点击，开箱即查所有设备估价与全国授权服务点。数据来源于 Apple 官网公开信息。">
+  <meta name="description" content="Apple 官方服务快查内部系统">
   <link rel="manifest" href="manifest.json">
   <link rel="icon" type="image/svg+xml" href="icon.svg">
   <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
@@ -16,7 +16,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#161617" media="(prefers-color-scheme: dark)">
-  <link rel="stylesheet" href="style.css?v=202609062250">
+  <link rel="stylesheet" href="style.css?v=202609062255">
 </head>
 <body>
 
@@ -77,13 +77,10 @@
 
   <!-- 主体内容 -->
   <main class="container" id="app">
-    <!-- Hero 标题区域 -->
+    <!-- Hero 标题区域 (极简内敛) -->
     <section class="hero">
       <div class="hero-content">
         <h1 class="hero-title">Apple 官方服务快查</h1>
-        <p class="hero-subtitle">
-          直连 Apple 官方技术支持服务标准 · 官方原厂价格与正规服务网点极速核准
-        </p>
       </div>
     </section>
 
@@ -374,10 +371,6 @@
               <span class="status-pulse-dot"></span>
               <span id="sync-status-text">已校验 300 家网点 · 无锡 2 家与官网完全一致</span>
             </span>
-          </div>
-          <p class="official-banner-text">
-            本页网点数据已直连 Apple 官方后台 Locate 实时接口，严格按官网预约送修标准过滤（仅收录 Apple Store 直营店及官方认证原厂维修合作商）。
-          </p>
           <div class="sync-meta-bar">
             <span class="sync-time-badge" id="sync-last-time">🕒 最近同步：刚刚 (已核准最新数据)</span>
           </div>
@@ -467,7 +460,7 @@
 
   <!-- 底部说明 -->
   <footer class="site-footer">
-    <p>© Apple 官方维修价格与服务网点快查 · 预估报价基于 Apple 官网公开指导价，最终以门店检测单为准 · 实时服务商授权资质请以 <a href="https://locate.apple.com/cn/zh/" target="_blank" rel="noopener noreferrer" style="color: var(--apple-blue); text-decoration: underline;">Apple 官网支持系统 (locate.apple.com)</a> 为准</p>
+    <p>© Apple 内部服务与零售支持系统 · 直连 Apple 官网数据</p>
   </footer>
 
   <!-- 协助识别机型弹窗 (Modal) -->

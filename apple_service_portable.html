@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Apple 官方维修价格与服务网点快查</title>
-  <meta name="description" content="无需层层点击，开箱即查所有设备估价与全国授权服务点。数据来源于 Apple 官网公开信息。">
+  <meta name="description" content="Apple 官方服务快查内部系统">
   <link rel="manifest" href="manifest.json">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImJsdWVCZyIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMGE4NGZmIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzAwNjJkMiIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxyYWRpYWxHcmFkaWVudCBpZD0iYmx1ZUdsb3ciIGN4PSI1MCUiIGN5PSIwJSIgcj0iNzAlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIwLjI1Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8L3JhZGlhbEdyYWRpZW50PgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgZmlsbD0idXJsKCNibHVlQmcpIi8+CiAgPHJlY3Qgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIGZpbGw9InVybCgjYmx1ZUdsb3cpIi8+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTYwLjM1NTAwMDAwMDAwMDAyLCAxMzQuNSkgc2NhbGUoMC4yMzUpIj4KICAgIDxwYXRoIGQ9Ik03ODguMSAzNDAuOWMtNS44IDQuNS0xMDguMiA2Mi4yLTEwOC4yIDE5MC41IDAgMTQ4LjQgMTMwLjMgMjAwLjkgMTM0LjIgMjAyLjItLjYgMy4yLTIwLjcgNzEuOS02OC43IDE0MS45LTQyLjggNjEuNi04Ny41IDEyMy4xLTE1NS41IDEyMy4xcy04NS41LTM5LjUtMTY0LTM5LjVjLTc2LjUgMC0xMDMuNyA0MC44LTE2NS45IDQwLjhzLTEwNS42LTU3LTE1NS41LTEyN0M0Ni43IDc5MC43IDAgNjYzIDAgNTQxLjhjMC0xOTQuNCAxMjYuNC0yOTcuNSAyNTAuOC0yOTcuNSA2Ni4xIDAgMTIxLjIgNDMuNCAxNjIuNyA0My40IDM5LjUgMCAxMDEuMS00NiAxNzYuMy00NiAyOC41IDAgMTMwLjkgMi42IDE5OC4zIDk5LjJ6bS0yMzQtMTgxLjVjMzEuMS0zNi45IDUzLjEtODguMSA1My4xLTEzOS4zIDAtNy4xLS42LTE0LjMtMS45LTIwLjEtNTAuNiAxLjktMTEwLjggMzMuNy0xNDcuMSA3NS44LTI4LjUgMzIuNC01NS4xIDgzLjYtNTUuMSAxMzUuNSAwIDcuOCAxLjMgMTUuNiAxLjkgMTguMSAzLjIuNiA4LjQgMS4zIDEzLjYgMS4zIDQ1LjQgMCAxMDIuNS0zMC40IDEzNS41LTcxLjN6IiBmaWxsPSIjZmZmZmZmIi8+CiAgPC9nPgo8L3N2Zz4=">
   <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
@@ -350,40 +350,18 @@ body {
   flex: 1;
 }
 
-/* Hero Header */
+/* Hero Header (内部系统精炼风格) */
 .hero {
   text-align: center;
-  padding: 24px 0 36px 0;
-}
-
-.hero-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 4px 14px;
-  border-radius: var(--radius-pill);
-  font-size: 12px;
-  font-weight: 500;
-  background: var(--apple-blue-light);
-  color: var(--apple-blue);
-  margin-bottom: 16px;
+  padding: 8px 0 20px 0;
 }
 
 .hero-title {
-  font-size: 38px;
+  font-size: 28px;
   font-weight: 700;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
   color: var(--text-primary);
-  margin-bottom: 12px;
   line-height: 1.2;
-}
-
-.hero-subtitle {
-  font-size: 18px;
-  color: var(--text-secondary);
-  max-width: 680px;
-  margin: 0 auto 16px auto;
-  font-weight: 400;
 }
 
 .hero-notice {
@@ -2504,6 +2482,15 @@ body {
     display: flex !important;
     visibility: visible !important;
   }
+
+  /* 移动端隐藏大标题横幅，打开即见核心功能 */
+  .hero {
+    display: none;
+  }
+
+  .container {
+    padding: 12px 14px 60px 14px;
+  }
 }
 
 
@@ -2568,13 +2555,10 @@ body {
 
   <!-- 主体内容 -->
   <main class="container" id="app">
-    <!-- Hero 标题区域 -->
+    <!-- Hero 标题区域 (极简内敛) -->
     <section class="hero">
       <div class="hero-content">
         <h1 class="hero-title">Apple 官方服务快查</h1>
-        <p class="hero-subtitle">
-          直连 Apple 官方技术支持服务标准 · 官方原厂价格与正规服务网点极速核准
-        </p>
       </div>
     </section>
 
@@ -2865,10 +2849,6 @@ body {
               <span class="status-pulse-dot"></span>
               <span id="sync-status-text">已校验 300 家网点 · 无锡 2 家与官网完全一致</span>
             </span>
-          </div>
-          <p class="official-banner-text">
-            本页网点数据已直连 Apple 官方后台 Locate 实时接口，严格按官网预约送修标准过滤（仅收录 Apple Store 直营店及官方认证原厂维修合作商）。
-          </p>
           <div class="sync-meta-bar">
             <span class="sync-time-badge" id="sync-last-time">🕒 最近同步：刚刚 (已核准最新数据)</span>
           </div>
@@ -2958,7 +2938,7 @@ body {
 
   <!-- 底部说明 -->
   <footer class="site-footer">
-    <p>© Apple 官方维修价格与服务网点快查 · 预估报价基于 Apple 官网公开指导价，最终以门店检测单为准 · 实时服务商授权资质请以 <a href="https://locate.apple.com/cn/zh/" target="_blank" rel="noopener noreferrer" style="color: var(--apple-blue); text-decoration: underline;">Apple 官网支持系统 (locate.apple.com)</a> 为准</p>
+    <p>© Apple 内部服务与零售支持系统 · 直连 Apple 官网数据</p>
   </footer>
 
   <!-- 协助识别机型弹窗 (Modal) -->

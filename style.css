@@ -330,40 +330,18 @@ body {
   flex: 1;
 }
 
-/* Hero Header */
+/* Hero Header (内部系统精炼风格) */
 .hero {
   text-align: center;
-  padding: 24px 0 36px 0;
-}
-
-.hero-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 4px 14px;
-  border-radius: var(--radius-pill);
-  font-size: 12px;
-  font-weight: 500;
-  background: var(--apple-blue-light);
-  color: var(--apple-blue);
-  margin-bottom: 16px;
+  padding: 8px 0 20px 0;
 }
 
 .hero-title {
-  font-size: 38px;
+  font-size: 28px;
   font-weight: 700;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
   color: var(--text-primary);
-  margin-bottom: 12px;
   line-height: 1.2;
-}
-
-.hero-subtitle {
-  font-size: 18px;
-  color: var(--text-secondary);
-  max-width: 680px;
-  margin: 0 auto 16px auto;
-  font-weight: 400;
 }
 
 .hero-notice {
@@ -2483,6 +2461,15 @@ body {
   .btn-sync-data {
     display: flex !important;
     visibility: visible !important;
+  }
+
+  /* 移动端隐藏大标题横幅，打开即见核心功能 */
+  .hero {
+    display: none;
+  }
+
+  .container {
+    padding: 12px 14px 60px 14px;
   }
 }
 
