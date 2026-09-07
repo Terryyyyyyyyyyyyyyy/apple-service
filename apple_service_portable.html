@@ -3296,6 +3296,63 @@ body {
   opacity: 1;
 }
 
+/* ================================================================
+   鸣谢样式 (Credits & Acknowledgements)
+   ================================================================ */
+.credit-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0 10px 0;
+  padding: 0 8px;
+}
+
+.credit-bar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 18px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-pill);
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
+  text-align: center;
+  line-height: 1.4;
+}
+
+.credit-bar strong {
+  color: var(--apple-blue);
+  font-weight: 600;
+}
+
+.modal-credit-note {
+  margin-top: 24px;
+  padding: 12px 14px;
+  text-align: center;
+  font-size: 11.5px;
+  color: var(--text-tertiary);
+  border-top: 1px dashed var(--border-color);
+}
+
+.modal-credit-note strong {
+  color: var(--apple-blue);
+  font-weight: 600;
+}
+
+.footer-credit {
+  font-size: 11.5px;
+  color: var(--text-secondary);
+  margin-top: 6px;
+}
+
+.footer-credit strong {
+  color: var(--apple-blue);
+  font-weight: 600;
+}
+
+
 
 </style>
 </head>
@@ -3806,7 +3863,14 @@ body {
 
       <!-- 计数统计 -->
       <div class="count-bar" id="tp-brands-count">
-        共显示 34 个官方在售配件品牌
+        共显示 37 个官方在售配件品牌
+      </div>
+
+      <!-- 配件整理鸣谢 -->
+      <div class="credit-wrapper">
+        <div class="credit-bar">
+          <span>💡 配件售后政策与品牌维保指南整理：鸣谢 <strong>@Bryan</strong></span>
+        </div>
       </div>
     </section>
 
@@ -3828,6 +3892,13 @@ body {
       <div id="hotacc-list-container" class="hotacc-list-container">
         <!-- 动态渲染新品与热销榜卡片 -->
       </div>
+
+      <!-- 话术宝典整理鸣谢 -->
+      <div class="credit-wrapper">
+        <div class="credit-bar">
+          <span>💡 当季新品与导购实战话术宝典整理：鸣谢 <strong>@Bryan</strong></span>
+        </div>
+      </div>
     </section>
   </main>
 
@@ -3838,6 +3909,7 @@ body {
       <button type="button" id="btn-force-update-app" class="btn-clean-update" title="清空本地缓存并重新拉取全量离线资源">↻ 检查并更新数据</button>
     </div>
     <p>© Apple 内部服务与零售支持系统 · 直连 Apple 官网数据</p>
+    <p class="footer-credit">第三方在售配件售后与导购话术资料整理：特别鸣谢 <strong>@Bryan</strong></p>
   </footer>
 
   <!-- 第三方配件品牌详情弹窗 (iOS 抽屉) -->
@@ -3873,6 +3945,10 @@ body {
         <!-- 分步售后流程 -->
         <div class="tp-steps-title">📋 售后指引与寄修/换新流程</div>
         <div class="tp-steps-card" id="tp-modal-steps"></div>
+
+        <div class="modal-credit-note">
+          <span>配件售后维保流程整理：鸣谢 <strong>@Bryan</strong></span>
+        </div>
       </div>
     </div>
   </div>
@@ -3904,6 +3980,10 @@ body {
         <div class="hot-cross-card">
           <div class="cross-icon">🛍️</div>
           <div id="hot-modal-cross" class="cross-text"></div>
+        </div>
+
+        <div class="modal-credit-note">
+          <span>爆款特性与导购实战话术宝典整理：鸣谢 <strong>@Bryan</strong></span>
         </div>
       </div>
     </div>
@@ -8207,7 +8287,8 @@ if (typeof window !== "undefined") window.ESTIMATOR_CATALOG = ESTIMATOR_CATALOG;
 
 
 // ============================================================================
-// 模块 3：第三方在售配件售后保修政策库 (Apple 官方渠道 34 主流品牌)
+// 模块 3：第三方在售配件售后保修政策库 (Apple 官方渠道 37 主流品牌)
+// 特别鸣谢：@Bryan 整理与倾情支持
 // ============================================================================
 var PENDING_MSG = "<div class='warn-text'>该品牌售后还未经最终验证，请等待后续更新</div>";
 var thirdPartyBrands = [
@@ -8269,6 +8350,7 @@ if (typeof window !== "undefined") window.thirdPartyBrands = thirdPartyBrands;
 
 // ============================================================================
 // 模块 4：当季新品与畅销 Top 10 导购与一击必中话术宝典 (23 款主推配件)
+// 特别鸣谢：@Bryan 整理与倾情支持
 // ============================================================================
 var hotAccessoriesData = [
         // ================= 【当季新品区 - 第一批 6个】 =================
