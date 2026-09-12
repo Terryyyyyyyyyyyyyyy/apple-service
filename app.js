@@ -1076,31 +1076,8 @@
       }
     }
 
-    async function forceUpdateApp() {
-      const btn = document.getElementById("btn-force-update-app");
-      const statusEl = document.getElementById("offline-status-badge");
-      if (btn) btn.innerText = "正在清除旧缓存...";
-      if (statusEl) statusEl.innerText = "⏳ 正在拉取最新版本...";
-
-      if ('caches' in window) {
-        try {
-          const keys = await caches.keys();
-          await Promise.all(keys.map((k) => caches.delete(k)));
-        } catch (e) {}
-      }
-
-      if ('serviceWorker' in navigator) {
-        try {
-          const registrations = await navigator.serviceWorker.getRegistrations();
-          for (const reg of registrations) {
-            await reg.update();
-          }
-        } catch (e) {}
-      }
-
-      setTimeout(() => {
-        window.location.reload(true);
-      }, 400);
+    function forceUpdateApp() {
+      triggerForceRefresh();
     }
 
     // ================= 事件监听绑定 =================
@@ -1618,14 +1595,51 @@
       setTimeout(downloadAllOfflineAssets, 500);
     }
 
-    // 绑定强制刷新与缓存清除逻辑
+    // 绑定强制刷新与官网实时抓取同步逻辑
     const btnForceRefresh = document.getElementById("btn-force-refresh");
-    function triggerForceRefresh() {
+    async function triggerForceRefresh() {
       if (btnForceRefresh) btnForceRefresh.classList.add("syncing");
-      showToast("正在拉取最新数据与界面...", "已自动清除本地离线缓存", "🔄");
-      
+      const btnFooter = document.getElementById("btn-force-update-app");
+      const statusEl = document.getElementById("offline-status-badge");
+      if (btnFooter) btnFooter.innerText = "正在同步官网...";
+      if (statusEl) statusEl.innerText = "🔄 正在连接同步服务...";
+
+      let isBackendSync = false;
+      let syncMessage = "";
+
+      // 1. 如果当前环境支持本地接口 (例如运行 python3 server.py)，直接调用直连爬虫
+      if (window.location.protocol.startsWith("http")) {
+        try {
+          showToast("正在连接 Apple 官网...", "若本地服务运行中，将直连官网 API 抓取最新数据", "🔄");
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), 20000); // 20s 超时
+
+          const resp = await fetch("/api/sync", {
+            method: "POST",
+            signal: controller.signal
+          });
+          clearTimeout(timeoutId);
+
+          if (resp.ok) {
+            const data = await resp.json();
+            if (data && data.success) {
+              isBackendSync = true;
+              syncMessage = `已直连 Apple 官方实时抓取完成 (${data.timestamp})`;
+              showToast("🎉 官网实时抓取完成！", syncMessage, "✅");
+            }
+          }
+        } catch (e) {
+          // 静态托管环境 (GitHub Pages / 纯静态部署) 或未启动 server.py
+        }
+      }
+
+      if (!isBackendSync) {
+        const currentTime = (typeof DATA_SYNC_TIMESTAMP !== "undefined") ? DATA_SYNC_TIMESTAMP : "最新发布";
+        showToast("正在拉取最新数据与界面...", `当前数据版本: ${currentTime}，已清除本地离线缓存`, "🔄");
+      }
+
       const doReload = () => {
-        // 强制清除本地缓存，并在 URL 附加时间戳绕过 WebKit 缓存
+        // 强制清除本地缓存，并在 URL 附加时间戳绕过 WebKit/Safari 缓存
         try {
           const url = new URL(window.location.href);
           url.searchParams.set("_t", Date.now());
@@ -1636,24 +1650,20 @@
       };
 
       if ("caches" in window) {
-        caches.keys().then((keys) => {
-          return Promise.all(keys.map((k) => caches.delete(k)));
-        }).then(() => {
-          if ("serviceWorker" in navigator) {
-            navigator.serviceWorker.getRegistrations().then((registrations) => {
-              return Promise.all(registrations.map(r => r.update()));
-            }).finally(() => {
-              setTimeout(doReload, 400);
-            });
-          } else {
-            setTimeout(doReload, 400);
-          }
-        }).catch(() => {
-          setTimeout(doReload, 300);
-        });
-      } else {
-        setTimeout(doReload, 300);
+        try {
+          const keys = await caches.keys();
+          await Promise.all(keys.map((k) => caches.delete(k)));
+        } catch (e) {}
       }
+
+      if ("serviceWorker" in navigator) {
+        try {
+          const registrations = await navigator.serviceWorker.getRegistrations();
+          await Promise.all(registrations.map((r) => r.update()));
+        } catch (e) {}
+      }
+
+      setTimeout(doReload, isBackendSync ? 600 : 350);
     }
 
     if (btnForceRefresh) {
@@ -2326,9 +2336,22 @@
       }
     }
 
+    // 更新全网同步时间戳显示
+    function updateSyncTimestampDisplay() {
+      const syncTime = (typeof DATA_SYNC_TIMESTAMP !== "undefined") ? DATA_SYNC_TIMESTAMP : "";
+      if (!syncTime) return;
+      const footerTime = document.getElementById("footer-sync-timestamp");
+      if (footerTime) footerTime.textContent = syncTime;
+      const networkBadge = document.getElementById("network-status-badge");
+      if (networkBadge) {
+        networkBadge.title = `网络在线 · Apple 官方数据同步于: ${syncTime} (点击右上角按钮可重新同步)`;
+      }
+    }
+
     // 初始化渲染
     initCityDropdown();
     initEstimator();
+    updateSyncTimestampDisplay();
     render();
   }
 

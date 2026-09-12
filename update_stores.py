@@ -172,11 +172,35 @@ def fetch_stores_for_city(city_name, lat, lon):
             time.sleep(1.0)
     return city_name, [], "Max retries exceeded"
 
-def main():
-    print("=" * 65)
-    print("  Apple 官方服务网点实时抓取同步程序 (Official Apple Locate API)")
-    print("  严格匹配官网：仅保留 Apple Store 直营店 与 认证支持预约送修的 AASP")
-    print("=" * 65)
+# 城市展示优先级定义 (无锡及周边优先排前)
+CITY_PRIORITY = {
+    "无锡": 1,
+    "江阴": 2,
+    "宜兴": 3,
+    "苏州": 4,
+    "常熟": 5,
+    "张家港": 6,
+    "昆山": 7,
+    "常州": 8,
+    "南京": 9,
+    "上海": 10,
+    "杭州": 11,
+    "宁波": 12,
+    "北京": 13,
+    "深圳": 14,
+    "广州": 15,
+    "成都": 16,
+    "重庆": 17,
+    "武汉": 18,
+    "西安": 19,
+    "长沙": 20,
+    "郑州": 21,
+    "青岛": 22,
+    "济南": 23,
+}
+
+def scrape_and_process_stores():
+    """并发抓取并清洗全国官方原厂认证服务网点"""
     print(f"\n[*] 即将检索全国 {len(CITIES_COORDS)} 个重点城市网点...")
 
     start_time = time.time()
@@ -250,33 +274,6 @@ def main():
             }
         })
 
-    # 城市展示优先级定义 (无锡及周边优先排前)
-    CITY_PRIORITY = {
-        "无锡": 1,
-        "江阴": 2,
-        "宜兴": 3,
-        "苏州": 4,
-        "常熟": 5,
-        "张家港": 6,
-        "昆山": 7,
-        "常州": 8,
-        "南京": 9,
-        "上海": 10,
-        "杭州": 11,
-        "宁波": 12,
-        "北京": 13,
-        "深圳": 14,
-        "广州": 15,
-        "成都": 16,
-        "重庆": 17,
-        "武汉": 18,
-        "西安": 19,
-        "长沙": 20,
-        "郑州": 21,
-        "青岛": 22,
-        "济南": 23,
-    }
-
     def sort_key(st):
         c_prio = CITY_PRIORITY.get(st["city"], 999)
         # Apple 直营店优先排在城市前列
@@ -284,6 +281,14 @@ def main():
         return (c_prio, st["city"], type_prio, st["name"])
 
     processed_stores.sort(key=sort_key)
+    return processed_stores
+
+def main():
+    print("=" * 65)
+    print("  Apple 官方服务网点实时抓取同步程序 (Official Apple Locate API)")
+    print("  严格匹配官网：仅保留 Apple Store 直营店 与 认证支持预约送修的 AASP")
+    print("=" * 65)
+    processed_stores = scrape_and_process_stores()
 
     # 打印无锡验证结果
     wuxi_stores = [s for s in processed_stores if s["city"] == "无锡"]

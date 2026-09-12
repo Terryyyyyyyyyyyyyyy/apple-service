@@ -16,8 +16,8 @@ import webbrowser
 import threading
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 
-# 导入同步主逻辑
-import update_stores
+# 导入全量同步主逻辑
+import sync_apple_official
 
 PORT = 8080
 DIR = os.path.dirname(os.path.abspath(__file__))
@@ -28,19 +28,10 @@ class AppleLocalHandler(SimpleHTTPRequestHandler):
 
     def do_POST(self):
         if self.path == "/api/sync":
-            print("\n[Web 触发] 收到网页端【立即同步官网数据】请求，正在后台连接 Apple 官网接口抓取...")
+            print("\n[Web 触发] 收到网页端【立即同步官网全量数据】请求，正在后台连接 Apple 官网接口抓取...")
             try:
-                # 执行抓取主函数
-                update_stores.main()
-
-                # 读取更新后的数据
-                with open(update_stores.DATA_JS_PATH, "r", encoding="utf-8") as f:
-                    content = f.read()
-
-                # 提取 storesData 注入返回
-                import re
-                m = re.search(r"var storesData = (\[.*?\]);", content, re.DOTALL)
-                stores_data = json.loads(m.group(1)) if m else []
+                # 执行全量抓取主函数（包含官方估价库与官方授权服务网点）
+                sync_apple_official.main()
 
                 # 响应成功
                 self.send_response(200)
@@ -50,12 +41,11 @@ class AppleLocalHandler(SimpleHTTPRequestHandler):
                 
                 resp_payload = {
                     "success": True,
-                    "message": "官网数据同步成功",
-                    "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
-                    "storesData": stores_data
+                    "message": "Apple 官网全量数据（维修报价 + 授权网点）实时同步成功",
+                    "timestamp": time.strftime("%Y-%m-%d %H:%M:%S")
                 }
                 self.wfile.write(json.dumps(resp_payload, ensure_ascii=False).encode("utf-8"))
-                print(f"[Web 触发] ✅ 官网数据同步完成并已返回网页端 (共 {len(stores_data)} 家门店)！\n")
+                print(f"[Web 触发] ✅ Apple 官网全量数据同步完成并已返回网页端！\n")
             except Exception as e:
                 print(f"[Web 触发] ❌ 同步出错: {e}\n")
                 self.send_response(500)

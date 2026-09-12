@@ -3332,4 +3332,15 @@ body {
   font-weight: 600;
 }
 
+.footer-sync-time {
+  font-size: 11.5px;
+  color: var(--apple-blue);
+  margin-top: 4px;
+}
+
+.footer-sync-time strong {
+  font-weight: 600;
+}
+
+
 
