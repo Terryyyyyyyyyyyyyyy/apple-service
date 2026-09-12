@@ -346,6 +346,9 @@
         localStorage.setItem(OFFLINE_STORES_KEY, JSON.stringify(stores));
       }
       localStorage.setItem(OFFLINE_TIMESTAMP_KEY, new Date().toISOString());
+      if (typeof DATA_SYNC_TIMESTAMP !== "undefined") {
+        localStorage.setItem("apple_service_bundled_version", DATA_SYNC_TIMESTAMP);
+      }
     } catch (e) {
       console.warn("[OfflineStorage] 本地离线写入跳过:", e);
     }
@@ -355,15 +358,34 @@
     let prices = fallbackPrices;
     let stores = fallbackStores;
     try {
+      const scriptVersion = (typeof DATA_SYNC_TIMESTAMP !== "undefined") ? DATA_SYNC_TIMESTAMP : "";
+      const savedVersion = localStorage.getItem("apple_service_bundled_version");
+
+      // 若检测到代码包已发布更新的时间戳，优先采用最新随包内置的数据集并刷新本地缓存
+      if (scriptVersion && savedVersion && scriptVersion !== savedVersion) {
+        console.log(`[OfflineStorage] 检测到核心数据版本升级 (${savedVersion} -> ${scriptVersion})，重置本地存储`);
+        localStorage.setItem("apple_service_bundled_version", scriptVersion);
+        saveOfflineData(fallbackPrices, fallbackStores);
+        return { prices: fallbackPrices, stores: fallbackStores };
+      }
+
       const cachedPricesStr = localStorage.getItem(OFFLINE_PRICES_KEY);
       const cachedStoresStr = localStorage.getItem(OFFLINE_STORES_KEY);
       if (cachedPricesStr) {
         const parsed = JSON.parse(cachedPricesStr);
-        if (Array.isArray(parsed) && parsed.length > 0) prices = parsed;
+        if (Array.isArray(parsed) && parsed.length >= fallbackPrices.length) {
+          prices = parsed;
+        } else if (fallbackPrices.length > 0) {
+          prices = fallbackPrices;
+        }
       }
       if (cachedStoresStr) {
         const parsed = JSON.parse(cachedStoresStr);
-        if (Array.isArray(parsed) && parsed.length > 0) stores = parsed;
+        if (Array.isArray(parsed) && parsed.length >= fallbackStores.length) {
+          stores = parsed;
+        } else if (fallbackStores.length > 0) {
+          stores = fallbackStores;
+        }
       }
     } catch (e) {
       console.warn("[OfflineStorage] 本地离线读取跳过:", e);
@@ -750,7 +772,7 @@
       // 8. 模块 3：第三方在售配件售后列表渲染
       renderThirdPartyBrands();
 
-      // 9. 模块 4：当季新品与畅销导购话术渲染
+      // 9. 模块 4：当季新品与畅销配件特性渲染
       renderHotAccessories();
     }
 
@@ -770,15 +792,12 @@
 
     function getFilteredThirdPartyBrands() {
       const q = state.thirdPartySearchQuery.trim().toLowerCase();
+      const terms = q ? q.split(/\s+/).filter(Boolean) : [];
       return state.thirdPartyBrands.filter((b) => {
         const matchCat = state.thirdPartyCategory === "全部" || b.c === state.thirdPartyCategory;
-        const matchQ =
-          !q ||
-          b.n.toLowerCase().includes(q) ||
-          (b.cn && b.cn.toLowerCase().includes(q)) ||
-          (b.c && b.c.toLowerCase().includes(q)) ||
-          (b.sn && b.sn.toLowerCase().includes(q)) ||
-          (b.s && b.s.join(" ").toLowerCase().includes(q));
+        if (!terms.length) return matchCat;
+        const brandText = `${b.n} ${b.cn || ""} ${b.c || ""} ${b.sn || ""} ${(b.s || []).join(" ")}`.toLowerCase();
+        const matchQ = terms.every((t) => brandText.includes(t));
         return matchCat && matchQ;
       });
     }
@@ -868,7 +887,7 @@
     }
 
     // ================================================================
-    // 模块 4：当季新品与畅销榜导购话术辅助函数与模态抽屉
+    // 模块 4：当季新品与畅销榜配件特性辅助函数与模态抽屉
     // ================================================================
     function getFilteredHotAccessories() {
       const sub = state.hotAccSubTab;
@@ -994,7 +1013,7 @@
         return;
       }
 
-      const CACHE_NAME = 'apple-service-v4.0';
+      const CACHE_NAME = 'apple-service-v4.2';
       let cache;
       try {
         cache = await caches.open(CACHE_NAME);
@@ -1169,7 +1188,7 @@
       });
     }
 
-    // 热门配件卡片点击弹出详情话术抽屉
+    // 热门配件卡片点击弹出详情抽屉
     const hotListContainer = document.getElementById("hotacc-list-container");
     if (hotListContainer) {
       hotListContainer.addEventListener("click", (e) => {
@@ -1553,7 +1572,7 @@
 
     // PWA Service Worker 离线注册 (在 http/https 环境下生效，强制检查并即时应用最新版本)
     if ("serviceWorker" in navigator && (window.location.protocol === "http:" || window.location.protocol === "https:")) {
-      navigator.serviceWorker.register("./sw.js?v=202609070000")
+      navigator.serviceWorker.register("./sw.js?v=202609121430")
         .then((reg) => {
           reg.update();
           setTimeout(downloadAllOfflineAssets, 500);

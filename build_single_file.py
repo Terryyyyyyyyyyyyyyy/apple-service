@@ -48,11 +48,11 @@ def bundle():
 
     # 替换样式表为内联样式
     style_tag = f"<style>\n/* Apple Service Styles */\n{css}\n</style>"
-    html = re.sub(r'<link rel="stylesheet" href="style\.css(?:\?[^"]*)?">', style_tag, html)
+    html = re.sub(r'<link rel="stylesheet" href="style\.css(?:\?[^"]*)?">', lambda _: style_tag, html)
 
     # 替换外链脚本为内联脚本
     script_bundle = f"<script>\n/* 核心数据集 data.js */\n{data_js}\n\n/* 应用逻辑 app.js */\n{app_js}\n</script>"
-    html = re.sub(r'<script src="data\.js(?:\?[^"]*)?"></script>\s*<script src="app\.js(?:\?[^"]*)?"></script>', script_bundle, html)
+    html = re.sub(r'<script src="data\.js(?:\?[^"]*)?"></script>\s*<script src="app\.js(?:\?[^"]*)?"></script>', lambda _: script_bundle, html)
 
     with open(OUTPUT_HTML, "w", encoding="utf-8") as f:
         f.write(html)

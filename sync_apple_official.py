@@ -202,8 +202,12 @@ def update_data_js(catalog, stores):
     sync_timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
     # 1. 提取或保留 thirdPartyBrands 与 hotAccessoriesData
-    tp_match = re.search(r"(var thirdPartyBrands = \[.*?\];\nif \(typeof window !== \"undefined\"\) window\.thirdPartyBrands = thirdPartyBrands;)", content, re.DOTALL)
+    tp_match = re.search(r"((?:var PENDING_MSG = .*?;\nif \(typeof window !== \"undefined\"\) window\.PENDING_MSG = PENDING_MSG;\n\n)?var thirdPartyBrands = \[.*?\];\nif \(typeof window !== \"undefined\"\) window\.thirdPartyBrands = thirdPartyBrands;)", content, re.DOTALL)
     tp_code = tp_match.group(1) if tp_match else ""
+    if tp_code and "var PENDING_MSG" not in tp_code:
+        tp_code = 'var PENDING_MSG = "<div class=\\"warn-text\\">该品牌售后还未经最终验证，请等待后续更新</div>";\\nif (typeof window !== "undefined") window.PENDING_MSG = PENDING_MSG;\\n\\n' + tp_code
+    if tp_code:
+        tp_code = re.sub(r'\bPENDING_MSG\b', '"<div class=\\"warn-text\\">该品牌售后还未经最终验证，请等待后续更新</div>"', tp_code)
 
     hot_match = re.search(r"(var hotAccessoriesData = \[.*?\];\nif \(typeof window !== \"undefined\"\) window\.hotAccessoriesData = hotAccessoriesData;)", content, re.DOTALL)
     hot_code = hot_match.group(1) if hot_match else ""

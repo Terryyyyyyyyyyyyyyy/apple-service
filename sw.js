@@ -4,16 +4,16 @@
  * 连线时自动拉取最新版本刷新缓存，离线时 100% 正常运行
  */
 
-const CACHE_NAME = 'apple-service-v4.0';
+const CACHE_NAME = 'apple-service-v4.2';
 const PRECACHE_ASSETS = [
   './',
   'index.html',
   'style.css',
-  'style.css?v=202609062250',
+  'style.css?v=202609121430',
   'app.js',
-  'app.js?v=202609062250',
+  'app.js?v=202609121430',
   'data.js',
-  'data.js?v=202609062250',
+  'data.js?v=202609121430',
   'manifest.json',
   'icon.svg',
   'apple-touch-icon.png',
@@ -69,7 +69,7 @@ self.addEventListener('fetch', (event) => {
       })
       .catch(() => {
         // 网络不可用（处于离线模式或无信号），立即从本地缓存返回
-        return caches.match(event.request).then((cachedResponse) => {
+        return caches.match(event.request, { ignoreSearch: true }).then((cachedResponse) => {
           if (cachedResponse) {
             return cachedResponse;
           }

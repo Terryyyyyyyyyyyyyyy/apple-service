@@ -7908,6 +7908,9 @@ if (typeof window !== "undefined") window.ESTIMATOR_CATALOG = ESTIMATOR_CATALOG;
 // 模块 3：第三方在售配件售后保修政策库 (Apple 官方渠道 37 主流品牌)
 // 特别鸣谢：@Bryan 整理与倾情支持
 // ============================================================================
+var PENDING_MSG = "<div class=\"warn-text\">该品牌售后还未经最终验证，请等待后续更新</div>";
+if (typeof window !== "undefined") window.PENDING_MSG = PENDING_MSG;
+
 var thirdPartyBrands = [
     { c: "电源与线缆", n: "Anker", cn: "安克", img: "anker.png", t: "18-24月", sn: "本体插脚侧、底部或线缆标签", s: ["发送邮件至: ced-cn@anker.com","提供①: 产品名称或货号 + 获得渠道","提供②: 产品发票 (无发票需说明情况并提供SN码)","提供③: 问题描述 + 异常视频","提供④: 收件信息 (地址、姓名、电话)","发送后等待相关负责人回复"] },
     { c: "电源与线缆", n: "Belkin", cn: "贝尔金", img: "belkin.png", t: "2年", sn: "本体/包装底部 (10位码)", s: [`贝尔金贴膜类产品请扫描以下二维码：<br><img src="logos/belkin_qr.png" class="qr-in-step">`, "其他产品请拨打官方客服电话：400-821-1805", "服务时间：周一至周五上午 9:00 - 下午 5:00"] },
@@ -7915,20 +7918,20 @@ var thirdPartyBrands = [
     { c: "电源与线缆", n: "Satechi", cn: "萨泰奇", img: "satechi.png", t: "1年", sn: "产品底部刻字", s: ["发送邮件至 support@satechi.com","注明: Apple Store购买 + 产品型号 + 故障描述 + 照片/视频 + 收货地址 + 联系方式","根据回复邮件内容进行寄修或更换"] },
     { c: "电源与线缆", n: "Nimble", cn: "灵动", img: "nimble.png", t: "2年", sn: "本体或内包装卡片", s: [`扫描下方二维码提交售后信息<br><img src="logos/nimble_qr.png" class="qr-in-step">`,"按照官方客服指导进行售后邮寄"] },
     { c: "电源与线缆", n: "Native Union", cn: "原生合集", img: "nativeunion.png", t: "2年/终身", sn: "线缆内侧", s: [`扫描以下二维码进入售后页面<br><img src="logos/nativeunion_qr.png" class="qr-in-step">`,"按照指示进行信息填写，并在最后留下你的邮箱","两天内会收到官方回复，请按照指示进行寄修或者更换"] },
-    { c: "电源与线缆", n: "Scosche", cn: "斯科希", img: "scosche.png", t: "1-2年", sn: "背面", s: ["请查询代理商", PENDING_MSG] },
+    { c: "电源与线缆", n: "Scosche", cn: "斯科希", img: "scosche.png", t: "1-2年", sn: "背面", s: ["请查询代理商", "<div class=\"warn-text\">该品牌售后还未经最终验证，请等待后续更新</div>"] },
     { c: "电源与线缆", n: "Linksys", cn: "领势", img: "linksys.png", t: "已退市", sn: "底部标签", s: ["售后电话: 400-618-612 (周一至周五 9:00-17:00)","<span style='color:var(--warn)'>注意：Linksys已退出中国，售后随时可能失效</span>"] },
     { c: "家居与健康", n: "Aqara", cn: "绿米", img: "aqara.png", t: "1年", sn: "本体", p: "陈睡睡", s: ["拨打官方客服电话：400-999-7930 (服务时间：9:00-22:00)","或者关注微信公众号“Aqara Home全屋智能”","选择“用户服务-在线客服”（服务时间 9:00-20:00）"] },
     { c: "家居与健康", n: "Nanoleaf", cn: "奇光板", img: "nanoleaf.png", t: "2年", sn: "控制器背面", p: "Elvin Guo", s: ["拨打官方客服: 0755-21673548 (9:00-18:00 节假日除外)",`或微信扫码添加官方公众号：<br><img src="logos/nanoleaf_qr.png" class="qr-in-step">`,"选择菜单栏【服务】中的【注册质保】进行售后"] },
-    { c: "家居与健康", n: "HidrateSpark", cn: "智能水杯", img: "hidratespark.png", t: "100天/1年", sn: "底座Puck", s: ["App内联系", PENDING_MSG] },
-    { c: "家居与健康", n: "Eve", cn: "Eve", img: "eve.png", t: "1年", sn: "产品本体", s: ["请查询官网", PENDING_MSG] },
+    { c: "家居与健康", n: "HidrateSpark", cn: "智能水杯", img: "hidratespark.png", t: "100天/1年", sn: "底座Puck", s: ["App内联系", "<div class=\"warn-text\">该品牌售后还未经最终验证，请等待后续更新</div>"] },
+    { c: "家居与健康", n: "Eve", cn: "Eve", img: "eve.png", t: "1年", sn: "产品本体", s: ["请查询官网", "<div class=\"warn-text\">该品牌售后还未经最终验证，请等待后续更新</div>"] },
     { c: "保护类", n: "Tech21", cn: "泰科21", img: "tech21.png", t: "1年", sn: "包装背面", p: "Nanyi Shao", s: ["发送邮件至：helpdesk@tech21.com","附上必要的文件和说明，申请售后更换产品","按照客服要求补充信息或者等待更换的产品邮寄"] },
 
 { c: "保护类", n: "OtterBox", cn: "奥盾士", img: "otterbox.png", t: "7年/终身", sn: "手机壳内侧", s: [`扫描二维码或登录官网<br><img src="logos/otterbox_qr.png" class="qr-in-step">`,"访问: www.otterbox.asia/zh-hk/customer-support","按要求填写表格材料，审核通过后自费寄至指定地址 (不收付)","OtterBox从香港发货，收到后请当场核验外观功能","更换后质保为剩余时长或30天 (取较长者)","<span style='color:var(--warn)'>注意：国内无网点，售后时效会拉长</span>"] },
     { c: "保护类", n: "Incase", cn: "英凯思", img: "incase.png", t: "1年", sn: "洗水标", s: [`扫描以下二维码进入 incase 售后填写页面<br><img src="logos/incase_qr.png" class="qr-in-step">`,"按照要求填写信息","按照邮件回复进行信息补充或者等待寄修或者更换"] },
-    { c: "保护类", n: "Decoded", cn: "迪考德", img: "decoded.png", t: "1年", sn: "无", s: ["凭购买订单", PENDING_MSG] },
-    { c: "保护类", n: "Catalyst", cn: "卡塔力斯", img: "catalyst.png", t: "1年", sn: "包装", s: ["请联系总代", PENDING_MSG] },
-    { c: "保护类", n: "Lander", cn: "兰德", img: "lander.png", t: "1年", sn: "挂绳孔", s: ["请联系官网", PENDING_MSG] },
-    { c: "保护类", n: "STM", cn: "斯蒂姆", img: "stm.png", t: "1年", sn: "吊牌", s: ["请联系官网", PENDING_MSG] },
+    { c: "保护类", n: "Decoded", cn: "迪考德", img: "decoded.png", t: "1年", sn: "无", s: ["凭购买订单", "<div class=\"warn-text\">该品牌售后还未经最终验证，请等待后续更新</div>"] },
+    { c: "保护类", n: "Catalyst", cn: "卡塔力斯", img: "catalyst.png", t: "1年", sn: "包装", s: ["请联系总代", "<div class=\"warn-text\">该品牌售后还未经最终验证，请等待后续更新</div>"] },
+    { c: "保护类", n: "Lander", cn: "兰德", img: "lander.png", t: "1年", sn: "挂绳孔", s: ["请联系官网", "<div class=\"warn-text\">该品牌售后还未经最终验证，请等待后续更新</div>"] },
+    { c: "保护类", n: "STM", cn: "斯蒂姆", img: "stm.png", t: "1年", sn: "吊牌", s: ["请联系官网", "<div class=\"warn-text\">该品牌售后还未经最终验证，请等待后续更新</div>"] },
     { c: "保护类", n: "Bellroy", cn: "澳洲环保包袋", img: "bellroy.png", t: "3-10年", sn: "凭 Apple Store 购买凭证", s: ["<b>保修范围：</b>钱包/手机壳/小数码配件 3 年质保；双肩包/托特包 6 年质保（2024-11升级政策）；行李箱 10 年质保。","<b>注意事项：</b>仅覆盖材质、做工缺陷（如拉链无故断裂、缝线脱开等）；正常磨损、刮花、人为摔损撕裂不在免费保修范围内。","<b>准备材料：</b>1. Apple Store 购买凭证（订单/小票截图，证明正品授权渠道）；2. 产品实拍（故障特写、整体外观）；3. 购买日期。","<b>售后渠道：</b>发送邮件至官方邮箱 <b>support@bellroy.com</b>（支持中文客服，这是国内最稳妥的官方通道）。"] },
     { c: "保护类", n: "MOFT", cn: "隐形支架", img: "moft.png", t: "1年", sn: "凭 Apple Store 购买凭证", s: ["<b>保修范围：</b>提供 1 年原厂质保（非人为损坏）。注意：Apple Store 无法处理保修期内的免费换新/维修，必须联系品牌方。","<b>准备材料：</b>1. Apple Store 购买凭证（小票/官网订单截图）；2. 产品实拍（故障位置、外包装、产品本体）。","<b>售后渠道（首选）：</b>微信搜索并关注公众号「<b>MOFT</b>」，联系在线客服进行处理。","<b>备用渠道：</b>发送邮件至海外邮箱 <b>cs@moft.us</b>（回复偏慢，建议优先使用微信渠道）。"] },
     { c: "保护类", n: "Herschel", cn: "赫歇尔", img: "herschel.png", t: "有限终身", sn: "凭 Apple Store 购买凭证", s: ["<b>保修范围：</b>背包、电脑包、平板保护套、钱包、拉杆行李箱享受<b>有限终身质保</b>（针对原始购买人）。","<b>注意事项：</b>包含非人为的缝线开裂、拉链无故损坏、面料出厂瑕疵。正常磨损、刮擦、磕碰、暴晒、人为撕裂不在保修内。","<b>准备材料：</b>1. Apple Store 购买凭证（订单/小票）；2. 产品实拍图（故障特写、产品全貌）；3. 购买日期。","<b>售后渠道：</b>国内无正常官方保修渠道，需全英文沟通。发送邮件至 <b>customerservice@herschel.com</b>，或在官网提交表单：<b>herschel.com/warranty</b>。"] },
