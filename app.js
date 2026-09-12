@@ -935,7 +935,7 @@
             </div>
             ${featuresHtml ? `<div class="hot-features-summary">${featuresHtml}</div>` : ""}
             <div class="hot-action-bar">
-              <span class="hot-pitch-hint">💬 查看一击必中话术与连带建议</span>
+              <span class="hot-pitch-hint">🔍 查看产品规格与适配推荐</span>
               <span class="tp-arrow">›</span>
             </div>
           </div>
@@ -961,20 +961,6 @@
           <div class="hot-feature-item">
             <span style="font-size: 16px;">${f.icon}</span>
             <span>${f.text}</span>
-          </div>
-        `
-          )
-          .join("");
-      }
-
-      const pitchesEl = document.getElementById("hot-modal-pitches");
-      if (pitchesEl && item.pitches) {
-        pitchesEl.innerHTML = item.pitches
-          .map(
-            (p) => `
-          <div class="pitch-bubble ${p.style || "gray"}">
-            <span class="pitch-bubble-label">💡 ${p.type}</span>
-            <div>${p.text}</div>
           </div>
         `
           )
@@ -2336,6 +2322,126 @@
       }
     }
 
+    // ================================================================
+    // 官方数据最新变动通知与对比系统 (Apple Official Changelog)
+    // ================================================================
+    function initChangelog() {
+      const changelog = (typeof DATA_CHANGELOG !== "undefined") ? DATA_CHANGELOG : null;
+      const btnChangelog = document.getElementById("btn-changelog");
+      const banner = document.getElementById("changelog-banner");
+      const bannerTitle = document.getElementById("changelog-banner-title");
+      const bannerSub = document.getElementById("changelog-banner-sub");
+      const btnViewBanner = document.getElementById("btn-view-changelog");
+      const btnDismissBanner = document.getElementById("btn-dismiss-changelog");
+      const modal = document.getElementById("changelog-modal");
+      const modalCloseBtn = document.getElementById("changelog-modal-close-btn");
+
+      if (!changelog || !changelog.has_changes) {
+        if (btnChangelog) btnChangelog.style.display = "none";
+        if (banner) banner.style.display = "none";
+        return;
+      }
+
+      // 渲染弹窗内容
+      const timeEl = document.getElementById("changelog-time-display");
+      if (timeEl) timeEl.textContent = changelog.sync_time || "--";
+
+      const summaryEl = document.getElementById("changelog-summary-text");
+      if (summaryEl) summaryEl.textContent = changelog.summary || "";
+
+      // 1. 渲染价格调整表格
+      const tbody = document.getElementById("changelog-price-tbody");
+      if (tbody && changelog.price_changes) {
+        tbody.innerHTML = changelog.price_changes.map(item => {
+          const isUp = item.type === "up";
+          const diffSign = isUp ? `+¥${item.diff}` : `-¥${Math.abs(item.diff)}`;
+          const diffClass = isUp ? "diff-up" : "diff-down";
+          return `
+            <tr>
+              <td><strong>${item.model}</strong></td>
+              <td><span class="part-cell">${item.part}</span></td>
+              <td class="price-old">¥${item.old_price.toLocaleString()}</td>
+              <td class="price-new">¥${item.new_price.toLocaleString()}</td>
+              <td><span class="changelog-diff-pill ${diffClass}">${diffSign}</span></td>
+            </tr>
+          `;
+        }).join("");
+      }
+
+      // 2. 渲染新增入库机型网格
+      const modelsGrid = document.getElementById("changelog-models-container");
+      if (modelsGrid && changelog.new_models) {
+        modelsGrid.innerHTML = changelog.new_models.map(m => `
+          <div class="changelog-model-card">
+            <div class="changelog-model-head">
+              <span class="changelog-model-cat">${m.category}</span>
+              <span class="changelog-badge-new">NEW 入库</span>
+            </div>
+            <div class="changelog-model-series">${m.series}</div>
+            <div class="changelog-model-names">${m.models}</div>
+            <div class="changelog-model-note">${m.note}</div>
+          </div>
+        `).join("");
+      }
+
+      // 3. 渲染原厂网点同步状态
+      const storeBox = document.getElementById("changelog-store-info");
+      if (storeBox && changelog.store_changes) {
+        storeBox.innerHTML = `
+          <div class="changelog-store-stat">
+            <span class="store-stat-num">${changelog.store_changes.total_stores}</span>
+            <span class="store-stat-label">全国原厂认证服务门店</span>
+          </div>
+          <p class="changelog-store-desc">${changelog.store_changes.status}</p>
+        `;
+      }
+
+      function openModal() {
+        if (modal) {
+          modal.style.display = "flex";
+          document.body.style.overflow = "hidden";
+        }
+      }
+
+      function closeModal() {
+        if (modal) {
+          modal.style.display = "none";
+          document.body.style.overflow = "";
+        }
+      }
+
+      if (btnChangelog) {
+        btnChangelog.addEventListener("click", openModal);
+      }
+      if (btnViewBanner) {
+        btnViewBanner.addEventListener("click", openModal);
+      }
+      if (modalCloseBtn) {
+        modalCloseBtn.addEventListener("click", closeModal);
+      }
+      if (modal) {
+        modal.addEventListener("click", (e) => {
+          if (e.target === modal) closeModal();
+        });
+      }
+
+      // 处理顶部 Banner 是否被用户手动关闭过
+      const dismissKey = `changelog_dismissed_${changelog.sync_time}`;
+      const isDismissed = localStorage.getItem(dismissKey) === "1";
+      if (!isDismissed && banner) {
+        banner.style.display = "block";
+      }
+
+      if (btnDismissBanner) {
+        btnDismissBanner.addEventListener("click", () => {
+          if (banner) banner.style.display = "none";
+          try {
+            localStorage.setItem(dismissKey, "1");
+          } catch (e) {}
+        });
+      }
+    }
+
     // 更新全网同步时间戳显示
     function updateSyncTimestampDisplay() {
       const syncTime = (typeof DATA_SYNC_TIMESTAMP !== "undefined") ? DATA_SYNC_TIMESTAMP : "";
@@ -2351,6 +2457,7 @@
     // 初始化渲染
     initCityDropdown();
     initEstimator();
+    initChangelog();
     updateSyncTimestampDisplay();
     render();
   }

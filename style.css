@@ -3342,5 +3342,400 @@ body {
   font-weight: 600;
 }
 
+/* ==========================================================================
+   Apple 官方数据变动提醒系统 (Changelog UI)
+   ========================================================================== */
+
+/* 顶部导航铃铛按钮 */
+.btn-changelog {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+.btn-changelog:hover {
+  background: var(--apple-blue-light);
+  color: var(--apple-blue);
+  border-color: rgba(0, 113, 227, 0.3);
+}
+
+.changelog-badge-dot {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 7px;
+  height: 7px;
+  background: #ff3b30;
+  border-radius: 50%;
+  border: 1.5px solid var(--bg-nav);
+  box-shadow: 0 0 4px rgba(255, 59, 48, 0.6);
+  animation: pulseDot 2s infinite ease-in-out;
+}
+
+@keyframes pulseDot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.3); opacity: 0.8; }
+}
+
+/* 顶部横幅提醒条 (Changelog Banner) */
+.changelog-banner {
+  margin: 12px auto 16px auto;
+  max-width: 1040px;
+  width: 100%;
+  padding: 0 16px;
+  animation: slideDownFade 0.3s ease;
+}
+
+@keyframes slideDownFade {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.changelog-banner-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: linear-gradient(135deg, rgba(0, 113, 227, 0.08) 0%, rgba(88, 86, 214, 0.08) 100%);
+  border: 1px solid rgba(0, 113, 227, 0.22);
+  border-radius: 14px;
+  padding: 10px 16px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.changelog-banner-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+}
+
+.changelog-banner-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.changelog-banner-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.changelog-banner-text strong {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--apple-blue);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.changelog-banner-sub {
+  font-size: 12px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.changelog-banner-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.btn-view-changelog {
+  background: var(--apple-blue);
+  color: #ffffff;
+  border: none;
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition-fast), transform var(--transition-fast);
+  white-space: nowrap;
+}
+
+.btn-view-changelog:hover {
+  background: #0077ed;
+  transform: translateY(-1px);
+}
+
+.btn-dismiss-changelog {
+  background: transparent;
+  border: none;
+  color: var(--text-tertiary);
+  font-size: 18px;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: color var(--transition-fast), background var(--transition-fast);
+}
+
+.btn-dismiss-changelog:hover {
+  color: var(--text-primary);
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* 官方变动通知模态框 (Changelog Modal) */
+.changelog-sheet-card {
+  max-width: 720px;
+}
+
+.changelog-modal-header {
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 20px;
+}
+
+.changelog-header-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(0, 113, 227, 0.1);
+  color: var(--apple-blue);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  margin-bottom: 8px;
+}
+
+.changelog-modal-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 6px 0;
+}
+
+.changelog-sync-time {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  margin: 0 0 8px 0;
+}
+
+.changelog-summary-p {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  background: var(--bg-card);
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  margin: 0;
+}
+
+.changelog-section-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+/* 变动表格 */
+.changelog-table-wrapper {
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-card);
+}
+
+.changelog-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  text-align: left;
+}
+
+.changelog-table th {
+  background: var(--bg-card-header);
+  color: var(--text-secondary);
+  font-weight: 600;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border-color);
+  white-space: nowrap;
+}
+
+.changelog-table td {
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-primary);
+  vertical-align: middle;
+}
+
+.changelog-table tr:last-child td {
+  border-bottom: none;
+}
+
+.changelog-table .part-cell {
+  color: var(--text-secondary);
+  font-size: 12.5px;
+}
+
+.changelog-table .price-old {
+  text-decoration: line-through;
+  color: var(--text-tertiary);
+  font-size: 12px;
+}
+
+.changelog-table .price-new {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.changelog-diff-pill {
+  display: inline-block;
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 12px;
+  white-space: nowrap;
+}
+
+.changelog-diff-pill.diff-up {
+  background: rgba(255, 59, 48, 0.12);
+  color: #ff3b30;
+  border: 1px solid rgba(255, 59, 48, 0.25);
+}
+
+.changelog-diff-pill.diff-down {
+  background: rgba(52, 199, 89, 0.12);
+  color: #34c759;
+  border: 1px solid rgba(52, 199, 89, 0.25);
+}
+
+/* 新增机型网格 */
+.changelog-models-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 12px;
+}
+
+.changelog-model-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.changelog-model-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.changelog-model-cat {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--apple-blue);
+  text-transform: uppercase;
+}
+
+.changelog-badge-new {
+  background: #34c759;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 10px;
+  letter-spacing: 0.5px;
+}
+
+.changelog-model-series {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.changelog-model-names {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.changelog-model-note {
+  font-size: 11.5px;
+  color: var(--text-tertiary);
+  margin-top: 4px;
+  line-height: 1.4;
+}
+
+/* 网点同步信息卡片 */
+.changelog-store-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.changelog-store-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-right: 16px;
+  border-right: 1px solid var(--border-color);
+  min-width: 80px;
+}
+
+.store-stat-num {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--apple-blue);
+}
+
+.store-stat-label {
+  font-size: 11px;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.changelog-store-desc {
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .changelog-banner-sub {
+    display: none;
+  }
+  .changelog-banner-inner {
+    padding: 8px 12px;
+  }
+  .btn-view-changelog {
+    padding: 4px 10px;
+    font-size: 11.5px;
+  }
+  .changelog-store-box {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .changelog-store-stat {
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+    padding-right: 0;
+    padding-bottom: 8px;
+    width: 100%;
+    align-items: flex-start;
+  }
+}
+
 
 

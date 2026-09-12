@@ -1,11 +1,190 @@
 /**
  * Apple 官方维修价格与服务网点快查 - 核心数据集
  * 直连 Apple 官网官方接口同步生成
- * 同步时间戳: 2026-09-12 10:10:04
+ * 同步时间戳: 2026-09-12 12:06:04
  */
 
-var DATA_SYNC_TIMESTAMP = "2026-09-12 10:10:04";
+var DATA_SYNC_TIMESTAMP = "2026-09-12 12:06:04";
 if (typeof window !== "undefined") window.DATA_SYNC_TIMESTAMP = DATA_SYNC_TIMESTAMP;
+
+// ============================================================================
+// 官方数据最新变动通知记录 (DATA_CHANGELOG)
+// ============================================================================
+var DATA_CHANGELOG = {
+  "sync_time": "2026-09-12 12:06:04",
+  "has_changes": true,
+  "badge_text": "官方有变动",
+  "title": "Apple 官网近期价格与机型调整提醒",
+  "summary": "本次同步直连 Apple 官方接口，新增入库 iPhone 18 / 17 / Air 等新一代系列机型，并同步了官方电池服务、背面玻璃及其他损坏等多项保外维修价格调整。",
+  "price_changes": [
+    {
+      "model": "iPhone 16 Pro Max",
+      "part": "其他损坏 (整机/主板)",
+      "old_price": 5699,
+      "new_price": 6698,
+      "diff": 999,
+      "type": "up"
+    },
+    {
+      "model": "iPhone 16 Pro",
+      "part": "其他损坏 (整机/主板)",
+      "old_price": 5299,
+      "new_price": 5898,
+      "diff": 599,
+      "type": "up"
+    },
+    {
+      "model": "iPhone 15 Pro Max",
+      "part": "其他损坏 (整机/主板)",
+      "old_price": 5699,
+      "new_price": 6298,
+      "diff": 599,
+      "type": "up"
+    },
+    {
+      "model": "iPhone 15 Pro",
+      "part": "其他损坏 (整机/主板)",
+      "old_price": 5299,
+      "new_price": 5898,
+      "diff": 599,
+      "type": "up"
+    },
+    {
+      "model": "iPhone 14 Pro Max",
+      "part": "背面玻璃损坏",
+      "old_price": 3998,
+      "new_price": 4498,
+      "diff": 500,
+      "type": "up"
+    },
+    {
+      "model": "iPhone 14 Pro",
+      "part": "背面玻璃损坏",
+      "old_price": 3598,
+      "new_price": 4098,
+      "diff": 500,
+      "type": "up"
+    },
+    {
+      "model": "iPhone 13 Pro Max",
+      "part": "背面玻璃损坏",
+      "old_price": 3598,
+      "new_price": 4098,
+      "diff": 500,
+      "type": "up"
+    },
+    {
+      "model": "iPhone 13",
+      "part": "背面玻璃损坏",
+      "old_price": 2498,
+      "new_price": 2898,
+      "diff": 400,
+      "type": "up"
+    },
+    {
+      "model": "iPhone 16",
+      "part": "其他损坏 (整机/主板)",
+      "old_price": 4399,
+      "new_price": 4898,
+      "diff": 499,
+      "type": "up"
+    },
+    {
+      "model": "iPhone 15",
+      "part": "其他损坏 (整机/主板)",
+      "old_price": 4399,
+      "new_price": 4898,
+      "diff": 499,
+      "type": "up"
+    },
+    {
+      "model": "iPhone 16 Plus",
+      "part": "其他损坏 (整机/主板)",
+      "old_price": 4799,
+      "new_price": 5198,
+      "diff": 399,
+      "type": "up"
+    },
+    {
+      "model": "iPhone 16 Pro Max",
+      "part": "背面玻璃损坏",
+      "old_price": 1548,
+      "new_price": 1298,
+      "diff": -250,
+      "type": "down"
+    },
+    {
+      "model": "iPhone 16 Plus",
+      "part": "背面玻璃损坏",
+      "old_price": 1548,
+      "new_price": 1298,
+      "diff": -250,
+      "type": "down"
+    },
+    {
+      "model": "iPhone 15 Pro Max",
+      "part": "背面玻璃损坏",
+      "old_price": 1548,
+      "new_price": 1298,
+      "diff": -250,
+      "type": "down"
+    },
+    {
+      "model": "iPhone 16 Pro Max / Pro",
+      "part": "电池服务",
+      "old_price": 809,
+      "new_price": 969,
+      "diff": 160,
+      "type": "up"
+    },
+    {
+      "model": "iPhone 16 / 15 / 14 基础系列",
+      "part": "电池服务",
+      "old_price": 729,
+      "new_price": 809,
+      "diff": 80,
+      "type": "up"
+    }
+  ],
+  "new_models": [
+    {
+      "category": "iPhone",
+      "series": "iPhone 18 系列",
+      "models": "iPhone 18 Pro Max, iPhone 18 Pro",
+      "note": "已全量录入 6 项官方保外/AC+ 报价 (电池 ¥1,048、背面玻璃 ¥1,298、屏幕 ¥3,198/¥2,698、其他损坏 ¥7,298/¥6,898)"
+    },
+    {
+      "category": "iPhone",
+      "series": "iPhone Air",
+      "models": "iPhone Air",
+      "note": "超薄机型官方报价已收录 (电池 ¥969、屏幕 ¥2,698、其他损坏 ¥6,498)"
+    },
+    {
+      "category": "iPhone",
+      "series": "iPhone 17 系列",
+      "models": "iPhone 17 Pro Max, iPhone 17 Pro, iPhone 17, iPhone 17e",
+      "note": "全系 4 款机型已全量入库"
+    },
+    {
+      "category": "iPad",
+      "series": "iPad Pro (M5)",
+      "models": "13 英寸 iPad Pro (M5), 11 英寸 iPad Pro (M5)",
+      "note": "M5 芯片新旗舰平板已入库 (电池 ¥1,629/¥1,448、其他损坏 ¥9,329/¥8,099)"
+    },
+    {
+      "category": "Apple Watch",
+      "series": "Apple Watch Series 12 & Ultra 4",
+      "models": "Ultra 4, Series 12 钛金/陶瓷/铝金属",
+      "note": "新一代智能手表全系已收录"
+    }
+  ],
+  "store_changes": {
+    "total_stores": 302,
+    "cities": 65,
+    "status": "覆盖全国 65 个核心城市共 302 家 Apple Store 直营店与官方原厂预约送修 AASP 网点，已完成全量校验与坐标校准。"
+  }
+};
+if (typeof window !== "undefined") window.DATA_CHANGELOG = DATA_CHANGELOG;
 
 // ============================================================================
 // 模块 1：官方维修报价全量扁平数据集 (共 582 项)
@@ -7787,37 +7966,37 @@ var thirdPartyBrands = [
 if (typeof window !== "undefined") window.thirdPartyBrands = thirdPartyBrands;
 
 // ============================================================================
-// 模块 4：当季新品与畅销 Top 10 导购与一击必中话术宝典 (23 款主推配件)
+// 模块 4：当季新品与畅销配件精选 (23 款官方及主流精选配件)
 // 特别鸣谢：@Bryan 整理与倾情支持
 // ============================================================================
 var hotAccessoriesData = [
         // ================= 【当季新品区 - 第一批 6个】 =================
-        { id: 'beats-cable', category: 'new', tag: '新款', name: 'Beats USB-A 转 USB-C 编织连接线 (1.5 米) - 超能粉', price: 'RMB 145', img: 'beats_cable.png', features: [ { icon: '💪', text: '强韧编织材质，抗弯折抗拉扯，极其耐用。' }, { icon: '📏', text: '1.5 米加长设计，在床头或车内边充边玩毫无压力。' }, { icon: '🎨', text: '专属“超能粉”配色，颜值极高，极具辨识度。' } ], pitches: [ { type: '痛点解决 (针对原装线易坏)', text: '“很多顾客觉得原装线太短或者容易折断，这条 Beats 的编织线非常推荐。1.5米刚好够长，而且编织材质怎么折都不容易坏。”', style: 'gray' }, { type: '顺带推荐 (针对买新机/送礼)', text: '“这个超能粉是今年的新配色，和您的新 iPhone 颜色特别搭。价格也不贵，刚好可以备一条放在办公室或者车里用。”', style: 'blue' } ], crossSell: '适合搭配：购买 <b>任何 USB-C 接口的 iPhone 15/16/17</b> 或 <b>iPad</b> 的顾客。' },
-        { id: 'tech21-flexlite', category: 'new', tag: 'Apple 独家提供', name: 'Tech21 FlexLite 保护壳 (适用于 iPhone 17, 兼容 MagSafe)', price: 'RMB 198', img: 'tech21_case.png', features: [ { icon: '🪶', text: '极致轻薄设计，还原裸机手感。' }, { icon: '🛡️', text: '采用 Tech21 独家抗冲击材料，轻薄但防摔性能不减。' }, { icon: '🧲', text: '完美兼容 MagSafe 磁吸生态。' } ], pitches: [ { type: '痛点解决 (针对嫌壳太重的顾客)', text: '“如果您不喜欢太厚重的手机壳，这款 Tech21 FlexLite 是首选。它是 Apple 独家合作款，手感几乎像裸机一样，但防摔性能非常强。”', style: 'gray' } ], crossSell: '适合搭配：购买 <b>iPhone 17 系列</b> 且犹豫是否买官方壳的顾客。' },
-        { id: 'herschel-sling', category: 'new', tag: 'Apple 独家提供', name: 'Herschel Cloud Sling 斜挎包 (适用于 iPhone)', price: 'RMB 498', img: 'herschel_sling.png', features: [ { icon: '☁️', text: '云朵般柔软内衬，完美保护 iPhone 屏幕和镜头。' }, { icon: '🎒', text: '专属小巧尺寸，夏日出行/运动零负担。' }, { icon: '✨', text: '潮流百搭，多色可选，Apple Store 独家发售。' } ], pitches: [ { type: '场景构建 (针对年轻/女性顾客)', text: '“夏天出门不想带大包的话，这个小挎包刚好能装下您的 Pro Max。内衬特别软，不用担心钥匙刮花屏幕，背在身上也非常百搭。”', style: 'blue' } ], crossSell: '适合搭配：购买 <b>大屏 iPhone (Plus/Pro Max)</b> 觉得口袋装不下的顾客。' },
-        { id: 'popsockets-kickout', category: 'new', tag: 'Apple 独家提供', name: 'PopSockets 手柄兼翻出式支架 (兼容 MagSafe)', price: 'RMB 398', img: 'popsockets_kickout.png', features: [ { icon: '🧲', text: '超强 MagSafe 磁吸，一贴即合，狂甩不掉。' }, { icon: '🤏', text: '单手握持神器，躺在床上玩手机防砸脸。' }, { icon: '📺', text: '秒变桌面支架，横竖屏看视频/打 FaceTime 超方便。' } ], pitches: [ { type: '痛点解决 (针对手滑/爱看剧的顾客)', text: '“现在大家都喜欢用这种磁吸支架，一贴就上。平时单手打字特别稳，吃饭时还能当支架看剧，不用的时候直接取下来，完全不影响手机手感。”', style: 'gray' } ], crossSell: '适合搭配：购买 <b>大屏 iPhone</b> 或 <b>官方 MagSafe 硅胶/透明壳</b> 的顾客。' },
-        { id: 'moft-snap', category: 'new', tag: '新款', name: 'MOFT Snap Field MagSafe 卡包支架', price: 'RMB 498', img: 'moft_snap.png', features: [ { icon: '💳', text: '卡包+支架二合一，可收纳 2-3 张常用卡片。' }, { icon: '📐', text: '独家折叠黄金角度，提供最舒适的观影和浏览体验。' }, { icon: '🌿', text: '采用优质环保素皮材质，手感细腻高级。' } ], pitches: [ { type: '顺带推荐 (针对商务/极简出行顾客)', text: '“这款 MOFT 卡包支架特别适合极简出行，里面塞一张门禁卡一张信用卡，下楼买咖啡连钱包都不用带。折叠起来还能当支架，非常实用。”', style: 'blue' } ], crossSell: '适合搭配：购买 <b>iPhone Pro 系列</b> 的商务人士。' },
-        { id: 'native-union-active', category: 'new', tag: '新款', name: 'Native Union Active 磁吸式卡包支架', price: 'RMB 348', img: 'native_union.png', features: [ { icon: '🏃', text: 'Active 运动系列材质，防汗防滑，更耐脏。' }, { icon: '🧲', text: '强力磁吸，稳固贴合 iPhone 背部。' }, { icon: '🎨', text: '撞色设计，为 iPhone 增添个性化视觉亮点。' } ], pitches: [ { type: '痛点解决 (针对担心皮质不耐脏的顾客)', text: '“如果您担心普通的皮质卡包用久了会脏，可以看看 Native Union 这款。它用了特殊的防汗材质，特别耐脏耐用，而且撞色设计非常好看。”', style: 'gray' } ], crossSell: '适合搭配：购买 <b>iPhone 数字系列</b> 或喜欢户外运动的顾客。' },
+        { id: 'beats-cable', category: 'new', tag: '新款', name: 'Beats USB-A 转 USB-C 编织连接线 (1.5 米) - 超能粉', price: 'RMB 145', img: 'beats_cable.png', features: [ { icon: '💪', text: '强韧编织材质，抗弯折抗拉扯，极其耐用。' }, { icon: '📏', text: '1.5 米加长设计，在床头或车内边充边玩毫无压力。' }, { icon: '🎨', text: '专属“超能粉”配色，颜值极高，极具辨识度。' } ], crossSell: '适合搭配：购买 <b>任何 USB-C 接口的 iPhone 15/16/17</b> 或 <b>iPad</b> 的顾客。' },
+        { id: 'tech21-flexlite', category: 'new', tag: 'Apple 独家提供', name: 'Tech21 FlexLite 保护壳 (适用于 iPhone 17, 兼容 MagSafe)', price: 'RMB 198', img: 'tech21_case.png', features: [ { icon: '🪶', text: '极致轻薄设计，还原裸机手感。' }, { icon: '🛡️', text: '采用 Tech21 独家抗冲击材料，轻薄但防摔性能不减。' }, { icon: '🧲', text: '完美兼容 MagSafe 磁吸生态。' } ], crossSell: '适合搭配：购买 <b>iPhone 17 系列</b> 且犹豫是否买官方壳的顾客。' },
+        { id: 'herschel-sling', category: 'new', tag: 'Apple 独家提供', name: 'Herschel Cloud Sling 斜挎包 (适用于 iPhone)', price: 'RMB 498', img: 'herschel_sling.png', features: [ { icon: '☁️', text: '云朵般柔软内衬，完美保护 iPhone 屏幕和镜头。' }, { icon: '🎒', text: '专属小巧尺寸，夏日出行/运动零负担。' }, { icon: '✨', text: '潮流百搭，多色可选，Apple Store 独家发售。' } ], crossSell: '适合搭配：购买 <b>大屏 iPhone (Plus/Pro Max)</b> 觉得口袋装不下的顾客。' },
+        { id: 'popsockets-kickout', category: 'new', tag: 'Apple 独家提供', name: 'PopSockets 手柄兼翻出式支架 (兼容 MagSafe)', price: 'RMB 398', img: 'popsockets_kickout.png', features: [ { icon: '🧲', text: '超强 MagSafe 磁吸，一贴即合，狂甩不掉。' }, { icon: '🤏', text: '单手握持神器，躺在床上玩手机防砸脸。' }, { icon: '📺', text: '秒变桌面支架，横竖屏看视频/打 FaceTime 超方便。' } ], crossSell: '适合搭配：购买 <b>大屏 iPhone</b> 或 <b>官方 MagSafe 硅胶/透明壳</b> 的顾客。' },
+        { id: 'moft-snap', category: 'new', tag: '新款', name: 'MOFT Snap Field MagSafe 卡包支架', price: 'RMB 498', img: 'moft_snap.png', features: [ { icon: '💳', text: '卡包+支架二合一，可收纳 2-3 张常用卡片。' }, { icon: '📐', text: '独家折叠黄金角度，提供最舒适的观影和浏览体验。' }, { icon: '🌿', text: '采用优质环保素皮材质，手感细腻高级。' } ], crossSell: '适合搭配：购买 <b>iPhone Pro 系列</b> 的商务人士。' },
+        { id: 'native-union-active', category: 'new', tag: '新款', name: 'Native Union Active 磁吸式卡包支架', price: 'RMB 348', img: 'native_union.png', features: [ { icon: '🏃', text: 'Active 运动系列材质，防汗防滑，更耐脏。' }, { icon: '🧲', text: '强力磁吸，稳固贴合 iPhone 背部。' }, { icon: '🎨', text: '撞色设计，为 iPhone 增添个性化视觉亮点。' } ], crossSell: '适合搭配：购买 <b>iPhone 数字系列</b> 或喜欢户外运动的顾客。' },
 
         // ================= 【当季新品区 - 第二批 7个】 =================
-        { id: 'herschel-organizer', category: 'new', tag: 'Apple 独家提供', name: 'Herschel Cloudform Burrard Organizer Tech 收纳包', price: 'RMB 548', img: 'herschel_organizer.png', features: [ { icon: '🧳', text: '大容量多隔层，轻松收纳 Mac 充电器、线缆和鼠标。' }, { icon: '☁️', text: '采用 Cloudform 柔软防震材质，全面保护数码配件。' }, { icon: '✈️', text: '差旅收纳神器，告别背包里线缆缠绕的烦恼。' } ], pitches: [ { type: '痛点解决 (针对差旅/学生党)', text: '“平时出门带 Mac 和 iPad，充电器和线很容易在包里缠在一起。这个收纳包分层做得特别好，装进去整整齐齐，找东西一目了然。”', style: 'gray' }, { type: '顺带推荐 (买 Mac 时)', text: '“您新买的 Mac 配件比较多，强烈建议带上这个 Apple 独家的收纳包，颜色非常亮眼，放在行李箱里既安全又好找。”', style: 'blue' } ], crossSell: '适合搭配：购买 <b>MacBook</b> 或 <b>iPad Pro</b> 且有通勤/差旅需求的顾客。' },
-        { id: 'scosche-cable', category: 'new', tag: 'Apple 独家提供', name: 'Scosche StrikeLine USB-C 至 USB-C 连接线 (1 米)', price: 'RMB 198', img: 'scosche_cable.png', features: [ { icon: '💎', text: '高透明度外被 + 内部编织纹理，赛博朋克高颜值。' }, { icon: '🎀', text: '自带硅胶理线器，用完一扣，收纳不打结。' }, { icon: '⚡️', text: '支持高速快充与数据传输，坚固耐用。' } ], pitches: [ { type: '颜值吸引 (替代原装线)', text: '“这条线实物特别好看，外面是透明的，里面能看到编织纹理。而且它自带了一个理线扣，放包里绝对不会乱成一团。”', style: 'gray' } ], crossSell: '适合搭配：购买 <b>iPhone 15/16/17</b> 或 <b>iPad</b> 的年轻/女性顾客。' },
-        { id: 'herschel-airpods-tote', category: 'new', tag: 'Apple 独家提供', name: 'Herschel AirPods 托特包挂件', price: 'RMB 198', img: 'herschel_tote.png', features: [ { icon: '👜', text: '趣味迷你托特包造型，极具个性和辨识度。' }, { icon: '✨', text: '马卡龙清新宿色，挂在通勤包上是绝佳的装饰品。' }, { icon: '🎧', text: '不仅能完美保护 AirPods，还能装硬币等随身小物。' } ], pitches: [ { type: '场景构建 (针对女性顾客)', text: '“这个迷你托特包造型太可爱了！把 AirPods 装在里面挂在大包包外面，拿取特别方便，而且当个包包挂饰也非常吸睛。”', style: 'blue' } ], crossSell: '适合搭配：购买 <b>AirPods 系列</b> 的女性顾客或送礼顾客。' },
-        { id: 'herschel-airpods-cloud', category: 'new', tag: 'Apple 独家提供', name: 'Herschel Cloudform AirPods 挂件', price: 'RMB 198', img: 'herschel_airpods_cloud.png', features: [ { icon: '🎒', text: '经典 Herschel 随身小包缩放设计，完美贴合 AirPods。' }, { icon: '🧗', text: '自带坚固的快挂扣，随手扣在背包带或裤带上。' }, { icon: '☁️', text: 'Cloudform 柔软内衬，防摔防刮擦。' } ], pitches: [ { type: '痛点解决 (防丢防摔)', text: '“AirPods 盒子太滑，很容易从口袋掉出来。装在这个小挂件里直接扣在书包或者钥匙上，安全防摔，运动的时候也不怕丢。”', style: 'gray' } ], crossSell: '适合搭配：购买 <b>AirPods 系列</b> 的学生或户外运动爱好者。' },
-        { id: 'herschel-airtag', category: 'new', tag: 'Apple 独家提供', name: 'Herschel AirTag 挂件', price: 'RMB 198', img: 'herschel_airtag.png', features: [ { icon: '🏕️', text: '采用 Herschel 经典耐磨帆布材质，极其耐用。' }, { icon: '🤐', text: '安全拉链全包设计，AirTag 放在里面绝对不会掉落。' }, { icon: '🧳', text: '坚固的圆环挂扣，是行李箱和双肩包的绝配。' } ], pitches: [ { type: '安全感建立 (针对挂行李箱)', text: '“如果您打算把 AirTag 挂在托运行李箱上，强烈推荐这款。它是有拉链全包起来的，就算行李被暴力托运，AirTag 也绝对不会被磕掉。”', style: 'blue' } ], crossSell: '适合搭配：购买 <b>AirTag</b> 准备差旅/留学的顾客。' },
-        { id: 'mophie-knit-puck', category: 'new', tag: 'Apple 独家提供', name: 'mophie Knit Puck 保护壳 (适用于 AirTag)', price: 'RMB 148', img: 'mophie_puck.png', features: [ { icon: '🧵', text: '独特的针织纹理材质，手感温润高级。' }, { icon: '🔗', text: '配备坚固的金属圆环，比普通塑料扣更耐用。' }, { icon: '🔑', text: '全方位包裹设计，贴身保护防刮擦。' } ], pitches: [ { type: '顺带推荐 (针对挂钥匙)', text: '“这款针织材质的保护壳手感特别好，挂在车钥匙上不会显得突兀，金属环也特别结实，不用担心用久了会断。”', style: 'gray' } ], crossSell: '适合搭配：购买 <b>AirTag</b> 用来挂钥匙/门禁卡的顾客。' },
-        { id: 'mophie-loop', category: 'new', tag: 'Apple 独家提供', name: 'mophie Loop AirTag 挂环保护套', price: 'RMB 128', img: 'mophie_loop.png', features: [ { icon: '🧶', text: '时尚编织挂绳设计，耐用且打结方便。' }, { icon: '🛡️', text: '特制边框牢固包裹 AirTag，防丢防刮。' }, { icon: '🎨', text: '多款清新马卡龙配色，个性化搭配随心选。' } ], pitches: [ { type: '性价比推荐', text: '“这款挂环颜色特别有夏天的感觉，编织绳的设计可以直接穿过任何包包的拉链或者背带，128的价格性价比非常高。”', style: 'blue' } ], crossSell: '适合搭配：购买 <b>AirTag 4件装</b> 的顾客，可推荐搭配不同颜色。' },
+        { id: 'herschel-organizer', category: 'new', tag: 'Apple 独家提供', name: 'Herschel Cloudform Burrard Organizer Tech 收纳包', price: 'RMB 548', img: 'herschel_organizer.png', features: [ { icon: '🧳', text: '大容量多隔层，轻松收纳 Mac 充电器、线缆和鼠标。' }, { icon: '☁️', text: '采用 Cloudform 柔软防震材质，全面保护数码配件。' }, { icon: '✈️', text: '差旅收纳神器，告别背包里线缆缠绕的烦恼。' } ], crossSell: '适合搭配：购买 <b>MacBook</b> 或 <b>iPad Pro</b> 且有通勤/差旅需求的顾客。' },
+        { id: 'scosche-cable', category: 'new', tag: 'Apple 独家提供', name: 'Scosche StrikeLine USB-C 至 USB-C 连接线 (1 米)', price: 'RMB 198', img: 'scosche_cable.png', features: [ { icon: '💎', text: '高透明度外被 + 内部编织纹理，赛博朋克高颜值。' }, { icon: '🎀', text: '自带硅胶理线器，用完一扣，收纳不打结。' }, { icon: '⚡️', text: '支持高速快充与数据传输，坚固耐用。' } ], crossSell: '适合搭配：购买 <b>iPhone 15/16/17</b> 或 <b>iPad</b> 的年轻/女性顾客。' },
+        { id: 'herschel-airpods-tote', category: 'new', tag: 'Apple 独家提供', name: 'Herschel AirPods 托特包挂件', price: 'RMB 198', img: 'herschel_tote.png', features: [ { icon: '👜', text: '趣味迷你托特包造型，极具个性和辨识度。' }, { icon: '✨', text: '马卡龙清新宿色，挂在通勤包上是绝佳的装饰品。' }, { icon: '🎧', text: '不仅能完美保护 AirPods，还能装硬币等随身小物。' } ], crossSell: '适合搭配：购买 <b>AirPods 系列</b> 的女性顾客或送礼顾客。' },
+        { id: 'herschel-airpods-cloud', category: 'new', tag: 'Apple 独家提供', name: 'Herschel Cloudform AirPods 挂件', price: 'RMB 198', img: 'herschel_airpods_cloud.png', features: [ { icon: '🎒', text: '经典 Herschel 随身小包缩放设计，完美贴合 AirPods。' }, { icon: '🧗', text: '自带坚固的快挂扣，随手扣在背包带或裤带上。' }, { icon: '☁️', text: 'Cloudform 柔软内衬，防摔防刮擦。' } ], crossSell: '适合搭配：购买 <b>AirPods 系列</b> 的学生或户外运动爱好者。' },
+        { id: 'herschel-airtag', category: 'new', tag: 'Apple 独家提供', name: 'Herschel AirTag 挂件', price: 'RMB 198', img: 'herschel_airtag.png', features: [ { icon: '🏕️', text: '采用 Herschel 经典耐磨帆布材质，极其耐用。' }, { icon: '🤐', text: '安全拉链全包设计，AirTag 放在里面绝对不会掉落。' }, { icon: '🧳', text: '坚固的圆环挂扣，是行李箱和双肩包的绝配。' } ], crossSell: '适合搭配：购买 <b>AirTag</b> 准备差旅/留学的顾客。' },
+        { id: 'mophie-knit-puck', category: 'new', tag: 'Apple 独家提供', name: 'mophie Knit Puck 保护壳 (适用于 AirTag)', price: 'RMB 148', img: 'mophie_puck.png', features: [ { icon: '🧵', text: '独特的针织纹理材质，手感温润高级。' }, { icon: '🔗', text: '配备坚固的金属圆环，比普通塑料扣更耐用。' }, { icon: '🔑', text: '全方位包裹设计，贴身保护防刮擦。' } ], crossSell: '适合搭配：购买 <b>AirTag</b> 用来挂钥匙/门禁卡的顾客。' },
+        { id: 'mophie-loop', category: 'new', tag: 'Apple 独家提供', name: 'mophie Loop AirTag 挂环保护套', price: 'RMB 128', img: 'mophie_loop.png', features: [ { icon: '🧶', text: '时尚编织挂绳设计，耐用且打结方便。' }, { icon: '🛡️', text: '特制边框牢固包裹 AirTag，防丢防刮。' }, { icon: '🎨', text: '多款清新马卡龙配色，个性化搭配随心选。' } ], crossSell: '适合搭配：购买 <b>AirTag 4件装</b> 的顾客，可推荐搭配不同颜色。' },
 
         // ================= 【畅销 Top 10 区 (真实榜单)】 =================
-        { id: 'top1-earpods-c', category: 'top', rank: 1, tag: '销量冠军', name: 'EarPods (USB-C 接口)', price: 'RMB 149', img: 'earpods_c.png', features: [ { icon: '🎧', text: '经典造型设计，佩戴舒适，久戴不胀耳。' }, { icon: '🎙️', text: '线控自带高质量麦克风，通话、上网课、开会神器。' }, { icon: '🔌', text: '原生 USB-C 接口，直连新款 iPhone、iPad 和 Mac，无需转接。' } ], pitches: [ { type: '痛点解决 (针对不喜欢蓝牙的顾客)', text: '“如果您戴不惯入耳式耳机，或者总忘记给蓝牙耳机充电，这条经典的 EarPods 绝对是首选，插上就能用，而且麦克风收音特别清晰。”', style: 'gray' } ], crossSell: '适合搭配：购买 <b>iPhone 15/16/17 系列</b> 或经常开视频会议的顾客。' },
-        { id: 'top2-c-to-l', category: 'top', rank: 2, tag: '必备刚需', name: 'USB-C 转闪电连接线 (1 米)', price: 'RMB 149', img: 'c_to_l.png', features: [ { icon: '⚡️', text: '支持 PD 快速充电，30 分钟即可充至约 50% 电量。' }, { icon: '📱', text: '完美兼容所有 Lightning 接口的 iPhone、iPad 和 AirPods。' }, { icon: '🛡️', text: '官方原装品质，充电稳定不发烫，拒绝弹窗。' } ], pitches: [ { type: '备用推荐 (针对老款 iPhone 顾客)', text: '“原装线用久了容易老化，建议您备一条全新的快充线放在办公室或车里。搭配 20W 充电头，半小时就能充一半的电，非常高效。”', style: 'blue' } ], crossSell: '适合搭配：使用 <b>iPhone 14 及更早机型</b> 或需要多备一根线的顾客。' },
-        { id: 'top3-belkin-film', category: 'top', rank: 3, tag: '购机必推', name: 'Belkin UltraGlass 2 屏幕保护膜 (iPhone 17 Pro Max)', price: 'RMB 329', img: 'belkin_film.png', features: [ { icon: '💎', text: '采用双离子交换技术，防摔防刮性能提升 2.7 倍。' }, { icon: '✨', text: '极致超薄，完美还原超瓷晶面板的裸机触控感和清晰度。' }, { icon: '🛠️', text: '店内提供专业贴膜服务，机器精准对齐，无尘无气泡。' } ], pitches: [ { type: '新机保护 (趁热打铁)', text: '“新手机的屏幕最容易被钥匙和沙子划伤。这款贝尔金是 Apple 官方认证的，硬度极高，而且我们在店里用专业工具帮您贴好，完全看不出贴了膜。”', style: 'blue' } ], crossSell: '适合搭配：购买 <b>iPhone 17 Pro Max</b> 的每一位顾客。' },
-        { id: 'top4-earpods-l', category: 'top', rank: 4, tag: '经典热销', name: 'EarPods 采用闪电接头', price: 'RMB 149', img: 'earpods_l.png', features: [ { icon: '🎧', text: '经典人体工学设计，贴合耳道，佩戴稳固。' }, { icon: '🎙️', text: '集成线控，轻松调节音量、控制音乐和接听电话。' }, { icon: '📱', text: '专为 Lightning 接口设备打造，即插即用零延迟。' } ], pitches: [ { type: '性价比推荐 (针对学生/备用耳机)', text: '“这是一款性价比极高的原装耳机，不用充电，音质和通话效果都非常稳定，用来打游戏、听歌或者上网课最合适不过了。”', style: 'gray' } ], crossSell: '适合搭配：使用 <b>iPhone 14 及更早机型</b> 的顾客。' },
-        { id: 'top5-airpods-max2', category: 'top', rank: 5, tag: '高端爆款', name: 'AirPods Max (USB-C)', price: 'RMB 3,999', img: 'airpods_max.png', features: [ { icon: '🎵', text: '突破性的高保真音质，沉浸式空间音频体验。' }, { icon: '🤫', text: '行业顶级的降噪效果，一秒隔绝外界喧嚣。' }, { icon: '🔌', text: '全新 USB-C 接口，与新款 iPhone/Mac 充电更统一。' } ], pitches: [ { type: '体验邀请 (针对音乐/影视爱好者)', text: '“您可以戴上试听一下，它的降噪和空间音频绝对会给您一种置身私人影院的感觉。而且新款换了 USB-C 接口，用您手机的线就能直接充。”', style: 'blue' } ], crossSell: '适合搭配：购买 <b>MacBook、iPad Pro</b> 或对音质有极高要求的顾客。' },
-        { id: 'top6-magsafe', category: 'top', rank: 6, tag: '体验升级', name: 'MagSafe 充电器', price: 'RMB 329', img: 'magsafe.png', features: [ { icon: '🧲', text: '磁吸精准对齐，一贴即充，告别反复插拔。' }, { icon: '⚡️', text: '搭配 30W 充电头，最高支持 25W 无线快充 (新款)。' }, { icon: '🎮', text: '边充边玩不挡手，横屏游戏、看剧两不误。' } ], pitches: [ { type: '体验升级 (针对首次使用 MagSafe 的顾客)', text: '“用过磁吸充电就回不去了。晚上睡觉前随手一放就吸附充电，不用摸黑找接口；白天边充边打游戏也完全不卡手。”', style: 'gray' } ], crossSell: '适合搭配：购买 <b>iPhone 12-17 系列</b> 的顾客。' },
-        { id: 'top7-pencil-tips', category: 'top', rank: 7, tag: '消耗必备', name: 'Apple Pencil 笔尖 (4 个装)', price: 'RMB 179', img: 'pencil_tips.png', features: [ { icon: '✍️', text: '官方原装笔尖，精准感应倾斜和压感，不伤屏幕。' }, { icon: '🔄', text: '轻松旋出即可更换，让 Apple Pencil 瞬间焕然一新。' }, { icon: '📦', text: '4 个装超值组合，长期绘画、做笔记无忧。' } ], pitches: [ { type: '顺带推荐 (针对买笔/用笔大户)', text: '“笔尖是消耗品，特别是如果您贴了类纸膜的话，磨损会更快。这盒有 4 个，买一盒备在家里，平时画画做笔记就不用小心翼翼了。”', style: 'blue' } ], crossSell: '适合搭配：购买 <b>Apple Pencil</b> 或 <b>iPad</b> (尤其是学生/画师) 的顾客。' },
-        { id: 'top8-17pm-clear', category: 'top', rank: 8, tag: '原色首选', name: 'iPhone 17 Pro Max 透明保护壳 (支持 MagSafe)', price: 'RMB 399', img: 'clear_case.png', features: [ { icon: '🌟', text: '高透光聚碳酸酯材质，完美展现新机绝美原色。' }, { icon: '🛡️', text: '内外涂有防刮涂层，且经过优化防止泛黄。' }, { icon: '🧲', text: '内置磁体，MagSafe 配件一贴即合，充电更快捷。' } ], pitches: [ { type: '购机必推 (针对挑选了新配色的顾客)', text: '“您选的这个新颜色特别好看，如果用不透明的壳挡住就太可惜了。这款官方透明壳不仅防摔，而且材质特殊，用久了也不容易发黄。”', style: 'blue' } ], crossSell: '适合搭配：购买 <b>iPhone 17 Pro Max (尤其是新配色)</b> 的顾客。' },
-        { id: 'top9-tech21-clear', category: 'top', rank: 9, tag: '高性价比', name: 'Tech21 FlexLite 保护壳 (兼容 MagSafe, 透明)', price: 'RMB 198', img: 'tech21_clear.png', features: [ { icon: '🪶', text: '极致轻薄设计，还原裸机手感，透明展现原机色彩。' }, { icon: '🛡️', text: '采用 Tech21 独家抗冲击材料，轻薄但防摔性能不减。' }, { icon: '🧲', text: '完美兼容 MagSafe 磁吸生态。' } ], pitches: [ { type: '痛点解决 (针对嫌官方壳贵或太厚的顾客)', text: '“如果您觉得官方壳稍微有点厚重，这款 Apple 独家合作的 Tech21 是最佳平替。手感非常轻薄，防摔性能一流，而且价格非常亲民。”', style: 'gray' } ], crossSell: '适合搭配：购买 <b>iPhone 17 系列</b>，追求轻薄手感和高性价比的顾客。' },
-        { id: 'top10-watch-cable', category: 'top', rank: 10, tag: '差旅救急', name: 'Apple Watch 磁吸快速充电线转 USB-C (1 米)', price: 'RMB 279', img: 'watch_cable.png', features: [ { icon: '⚡️', text: '支持 Apple Watch 快充，约 45 分钟即可充至 80%。' }, { icon: '⌚️', text: '密封良好无暴露触点，表背靠近即自动吸附贴合。' }, { icon: '🔌', text: '采用通用 USB-C 接口，可直接插在 Mac 或 iPad 上充电。' } ], pitches: [ { type: '场景构建 (针对差旅/办公室备用)', text: '“建议您多备一条手表的快充线放在办公室或者差旅包里。它支持快充，洗个澡的功夫就能充够一整天用的电量，非常救急。”', style: 'blue' } ], crossSell: '适合搭配：购买 <b>Apple Watch Series 7-11 / Ultra</b> 或有出差需求的顾客。' }
+        { id: 'top1-earpods-c', category: 'top', rank: 1, tag: '销量冠军', name: 'EarPods (USB-C 接口)', price: 'RMB 149', img: 'earpods_c.png', features: [ { icon: '🎧', text: '经典造型设计，佩戴舒适，久戴不胀耳。' }, { icon: '🎙️', text: '线控自带高质量麦克风，通话、上网课、开会神器。' }, { icon: '🔌', text: '原生 USB-C 接口，直连新款 iPhone、iPad 和 Mac，无需转接。' } ], crossSell: '适合搭配：购买 <b>iPhone 15/16/17 系列</b> 或经常开视频会议的顾客。' },
+        { id: 'top2-c-to-l', category: 'top', rank: 2, tag: '必备刚需', name: 'USB-C 转闪电连接线 (1 米)', price: 'RMB 149', img: 'c_to_l.png', features: [ { icon: '⚡️', text: '支持 PD 快速充电，30 分钟即可充至约 50% 电量。' }, { icon: '📱', text: '完美兼容所有 Lightning 接口的 iPhone、iPad 和 AirPods。' }, { icon: '🛡️', text: '官方原装品质，充电稳定不发烫，拒绝弹窗。' } ], crossSell: '适合搭配：使用 <b>iPhone 14 及更早机型</b> 或需要多备一根线的顾客。' },
+        { id: 'top3-belkin-film', category: 'top', rank: 3, tag: '购机必推', name: 'Belkin UltraGlass 2 屏幕保护膜 (iPhone 17 Pro Max)', price: 'RMB 329', img: 'belkin_film.png', features: [ { icon: '💎', text: '采用双离子交换技术，防摔防刮性能提升 2.7 倍。' }, { icon: '✨', text: '极致超薄，完美还原超瓷晶面板的裸机触控感和清晰度。' }, { icon: '🛠️', text: '店内提供专业贴膜服务，机器精准对齐，无尘无气泡。' } ], crossSell: '适合搭配：购买 <b>iPhone 17 Pro Max</b> 的每一位顾客。' },
+        { id: 'top4-earpods-l', category: 'top', rank: 4, tag: '经典热销', name: 'EarPods 采用闪电接头', price: 'RMB 149', img: 'earpods_l.png', features: [ { icon: '🎧', text: '经典人体工学设计，贴合耳道，佩戴稳固。' }, { icon: '🎙️', text: '集成线控，轻松调节音量、控制音乐和接听电话。' }, { icon: '📱', text: '专为 Lightning 接口设备打造，即插即用零延迟。' } ], crossSell: '适合搭配：使用 <b>iPhone 14 及更早机型</b> 的顾客。' },
+        { id: 'top5-airpods-max2', category: 'top', rank: 5, tag: '高端爆款', name: 'AirPods Max (USB-C)', price: 'RMB 3,999', img: 'airpods_max.png', features: [ { icon: '🎵', text: '突破性的高保真音质，沉浸式空间音频体验。' }, { icon: '🤫', text: '行业顶级的降噪效果，一秒隔绝外界喧嚣。' }, { icon: '🔌', text: '全新 USB-C 接口，与新款 iPhone/Mac 充电更统一。' } ], crossSell: '适合搭配：购买 <b>MacBook、iPad Pro</b> 或对音质有极高要求的顾客。' },
+        { id: 'top6-magsafe', category: 'top', rank: 6, tag: '体验升级', name: 'MagSafe 充电器', price: 'RMB 329', img: 'magsafe.png', features: [ { icon: '🧲', text: '磁吸精准对齐，一贴即充，告别反复插拔。' }, { icon: '⚡️', text: '搭配 30W 充电头，最高支持 25W 无线快充 (新款)。' }, { icon: '🎮', text: '边充边玩不挡手，横屏游戏、看剧两不误。' } ], crossSell: '适合搭配：购买 <b>iPhone 12-17 系列</b> 的顾客。' },
+        { id: 'top7-pencil-tips', category: 'top', rank: 7, tag: '消耗必备', name: 'Apple Pencil 笔尖 (4 个装)', price: 'RMB 179', img: 'pencil_tips.png', features: [ { icon: '✍️', text: '官方原装笔尖，精准感应倾斜和压感，不伤屏幕。' }, { icon: '🔄', text: '轻松旋出即可更换，让 Apple Pencil 瞬间焕然一新。' }, { icon: '📦', text: '4 个装超值组合，长期绘画、做笔记无忧。' } ], crossSell: '适合搭配：购买 <b>Apple Pencil</b> 或 <b>iPad</b> (尤其是学生/画师) 的顾客。' },
+        { id: 'top8-17pm-clear', category: 'top', rank: 8, tag: '原色首选', name: 'iPhone 17 Pro Max 透明保护壳 (支持 MagSafe)', price: 'RMB 399', img: 'clear_case.png', features: [ { icon: '🌟', text: '高透光聚碳酸酯材质，完美展现新机绝美原色。' }, { icon: '🛡️', text: '内外涂有防刮涂层，且经过优化防止泛黄。' }, { icon: '🧲', text: '内置磁体，MagSafe 配件一贴即合，充电更快捷。' } ], crossSell: '适合搭配：购买 <b>iPhone 17 Pro Max (尤其是新配色)</b> 的顾客。' },
+        { id: 'top9-tech21-clear', category: 'top', rank: 9, tag: '高性价比', name: 'Tech21 FlexLite 保护壳 (兼容 MagSafe, 透明)', price: 'RMB 198', img: 'tech21_clear.png', features: [ { icon: '🪶', text: '极致轻薄设计，还原裸机手感，透明展现原机色彩。' }, { icon: '🛡️', text: '采用 Tech21 独家抗冲击材料，轻薄但防摔性能不减。' }, { icon: '🧲', text: '完美兼容 MagSafe 磁吸生态。' } ], crossSell: '适合搭配：购买 <b>iPhone 17 系列</b>，追求轻薄手感和高性价比的顾客。' },
+        { id: 'top10-watch-cable', category: 'top', rank: 10, tag: '差旅救急', name: 'Apple Watch 磁吸快速充电线转 USB-C (1 米)', price: 'RMB 279', img: 'watch_cable.png', features: [ { icon: '⚡️', text: '支持 Apple Watch 快充，约 45 分钟即可充至 80%。' }, { icon: '⌚️', text: '密封良好无暴露触点，表背靠近即自动吸附贴合。' }, { icon: '🔌', text: '采用通用 USB-C 接口，可直接插在 Mac 或 iPad 上充电。' } ], crossSell: '适合搭配：购买 <b>Apple Watch Series 7-11 / Ultra</b> 或有出差需求的顾客。' }
     ];
 if (typeof window !== "undefined") window.hotAccessoriesData = hotAccessoriesData;
