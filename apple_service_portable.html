@@ -1444,6 +1444,17 @@ body {
   color: var(--apple-orange);
 }
 
+.price-applecare.na {
+  background: var(--bg-hover);
+  color: var(--text-tertiary);
+  border: 1px solid var(--border-color);
+}
+
+.part-price-val.ac-na {
+  color: var(--text-tertiary);
+  font-size: 13px;
+}
+
 /* Empty State */
 .empty-state {
   padding: 60px 24px;
@@ -2065,6 +2076,14 @@ body {
   background: rgba(52, 199, 89, 0.14);
 }
 
+.price-val-ac.is-na {
+  color: var(--text-tertiary);
+  background: var(--bg-hover);
+  border: 1px solid var(--border-color);
+  font-weight: 500;
+  font-size: 12px;
+}
+
 @media (prefers-color-scheme: dark) {
   .price-val-ac {
     color: #2997ff;
@@ -2073,6 +2092,11 @@ body {
   .price-val-ac.is-free {
     color: #30d158;
     background: rgba(48, 209, 88, 0.18);
+  }
+  .price-val-ac.is-na {
+    color: var(--text-tertiary);
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.1);
   }
 }
 
@@ -4521,185 +4545,21 @@ body {
  * 同步时间戳: 2026-09-12 12:06:04
  */
 
-var DATA_SYNC_TIMESTAMP = "2026-09-12 12:06:04";
+var DATA_SYNC_TIMESTAMP = "2026-09-12 17:30:00";
 if (typeof window !== "undefined") window.DATA_SYNC_TIMESTAMP = DATA_SYNC_TIMESTAMP;
 
 // ============================================================================
 // 官方数据最新变动通知记录 (DATA_CHANGELOG)
 // ============================================================================
 var DATA_CHANGELOG = {
-  "sync_time": "2026-09-12 12:06:04",
-  "has_changes": true,
-  "badge_text": "官方有变动",
-  "title": "Apple 官网近期价格与机型调整提醒",
-  "summary": "本次同步直连 Apple 官方接口，新增入库 iPhone 18 / 17 / Air 等新一代系列机型，并同步了官方电池服务、背面玻璃及其他损坏等多项保外维修价格调整。",
-  "price_changes": [
-    {
-      "model": "iPhone 16 Pro Max",
-      "part": "其他损坏 (整机/主板)",
-      "old_price": 5699,
-      "new_price": 6698,
-      "diff": 999,
-      "type": "up"
-    },
-    {
-      "model": "iPhone 16 Pro",
-      "part": "其他损坏 (整机/主板)",
-      "old_price": 5299,
-      "new_price": 5898,
-      "diff": 599,
-      "type": "up"
-    },
-    {
-      "model": "iPhone 15 Pro Max",
-      "part": "其他损坏 (整机/主板)",
-      "old_price": 5699,
-      "new_price": 6298,
-      "diff": 599,
-      "type": "up"
-    },
-    {
-      "model": "iPhone 15 Pro",
-      "part": "其他损坏 (整机/主板)",
-      "old_price": 5299,
-      "new_price": 5898,
-      "diff": 599,
-      "type": "up"
-    },
-    {
-      "model": "iPhone 14 Pro Max",
-      "part": "背面玻璃损坏",
-      "old_price": 3998,
-      "new_price": 4498,
-      "diff": 500,
-      "type": "up"
-    },
-    {
-      "model": "iPhone 14 Pro",
-      "part": "背面玻璃损坏",
-      "old_price": 3598,
-      "new_price": 4098,
-      "diff": 500,
-      "type": "up"
-    },
-    {
-      "model": "iPhone 13 Pro Max",
-      "part": "背面玻璃损坏",
-      "old_price": 3598,
-      "new_price": 4098,
-      "diff": 500,
-      "type": "up"
-    },
-    {
-      "model": "iPhone 13",
-      "part": "背面玻璃损坏",
-      "old_price": 2498,
-      "new_price": 2898,
-      "diff": 400,
-      "type": "up"
-    },
-    {
-      "model": "iPhone 16",
-      "part": "其他损坏 (整机/主板)",
-      "old_price": 4399,
-      "new_price": 4898,
-      "diff": 499,
-      "type": "up"
-    },
-    {
-      "model": "iPhone 15",
-      "part": "其他损坏 (整机/主板)",
-      "old_price": 4399,
-      "new_price": 4898,
-      "diff": 499,
-      "type": "up"
-    },
-    {
-      "model": "iPhone 16 Plus",
-      "part": "其他损坏 (整机/主板)",
-      "old_price": 4799,
-      "new_price": 5198,
-      "diff": 399,
-      "type": "up"
-    },
-    {
-      "model": "iPhone 16 Pro Max",
-      "part": "背面玻璃损坏",
-      "old_price": 1548,
-      "new_price": 1298,
-      "diff": -250,
-      "type": "down"
-    },
-    {
-      "model": "iPhone 16 Plus",
-      "part": "背面玻璃损坏",
-      "old_price": 1548,
-      "new_price": 1298,
-      "diff": -250,
-      "type": "down"
-    },
-    {
-      "model": "iPhone 15 Pro Max",
-      "part": "背面玻璃损坏",
-      "old_price": 1548,
-      "new_price": 1298,
-      "diff": -250,
-      "type": "down"
-    },
-    {
-      "model": "iPhone 16 Pro Max / Pro",
-      "part": "电池服务",
-      "old_price": 809,
-      "new_price": 969,
-      "diff": 160,
-      "type": "up"
-    },
-    {
-      "model": "iPhone 16 / 15 / 14 基础系列",
-      "part": "电池服务",
-      "old_price": 729,
-      "new_price": 809,
-      "diff": 80,
-      "type": "up"
-    }
-  ],
-  "new_models": [
-    {
-      "category": "iPhone",
-      "series": "iPhone 18 系列",
-      "models": "iPhone 18 Pro Max, iPhone 18 Pro",
-      "note": "已全量录入 6 项官方保外/AC+ 报价 (电池 ¥1,048、背面玻璃 ¥1,298、屏幕 ¥3,198/¥2,698、其他损坏 ¥7,298/¥6,898)"
-    },
-    {
-      "category": "iPhone",
-      "series": "iPhone Air",
-      "models": "iPhone Air",
-      "note": "超薄机型官方报价已收录 (电池 ¥969、屏幕 ¥2,698、其他损坏 ¥6,498)"
-    },
-    {
-      "category": "iPhone",
-      "series": "iPhone 17 系列",
-      "models": "iPhone 17 Pro Max, iPhone 17 Pro, iPhone 17, iPhone 17e",
-      "note": "全系 4 款机型已全量入库"
-    },
-    {
-      "category": "iPad",
-      "series": "iPad Pro (M5)",
-      "models": "13 英寸 iPad Pro (M5), 11 英寸 iPad Pro (M5)",
-      "note": "M5 芯片新旗舰平板已入库 (电池 ¥1,629/¥1,448、其他损坏 ¥9,329/¥8,099)"
-    },
-    {
-      "category": "Apple Watch",
-      "series": "Apple Watch Series 12 & Ultra 4",
-      "models": "Ultra 4, Series 12 钛金/陶瓷/铝金属",
-      "note": "新一代智能手表全系已收录"
-    }
-  ],
-  "store_changes": {
-    "total_stores": 302,
-    "cities": 65,
-    "status": "覆盖全国 65 个核心城市共 302 家 Apple Store 直营店与官方原厂预约送修 AASP 网点，已完成全量校验与坐标校准。"
-  }
+  "sync_time": "2026-09-12 17:30:00",
+  "has_changes": false,
+  "badge_text": "",
+  "title": "",
+  "summary": "",
+  "price_changes": [],
+  "new_models": [],
+  "store_changes": null
 };
 if (typeof window !== "undefined") window.DATA_CHANGELOG = DATA_CHANGELOG;
 
@@ -6889,7 +6749,7 @@ var pricesData = [
     "model": "Apple Pencil Pro",
     "part": "其他损坏",
     "out_of_warranty": 888,
-    "applecare": 228
+    "applecare": 199
   },
   {
     "category": "iPad",
@@ -6903,49 +6763,49 @@ var pricesData = [
     "model": "Apple Pencil (USB-C)",
     "part": "其他损坏",
     "out_of_warranty": 579,
-    "applecare": 228
+    "applecare": 199
   },
   {
     "category": "iPad",
     "model": "Magic Keyboard Folio for iPad (10th generation)",
     "part": "其他损坏",
     "out_of_warranty": 1729,
-    "applecare": 228
+    "applecare": 199
   },
   {
     "category": "iPad",
     "model": "适用于 12.9 英寸 iPad Pro 的妙控键盘",
     "part": "其他损坏",
     "out_of_warranty": 2379,
-    "applecare": 228
+    "applecare": 199
   },
   {
     "category": "iPad",
     "model": "适用于 11 英寸 iPad Pro 的妙控键盘",
     "part": "其他损坏",
     "out_of_warranty": 2039,
-    "applecare": 228
+    "applecare": 199
   },
   {
     "category": "iPad",
     "model": "适用于 13 英寸 iPad Pro（M4） 的妙控键盘",
     "part": "其他损坏",
     "out_of_warranty": 2379,
-    "applecare": 228
+    "applecare": 199
   },
   {
     "category": "iPad",
     "model": "适用于 11 英寸 iPad Pro（M4） 的妙控键盘",
     "part": "其他损坏",
     "out_of_warranty": 2039,
-    "applecare": 228
+    "applecare": 199
   },
   {
     "category": "iPad",
     "model": "适用于 12.9 英寸 iPad Pro 的键盘式智能双面夹",
     "part": "其他损坏",
     "out_of_warranty": 1359,
-    "applecare": 228
+    "applecare": 199
   },
   {
     "category": "iPad",
@@ -6959,21 +6819,21 @@ var pricesData = [
     "model": "Apple Pencil（第 2 代）",
     "part": "其他损坏",
     "out_of_warranty": 888,
-    "applecare": 228
+    "applecare": 199
   },
   {
     "category": "iPad",
     "model": "Smart Keyboard Folio for iPad Pro 11-inch",
     "part": "其他损坏",
     "out_of_warranty": 1189,
-    "applecare": 228
+    "applecare": 199
   },
   {
     "category": "iPad",
     "model": "适用于 iPad Pro（10.5 英寸）的智能键盘",
     "part": "其他损坏",
     "out_of_warranty": 1062,
-    "applecare": 228
+    "applecare": 199
   },
   {
     "category": "iPad",
@@ -6987,14 +6847,14 @@ var pricesData = [
     "model": "Apple Pencil",
     "part": "其他损坏",
     "out_of_warranty": 708,
-    "applecare": 228
+    "applecare": 199
   },
   {
     "category": "iPad",
     "model": "适用于 iPad Pro（9.7 英寸）的智能键盘",
     "part": "其他损坏",
     "out_of_warranty": 1002,
-    "applecare": 228
+    "applecare": 199
   },
   {
     "category": "Apple Watch",
@@ -7008,7 +6868,7 @@ var pricesData = [
     "model": "Apple Watch Hermès Ultra 4",
     "part": "其他损坏",
     "out_of_warranty": 4339,
-    "applecare": 599
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -7022,7 +6882,7 @@ var pricesData = [
     "model": "Apple Watch Ultra 4",
     "part": "其他损坏",
     "out_of_warranty": 4339,
-    "applecare": 599
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -7036,7 +6896,7 @@ var pricesData = [
     "model": "Apple Watch Hermès Ultra 3",
     "part": "其他损坏",
     "out_of_warranty": 3949,
-    "applecare": 599
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -7050,7 +6910,7 @@ var pricesData = [
     "model": "Apple Watch Ultra 3",
     "part": "其他损坏",
     "out_of_warranty": 3949,
-    "applecare": 599
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -7064,7 +6924,7 @@ var pricesData = [
     "model": "Apple Watch Hermès Ultra 2",
     "part": "其他损坏",
     "out_of_warranty": 3949,
-    "applecare": 599
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -7078,7 +6938,7 @@ var pricesData = [
     "model": "Apple Watch Ultra 2",
     "part": "其他损坏",
     "out_of_warranty": 3949,
-    "applecare": 599
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -7092,7 +6952,7 @@ var pricesData = [
     "model": "Apple Watch Ultra",
     "part": "其他损坏",
     "out_of_warranty": 3949,
-    "applecare": 599
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -7134,7 +6994,7 @@ var pricesData = [
     "model": "Apple Watch Hermès Series 12 GPS + Cellular 42mm",
     "part": "其他损坏",
     "out_of_warranty": 3599,
-    "applecare": 599
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -7148,7 +7008,7 @@ var pricesData = [
     "model": "Apple Watch Hermès Series 12 GPS + Cellular 46mm",
     "part": "其他损坏",
     "out_of_warranty": 3599,
-    "applecare": 599
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -7246,7 +7106,7 @@ var pricesData = [
     "model": "Apple Watch Hermès Series 11 GPS + 蜂窝网络 42 毫米",
     "part": "其他损坏",
     "out_of_warranty": 3198,
-    "applecare": 599
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -7260,7 +7120,7 @@ var pricesData = [
     "model": "Apple Watch Hermès Series 11 GPS + 蜂窝网络 46 毫米",
     "part": "其他损坏",
     "out_of_warranty": 3198,
-    "applecare": 599
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -7274,7 +7134,7 @@ var pricesData = [
     "model": "Apple Watch Series 11 GPS + 蜂窝网络 钛金属 42 毫米",
     "part": "其他损坏",
     "out_of_warranty": 3198,
-    "applecare": 528
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -7288,7 +7148,7 @@ var pricesData = [
     "model": "Apple Watch Series 11 GPS + 蜂窝网络 钛金属 46 毫米",
     "part": "其他损坏",
     "out_of_warranty": 3198,
-    "applecare": 528
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -7358,7 +7218,7 @@ var pricesData = [
     "model": "Apple Watch Hermès Series 10 GPS + 蜂窝网络 42 毫米",
     "part": "其他损坏",
     "out_of_warranty": 3198,
-    "applecare": 599
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -7372,7 +7232,7 @@ var pricesData = [
     "model": "Apple Watch Hermès Series 10 GPS + 蜂窝网络 46 毫米",
     "part": "其他损坏",
     "out_of_warranty": 3198,
-    "applecare": 599
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -7386,7 +7246,7 @@ var pricesData = [
     "model": "Apple Watch Series 10 GPS + 蜂窝网络 钛金属 42 毫米",
     "part": "其他损坏",
     "out_of_warranty": 3198,
-    "applecare": 528
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -7400,7 +7260,7 @@ var pricesData = [
     "model": "Apple Watch Series 10 GPS + 蜂窝网络 钛金属 46 毫米",
     "part": "其他损坏",
     "out_of_warranty": 3198,
-    "applecare": 528
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -7470,7 +7330,7 @@ var pricesData = [
     "model": "Apple Watch Hermès Series 9 GPS + 蜂窝网络 41 毫米",
     "part": "其他损坏",
     "out_of_warranty": 3198,
-    "applecare": 599
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -7484,7 +7344,7 @@ var pricesData = [
     "model": "Apple Watch Hermès Series 9 GPS + 蜂窝网络 45 毫米",
     "part": "其他损坏",
     "out_of_warranty": 3198,
-    "applecare": 599
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -7498,7 +7358,7 @@ var pricesData = [
     "model": "Apple Watch Series 9 GPS + 蜂窝网络 不锈钢 41 毫米",
     "part": "其他损坏",
     "out_of_warranty": 3198,
-    "applecare": 528
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -7512,7 +7372,7 @@ var pricesData = [
     "model": "Apple Watch Series 9 GPS + 蜂窝网络 不锈钢 45 毫米",
     "part": "其他损坏",
     "out_of_warranty": 3198,
-    "applecare": 528
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -7582,7 +7442,7 @@ var pricesData = [
     "model": "Apple Watch Hermès Series 8（GPS + 蜂窝网络）41 毫米",
     "part": "其他损坏",
     "out_of_warranty": 3198,
-    "applecare": 599
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -7596,7 +7456,7 @@ var pricesData = [
     "model": "Apple Watch Hermès Series 8（GPS + 蜂窝网络）45 毫米",
     "part": "其他损坏",
     "out_of_warranty": 3198,
-    "applecare": 599
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -7610,7 +7470,7 @@ var pricesData = [
     "model": "Apple Watch Series 8（GPS + 蜂窝网络）（不锈钢）41 毫米",
     "part": "其他损坏",
     "out_of_warranty": 3198,
-    "applecare": 528
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -7624,7 +7484,7 @@ var pricesData = [
     "model": "Apple Watch Series 8（GPS + 蜂窝网络）（不锈钢）45 毫米",
     "part": "其他损坏",
     "out_of_warranty": 3198,
-    "applecare": 528
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -7694,7 +7554,7 @@ var pricesData = [
     "model": "Apple Watch Edition Series 7（GPS + 蜂窝网络）（钛金属）41 毫米",
     "part": "其他损坏",
     "out_of_warranty": 3998,
-    "applecare": 599
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -7708,7 +7568,7 @@ var pricesData = [
     "model": "Apple Watch Edition Series 7（GPS + 蜂窝网络）（钛金属）45 毫米",
     "part": "其他损坏",
     "out_of_warranty": 3998,
-    "applecare": 599
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -7834,7 +7694,7 @@ var pricesData = [
     "model": "Apple Watch Series 7（GPS + 蜂窝网络）（不锈钢）41 毫米",
     "part": "其他损坏",
     "out_of_warranty": 3198,
-    "applecare": 528
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -7848,7 +7708,7 @@ var pricesData = [
     "model": "Apple Watch Series 7（GPS + 蜂窝网络）（不锈钢）45 毫米",
     "part": "其他损坏",
     "out_of_warranty": 3198,
-    "applecare": 528
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -7918,7 +7778,7 @@ var pricesData = [
     "model": "Apple Watch Series 6（GPS + 蜂窝网络）（不锈钢）40 毫米",
     "part": "其他损坏",
     "out_of_warranty": 3198,
-    "applecare": 528
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -7932,7 +7792,7 @@ var pricesData = [
     "model": "Apple Watch Series 6（GPS + 蜂窝网络）（不锈钢）44 毫米",
     "part": "其他损坏",
     "out_of_warranty": 3198,
-    "applecare": 528
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -7974,7 +7834,7 @@ var pricesData = [
     "model": "Apple Watch Edition Series 6（GPS + 蜂窝网络）（钛金属）40 毫米",
     "part": "其他损坏",
     "out_of_warranty": 3998,
-    "applecare": 599
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -7988,7 +7848,7 @@ var pricesData = [
     "model": "Apple Watch Edition Series 6（GPS + 蜂窝网络）（钛金属）44 毫米",
     "part": "其他损坏",
     "out_of_warranty": 3998,
-    "applecare": 599
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -8352,14 +8212,14 @@ var pricesData = [
     "model": "AirPods Pro 3",
     "part": "AirPod (左侧或右侧) 丢失",
     "out_of_warranty": 679,
-    "applecare": 199
+    "applecare": null
   },
   {
     "category": "AirPods",
     "model": "AirPods Pro 3",
     "part": "充电盒丢失",
     "out_of_warranty": 749,
-    "applecare": 199
+    "applecare": null
   },
   {
     "category": "AirPods",
@@ -8387,14 +8247,14 @@ var pricesData = [
     "model": "AirPods Pro 2 (USB-C)",
     "part": "AirPod (左侧或右侧) 丢失",
     "out_of_warranty": 679,
-    "applecare": 199
+    "applecare": null
   },
   {
     "category": "AirPods",
     "model": "AirPods Pro 2 (USB-C)",
     "part": "充电盒丢失",
     "out_of_warranty": 749,
-    "applecare": 199
+    "applecare": null
   },
   {
     "category": "AirPods",
@@ -8422,14 +8282,14 @@ var pricesData = [
     "model": "AirPods Pro 2（闪电）",
     "part": "AirPod (左侧或右侧) 丢失",
     "out_of_warranty": 679,
-    "applecare": 199
+    "applecare": null
   },
   {
     "category": "AirPods",
     "model": "AirPods Pro 2（闪电）",
     "part": "充电盒丢失",
     "out_of_warranty": 749,
-    "applecare": 199
+    "applecare": null
   },
   {
     "category": "AirPods",
@@ -8457,14 +8317,14 @@ var pricesData = [
     "model": "AirPods Pro 1 (MagSafe)",
     "part": "AirPod (左侧或右侧) 丢失",
     "out_of_warranty": 679,
-    "applecare": 199
+    "applecare": null
   },
   {
     "category": "AirPods",
     "model": "AirPods Pro 1 (MagSafe)",
     "part": "充电盒丢失",
     "out_of_warranty": 749,
-    "applecare": 199
+    "applecare": null
   },
   {
     "category": "AirPods",
@@ -8492,14 +8352,14 @@ var pricesData = [
     "model": "AirPods Pro 1（无线）",
     "part": "AirPod (左侧或右侧) 丢失",
     "out_of_warranty": 679,
-    "applecare": 199
+    "applecare": null
   },
   {
     "category": "AirPods",
     "model": "AirPods Pro 1（无线）",
     "part": "充电盒丢失",
     "out_of_warranty": 749,
-    "applecare": 199
+    "applecare": null
   },
   {
     "category": "AirPods",
@@ -8527,14 +8387,14 @@ var pricesData = [
     "model": "AirPods 5 (Wireless)",
     "part": "AirPod (左侧或右侧) 丢失",
     "out_of_warranty": 599,
-    "applecare": 199
+    "applecare": null
   },
   {
     "category": "AirPods",
     "model": "AirPods 5 (Wireless)",
     "part": "充电盒丢失",
     "out_of_warranty": 661,
-    "applecare": 199
+    "applecare": null
   },
   {
     "category": "AirPods",
@@ -8562,14 +8422,14 @@ var pricesData = [
     "model": "AirPods 5",
     "part": "AirPod (左侧或右侧) 丢失",
     "out_of_warranty": 599,
-    "applecare": 199
+    "applecare": null
   },
   {
     "category": "AirPods",
     "model": "AirPods 5",
     "part": "充电盒丢失",
     "out_of_warranty": 599,
-    "applecare": 199
+    "applecare": null
   },
   {
     "category": "AirPods",
@@ -8597,14 +8457,14 @@ var pricesData = [
     "model": "AirPods 4 (ANC)",
     "part": "AirPod (左侧或右侧) 丢失",
     "out_of_warranty": 599,
-    "applecare": 199
+    "applecare": null
   },
   {
     "category": "AirPods",
     "model": "AirPods 4 (ANC)",
     "part": "充电盒丢失",
     "out_of_warranty": 661,
-    "applecare": 199
+    "applecare": null
   },
   {
     "category": "AirPods",
@@ -8632,14 +8492,14 @@ var pricesData = [
     "model": "AirPods 4",
     "part": "AirPod (左侧或右侧) 丢失",
     "out_of_warranty": 599,
-    "applecare": 199
+    "applecare": null
   },
   {
     "category": "AirPods",
     "model": "AirPods 4",
     "part": "充电盒丢失",
     "out_of_warranty": 599,
-    "applecare": 199
+    "applecare": null
   },
   {
     "category": "AirPods",
@@ -8667,14 +8527,14 @@ var pricesData = [
     "model": "AirPods 3 (MagSafe)",
     "part": "AirPod (左侧或右侧) 丢失",
     "out_of_warranty": 599,
-    "applecare": 199
+    "applecare": null
   },
   {
     "category": "AirPods",
     "model": "AirPods 3 (MagSafe)",
     "part": "充电盒丢失",
     "out_of_warranty": 661,
-    "applecare": 199
+    "applecare": null
   },
   {
     "category": "AirPods",
@@ -8702,14 +8562,14 @@ var pricesData = [
     "model": "AirPods 3（闪电）",
     "part": "AirPod (左侧或右侧) 丢失",
     "out_of_warranty": 599,
-    "applecare": 199
+    "applecare": null
   },
   {
     "category": "AirPods",
     "model": "AirPods 3（闪电）",
     "part": "充电盒丢失",
     "out_of_warranty": 599,
-    "applecare": 199
+    "applecare": null
   },
   {
     "category": "AirPods",
@@ -8737,14 +8597,14 @@ var pricesData = [
     "model": "AirPods 2（无线）",
     "part": "AirPod (左侧或右侧) 丢失",
     "out_of_warranty": 599,
-    "applecare": 199
+    "applecare": null
   },
   {
     "category": "AirPods",
     "model": "AirPods 2（无线）",
     "part": "充电盒丢失",
     "out_of_warranty": 661,
-    "applecare": 199
+    "applecare": null
   },
   {
     "category": "AirPods",
@@ -8772,14 +8632,14 @@ var pricesData = [
     "model": "AirPods 2（闪电）",
     "part": "AirPod (左侧或右侧) 丢失",
     "out_of_warranty": 599,
-    "applecare": 199
+    "applecare": null
   },
   {
     "category": "AirPods",
     "model": "AirPods 2（闪电）",
     "part": "充电盒丢失",
     "out_of_warranty": 479,
-    "applecare": 199
+    "applecare": null
   }
 ];
 if (typeof window !== "undefined") window.pricesData = pricesData;
@@ -13175,11 +13035,17 @@ if (typeof window !== "undefined") window.hotAccessoriesData = hotAccessoriesDat
                 const partsHtml = grp.items
                   .map((item) => {
                     const partIcon = getPartIcon(item.part);
+                    const isNa = item.applecare === null || item.applecare === undefined || item.applecare < 0;
                     const isFree = item.applecare === 0;
-                    const saving = item.out_of_warranty - item.applecare;
-                    const acBadge = isFree
-                      ? `<span class="part-price-val ac-free">¥ 0 免费包含</span>`
-                      : `<span class="part-price-val ac-paid">¥ ${item.applecare.toLocaleString()}</span>`;
+                    const saving = isNa ? 0 : (item.out_of_warranty - item.applecare);
+                    let acBadge = "";
+                    if (isNa) {
+                      acBadge = `<span class="part-price-val ac-na">不适用 / 仅保外</span>`;
+                    } else if (isFree) {
+                      acBadge = `<span class="part-price-val ac-free">¥ 0 免费包含</span>`;
+                    } else {
+                      acBadge = `<span class="part-price-val ac-paid">¥ ${item.applecare.toLocaleString()}</span>`;
+                    }
                     const savingBadge =
                       saving > 0
                         ? `<div class="ac-saving-badge">AppleCare+ 立省 ¥${saving.toLocaleString()}</div>`
@@ -13235,10 +13101,14 @@ if (typeof window !== "undefined") window.hotAccessoriesData = hotAccessoriesDat
             tbody.innerHTML = filteredPrices
               .map((item) => {
                 const catClass = renderCategoryBadgeClass(item.category);
-                const applecareBadge =
-                  item.applecare === 0
-                    ? `<span class="price-applecare free">免费 / 已包含</span>`
-                    : `<span class="price-applecare paid">¥ ${item.applecare.toLocaleString()}</span>`;
+                let applecareBadge = "";
+                if (item.applecare === null || item.applecare === undefined || item.applecare < 0) {
+                  applecareBadge = `<span class="price-applecare na">不适用 / 仅保外</span>`;
+                } else if (item.applecare === 0) {
+                  applecareBadge = `<span class="price-applecare free">免费 / 已包含</span>`;
+                } else {
+                  applecareBadge = `<span class="price-applecare paid">¥ ${item.applecare.toLocaleString()}</span>`;
+                }
 
                 return `
                 <tr>
@@ -13538,7 +13408,7 @@ if (typeof window !== "undefined") window.hotAccessoriesData = hotAccessoriesDat
         return;
       }
 
-      const CACHE_NAME = 'apple-service-v4.2';
+      const CACHE_NAME = 'apple-service-v4.3';
       let cache;
       try {
         cache = await caches.open(CACHE_NAME);
@@ -14097,7 +13967,7 @@ if (typeof window !== "undefined") window.hotAccessoriesData = hotAccessoriesDat
 
     // PWA Service Worker 离线注册 (在 http/https 环境下生效，强制检查并即时应用最新版本)
     if ("serviceWorker" in navigator && (window.location.protocol === "http:" || window.location.protocol === "https:")) {
-      navigator.serviceWorker.register("./sw.js?v=202609121430")
+      navigator.serviceWorker.register("./sw.js?v=202609121730")
         .then((reg) => {
           reg.update();
           setTimeout(downloadAllOfflineAssets, 500);
@@ -14292,12 +14162,17 @@ if (typeof window !== "undefined") window.hotAccessoriesData = hotAccessoriesDat
       const m = (modelName || "").toLowerCase();
       const p = (partName || "").toLowerCase();
 
-      // 1. 电池服务：全品类只要容量低于 80%，AppleCare+ 均提供免费更换
+      // 1. 丢失或被盗：AppleCare+ 在中国大陆不为丢失被盗提供保障，需按保外原价购买替换件
+      if (p.includes("丢失")) {
+        return { price: "--", isFree: false, label: "不适用 (仅保外)", notCovered: true };
+      }
+
+      // 2. 电池服务：全品类只要容量低于 80%，AppleCare+ 均提供免费更换
       if (p.includes("电池")) {
         return { price: "RMB 0", isFree: true, label: "RMB 0 (免费)" };
       }
 
-      // 2. iPhone
+      // 3. iPhone
       if (cat.includes("iphone") || m.includes("iphone")) {
         // 官方 AppleCare+ 政策：无论是仅屏幕损坏、仅背面玻璃损坏，还是屏幕和背面玻璃同时损坏，每次服务费均为 RMB 188
         if (p.includes("屏幕") || p.includes("背面玻璃")) {
@@ -14307,7 +14182,7 @@ if (typeof window !== "undefined") window.hotAccessoriesData = hotAccessoriesDat
         return { price: "RMB 628", isFree: false, label: "RMB 628" };
       }
 
-      // 3. Mac
+      // 4. Mac
       if (cat.includes("mac") || m.includes("mac")) {
         if (p.includes("屏幕") || p.includes("外壳") || p.includes("键盘")) {
           return { price: "RMB 799", isFree: false, label: "RMB 799" };
@@ -14315,23 +14190,23 @@ if (typeof window !== "undefined") window.hotAccessoriesData = hotAccessoriesDat
         return { price: "RMB 2,299", isFree: false, label: "RMB 2,299" };
       }
 
-      // 4. iPad
+      // 5. iPad
       if (cat.includes("ipad") || m.includes("ipad")) {
         if (m.includes("pencil") || m.includes("keyboard") || m.includes("键盘") || p.includes("pencil") || p.includes("键盘")) {
-          return { price: "RMB 188", isFree: false, label: "RMB 188" };
+          return { price: "RMB 199", isFree: false, label: "RMB 199" };
         }
         return { price: "RMB 368", isFree: false, label: "RMB 368" };
       }
 
-      // 5. Apple Watch
+      // 6. Apple Watch
       if (cat.includes("watch") || m.includes("watch")) {
-        if (m.includes("ultra") || m.includes("hermès") || m.includes("hermes") || m.includes("edition")) {
+        if (m.includes("ultra") || m.includes("hermès") || m.includes("hermes") || m.includes("edition") || m.includes("钛金属") || m.includes("陶瓷") || m.includes("不锈钢")) {
           return { price: "RMB 628", isFree: false, label: "RMB 628" };
         }
         return { price: "RMB 528", isFree: false, label: "RMB 528" };
       }
 
-      // 6. AirPods
+      // 7. AirPods
       if (cat.includes("airpods") || m.includes("airpods")) {
         return { price: "RMB 199", isFree: false, label: "RMB 199" };
       }
@@ -14358,6 +14233,18 @@ if (typeof window !== "undefined") window.hotAccessoriesData = hotAccessoriesDat
             ]
           };
         }
+        if (m.includes("plus")) {
+          return {
+            planPrice: "RMB 1,399",
+            period: "2 年期（或 RMB 69.9/月）",
+            features: [
+              "屏幕或背面玻璃损坏（含双面同时损坏）：每次收取 RMB 188 服务费",
+              "其他意外损坏：每次收取 RMB 628 服务费",
+              "电池最大容量低于 80%：免费更换原厂电池",
+              "保障期内享受不限次数意外损坏保修与 24/7 优先技术支持"
+            ]
+          };
+        }
         if (m.includes("se")) {
           return {
             planPrice: "RMB 599",
@@ -14370,7 +14257,7 @@ if (typeof window !== "undefined") window.hotAccessoriesData = hotAccessoriesDat
             ]
           };
         }
-        if (m.includes("16e") || m.includes("17e")) {
+        if (m.includes("16e") || m.includes("17e") || m.includes("mini")) {
           return {
             planPrice: "RMB 899",
             period: "2 年期",
@@ -14420,7 +14307,7 @@ if (typeof window !== "undefined") window.hotAccessoriesData = hotAccessoriesDat
             ]
           };
         }
-        if (m.includes("air 15")) {
+        if (m.includes("air 15") || m.includes("15 英寸 macbook air")) {
           return {
             planPrice: "RMB 1,599",
             period: "3 年期",
@@ -14432,7 +14319,7 @@ if (typeof window !== "undefined") window.hotAccessoriesData = hotAccessoriesDat
             ]
           };
         }
-        if (m.includes("air 13")) {
+        if (m.includes("air") || m.includes("13 英寸 macbook air")) {
           return {
             planPrice: "RMB 1,399",
             period: "3 年期",
@@ -14441,6 +14328,37 @@ if (typeof window !== "undefined") window.hotAccessoriesData = hotAccessoriesDat
               "主板或其他硬件损坏：每次收取 RMB 2,299 服务费",
               "电池容量低于 80%：免费更换原厂电池",
               "保障期内享受不限次数意外损坏保修与全球联保"
+            ]
+          };
+        }
+        if (m.includes("mac pro")) {
+          return {
+            planPrice: "RMB 2,299",
+            period: "3 年期",
+            features: [
+              "硬件损坏：每次收取 RMB 799 ~ 2,299 服务费",
+              "保障期内享受不限次数意外损坏保修与优先技术支持"
+            ]
+          };
+        }
+        if (m.includes("studio")) {
+          return {
+            planPrice: "RMB 1,199",
+            period: "3 年期",
+            features: [
+              "硬件损坏：每次收取 RMB 799 ~ 2,299 服务费",
+              "保障期内享受不限次数意外损坏保修与优先技术支持"
+            ]
+          };
+        }
+        if (m.includes("imac")) {
+          return {
+            planPrice: "RMB 1,199",
+            period: "3 年期",
+            features: [
+              "屏幕或外壳损坏：每次收取 RMB 799 服务费",
+              "主板及其他硬件损坏：每次收取 RMB 2,299 服务费",
+              "保障期内享受不限次数意外损坏保修与优先技术支持"
             ]
           };
         }
@@ -14468,13 +14386,13 @@ if (typeof window !== "undefined") window.hotAccessoriesData = hotAccessoriesDat
 
       // iPad 系列
       if (cat.includes("ipad") || m.includes("ipad")) {
-        if (m.includes("pro 13") || m.includes("pro 12.9") || m.includes("13 英寸") || m.includes("12.9 英寸")) {
+        if (m.includes("pro 13") || m.includes("pro 12.9") || m.includes("13 英寸 ipad pro") || m.includes("12.9 英寸")) {
           return {
-            planPrice: "RMB 1,199",
-            period: "2 年期（或 RMB 599/年）",
+            planPrice: "RMB 1,399",
+            period: "2 年期（或 RMB 699/年）",
             features: [
               "iPad 意外损坏：每次收取 RMB 368 服务费",
-              "Apple Pencil 或妙控键盘损坏：每次收取 RMB 188 服务费",
+              "Apple Pencil 或妙控键盘损坏：每次收取 RMB 199 服务费",
               "电池容量低于 80%：免费更换原厂电池",
               "保障期内享受不限次数意外损坏保修与优先支持"
             ]
@@ -14482,23 +14400,35 @@ if (typeof window !== "undefined") window.hotAccessoriesData = hotAccessoriesDat
         }
         if (m.includes("pro 11") || m.includes("11 英寸 ipad pro")) {
           return {
-            planPrice: "RMB 999",
-            period: "2 年期",
+            planPrice: "RMB 1,199",
+            period: "2 年期（或 RMB 599/年）",
             features: [
               "iPad 意外损坏：每次收取 RMB 368 服务费",
-              "Apple Pencil 或妙控键盘损坏：每次收取 RMB 188 服务费",
+              "Apple Pencil 或妙控键盘损坏：每次收取 RMB 199 服务费",
               "电池容量低于 80%：免费更换原厂电池",
               "保障期内享受不限次数意外损坏保修与优先支持"
             ]
           };
         }
-        if (m.includes("air")) {
+        if (m.includes("air 13") || m.includes("13 英寸 ipad air")) {
           return {
-            planPrice: "RMB 599",
+            planPrice: "RMB 799",
             period: "2 年期",
             features: [
               "iPad 意外损坏：每次收取 RMB 368 服务费",
-              "Apple Pencil 或键盘损坏：每次收取 RMB 188 服务费",
+              "Apple Pencil 或键盘损坏：每次收取 RMB 199 服务费",
+              "电池容量低于 80%：免费更换原厂电池",
+              "保障期内享受不限次数意外损坏保修与优先支持"
+            ]
+          };
+        }
+        if (m.includes("air") || m.includes("11 英寸 ipad air")) {
+          return {
+            planPrice: "RMB 699",
+            period: "2 年期",
+            features: [
+              "iPad 意外损坏：每次收取 RMB 368 服务费",
+              "Apple Pencil 或键盘损坏：每次收取 RMB 199 服务费",
               "电池容量低于 80%：免费更换原厂电池",
               "保障期内享受不限次数意外损坏保修与优先支持"
             ]
@@ -14509,7 +14439,7 @@ if (typeof window !== "undefined") window.hotAccessoriesData = hotAccessoriesDat
             planPrice: "随 iPad 计划共享",
             period: "与对应 iPad 共享保修",
             features: [
-              "配件意外损坏：每次收取 RMB 188 服务费",
+              "配件意外损坏：每次收取 RMB 199 服务费",
               "电池衰减低于 80% 免费更换"
             ]
           };
@@ -14519,7 +14449,7 @@ if (typeof window !== "undefined") window.hotAccessoriesData = hotAccessoriesDat
           period: "2 年期",
           features: [
             "iPad 意外损坏：每次收取 RMB 368 服务费",
-            "Apple Pencil 损坏：每次收取 RMB 188 服务费",
+            "Apple Pencil 损坏：每次收取 RMB 199 服务费",
             "电池容量低于 80%：免费更换原厂电池",
             "保障期内享受不限次数意外损坏保修与优先支持"
           ]
@@ -14528,6 +14458,18 @@ if (typeof window !== "undefined") window.hotAccessoriesData = hotAccessoriesDat
 
       // Apple Watch 系列
       if (cat.includes("watch") || m.includes("watch")) {
+        if (m.includes("hermès") || m.includes("hermes")) {
+          return {
+            planPrice: "RMB 1,599",
+            period: "2 年期",
+            features: [
+              "Apple Watch Hermès 意外损坏：每次收取 RMB 628 服务费",
+              "电池容量低于 80%：免费更换原厂电池",
+              "专属 Hermès 尊崇技术支持",
+              "保障期内享受不限次数意外损坏保修"
+            ]
+          };
+        }
         if (m.includes("ultra")) {
           return {
             planPrice: "RMB 799",
@@ -14540,12 +14482,12 @@ if (typeof window !== "undefined") window.hotAccessoriesData = hotAccessoriesDat
             ]
           };
         }
-        if (m.includes("hermès") || m.includes("hermes") || m.includes("edition") || m.includes("钛金属") || m.includes("不锈钢")) {
+        if (m.includes("edition") || m.includes("钛金属") || m.includes("不锈钢") || m.includes("陶瓷")) {
           return {
             planPrice: "RMB 1,299",
             period: "2 年期",
             features: [
-              "意外损坏维修：每次收取 RMB 528 ~ 628 服务费",
+              "意外损坏维修：每次收取 RMB 628 服务费",
               "电池容量低于 80%：免费更换原厂电池",
               "保障期内享受不限次数意外损坏保修与专属支持"
             ]
@@ -14593,6 +14535,19 @@ if (typeof window !== "undefined") window.hotAccessoriesData = hotAccessoriesDat
             features: [
               "单耳耳机或充电盒意外损坏：每次收取 RMB 199 服务费",
               "耳机或充电盒电池衰减低于 80%：免费更换",
+              "注意：丢失或被盗不享受 AppleCare+ 优惠，需按原价购买",
+              "保障期内享受不限次数意外损坏保修与优先支持"
+            ]
+          };
+        }
+        if (m.includes("anc") || m.includes("降噪")) {
+          return {
+            planPrice: "RMB 249",
+            period: "2 年期",
+            features: [
+              "单耳耳机或充电盒意外损坏：每次收取 RMB 199 服务费",
+              "耳机或充电盒电池衰减低于 80%：免费更换",
+              "注意：丢失或被盗不享受 AppleCare+ 优惠，需按原价购买",
               "保障期内享受不限次数意外损坏保修与优先支持"
             ]
           };
@@ -14603,6 +14558,7 @@ if (typeof window !== "undefined") window.hotAccessoriesData = hotAccessoriesDat
           features: [
             "耳机或充电盒意外损坏：每次收取 RMB 199 服务费",
             "电池容量低于 80%：免费更换原厂电池",
+            "注意：丢失或被盗不享受 AppleCare+ 优惠，需按原价购买",
             "保障期内享受不限次数意外损坏保修与优先支持"
           ]
         };
@@ -14726,12 +14682,13 @@ if (typeof window !== "undefined") window.hotAccessoriesData = hotAccessoriesDat
         // 渲染每一项官方服务价格行：左侧服务项，右侧并列展示【保外预估】与【AppleCare+ 服务费】
         pricingList.innerHTML = services.map((item) => {
           const acFee = getAppleCareServiceFee(activeCategory, modelObj.name, item.name);
+          const acClass = acFee.isFree ? "is-free" : (acFee.notCovered ? "is-na" : "");
           return `
             <div class="quote-item-row">
               <span class="quote-part-name">${item.name}</span>
               <div class="quote-price-group">
                 <span class="price-val-out">${item.price}</span>
-                <span class="price-val-ac ${acFee.isFree ? "is-free" : ""}">${acFee.label}</span>
+                <span class="price-val-ac ${acClass}">${acFee.label}</span>
               </div>
             </div>
           `;

@@ -1424,6 +1424,17 @@ body {
   color: var(--apple-orange);
 }
 
+.price-applecare.na {
+  background: var(--bg-hover);
+  color: var(--text-tertiary);
+  border: 1px solid var(--border-color);
+}
+
+.part-price-val.ac-na {
+  color: var(--text-tertiary);
+  font-size: 13px;
+}
+
 /* Empty State */
 .empty-state {
   padding: 60px 24px;
@@ -2045,6 +2056,14 @@ body {
   background: rgba(52, 199, 89, 0.14);
 }
 
+.price-val-ac.is-na {
+  color: var(--text-tertiary);
+  background: var(--bg-hover);
+  border: 1px solid var(--border-color);
+  font-weight: 500;
+  font-size: 12px;
+}
+
 @media (prefers-color-scheme: dark) {
   .price-val-ac {
     color: #2997ff;
@@ -2053,6 +2072,11 @@ body {
   .price-val-ac.is-free {
     color: #30d158;
     background: rgba(48, 209, 88, 0.18);
+  }
+  .price-val-ac.is-na {
+    color: var(--text-tertiary);
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.1);
   }
 }
 

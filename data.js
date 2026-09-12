@@ -4,185 +4,21 @@
  * 同步时间戳: 2026-09-12 12:06:04
  */
 
-var DATA_SYNC_TIMESTAMP = "2026-09-12 12:06:04";
+var DATA_SYNC_TIMESTAMP = "2026-09-12 17:30:00";
 if (typeof window !== "undefined") window.DATA_SYNC_TIMESTAMP = DATA_SYNC_TIMESTAMP;
 
 // ============================================================================
 // 官方数据最新变动通知记录 (DATA_CHANGELOG)
 // ============================================================================
 var DATA_CHANGELOG = {
-  "sync_time": "2026-09-12 12:06:04",
-  "has_changes": true,
-  "badge_text": "官方有变动",
-  "title": "Apple 官网近期价格与机型调整提醒",
-  "summary": "本次同步直连 Apple 官方接口，新增入库 iPhone 18 / 17 / Air 等新一代系列机型，并同步了官方电池服务、背面玻璃及其他损坏等多项保外维修价格调整。",
-  "price_changes": [
-    {
-      "model": "iPhone 16 Pro Max",
-      "part": "其他损坏 (整机/主板)",
-      "old_price": 5699,
-      "new_price": 6698,
-      "diff": 999,
-      "type": "up"
-    },
-    {
-      "model": "iPhone 16 Pro",
-      "part": "其他损坏 (整机/主板)",
-      "old_price": 5299,
-      "new_price": 5898,
-      "diff": 599,
-      "type": "up"
-    },
-    {
-      "model": "iPhone 15 Pro Max",
-      "part": "其他损坏 (整机/主板)",
-      "old_price": 5699,
-      "new_price": 6298,
-      "diff": 599,
-      "type": "up"
-    },
-    {
-      "model": "iPhone 15 Pro",
-      "part": "其他损坏 (整机/主板)",
-      "old_price": 5299,
-      "new_price": 5898,
-      "diff": 599,
-      "type": "up"
-    },
-    {
-      "model": "iPhone 14 Pro Max",
-      "part": "背面玻璃损坏",
-      "old_price": 3998,
-      "new_price": 4498,
-      "diff": 500,
-      "type": "up"
-    },
-    {
-      "model": "iPhone 14 Pro",
-      "part": "背面玻璃损坏",
-      "old_price": 3598,
-      "new_price": 4098,
-      "diff": 500,
-      "type": "up"
-    },
-    {
-      "model": "iPhone 13 Pro Max",
-      "part": "背面玻璃损坏",
-      "old_price": 3598,
-      "new_price": 4098,
-      "diff": 500,
-      "type": "up"
-    },
-    {
-      "model": "iPhone 13",
-      "part": "背面玻璃损坏",
-      "old_price": 2498,
-      "new_price": 2898,
-      "diff": 400,
-      "type": "up"
-    },
-    {
-      "model": "iPhone 16",
-      "part": "其他损坏 (整机/主板)",
-      "old_price": 4399,
-      "new_price": 4898,
-      "diff": 499,
-      "type": "up"
-    },
-    {
-      "model": "iPhone 15",
-      "part": "其他损坏 (整机/主板)",
-      "old_price": 4399,
-      "new_price": 4898,
-      "diff": 499,
-      "type": "up"
-    },
-    {
-      "model": "iPhone 16 Plus",
-      "part": "其他损坏 (整机/主板)",
-      "old_price": 4799,
-      "new_price": 5198,
-      "diff": 399,
-      "type": "up"
-    },
-    {
-      "model": "iPhone 16 Pro Max",
-      "part": "背面玻璃损坏",
-      "old_price": 1548,
-      "new_price": 1298,
-      "diff": -250,
-      "type": "down"
-    },
-    {
-      "model": "iPhone 16 Plus",
-      "part": "背面玻璃损坏",
-      "old_price": 1548,
-      "new_price": 1298,
-      "diff": -250,
-      "type": "down"
-    },
-    {
-      "model": "iPhone 15 Pro Max",
-      "part": "背面玻璃损坏",
-      "old_price": 1548,
-      "new_price": 1298,
-      "diff": -250,
-      "type": "down"
-    },
-    {
-      "model": "iPhone 16 Pro Max / Pro",
-      "part": "电池服务",
-      "old_price": 809,
-      "new_price": 969,
-      "diff": 160,
-      "type": "up"
-    },
-    {
-      "model": "iPhone 16 / 15 / 14 基础系列",
-      "part": "电池服务",
-      "old_price": 729,
-      "new_price": 809,
-      "diff": 80,
-      "type": "up"
-    }
-  ],
-  "new_models": [
-    {
-      "category": "iPhone",
-      "series": "iPhone 18 系列",
-      "models": "iPhone 18 Pro Max, iPhone 18 Pro",
-      "note": "已全量录入 6 项官方保外/AC+ 报价 (电池 ¥1,048、背面玻璃 ¥1,298、屏幕 ¥3,198/¥2,698、其他损坏 ¥7,298/¥6,898)"
-    },
-    {
-      "category": "iPhone",
-      "series": "iPhone Air",
-      "models": "iPhone Air",
-      "note": "超薄机型官方报价已收录 (电池 ¥969、屏幕 ¥2,698、其他损坏 ¥6,498)"
-    },
-    {
-      "category": "iPhone",
-      "series": "iPhone 17 系列",
-      "models": "iPhone 17 Pro Max, iPhone 17 Pro, iPhone 17, iPhone 17e",
-      "note": "全系 4 款机型已全量入库"
-    },
-    {
-      "category": "iPad",
-      "series": "iPad Pro (M5)",
-      "models": "13 英寸 iPad Pro (M5), 11 英寸 iPad Pro (M5)",
-      "note": "M5 芯片新旗舰平板已入库 (电池 ¥1,629/¥1,448、其他损坏 ¥9,329/¥8,099)"
-    },
-    {
-      "category": "Apple Watch",
-      "series": "Apple Watch Series 12 & Ultra 4",
-      "models": "Ultra 4, Series 12 钛金/陶瓷/铝金属",
-      "note": "新一代智能手表全系已收录"
-    }
-  ],
-  "store_changes": {
-    "total_stores": 302,
-    "cities": 65,
-    "status": "覆盖全国 65 个核心城市共 302 家 Apple Store 直营店与官方原厂预约送修 AASP 网点，已完成全量校验与坐标校准。"
-  }
+  "sync_time": "2026-09-12 17:30:00",
+  "has_changes": false,
+  "badge_text": "",
+  "title": "",
+  "summary": "",
+  "price_changes": [],
+  "new_models": [],
+  "store_changes": null
 };
 if (typeof window !== "undefined") window.DATA_CHANGELOG = DATA_CHANGELOG;
 
@@ -2372,7 +2208,7 @@ var pricesData = [
     "model": "Apple Pencil Pro",
     "part": "其他损坏",
     "out_of_warranty": 888,
-    "applecare": 228
+    "applecare": 199
   },
   {
     "category": "iPad",
@@ -2386,49 +2222,49 @@ var pricesData = [
     "model": "Apple Pencil (USB-C)",
     "part": "其他损坏",
     "out_of_warranty": 579,
-    "applecare": 228
+    "applecare": 199
   },
   {
     "category": "iPad",
     "model": "Magic Keyboard Folio for iPad (10th generation)",
     "part": "其他损坏",
     "out_of_warranty": 1729,
-    "applecare": 228
+    "applecare": 199
   },
   {
     "category": "iPad",
     "model": "适用于 12.9 英寸 iPad Pro 的妙控键盘",
     "part": "其他损坏",
     "out_of_warranty": 2379,
-    "applecare": 228
+    "applecare": 199
   },
   {
     "category": "iPad",
     "model": "适用于 11 英寸 iPad Pro 的妙控键盘",
     "part": "其他损坏",
     "out_of_warranty": 2039,
-    "applecare": 228
+    "applecare": 199
   },
   {
     "category": "iPad",
     "model": "适用于 13 英寸 iPad Pro（M4） 的妙控键盘",
     "part": "其他损坏",
     "out_of_warranty": 2379,
-    "applecare": 228
+    "applecare": 199
   },
   {
     "category": "iPad",
     "model": "适用于 11 英寸 iPad Pro（M4） 的妙控键盘",
     "part": "其他损坏",
     "out_of_warranty": 2039,
-    "applecare": 228
+    "applecare": 199
   },
   {
     "category": "iPad",
     "model": "适用于 12.9 英寸 iPad Pro 的键盘式智能双面夹",
     "part": "其他损坏",
     "out_of_warranty": 1359,
-    "applecare": 228
+    "applecare": 199
   },
   {
     "category": "iPad",
@@ -2442,21 +2278,21 @@ var pricesData = [
     "model": "Apple Pencil（第 2 代）",
     "part": "其他损坏",
     "out_of_warranty": 888,
-    "applecare": 228
+    "applecare": 199
   },
   {
     "category": "iPad",
     "model": "Smart Keyboard Folio for iPad Pro 11-inch",
     "part": "其他损坏",
     "out_of_warranty": 1189,
-    "applecare": 228
+    "applecare": 199
   },
   {
     "category": "iPad",
     "model": "适用于 iPad Pro（10.5 英寸）的智能键盘",
     "part": "其他损坏",
     "out_of_warranty": 1062,
-    "applecare": 228
+    "applecare": 199
   },
   {
     "category": "iPad",
@@ -2470,14 +2306,14 @@ var pricesData = [
     "model": "Apple Pencil",
     "part": "其他损坏",
     "out_of_warranty": 708,
-    "applecare": 228
+    "applecare": 199
   },
   {
     "category": "iPad",
     "model": "适用于 iPad Pro（9.7 英寸）的智能键盘",
     "part": "其他损坏",
     "out_of_warranty": 1002,
-    "applecare": 228
+    "applecare": 199
   },
   {
     "category": "Apple Watch",
@@ -2491,7 +2327,7 @@ var pricesData = [
     "model": "Apple Watch Hermès Ultra 4",
     "part": "其他损坏",
     "out_of_warranty": 4339,
-    "applecare": 599
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -2505,7 +2341,7 @@ var pricesData = [
     "model": "Apple Watch Ultra 4",
     "part": "其他损坏",
     "out_of_warranty": 4339,
-    "applecare": 599
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -2519,7 +2355,7 @@ var pricesData = [
     "model": "Apple Watch Hermès Ultra 3",
     "part": "其他损坏",
     "out_of_warranty": 3949,
-    "applecare": 599
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -2533,7 +2369,7 @@ var pricesData = [
     "model": "Apple Watch Ultra 3",
     "part": "其他损坏",
     "out_of_warranty": 3949,
-    "applecare": 599
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -2547,7 +2383,7 @@ var pricesData = [
     "model": "Apple Watch Hermès Ultra 2",
     "part": "其他损坏",
     "out_of_warranty": 3949,
-    "applecare": 599
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -2561,7 +2397,7 @@ var pricesData = [
     "model": "Apple Watch Ultra 2",
     "part": "其他损坏",
     "out_of_warranty": 3949,
-    "applecare": 599
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -2575,7 +2411,7 @@ var pricesData = [
     "model": "Apple Watch Ultra",
     "part": "其他损坏",
     "out_of_warranty": 3949,
-    "applecare": 599
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -2617,7 +2453,7 @@ var pricesData = [
     "model": "Apple Watch Hermès Series 12 GPS + Cellular 42mm",
     "part": "其他损坏",
     "out_of_warranty": 3599,
-    "applecare": 599
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -2631,7 +2467,7 @@ var pricesData = [
     "model": "Apple Watch Hermès Series 12 GPS + Cellular 46mm",
     "part": "其他损坏",
     "out_of_warranty": 3599,
-    "applecare": 599
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -2729,7 +2565,7 @@ var pricesData = [
     "model": "Apple Watch Hermès Series 11 GPS + 蜂窝网络 42 毫米",
     "part": "其他损坏",
     "out_of_warranty": 3198,
-    "applecare": 599
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -2743,7 +2579,7 @@ var pricesData = [
     "model": "Apple Watch Hermès Series 11 GPS + 蜂窝网络 46 毫米",
     "part": "其他损坏",
     "out_of_warranty": 3198,
-    "applecare": 599
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -2757,7 +2593,7 @@ var pricesData = [
     "model": "Apple Watch Series 11 GPS + 蜂窝网络 钛金属 42 毫米",
     "part": "其他损坏",
     "out_of_warranty": 3198,
-    "applecare": 528
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -2771,7 +2607,7 @@ var pricesData = [
     "model": "Apple Watch Series 11 GPS + 蜂窝网络 钛金属 46 毫米",
     "part": "其他损坏",
     "out_of_warranty": 3198,
-    "applecare": 528
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -2841,7 +2677,7 @@ var pricesData = [
     "model": "Apple Watch Hermès Series 10 GPS + 蜂窝网络 42 毫米",
     "part": "其他损坏",
     "out_of_warranty": 3198,
-    "applecare": 599
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -2855,7 +2691,7 @@ var pricesData = [
     "model": "Apple Watch Hermès Series 10 GPS + 蜂窝网络 46 毫米",
     "part": "其他损坏",
     "out_of_warranty": 3198,
-    "applecare": 599
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -2869,7 +2705,7 @@ var pricesData = [
     "model": "Apple Watch Series 10 GPS + 蜂窝网络 钛金属 42 毫米",
     "part": "其他损坏",
     "out_of_warranty": 3198,
-    "applecare": 528
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -2883,7 +2719,7 @@ var pricesData = [
     "model": "Apple Watch Series 10 GPS + 蜂窝网络 钛金属 46 毫米",
     "part": "其他损坏",
     "out_of_warranty": 3198,
-    "applecare": 528
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -2953,7 +2789,7 @@ var pricesData = [
     "model": "Apple Watch Hermès Series 9 GPS + 蜂窝网络 41 毫米",
     "part": "其他损坏",
     "out_of_warranty": 3198,
-    "applecare": 599
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -2967,7 +2803,7 @@ var pricesData = [
     "model": "Apple Watch Hermès Series 9 GPS + 蜂窝网络 45 毫米",
     "part": "其他损坏",
     "out_of_warranty": 3198,
-    "applecare": 599
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -2981,7 +2817,7 @@ var pricesData = [
     "model": "Apple Watch Series 9 GPS + 蜂窝网络 不锈钢 41 毫米",
     "part": "其他损坏",
     "out_of_warranty": 3198,
-    "applecare": 528
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -2995,7 +2831,7 @@ var pricesData = [
     "model": "Apple Watch Series 9 GPS + 蜂窝网络 不锈钢 45 毫米",
     "part": "其他损坏",
     "out_of_warranty": 3198,
-    "applecare": 528
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -3065,7 +2901,7 @@ var pricesData = [
     "model": "Apple Watch Hermès Series 8（GPS + 蜂窝网络）41 毫米",
     "part": "其他损坏",
     "out_of_warranty": 3198,
-    "applecare": 599
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -3079,7 +2915,7 @@ var pricesData = [
     "model": "Apple Watch Hermès Series 8（GPS + 蜂窝网络）45 毫米",
     "part": "其他损坏",
     "out_of_warranty": 3198,
-    "applecare": 599
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -3093,7 +2929,7 @@ var pricesData = [
     "model": "Apple Watch Series 8（GPS + 蜂窝网络）（不锈钢）41 毫米",
     "part": "其他损坏",
     "out_of_warranty": 3198,
-    "applecare": 528
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -3107,7 +2943,7 @@ var pricesData = [
     "model": "Apple Watch Series 8（GPS + 蜂窝网络）（不锈钢）45 毫米",
     "part": "其他损坏",
     "out_of_warranty": 3198,
-    "applecare": 528
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -3177,7 +3013,7 @@ var pricesData = [
     "model": "Apple Watch Edition Series 7（GPS + 蜂窝网络）（钛金属）41 毫米",
     "part": "其他损坏",
     "out_of_warranty": 3998,
-    "applecare": 599
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -3191,7 +3027,7 @@ var pricesData = [
     "model": "Apple Watch Edition Series 7（GPS + 蜂窝网络）（钛金属）45 毫米",
     "part": "其他损坏",
     "out_of_warranty": 3998,
-    "applecare": 599
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -3317,7 +3153,7 @@ var pricesData = [
     "model": "Apple Watch Series 7（GPS + 蜂窝网络）（不锈钢）41 毫米",
     "part": "其他损坏",
     "out_of_warranty": 3198,
-    "applecare": 528
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -3331,7 +3167,7 @@ var pricesData = [
     "model": "Apple Watch Series 7（GPS + 蜂窝网络）（不锈钢）45 毫米",
     "part": "其他损坏",
     "out_of_warranty": 3198,
-    "applecare": 528
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -3401,7 +3237,7 @@ var pricesData = [
     "model": "Apple Watch Series 6（GPS + 蜂窝网络）（不锈钢）40 毫米",
     "part": "其他损坏",
     "out_of_warranty": 3198,
-    "applecare": 528
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -3415,7 +3251,7 @@ var pricesData = [
     "model": "Apple Watch Series 6（GPS + 蜂窝网络）（不锈钢）44 毫米",
     "part": "其他损坏",
     "out_of_warranty": 3198,
-    "applecare": 528
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -3457,7 +3293,7 @@ var pricesData = [
     "model": "Apple Watch Edition Series 6（GPS + 蜂窝网络）（钛金属）40 毫米",
     "part": "其他损坏",
     "out_of_warranty": 3998,
-    "applecare": 599
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -3471,7 +3307,7 @@ var pricesData = [
     "model": "Apple Watch Edition Series 6（GPS + 蜂窝网络）（钛金属）44 毫米",
     "part": "其他损坏",
     "out_of_warranty": 3998,
-    "applecare": 599
+    "applecare": 628
   },
   {
     "category": "Apple Watch",
@@ -3835,14 +3671,14 @@ var pricesData = [
     "model": "AirPods Pro 3",
     "part": "AirPod (左侧或右侧) 丢失",
     "out_of_warranty": 679,
-    "applecare": 199
+    "applecare": null
   },
   {
     "category": "AirPods",
     "model": "AirPods Pro 3",
     "part": "充电盒丢失",
     "out_of_warranty": 749,
-    "applecare": 199
+    "applecare": null
   },
   {
     "category": "AirPods",
@@ -3870,14 +3706,14 @@ var pricesData = [
     "model": "AirPods Pro 2 (USB-C)",
     "part": "AirPod (左侧或右侧) 丢失",
     "out_of_warranty": 679,
-    "applecare": 199
+    "applecare": null
   },
   {
     "category": "AirPods",
     "model": "AirPods Pro 2 (USB-C)",
     "part": "充电盒丢失",
     "out_of_warranty": 749,
-    "applecare": 199
+    "applecare": null
   },
   {
     "category": "AirPods",
@@ -3905,14 +3741,14 @@ var pricesData = [
     "model": "AirPods Pro 2（闪电）",
     "part": "AirPod (左侧或右侧) 丢失",
     "out_of_warranty": 679,
-    "applecare": 199
+    "applecare": null
   },
   {
     "category": "AirPods",
     "model": "AirPods Pro 2（闪电）",
     "part": "充电盒丢失",
     "out_of_warranty": 749,
-    "applecare": 199
+    "applecare": null
   },
   {
     "category": "AirPods",
@@ -3940,14 +3776,14 @@ var pricesData = [
     "model": "AirPods Pro 1 (MagSafe)",
     "part": "AirPod (左侧或右侧) 丢失",
     "out_of_warranty": 679,
-    "applecare": 199
+    "applecare": null
   },
   {
     "category": "AirPods",
     "model": "AirPods Pro 1 (MagSafe)",
     "part": "充电盒丢失",
     "out_of_warranty": 749,
-    "applecare": 199
+    "applecare": null
   },
   {
     "category": "AirPods",
@@ -3975,14 +3811,14 @@ var pricesData = [
     "model": "AirPods Pro 1（无线）",
     "part": "AirPod (左侧或右侧) 丢失",
     "out_of_warranty": 679,
-    "applecare": 199
+    "applecare": null
   },
   {
     "category": "AirPods",
     "model": "AirPods Pro 1（无线）",
     "part": "充电盒丢失",
     "out_of_warranty": 749,
-    "applecare": 199
+    "applecare": null
   },
   {
     "category": "AirPods",
@@ -4010,14 +3846,14 @@ var pricesData = [
     "model": "AirPods 5 (Wireless)",
     "part": "AirPod (左侧或右侧) 丢失",
     "out_of_warranty": 599,
-    "applecare": 199
+    "applecare": null
   },
   {
     "category": "AirPods",
     "model": "AirPods 5 (Wireless)",
     "part": "充电盒丢失",
     "out_of_warranty": 661,
-    "applecare": 199
+    "applecare": null
   },
   {
     "category": "AirPods",
@@ -4045,14 +3881,14 @@ var pricesData = [
     "model": "AirPods 5",
     "part": "AirPod (左侧或右侧) 丢失",
     "out_of_warranty": 599,
-    "applecare": 199
+    "applecare": null
   },
   {
     "category": "AirPods",
     "model": "AirPods 5",
     "part": "充电盒丢失",
     "out_of_warranty": 599,
-    "applecare": 199
+    "applecare": null
   },
   {
     "category": "AirPods",
@@ -4080,14 +3916,14 @@ var pricesData = [
     "model": "AirPods 4 (ANC)",
     "part": "AirPod (左侧或右侧) 丢失",
     "out_of_warranty": 599,
-    "applecare": 199
+    "applecare": null
   },
   {
     "category": "AirPods",
     "model": "AirPods 4 (ANC)",
     "part": "充电盒丢失",
     "out_of_warranty": 661,
-    "applecare": 199
+    "applecare": null
   },
   {
     "category": "AirPods",
@@ -4115,14 +3951,14 @@ var pricesData = [
     "model": "AirPods 4",
     "part": "AirPod (左侧或右侧) 丢失",
     "out_of_warranty": 599,
-    "applecare": 199
+    "applecare": null
   },
   {
     "category": "AirPods",
     "model": "AirPods 4",
     "part": "充电盒丢失",
     "out_of_warranty": 599,
-    "applecare": 199
+    "applecare": null
   },
   {
     "category": "AirPods",
@@ -4150,14 +3986,14 @@ var pricesData = [
     "model": "AirPods 3 (MagSafe)",
     "part": "AirPod (左侧或右侧) 丢失",
     "out_of_warranty": 599,
-    "applecare": 199
+    "applecare": null
   },
   {
     "category": "AirPods",
     "model": "AirPods 3 (MagSafe)",
     "part": "充电盒丢失",
     "out_of_warranty": 661,
-    "applecare": 199
+    "applecare": null
   },
   {
     "category": "AirPods",
@@ -4185,14 +4021,14 @@ var pricesData = [
     "model": "AirPods 3（闪电）",
     "part": "AirPod (左侧或右侧) 丢失",
     "out_of_warranty": 599,
-    "applecare": 199
+    "applecare": null
   },
   {
     "category": "AirPods",
     "model": "AirPods 3（闪电）",
     "part": "充电盒丢失",
     "out_of_warranty": 599,
-    "applecare": 199
+    "applecare": null
   },
   {
     "category": "AirPods",
@@ -4220,14 +4056,14 @@ var pricesData = [
     "model": "AirPods 2（无线）",
     "part": "AirPod (左侧或右侧) 丢失",
     "out_of_warranty": 599,
-    "applecare": 199
+    "applecare": null
   },
   {
     "category": "AirPods",
     "model": "AirPods 2（无线）",
     "part": "充电盒丢失",
     "out_of_warranty": 661,
-    "applecare": 199
+    "applecare": null
   },
   {
     "category": "AirPods",
@@ -4255,14 +4091,14 @@ var pricesData = [
     "model": "AirPods 2（闪电）",
     "part": "AirPod (左侧或右侧) 丢失",
     "out_of_warranty": 599,
-    "applecare": 199
+    "applecare": null
   },
   {
     "category": "AirPods",
     "model": "AirPods 2（闪电）",
     "part": "充电盒丢失",
     "out_of_warranty": 479,
-    "applecare": 199
+    "applecare": null
   }
 ];
 if (typeof window !== "undefined") window.pricesData = pricesData;

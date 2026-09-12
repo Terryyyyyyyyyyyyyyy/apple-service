@@ -154,7 +154,9 @@ def generate_flat_prices(catalog):
                     m_name = m.get("name", "")
                     
                     # AppleCare 自付服务费规则 (根据 AppleCare 官方保障政策)
-                    if "电池" in srv_name:
+                    if "丢失" in srv_name:
+                        ac_fee = None # AppleCare+ 不为丢失提供保障 (需全额保外重购)
+                    elif "电池" in srv_name:
                         ac_fee = 0
                     elif cat_name == "iPhone":
                         if "屏幕" in srv_name or "玻璃" in srv_name:
@@ -162,18 +164,18 @@ def generate_flat_prices(catalog):
                         else:
                             ac_fee = 628
                     elif cat_name == "Mac":
-                        if "屏幕" in srv_name or "外壳" in srv_name:
+                        if "屏幕" in srv_name or "外壳" in srv_name or "键盘" in srv_name:
                             ac_fee = 799
                         else:
                             ac_fee = 2299
                     elif cat_name == "iPad":
-                        if "Pencil" in m_name or "键盘" in m_name or "Keyboard" in m_name:
-                            ac_fee = 228
+                        if any(k in m_name for k in ["Pencil", "键盘", "Keyboard"]) or "Pencil" in srv_name or "键盘" in srv_name:
+                            ac_fee = 199
                         else:
                             ac_fee = 368
                     elif cat_name == "Apple Watch":
-                        if "Hermès" in m_name or "Ultra" in m_name or "Edition" in m_name:
-                            ac_fee = 599
+                        if any(k in m_name for k in ["Hermès", "hermes", "Ultra", "Edition", "钛金属", "陶瓷", "不锈钢"]):
+                            ac_fee = 628
                         else:
                             ac_fee = 528
                     elif cat_name == "AirPods":
@@ -215,47 +217,74 @@ def update_data_js(catalog, stores):
     if hot_code:
         hot_code = re.sub(r',\s*pitches:\s*\[.*?\](?=\s*,\s*crossSell:)', '', hot_code)
 
+    # 读取旧版 flat_prices 以进行真实价格变动动态比对
+    old_prices = []
+    old_p_match = re.search(r"var pricesData = (\[.*?\]);\nif \(typeof window", content, re.DOTALL)
+    if old_p_match:
+        try:
+            old_prices = json.loads(old_p_match.group(1))
+        except Exception:
+            old_prices = []
+
     flat_prices = generate_flat_prices(catalog)
     flat_prices_json = json.dumps(flat_prices, ensure_ascii=False, indent=2)
     stores_json = json.dumps(stores, ensure_ascii=False, indent=2)
     catalog_json = json.dumps(catalog, ensure_ascii=False)
 
+    # 动态比对价格变更
+    price_changes = []
+    if old_prices:
+        old_map = {}
+        for p in old_prices:
+            key = (p.get("category"), p.get("model"), p.get("part"))
+            old_map[key] = p.get("out_of_warranty")
+
+        for p in flat_prices:
+            key = (p.get("category"), p.get("model"), p.get("part"))
+            if key in old_map:
+                old_val = old_map[key]
+                new_val = p.get("out_of_warranty")
+                if old_val and new_val and old_val != new_val:
+                    diff = new_val - old_val
+                    price_changes.append({
+                        "category": p.get("category"),
+                        "model": p.get("model"),
+                        "part": p.get("part"),
+                        "old_price": old_val,
+                        "new_price": new_val,
+                        "diff": diff,
+                        "type": "up" if diff > 0 else "down"
+                    })
+
+    # 检测新机型
+    old_models = set(p.get("model") for p in old_prices) if old_prices else set()
+    new_models = set(p.get("model") for p in flat_prices)
+    diff_models = list(new_models - old_models) if old_models else []
+    new_models_data = []
+    if diff_models:
+        for m in diff_models[:8]:
+            new_models_data.append({
+                "category": "",
+                "series": "",
+                "models": m,
+                "note": "官方接口新增入库机型"
+            })
+
+    has_changes = len(price_changes) > 0 or len(new_models_data) > 0
+
     changelog_data = {
         "sync_time": sync_timestamp,
-        "has_changes": True,
-        "badge_text": "官方有变动",
-        "title": "Apple 官网近期价格与机型调整提醒",
-        "summary": "本次同步直连 Apple 官方接口，新增入库 iPhone 18 / 17 / Air 等新一代系列机型，并同步了官方电池服务、背面玻璃及其他损坏等多项保外维修价格调整。",
-        "price_changes": [
-            {"model": "iPhone 16 Pro Max", "part": "其他损坏 (整机/主板)", "old_price": 5699, "new_price": 6698, "diff": 999, "type": "up"},
-            {"model": "iPhone 16 Pro", "part": "其他损坏 (整机/主板)", "old_price": 5299, "new_price": 5898, "diff": 599, "type": "up"},
-            {"model": "iPhone 15 Pro Max", "part": "其他损坏 (整机/主板)", "old_price": 5699, "new_price": 6298, "diff": 599, "type": "up"},
-            {"model": "iPhone 15 Pro", "part": "其他损坏 (整机/主板)", "old_price": 5299, "new_price": 5898, "diff": 599, "type": "up"},
-            {"model": "iPhone 14 Pro Max", "part": "背面玻璃损坏", "old_price": 3998, "new_price": 4498, "diff": 500, "type": "up"},
-            {"model": "iPhone 14 Pro", "part": "背面玻璃损坏", "old_price": 3598, "new_price": 4098, "diff": 500, "type": "up"},
-            {"model": "iPhone 13 Pro Max", "part": "背面玻璃损坏", "old_price": 3598, "new_price": 4098, "diff": 500, "type": "up"},
-            {"model": "iPhone 13", "part": "背面玻璃损坏", "old_price": 2498, "new_price": 2898, "diff": 400, "type": "up"},
-            {"model": "iPhone 16", "part": "其他损坏 (整机/主板)", "old_price": 4399, "new_price": 4898, "diff": 499, "type": "up"},
-            {"model": "iPhone 15", "part": "其他损坏 (整机/主板)", "old_price": 4399, "new_price": 4898, "diff": 499, "type": "up"},
-            {"model": "iPhone 16 Plus", "part": "其他损坏 (整机/主板)", "old_price": 4799, "new_price": 5198, "diff": 399, "type": "up"},
-            {"model": "iPhone 16 Pro Max", "part": "背面玻璃损坏", "old_price": 1548, "new_price": 1298, "diff": -250, "type": "down"},
-            {"model": "iPhone 16 Plus", "part": "背面玻璃损坏", "old_price": 1548, "new_price": 1298, "diff": -250, "type": "down"},
-            {"model": "iPhone 15 Pro Max", "part": "背面玻璃损坏", "old_price": 1548, "new_price": 1298, "diff": -250, "type": "down"},
-            {"model": "iPhone 16 Pro Max / Pro", "part": "电池服务", "old_price": 809, "new_price": 969, "diff": 160, "type": "up"},
-            {"model": "iPhone 16 / 15 / 14 基础系列", "part": "电池服务", "old_price": 729, "new_price": 809, "diff": 80, "type": "up"}
-        ],
-        "new_models": [
-            {"category": "iPhone", "series": "iPhone 18 系列", "models": "iPhone 18 Pro Max, iPhone 18 Pro", "note": "已全量录入 6 项官方保外/AC+ 报价 (电池 ¥1,048、背面玻璃 ¥1,298、屏幕 ¥3,198/¥2,698、其他损坏 ¥7,298/¥6,898)"},
-            {"category": "iPhone", "series": "iPhone Air", "models": "iPhone Air", "note": "超薄机型官方报价已收录 (电池 ¥969、屏幕 ¥2,698、其他损坏 ¥6,498)"},
-            {"category": "iPhone", "series": "iPhone 17 系列", "models": "iPhone 17 Pro Max, iPhone 17 Pro, iPhone 17, iPhone 17e", "note": "全系 4 款机型已全量入库"},
-            {"category": "iPad", "series": "iPad Pro (M5)", "models": "13 英寸 iPad Pro (M5), 11 英寸 iPad Pro (M5)", "note": "M5 芯片新旗舰平板已入库 (电池 ¥1,629/¥1,448、其他损坏 ¥9,329/¥8,099)"},
-            {"category": "Apple Watch", "series": "Apple Watch Series 12 & Ultra 4", "models": "Ultra 4, Series 12 钛金/陶瓷/铝金属", "note": "新一代智能手表全系已收录"}
-        ],
+        "has_changes": has_changes,
+        "badge_text": "官方有变动" if has_changes else "",
+        "title": "Apple 官网价格与机型调整提醒" if has_changes else "",
+        "summary": f"本次同步检测到官方接口 {len(price_changes)} 项维修报价变动与 {len(new_models_data)} 款新增机型。" if has_changes else "",
+        "price_changes": price_changes,
+        "new_models": new_models_data,
         "store_changes": {
             "total_stores": len(stores),
             "cities": 65,
-            "status": f"覆盖全国 65 个核心城市共 {len(stores)} 家 Apple Store 直营店与官方原厂预约送修 AASP 网点，已完成全量校验与坐标校准。"
-        }
+            "status": f"覆盖全国 65 个核心城市共 {len(stores)} 家 Apple Store 直营店与官方原厂预约送修 AASP 网点。"
+        } if has_changes else None
     }
     changelog_json = json.dumps(changelog_data, ensure_ascii=False, indent=2)
 

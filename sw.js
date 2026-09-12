@@ -4,16 +4,16 @@
  * 连线时自动拉取最新版本刷新缓存，离线时 100% 正常运行
  */
 
-const CACHE_NAME = 'apple-service-v4.2';
+const CACHE_NAME = 'apple-service-v4.3';
 const PRECACHE_ASSETS = [
   './',
   'index.html',
   'style.css',
-  'style.css?v=202609121430',
+  'style.css?v=202609121730',
   'app.js',
-  'app.js?v=202609121430',
+  'app.js?v=202609121730',
   'data.js',
-  'data.js?v=202609121430',
+  'data.js?v=202609121730',
   'manifest.json',
   'icon.svg',
   'apple-touch-icon.png',
