@@ -1829,360 +1829,479 @@
       return { price: "RMB 188", isFree: false, label: "官方自付金" };
     }
 
-    // 获取机型对应的 AppleCare+ 官方选购价格与核心保障权益
+    // 获取机型对应的 AppleCare+ 官方选购价格与在售/停售保障状态
     function getAppleCarePlanInfo(category, modelName) {
       const cat = (category || "").toLowerCase();
       const m = (modelName || "").toLowerCase();
 
-      // iPhone 系列
+      // ----------------------------------------------------------------------
+      // 1. iPhone 手机系列
+      // ----------------------------------------------------------------------
       if (cat.includes("iphone") || m.includes("iphone")) {
-        if (m.includes("pro max") || m.includes("pro")) {
+        const iphoneFeatures = [
+          "屏幕或背面玻璃损坏（含双面同时损坏）：每次收取 RMB 188 服务费",
+          "后置相机损坏：每次收取 RMB 628 服务费",
+          "其他意外损坏：每次收取 RMB 628 服务费",
+          "电池最大容量低于 80%：免费更换原厂电池",
+          "保障期内享受不限次数意外损坏保修与 24/7 优先技术支持"
+        ];
+
+        // 官方在售机型 (In-Sale)
+        if (m.includes("iphone air")) {
           return {
-            planPrice: "RMB 1,499",
-            period: "2 年期（或 RMB 74.9/月）",
-            features: [
-              "屏幕或背面玻璃损坏（含双面同时损坏）：每次收取 RMB 188 服务费",
-              "后置相机或其他意外损坏：每次收取 RMB 628 服务费",
-              "电池最大容量低于 80%：免费更换原厂电池",
-              "保障期内享受不限次数意外损坏保修与 24/7 优先技术支持"
-            ]
+            status: "in_sale",
+            statusBadge: "官方在售 · 支持新购",
+            priceLabel: "官方选购价格",
+            planPrice: "RMB 1,799",
+            period: "2 年期（或 RMB 89.9/月）",
+            priceSubnote: "购机 60 天内可加购",
+            features: iphoneFeatures
           };
         }
-        if (m.includes("plus")) {
+        if (m.includes("18 pro") || m.includes("17 pro")) {
           return {
+            status: "in_sale",
+            statusBadge: "官方在售 · 支持新购",
+            priceLabel: "官方选购价格",
+            planPrice: "RMB 1,799",
+            period: "2 年期（或 RMB 89.9/月）",
+            priceSubnote: "购机 60 天内可加购",
+            features: iphoneFeatures
+          };
+        }
+        if (m.includes("17e")) {
+          return {
+            status: "in_sale",
+            statusBadge: "官方在售 · 支持新购",
+            priceLabel: "官方选购价格",
+            planPrice: "RMB 1,099",
+            period: "2 年期（或 RMB 54.9/月）",
+            priceSubnote: "购机 60 天内可加购",
+            features: iphoneFeatures
+          };
+        }
+        if (m.includes("iphone 17")) {
+          return {
+            status: "in_sale",
+            statusBadge: "官方在售 · 支持新购",
+            priceLabel: "官方选购价格",
             planPrice: "RMB 1,399",
             period: "2 年期（或 RMB 69.9/月）",
+            priceSubnote: "购机 60 天内可加购",
+            features: iphoneFeatures
+          };
+        }
+        if (m === "iphone 16") {
+          return {
+            status: "in_sale",
+            statusBadge: "官方在售 · 支持新购",
+            priceLabel: "官方选购价格",
+            planPrice: "RMB 1,399",
+            period: "2 年期（或 RMB 69.9/月）",
+            priceSubnote: "购机 60 天内可加购",
+            features: iphoneFeatures
+          };
+        }
+
+        // 官方已停售机型 (Discontinued) - 展示历史选购价格与在保维修优惠
+        let histPrice = "RMB 1,199";
+        if (m.includes("16 pro") || m.includes("15 pro") || m.includes("14 pro") || m.includes("13 pro")) {
+          histPrice = "RMB 1,499";
+        } else if (m.includes("12 pro")) {
+          histPrice = "RMB 1,399";
+        } else if (m.includes("16 plus") || m.includes("15 plus") || m.includes("14 plus")) {
+          histPrice = "RMB 1,399";
+        } else if (m.includes("16e") || m.includes("13 mini") || m.includes("12 mini")) {
+          histPrice = "RMB 899";
+        } else if (m.includes("se")) {
+          histPrice = "RMB 599";
+        } else if (m.includes("11") || m.includes("xr")) {
+          histPrice = "RMB 1,099";
+        }
+
+        return {
+          status: "discontinued",
+          statusBadge: "官方已停售 · 不支持新购",
+          priceLabel: "历史选购价格",
+          planPrice: histPrice,
+          period: "历史 2 年期（现已停售）",
+          priceSubnote: "官方已停售不可购",
+          notice: "该机型 Apple 官方已停止销售，无法新购 AppleCare+ 服务计划。若您原购机时已购买且在保障期内，依然享受以下特惠原厂保修：",
+          features: iphoneFeatures
+        };
+      }
+
+      // ----------------------------------------------------------------------
+      // 2. Mac 电脑系列
+      // ----------------------------------------------------------------------
+      if (cat.includes("mac") || m.includes("mac")) {
+        const macFeatures = [
+          "屏幕或机身外壳损坏：每次收取 RMB 799 服务费",
+          "主板、芯片及其他硬件损坏：每次收取 RMB 2,299 服务费",
+          "电池最大容量低于 80%：免费更换原厂电池",
+          "保障期内享受不限次数意外损坏保修与全球联保服务"
+        ];
+
+        // 在售机型
+        if (m.includes("16 英寸") && (m.includes("m4") || m.includes("m3"))) {
+          return {
+            status: "in_sale",
+            statusBadge: "官方在售 · 支持新购",
+            priceLabel: "官方选购价格",
+            planPrice: "RMB 3,449",
+            period: "3 年期",
+            priceSubnote: "购机 60 天内可加购",
+            features: macFeatures
+          };
+        }
+        if (m.includes("14 英寸") && (m.includes("m4") || m.includes("m3"))) {
+          return {
+            status: "in_sale",
+            statusBadge: "官方在售 · 支持新购",
+            priceLabel: "官方选购价格",
+            planPrice: "RMB 2,449",
+            period: "3 年期",
+            priceSubnote: "购机 60 天内可加购",
+            features: macFeatures
+          };
+        }
+        if (m.includes("air 15") && (m.includes("m3") || m.includes("m2"))) {
+          return {
+            status: "in_sale",
+            statusBadge: "官方在售 · 支持新购",
+            priceLabel: "官方选购价格",
+            planPrice: "RMB 2,049",
+            period: "3 年期",
+            priceSubnote: "购机 60 天内可加购",
+            features: macFeatures
+          };
+        }
+        if (m.includes("air 13") && (m.includes("m3") || m.includes("m2"))) {
+          return {
+            status: "in_sale",
+            statusBadge: "官方在售 · 支持新购",
+            priceLabel: "官方选购价格",
+            planPrice: "RMB 1,749",
+            period: "3 年期",
+            priceSubnote: "购机 60 天内可加购",
+            features: macFeatures
+          };
+        }
+        if (m.includes("mini") && m.includes("m4")) {
+          return {
+            status: "in_sale",
+            statusBadge: "官方在售 · 支持新购",
+            priceLabel: "官方选购价格",
+            planPrice: "RMB 799",
+            period: "3 年期",
+            priceSubnote: "购机 60 天内可加购",
             features: [
-              "屏幕或背面玻璃损坏（含双面同时损坏）：每次收取 RMB 188 服务费",
-              "其他意外损坏：每次收取 RMB 628 服务费",
-              "电池最大容量低于 80%：免费更换原厂电池",
-              "保障期内享受不限次数意外损坏保修与 24/7 优先技术支持"
+              "电源模块或主板硬件损坏：每次收取 RMB 799 ~ 2,299 服务费",
+              "覆盖电源线及原装随附配件官方保修",
+              "保障期内享受不限次数意外损坏保修与全球联保"
             ]
           };
         }
-        if (m.includes("se")) {
+        if (m.includes("studio") && m.includes("m2")) {
           return {
-            planPrice: "RMB 599",
+            status: "in_sale",
+            statusBadge: "官方在售 · 支持新购",
+            priceLabel: "官方选购价格",
+            planPrice: "RMB 1,199",
+            period: "3 年期",
+            priceSubnote: "购机 60 天内可加购",
+            features: macFeatures
+          };
+        }
+
+        // 停售款 Mac
+        let histMacPrice = "RMB 1,399";
+        if (m.includes("16 英寸")) histMacPrice = "RMB 2,799";
+        else if (m.includes("14 英寸")) histMacPrice = "RMB 1,999";
+        else if (m.includes("13 英寸") && m.includes("pro")) histMacPrice = "RMB 1,799";
+        else if (m.includes("mini")) histMacPrice = "RMB 699";
+        else if (m.includes("studio")) histMacPrice = "RMB 1,199";
+
+        return {
+          status: "discontinued",
+          statusBadge: "官方已停售 · 不支持新购",
+          priceLabel: "历史选购价格",
+          planPrice: histMacPrice,
+          period: "历史 3 年期（现已停售）",
+          priceSubnote: "官方已停售不可购",
+          notice: "该机型 Apple 官方已停止销售，无法新购 AppleCare+ 服务计划。若您原购机时已购买且在保障期内，依然享受以下特惠原厂保修：",
+          features: macFeatures
+        };
+      }
+
+      // ----------------------------------------------------------------------
+      // 3. iPad 平板及配件系列
+      // ----------------------------------------------------------------------
+      if (cat.includes("ipad") || m.includes("ipad")) {
+        // 配件共享判定
+        if (m.includes("pencil") || m.includes("keyboard") || m.includes("键盘") || m.includes("双面夹")) {
+          return {
+            status: "accessory",
+            statusBadge: "随 iPad 保修共享",
+            priceLabel: "AppleCare+",
+            planPrice: "随 iPad 共享",
+            period: "随主机共享保修",
+            priceSubnote: "免单独购买",
+            notice: "Apple Pencil 与妙控键盘等原厂配件随绑定的 iPad 主机 AppleCare+ 服务计划自动共享保修权益，无需单独加购。",
+            features: [
+              "配件意外损坏：每次收取 RMB 199 官方特惠服务费",
+              "内置电池容量衰减低于 80% 享受免费更换原厂电池",
+              "保障期限与绑定的 iPad 主机保修期完全同步"
+            ]
+          };
+        }
+
+        const ipadFeatures = [
+          "iPad 意外损坏：每次收取 RMB 368 服务费",
+          "Apple Pencil 或妙控键盘损坏：每次收取 RMB 199 服务费",
+          "电池最大容量低于 80%：免费更换原厂电池",
+          "保障期内享受不限次数意外损坏保修与官方优先技术支持"
+        ];
+
+        // 在售款 iPad
+        if (m.includes("13 英寸 ipad pro") && (m.includes("m5") || m.includes("m4"))) {
+          return {
+            status: "in_sale",
+            statusBadge: "官方在售 · 支持新购",
+            priceLabel: "官方选购价格",
+            planPrice: "RMB 1,549",
             period: "2 年期",
-            features: [
-              "屏幕损坏：每次收取 RMB 188 服务费",
-              "其他意外损坏：每次收取 RMB 628 服务费",
-              "电池最大容量低于 80%：免费更换原厂电池",
-              "保障期内享受不限次数意外损坏保修与 24/7 优先技术支持"
-            ]
+            priceSubnote: "购机 60 天内可加购",
+            features: ipadFeatures
           };
         }
-        if (m.includes("16e") || m.includes("17e") || m.includes("mini")) {
+        if (m.includes("11 英寸 ipad pro") && (m.includes("m5") || m.includes("m4"))) {
           return {
+            status: "in_sale",
+            statusBadge: "官方在售 · 支持新购",
+            priceLabel: "官方选购价格",
+            planPrice: "RMB 1,399",
+            period: "2 年期",
+            priceSubnote: "购机 60 天内可加购",
+            features: ipadFeatures
+          };
+        }
+        if (m.includes("13 英寸 ipad air") && (m.includes("m4") || m.includes("m3") || m.includes("m2"))) {
+          return {
+            status: "in_sale",
+            statusBadge: "官方在售 · 支持新购",
+            priceLabel: "官方选购价格",
             planPrice: "RMB 899",
             period: "2 年期",
-            features: [
-              "屏幕或背面玻璃损坏（含双面同时损坏）：每次收取 RMB 188 服务费",
-              "其他意外损坏：每次收取 RMB 628 服务费",
-              "电池最大容量低于 80%：免费更换原厂电池",
-              "保障期内享受不限次数意外损坏保修与 24/7 优先技术支持"
-            ]
+            priceSubnote: "购机 60 天内可加购",
+            features: ipadFeatures
           };
         }
-        return {
-          planPrice: "RMB 1,199",
-          period: "2 年期（或 RMB 59.9/月）",
-          features: [
-            "屏幕或背面玻璃损坏（含双面同时损坏）：每次收取 RMB 188 服务费",
-            "其他意外损坏：每次收取 RMB 628 服务费",
-            "电池最大容量低于 80%：免费更换原厂电池",
-            "保障期内享受不限次数意外损坏保修与 24/7 优先技术支持"
-          ]
-        };
-      }
-
-      // Mac 系列
-      if (cat.includes("mac") || m.includes("mac")) {
-        if (m.includes("16 英寸") || m.includes("16-inch")) {
+        if (m.includes("11 英寸 ipad air") && (m.includes("m4") || m.includes("m3") || m.includes("m2"))) {
           return {
-            planPrice: "RMB 2,799",
-            period: "3 年期（或 RMB 999/年）",
-            features: [
-              "屏幕或外壳损坏：每次收取 RMB 799 服务费",
-              "主板或其他硬件损坏：每次收取 RMB 2,299 服务费",
-              "电池容量低于 80%：免费更换原厂电池",
-              "保障期内享受不限次数意外损坏保修与全球联保"
-            ]
-          };
-        }
-        if (m.includes("14 英寸") || m.includes("14-inch")) {
-          return {
-            planPrice: "RMB 1,999",
-            period: "3 年期（或 RMB 799/年）",
-            features: [
-              "屏幕或外壳损坏：每次收取 RMB 799 服务费",
-              "主板或其他硬件损坏：每次收取 RMB 2,299 服务费",
-              "电池容量低于 80%：免费更换原厂电池",
-              "保障期内享受不限次数意外损坏保修与全球联保"
-            ]
-          };
-        }
-        if (m.includes("air 15") || m.includes("15 英寸 macbook air")) {
-          return {
-            planPrice: "RMB 1,599",
-            period: "3 年期",
-            features: [
-              "屏幕或外壳损坏：每次收取 RMB 799 服务费",
-              "主板或其他硬件损坏：每次收取 RMB 2,299 服务费",
-              "电池容量低于 80%：免费更换原厂电池",
-              "保障期内享受不限次数意外损坏保修与全球联保"
-            ]
-          };
-        }
-        if (m.includes("air") || m.includes("13 英寸 macbook air")) {
-          return {
-            planPrice: "RMB 1,399",
-            period: "3 年期",
-            features: [
-              "屏幕或外壳损坏：每次收取 RMB 799 服务费",
-              "主板或其他硬件损坏：每次收取 RMB 2,299 服务费",
-              "电池容量低于 80%：免费更换原厂电池",
-              "保障期内享受不限次数意外损坏保修与全球联保"
-            ]
-          };
-        }
-        if (m.includes("mac pro")) {
-          return {
-            planPrice: "RMB 2,299",
-            period: "3 年期",
-            features: [
-              "硬件损坏：每次收取 RMB 799 ~ 2,299 服务费",
-              "保障期内享受不限次数意外损坏保修与优先技术支持"
-            ]
-          };
-        }
-        if (m.includes("studio")) {
-          return {
-            planPrice: "RMB 1,199",
-            period: "3 年期",
-            features: [
-              "硬件损坏：每次收取 RMB 799 ~ 2,299 服务费",
-              "保障期内享受不限次数意外损坏保修与优先技术支持"
-            ]
-          };
-        }
-        if (m.includes("imac")) {
-          return {
-            planPrice: "RMB 1,199",
-            period: "3 年期",
-            features: [
-              "屏幕或外壳损坏：每次收取 RMB 799 服务费",
-              "主板及其他硬件损坏：每次收取 RMB 2,299 服务费",
-              "保障期内享受不限次数意外损坏保修与优先技术支持"
-            ]
-          };
-        }
-        if (m.includes("mini")) {
-          return {
-            planPrice: "RMB 699",
-            period: "3 年期",
-            features: [
-              "电源或主板硬件损坏：每次收取 RMB 799 ~ 2,299 服务费",
-              "覆盖电源线及随附配件官方保修",
-              "保障期内享受不限次数意外损坏保修与优先技术支持"
-            ]
-          };
-        }
-        return {
-          planPrice: "RMB 1,299",
-          period: "3 年期",
-          features: [
-            "屏幕或外壳损坏：每次收取 RMB 799 服务费",
-            "主板及其他硬件损坏：每次收取 RMB 2,299 服务费",
-            "保障期内享受不限次数意外损坏保修与优先技术支持"
-          ]
-        };
-      }
-
-      // iPad 系列
-      if (cat.includes("ipad") || m.includes("ipad")) {
-        if (m.includes("pro 13") || m.includes("pro 12.9") || m.includes("13 英寸 ipad pro") || m.includes("12.9 英寸")) {
-          return {
-            planPrice: "RMB 1,399",
-            period: "2 年期（或 RMB 699/年）",
-            features: [
-              "iPad 意外损坏：每次收取 RMB 368 服务费",
-              "Apple Pencil 或妙控键盘损坏：每次收取 RMB 199 服务费",
-              "电池容量低于 80%：免费更换原厂电池",
-              "保障期内享受不限次数意外损坏保修与优先支持"
-            ]
-          };
-        }
-        if (m.includes("pro 11") || m.includes("11 英寸 ipad pro")) {
-          return {
-            planPrice: "RMB 1,199",
-            period: "2 年期（或 RMB 599/年）",
-            features: [
-              "iPad 意外损坏：每次收取 RMB 368 服务费",
-              "Apple Pencil 或妙控键盘损坏：每次收取 RMB 199 服务费",
-              "电池容量低于 80%：免费更换原厂电池",
-              "保障期内享受不限次数意外损坏保修与优先支持"
-            ]
-          };
-        }
-        if (m.includes("air 13") || m.includes("13 英寸 ipad air")) {
-          return {
-            planPrice: "RMB 799",
+            status: "in_sale",
+            statusBadge: "官方在售 · 支持新购",
+            priceLabel: "官方选购价格",
+            planPrice: "RMB 749",
             period: "2 年期",
-            features: [
-              "iPad 意外损坏：每次收取 RMB 368 服务费",
-              "Apple Pencil 或键盘损坏：每次收取 RMB 199 服务费",
-              "电池容量低于 80%：免费更换原厂电池",
-              "保障期内享受不限次数意外损坏保修与优先支持"
-            ]
+            priceSubnote: "购机 60 天内可加购",
+            features: ipadFeatures
           };
         }
-        if (m.includes("air") || m.includes("11 英寸 ipad air")) {
+        if (m.includes("ipad mini") && m.includes("a17 pro")) {
           return {
-            planPrice: "RMB 699",
+            status: "in_sale",
+            statusBadge: "官方在售 · 支持新购",
+            priceLabel: "官方选购价格",
+            planPrice: "RMB 649",
             period: "2 年期",
-            features: [
-              "iPad 意外损坏：每次收取 RMB 368 服务费",
-              "Apple Pencil 或键盘损坏：每次收取 RMB 199 服务费",
-              "电池容量低于 80%：免费更换原厂电池",
-              "保障期内享受不限次数意外损坏保修与优先支持"
-            ]
+            priceSubnote: "购机 60 天内可加购",
+            features: ipadFeatures
           };
         }
-        if (m.includes("pencil") || m.includes("keyboard") || m.includes("键盘")) {
+        if (m.includes("ipad") && (m.includes("第 10 代") || m.includes("a16"))) {
           return {
-            planPrice: "随 iPad 计划共享",
-            period: "与对应 iPad 共享保修",
-            features: [
-              "配件意外损坏：每次收取 RMB 199 服务费",
-              "电池衰减低于 80% 免费更换"
-            ]
+            status: "in_sale",
+            statusBadge: "官方在售 · 支持新购",
+            priceLabel: "官方选购价格",
+            planPrice: "RMB 649",
+            period: "2 年期",
+            priceSubnote: "购机 60 天内可加购",
+            features: ipadFeatures
           };
         }
+
+        // 停售款 iPad
+        let histIpadPrice = "RMB 499";
+        if (m.includes("12.9 英寸") || m.includes("13 英寸")) histIpadPrice = "RMB 1,399";
+        else if (m.includes("11 英寸") && m.includes("pro")) histIpadPrice = "RMB 1,199";
+        else if (m.includes("air")) histIpadPrice = "RMB 699";
+
         return {
-          planPrice: "RMB 499",
-          period: "2 年期",
-          features: [
-            "iPad 意外损坏：每次收取 RMB 368 服务费",
-            "Apple Pencil 损坏：每次收取 RMB 199 服务费",
-            "电池容量低于 80%：免费更换原厂电池",
-            "保障期内享受不限次数意外损坏保修与优先支持"
-          ]
+          status: "discontinued",
+          statusBadge: "官方已停售 · 不支持新购",
+          priceLabel: "历史选购价格",
+          planPrice: histIpadPrice,
+          period: "历史 2 年期（现已停售）",
+          priceSubnote: "官方已停售不可购",
+          notice: "该机型 Apple 官方已停止销售，无法新购 AppleCare+ 服务计划。若您原购机时已购买且在保障期内，依然享受以下特惠原厂保修：",
+          features: ipadFeatures
         };
       }
 
-      // Apple Watch 系列
+      // ----------------------------------------------------------------------
+      // 4. Apple Watch 系列
+      // ----------------------------------------------------------------------
       if (cat.includes("watch") || m.includes("watch")) {
-        if (m.includes("hermès") || m.includes("hermes")) {
-          return {
-            planPrice: "RMB 1,599",
-            period: "2 年期",
-            features: [
-              "Apple Watch Hermès 意外损坏：每次收取 RMB 628 服务费",
-              "电池容量低于 80%：免费更换原厂电池",
-              "专属 Hermès 尊崇技术支持",
-              "保障期内享受不限次数意外损坏保修"
-            ]
-          };
-        }
+        const watchFeaturesHigh = [
+          "意外损坏维修：每次收取 RMB 628 服务费",
+          "电池最大容量低于 80%：免费更换原厂电池",
+          "原厂随附表带享受意外损坏保修",
+          "保障期内享受不限次数意外损坏保修与专属优先支持"
+        ];
+        const watchFeaturesStd = [
+          "意外损坏维修：每次收取 RMB 528 服务费",
+          "电池最大容量低于 80%：免费更换原厂电池",
+          "保障期内享受不限次数意外损坏保修与优先技术支持"
+        ];
+
+        // 在售机型
         if (m.includes("ultra")) {
+          const isOlderUltra = !m.includes("2") && !m.includes("3") && !m.includes("4");
+          if (!isOlderUltra) {
+            return {
+              status: "in_sale",
+              statusBadge: "官方在售 · 支持新购",
+              priceLabel: "官方选购价格",
+              planPrice: "RMB 799",
+              period: "2 年期",
+              priceSubnote: "购机 60 天内可加购",
+              features: watchFeaturesHigh
+            };
+          }
+        }
+        if (m.includes("series 12") || m.includes("series 11") || m.includes("series 10")) {
+          const isPremium = m.includes("hermès") || m.includes("hermes") || m.includes("titanium") || m.includes("钛金属") || m.includes("ceramic") || m.includes("陶瓷");
           return {
-            planPrice: "RMB 799",
+            status: "in_sale",
+            statusBadge: "官方在售 · 支持新购",
+            priceLabel: "官方选购价格",
+            planPrice: isPremium ? "RMB 1,299" : "RMB 649",
             period: "2 年期",
-            features: [
-              "Apple Watch Ultra 意外损坏：每次收取 RMB 628 服务费",
-              "电池容量低于 80%：免费更换原厂电池",
-              "原厂随附表带意外损坏保修",
-              "保障期内享受不限次数意外损坏保修与优先支持"
-            ]
+            priceSubnote: "购机 60 天内可加购",
+            features: isPremium ? watchFeaturesHigh : watchFeaturesStd
           };
         }
-        if (m.includes("edition") || m.includes("钛金属") || m.includes("不锈钢") || m.includes("陶瓷")) {
+        if (m.includes("se") && (m.includes("se 3") || m.includes("第 2 代"))) {
           return {
-            planPrice: "RMB 1,299",
-            period: "2 年期",
-            features: [
-              "意外损坏维修：每次收取 RMB 628 服务费",
-              "电池容量低于 80%：免费更换原厂电池",
-              "保障期内享受不限次数意外损坏保修与专属支持"
-            ]
-          };
-        }
-        if (m.includes("se")) {
-          return {
+            status: "in_sale",
+            statusBadge: "官方在售 · 支持新购",
+            priceLabel: "官方选购价格",
             planPrice: "RMB 399",
             period: "2 年期",
-            features: [
-              "意外损坏维修：每次收取 RMB 528 服务费",
-              "电池容量低于 80%：免费更换原厂电池",
-              "保障期内享受不限次数意外损坏保修与优先支持"
-            ]
+            priceSubnote: "购机 60 天内可加购",
+            features: watchFeaturesStd
           };
         }
+
+        // 停售机型 (S9 / S8 / S7 / S6 / 初代 Ultra / 初代 SE)
+        const isHistPremium = m.includes("hermès") || m.includes("hermes") || m.includes("edition") || m.includes("钛金属") || m.includes("不锈钢") || m.includes("陶瓷");
+        const histWatchPrice = m.includes("ultra") ? "RMB 799" : (m.includes("se") ? "RMB 399" : (isHistPremium ? "RMB 1,299" : "RMB 529"));
+
         return {
-          planPrice: "RMB 529",
-          period: "2 年期",
-          features: [
-            "意外损坏维修：每次收取 RMB 528 服务费",
-            "电池容量低于 80%：免费更换原厂电池",
-            "保障期内享受不限次数意外损坏保修与优先支持"
-          ]
+          status: "discontinued",
+          statusBadge: "官方已停售 · 不支持新购",
+          priceLabel: "历史选购价格",
+          planPrice: histWatchPrice,
+          period: "历史 2 年期（现已停售）",
+          priceSubnote: "官方已停售不可购",
+          notice: "该机型 Apple 官方已停止销售，无法新购 AppleCare+ 服务计划。若您原购机时已购买且在保障期内，依然享受以下特惠原厂保修：",
+          features: isHistPremium || m.includes("ultra") ? watchFeaturesHigh : watchFeaturesStd
         };
       }
 
-      // AirPods 系列
+      // ----------------------------------------------------------------------
+      // 5. AirPods 系列
+      // ----------------------------------------------------------------------
       if (cat.includes("airpods") || m.includes("airpods")) {
-        if (m.includes("max")) {
+        const airpodsFeatures = [
+          "单只耳机或原装充电盒意外损坏：每次收取 RMB 199 服务费",
+          "耳机或充电盒电池衰减低于 80%：免费更换原厂电池",
+          "重要说明：丢失或被盗不享受 AppleCare+ 优惠，需按原价补购",
+          "保障期内享受不限次数意外损坏保修与优先技术支持"
+        ];
+        const maxFeatures = [
+          "AirPods Max 意外损坏：每次收取 RMB 199 服务费",
+          "电池容量低于 80%：免费更换原厂电池",
+          "保障期内享受不限次数意外损坏保修与优先支持"
+        ];
+
+        // 在售款 AirPods
+        if (m.includes("max 2")) {
           return {
-            planPrice: "RMB 479",
+            status: "in_sale",
+            statusBadge: "官方在售 · 支持新购",
+            priceLabel: "官方选购价格",
+            planPrice: "RMB 549",
             period: "2 年期",
-            features: [
-              "AirPods Max 意外损坏：每次收取 RMB 199 服务费",
-              "电池容量低于 80%：免费更换原厂电池",
-              "保障期内享受不限次数意外损坏保修与优先支持"
-            ]
+            priceSubnote: "购机 60 天内可加购",
+            features: maxFeatures
           };
         }
-        if (m.includes("pro")) {
+        if (m.includes("pro 3") || (m.includes("pro 2") && m.includes("usb-c"))) {
           return {
-            planPrice: "RMB 299",
+            status: "in_sale",
+            statusBadge: "官方在售 · 支持新购",
+            priceLabel: "官方选购价格",
+            planPrice: "RMB 449",
             period: "2 年期",
-            features: [
-              "单耳耳机或充电盒意外损坏：每次收取 RMB 199 服务费",
-              "耳机或充电盒电池衰减低于 80%：免费更换",
-              "注意：丢失或被盗不享受 AppleCare+ 优惠，需按原价购买",
-              "保障期内享受不限次数意外损坏保修与优先支持"
-            ]
+            priceSubnote: "购机 60 天内可加购",
+            features: airpodsFeatures
           };
         }
-        if (m.includes("anc") || m.includes("降噪")) {
+        if (m.includes("airpods 5") || m.includes("airpods 4")) {
           return {
-            planPrice: "RMB 249",
+            status: "in_sale",
+            statusBadge: "官方在售 · 支持新购",
+            priceLabel: "官方选购价格",
+            planPrice: "RMB 349",
             period: "2 年期",
-            features: [
-              "单耳耳机或充电盒意外损坏：每次收取 RMB 199 服务费",
-              "耳机或充电盒电池衰减低于 80%：免费更换",
-              "注意：丢失或被盗不享受 AppleCare+ 优惠，需按原价购买",
-              "保障期内享受不限次数意外损坏保修与优先支持"
-            ]
+            priceSubnote: "购机 60 天内可加购",
+            features: airpodsFeatures
           };
         }
+
+        // 停售款 AirPods
+        let histAirpodsPrice = "RMB 199";
+        if (m.includes("max")) histAirpodsPrice = "RMB 479";
+        else if (m.includes("pro")) histAirpodsPrice = "RMB 299";
+        else if (m.includes("airpods 3")) histAirpodsPrice = "RMB 249";
+
         return {
-          planPrice: "RMB 199",
-          period: "2 年期",
-          features: [
-            "耳机或充电盒意外损坏：每次收取 RMB 199 服务费",
-            "电池容量低于 80%：免费更换原厂电池",
-            "注意：丢失或被盗不享受 AppleCare+ 优惠，需按原价购买",
-            "保障期内享受不限次数意外损坏保修与优先支持"
-          ]
+          status: "discontinued",
+          statusBadge: "官方已停售 · 不支持新购",
+          priceLabel: "历史选购价格",
+          planPrice: histAirpodsPrice,
+          period: "历史 2 年期（现已停售）",
+          priceSubnote: "官方已停售不可购",
+          notice: "该机型 Apple 官方已停止销售，无法新购 AppleCare+ 服务计划。若您原购机时已购买且在保障期内，依然享受以下特惠原厂保修：",
+          features: m.includes("max") ? maxFeatures : airpodsFeatures
         };
       }
 
+      // 默认兜底
       return {
-        planPrice: "官方建议零售价",
-        period: "2 年官方保障期",
-        features: ["享受 Apple 官方原厂保修与优先技术支持"]
+        status: "in_sale",
+        statusBadge: "官方服务计划",
+        priceLabel: "官方选购价格",
+        planPrice: "RMB 1,199",
+        period: "2 年期",
+        priceSubnote: "",
+        features: [
+          "享受官方意外损坏特惠保修",
+          "电池最大容量低于 80% 免费更换",
+          "保障期内享受不限次数意外损坏保修"
+        ]
       };
     }
 
@@ -2322,15 +2441,27 @@
                   </svg>
                 </div>
                 <div>
-                  <div class="ac-main-title">AppleCare+ 服务计划</div>
+                  <div class="ac-title-row">
+                    <span class="ac-main-title">AppleCare+ 服务计划</span>
+                    <span class="ac-status-badge ${plan.status}">
+                      <span class="ac-status-dot"></span>${plan.statusBadge}
+                    </span>
+                  </div>
                   <div class="ac-period-tag">${plan.period} · 官方全方位保障</div>
                 </div>
               </div>
               <div class="ac-price-box">
-                <span class="ac-price-label">计划选购价格</span>
-                <span class="ac-price-number">${plan.planPrice}</span>
+                <span class="ac-price-label">${plan.priceLabel}</span>
+                <span class="ac-price-number ${plan.status}">${plan.planPrice}</span>
+                ${plan.priceSubnote ? `<span class="ac-price-subnote">${plan.priceSubnote}</span>` : ""}
               </div>
             </div>
+            ${plan.notice ? `
+              <div class="ac-${plan.status}-notice">
+                <span class="ac-notice-icon">${plan.status === "discontinued" ? "⚠️" : "ℹ️"}</span>
+                <span>${plan.notice}</span>
+              </div>
+            ` : ""}
             <div class="ac-features-list">
               ${plan.features.map(f => `
                 <div class="ac-feature-row">
