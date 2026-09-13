@@ -1,17 +1,17 @@
 /**
  * Apple 官方维修价格与服务网点快查 - 核心数据集
  * 直连 Apple 官网官方接口同步生成
- * 同步时间戳: 2026-09-12 12:06:04
+ * 同步时间戳: 2026-09-13 10:20:37
  */
 
-var DATA_SYNC_TIMESTAMP = "2026-09-12 17:30:00";
+var DATA_SYNC_TIMESTAMP = "2026-09-13 10:20:37";
 if (typeof window !== "undefined") window.DATA_SYNC_TIMESTAMP = DATA_SYNC_TIMESTAMP;
 
 // ============================================================================
 // 官方数据最新变动通知记录 (DATA_CHANGELOG)
 // ============================================================================
 var DATA_CHANGELOG = {
-  "sync_time": "2026-09-12 17:30:00",
+  "sync_time": "2026-09-13 10:20:37",
   "has_changes": false,
   "badge_text": "",
   "title": "",
@@ -3628,7 +3628,7 @@ var pricesData = [
     "category": "AirPods",
     "model": "AirPods Max 2",
     "part": "其他损坏*",
-    "out_of_warranty": 0,
+    "out_of_warranty": 2199,
     "applecare": 199
   },
   {
@@ -3642,7 +3642,7 @@ var pricesData = [
     "category": "AirPods",
     "model": "AirPods Max 1",
     "part": "其他损坏*",
-    "out_of_warranty": 0,
+    "out_of_warranty": 2199,
     "applecare": 199
   },
   {

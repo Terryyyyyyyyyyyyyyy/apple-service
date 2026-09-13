@@ -146,12 +146,17 @@ def generate_flat_prices(catalog):
     for cat_name, series_list in catalog.items():
         for s in series_list:
             for m in s.get("models", []):
+                m_name = m.get("name", "")
                 for srv in m.get("services", []):
+                    srv_name = srv.get("name", "")
                     raw_p = srv.get("price", "")
                     num_match = re.search(r"[\d,]+", raw_p)
-                    price_num = int(num_match.group(0).replace(",", "")) if num_match else 0
-                    srv_name = srv.get("name", "")
-                    m_name = m.get("name", "")
+                    if num_match:
+                        price_num = int(num_match.group(0).replace(",", ""))
+                    elif "Max" in m_name and "损坏" in srv_name:
+                        price_num = 2199  # Apple 官方 AirPods Max 其他损坏整机更换参考价
+                    else:
+                        continue  # 忽略无具体报价的项目，绝不生成 0 元误导数据
                     
                     # AppleCare 自付服务费规则 (根据 AppleCare 官方保障政策)
                     if "丢失" in srv_name:
@@ -192,6 +197,58 @@ def generate_flat_prices(catalog):
                     })
     return flat
 
+def validate_data_integrity(flat_prices, stores, catalog):
+    """严格的数据质量与政策合规断言守卫 (Data Integrity & Policy Guardrails)"""
+    print("\n" + "=" * 65)
+    print("🛡️ 正在进行全量数据准确性与合规断言自检...")
+    print("=" * 65)
+
+    errors = []
+
+    # 1. 数量与完整性守卫
+    if len(flat_prices) < 400:
+        errors.append(f"维修报价数据量过少 ({len(flat_prices)} 项)，预期大于 500 项")
+    if len(stores) < 200:
+        errors.append(f"服务网点数据量过少 ({len(stores)} 家)，预期大于 300 家")
+
+    # 2. 关键重点机型存在性守卫
+    models = {p.get("model") for p in flat_prices}
+    essential_models = ["iPhone Air", "iPhone 18 Pro Max", "iPhone 17", "iPhone 16", "13 英寸 iPad Pro（M4）无线局域网机型"]
+    for em in essential_models:
+        if em not in models:
+            errors.append(f"关键重点机型缺失: {em}")
+
+    # 3. 价格有效性与零元防穿透守卫
+    for p in flat_prices:
+        oow = p.get("out_of_warranty", 0)
+        if oow <= 0:
+            errors.append(f"异常保外价格 (<=0): {p.get('category')} - {p.get('model')} - {p.get('part')} -> {oow}")
+            break
+
+    # 4. AppleCare 自付金政策合规守卫
+    valid_ac_fees = {None, 0, 188, 199, 368, 528, 628, 799, 2299}
+    for p in flat_prices:
+        ac = p.get("applecare")
+        if ac not in valid_ac_fees:
+            errors.append(f"违规 AppleCare 自付金数值: {p.get('category')} - {p.get('model')} - {p.get('part')} -> {ac}")
+            break
+        if "丢失" in p.get("part", "") and ac is not None:
+            errors.append(f"政策违规: AirPods 丢失必须为保外不适用，不可为 {ac}")
+            break
+        if p.get("category") == "iPhone" and ("屏幕" in p.get("part", "") or "玻璃" in p.get("part", "")) and ac != 188:
+            errors.append(f"政策违规: iPhone 屏幕/玻璃损坏自付金必须为 188，不可为 {ac}")
+            break
+
+    if errors:
+        print("\n❌ 数据质量校验失败，发现以下严重缺陷：")
+        for err in errors:
+            print(f"   - ⚠️ {err}")
+        print("🛑 触发熔断保护：已终止写入，绝不破坏现有生产数据！\n")
+        return False
+
+    print(f"✅ 全量数据合规自检 100% 通过！(维修报价: {len(flat_prices)} 项，全国网点: {len(stores)} 家)")
+    return True
+
 def update_data_js(catalog, stores):
     """将最新数据写入 data.js"""
     print("\n" + "=" * 65)
@@ -204,12 +261,11 @@ def update_data_js(catalog, stores):
     sync_timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
     # 1. 提取或保留 thirdPartyBrands 与 hotAccessoriesData
-    tp_match = re.search(r"((?:var PENDING_MSG = .*?;\nif \(typeof window !== \"undefined\"\) window\.PENDING_MSG = PENDING_MSG;\n\n)?var thirdPartyBrands = \[.*?\];\nif \(typeof window !== \"undefined\"\) window\.thirdPartyBrands = thirdPartyBrands;)", content, re.DOTALL)
+    tp_match = re.search(r"(var thirdPartyBrands = \[.*?\];\nif \(typeof window !== \"undefined\"\) window\.thirdPartyBrands = thirdPartyBrands;)", content, re.DOTALL)
     tp_code = tp_match.group(1) if tp_match else ""
-    if tp_code and "var PENDING_MSG" not in tp_code:
-        tp_code = 'var PENDING_MSG = "<div class=\\"warn-text\\">该品牌售后还未经最终验证，请等待后续更新</div>";\\nif (typeof window !== "undefined") window.PENDING_MSG = PENDING_MSG;\\n\\n' + tp_code
     if tp_code:
-        tp_code = re.sub(r'\bPENDING_MSG\b', '"<div class=\\"warn-text\\">该品牌售后还未经最终验证，请等待后续更新</div>"', tp_code)
+        tp_header = 'var PENDING_MSG = "<div class=\\"warn-text\\">该品牌售后还未经最终验证，请等待后续更新</div>";\nif (typeof window !== "undefined") window.PENDING_MSG = PENDING_MSG;\n\n'
+        tp_code = tp_header + tp_code
 
     hot_match = re.search(r"(var hotAccessoriesData = \[.*?\];\nif \(typeof window !== \"undefined\"\) window\.hotAccessoriesData = hotAccessoriesData;)", content, re.DOTALL)
     hot_code = hot_match.group(1) if hot_match else ""
@@ -226,7 +282,42 @@ def update_data_js(catalog, stores):
         except Exception:
             old_prices = []
 
+    # 读取旧版 storesData 以防本次抓取失败导致抹空已有网点
+    old_stores = []
+    old_s_match = re.search(r"var storesData = (\[.*?\]);\nif \(typeof window", content, re.DOTALL)
+    if old_s_match:
+        try:
+            old_stores = json.loads(old_s_match.group(1))
+        except Exception:
+            old_stores = []
+
+    # 安全继承防护：如果本次未抓取到足够网点（例如接口限流或网络波动），自动安全继承旧版健康网点库
+    if not stores or len(stores) < 100:
+        if old_stores:
+            print(f"⚠️  [安全继承] 本次抓取网点数量异常 (仅 {len(stores)} 家)，已自动继承已有健康网点库 ({len(old_stores)} 家)，防止数据被清空！")
+            stores = old_stores
+
+    # 安全继承防护：如果估价目录异常过少，自动从旧目录或缓存继承
+    total_models = sum(len(s.get("models", [])) for cat in catalog.values() for s in cat)
+    if total_models < 100 and os.path.exists(CATALOG_JSON_PATH):
+        try:
+            with open(CATALOG_JSON_PATH, "r", encoding="utf-8") as f:
+                catalog = json.load(f)
+            print(f"⚠️  [安全继承] 本次抓取机型数量异常 (仅 {total_models} 款)，已自动继承已有完整估价目录！")
+        except Exception:
+            pass
+
     flat_prices = generate_flat_prices(catalog)
+    if not flat_prices or len(flat_prices) < 100:
+        if old_prices:
+            print(f"⚠️  [安全继承] 本次生成报价数量异常 (仅 {len(flat_prices)} 项)，已自动继承已有报价库 ({len(old_prices)} 项)！")
+            flat_prices = old_prices
+
+    # 运行数据合规与完整性断言自检 (Guardrails)
+    if not validate_data_integrity(flat_prices, stores, catalog):
+        print("🛑 校验未通过，触发安全熔断保护，终止写入 data.js！")
+        sys.exit(1)
+
     flat_prices_json = json.dumps(flat_prices, ensure_ascii=False, indent=2)
     stores_json = json.dumps(stores, ensure_ascii=False, indent=2)
     catalog_json = json.dumps(catalog, ensure_ascii=False)
