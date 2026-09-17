@@ -2912,7 +2912,7 @@
           {
             "product_tag_id": "TAG_1788977499828",
             "product_eng_title": "Apple Watch Series 12 GPS + Cellular Ceramic 42mm",
-            "product_loc_title": "Apple Watch Series 12 GPS + Cellular Ceramic 42mm",
+            "product_loc_title": "Apple Watch Series 12（GPS + 蜂窝网络）精密陶瓷 42 毫米",
             "children_present": false,
             "sort_order": "10",
             "isDefault": true,
@@ -2934,7 +2934,7 @@
           {
             "product_tag_id": "TAG_1788977517147",
             "product_eng_title": "Apple Watch Series 12 GPS + Cellular Ceramic 46mm",
-            "product_loc_title": "Apple Watch Series 12 GPS + Cellular Ceramic 46mm",
+            "product_loc_title": "Apple Watch Series 12（GPS + 蜂窝网络）精密陶瓷 46 毫米",
             "children_present": false,
             "sort_order": "9",
             "isDefault": false,
@@ -2956,7 +2956,7 @@
           {
             "product_tag_id": "TAG_1788977535314",
             "product_eng_title": "Apple Watch Hermès Series 12 GPS + Cellular 42mm",
-            "product_loc_title": "Apple Watch Hermès Series 12 GPS + Cellular 42mm",
+            "product_loc_title": "Apple Watch Hermès Series 12（GPS + 蜂窝网络）42 毫米",
             "children_present": false,
             "sort_order": "8",
             "isDefault": false,
@@ -2978,7 +2978,7 @@
           {
             "product_tag_id": "TAG_1788977548295",
             "product_eng_title": "Apple Watch Hermès Series 12 GPS + Cellular 46mm",
-            "product_loc_title": "Apple Watch Hermès Series 12 GPS + Cellular 46mm",
+            "product_loc_title": "Apple Watch Hermès Series 12（GPS + 蜂窝网络）46 毫米",
             "children_present": false,
             "sort_order": "7",
             "isDefault": false,
@@ -3000,7 +3000,7 @@
           {
             "product_tag_id": "TAG_1788977562715",
             "product_eng_title": "Apple Watch Series 12 GPS + Cellular Titanium 42mm",
-            "product_loc_title": "Apple Watch Series 12 GPS + Cellular Titanium 42mm",
+            "product_loc_title": "Apple Watch Series 12（GPS + 蜂窝网络）钛金属 42 毫米",
             "children_present": false,
             "sort_order": "6",
             "isDefault": false,
@@ -3022,7 +3022,7 @@
           {
             "product_tag_id": "TAG_1788977571870",
             "product_eng_title": "Apple Watch Series 12 GPS + Cellular Titanium 46mm",
-            "product_loc_title": "Apple Watch Series 12 GPS + Cellular Titanium 46mm",
+            "product_loc_title": "Apple Watch Series 12（GPS + 蜂窝网络）钛金属 46 毫米",
             "children_present": false,
             "sort_order": "5",
             "isDefault": false,
@@ -3044,7 +3044,7 @@
           {
             "product_tag_id": "TAG_1788977588428",
             "product_eng_title": "Apple Watch Series 12 GPS + Cellular Aluminum 42mm",
-            "product_loc_title": "Apple Watch Series 12 GPS + Cellular Aluminum 42mm",
+            "product_loc_title": "Apple Watch Series 12（GPS + 蜂窝网络）铝金属 42 毫米",
             "children_present": false,
             "sort_order": "4",
             "isDefault": false,
@@ -3066,7 +3066,7 @@
           {
             "product_tag_id": "TAG_1788977603367",
             "product_eng_title": "Apple Watch Series 12 GPS + Cellular Aluminum 46mm",
-            "product_loc_title": "Apple Watch Series 12 GPS + Cellular Aluminum 46mm",
+            "product_loc_title": "Apple Watch Series 12（GPS + 蜂窝网络）铝金属 46 毫米",
             "children_present": false,
             "sort_order": "3",
             "isDefault": false,
@@ -3088,7 +3088,7 @@
           {
             "product_tag_id": "TAG_1788977619276",
             "product_eng_title": "Apple Watch Series 12 GPS Aluminum 42mm",
-            "product_loc_title": "Apple Watch Series 12 GPS Aluminum 42mm",
+            "product_loc_title": "Apple Watch Series 12 GPS 铝金属 42 毫米",
             "children_present": false,
             "sort_order": "2",
             "isDefault": false,
@@ -3110,7 +3110,7 @@
           {
             "product_tag_id": "TAG_1788977634718",
             "product_eng_title": "Apple Watch Series 12 GPS Aluminum 46mm",
-            "product_loc_title": "Apple Watch Series 12 GPS Aluminum 46mm",
+            "product_loc_title": "Apple Watch Series 12 GPS 铝金属 46 毫米",
             "children_present": false,
             "sort_order": "1",
             "isDefault": false,
@@ -5126,7 +5126,7 @@
       {
         "product_tag_id": "TAG_1788977470543",
         "product_eng_title": "AirPods 5 (Wireless)",
-        "product_loc_title": "AirPods 5 (Wireless)",
+        "product_loc_title": "AirPods 5（无线）",
         "children_present": false,
         "sort_order": "10",
         "isDefault": true,
