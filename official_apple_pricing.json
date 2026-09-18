@@ -64,7 +64,7 @@
         "product_loc_title": "iPhone 18",
         "children_present": true,
         "sort_order": "18",
-        "isDefault": true,
+        "isDefault": false,
         "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=PRICE115&size=240x240",
         "showEstimateDisclaimer": false,
         "childrenProducts": [
