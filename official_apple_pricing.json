@@ -5,65 +5,11 @@
     "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=PL133&size=240x240",
     "products": [
       {
-        "product_tag_id": "TAG_1760016472060",
-        "product_eng_title": "iPhone Air",
-        "product_loc_title": "iPhone Air",
-        "children_present": true,
-        "sort_order": "20",
-        "isDefault": false,
-        "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=PRICE115&size=240x240",
-        "showEstimateDisclaimer": false,
-        "childrenProducts": [
-          {
-            "product_tag_id": "TAG_1760017610488",
-            "product_eng_title": "iPhone Air",
-            "product_loc_title": "iPhone Air",
-            "children_present": false,
-            "sort_order": "1",
-            "isDefault": true,
-            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301244&size=240x240",
-            "showEstimateDisclaimer": false,
-            "services": [
-              {
-                "serviceLabel": "电池服务",
-                "price": "RMB 969",
-                "sortOrder": "50"
-              },
-              {
-                "serviceLabel": "背面玻璃损坏",
-                "price": "RMB 1,298",
-                "sortOrder": "14"
-              },
-              {
-                "serviceLabel": "后置相机损坏",
-                "price": "RMB 1,299",
-                "sortOrder": "12"
-              },
-              {
-                "serviceLabel": "屏幕损坏",
-                "price": "RMB 2,698",
-                "sortOrder": "10"
-              },
-              {
-                "serviceLabel": "屏幕和背面玻璃损坏",
-                "price": "RMB 3,429",
-                "sortOrder": "8"
-              },
-              {
-                "serviceLabel": "其他损坏",
-                "price": "RMB 6,498",
-                "sortOrder": "4"
-              }
-            ]
-          }
-        ]
-      },
-      {
         "product_tag_id": "TAG_1789103410026",
-        "product_eng_title": "iPhone 18",
-        "product_loc_title": "iPhone 18",
+        "product_eng_title": "iPhone 18 Pro",
+        "product_loc_title": "iPhone 18 Pro",
         "children_present": true,
-        "sort_order": "18",
+        "sort_order": "25",
         "isDefault": false,
         "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=PRICE115&size=240x240",
         "showEstimateDisclaimer": false,
@@ -148,6 +94,60 @@
               {
                 "serviceLabel": "其他损坏",
                 "price": "RMB 6,898",
+                "sortOrder": "4"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "product_tag_id": "TAG_1760016472060",
+        "product_eng_title": "iPhone Air",
+        "product_loc_title": "iPhone Air",
+        "children_present": true,
+        "sort_order": "20",
+        "isDefault": false,
+        "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=PRICE115&size=240x240",
+        "showEstimateDisclaimer": false,
+        "childrenProducts": [
+          {
+            "product_tag_id": "TAG_1760017610488",
+            "product_eng_title": "iPhone Air",
+            "product_loc_title": "iPhone Air",
+            "children_present": false,
+            "sort_order": "1",
+            "isDefault": true,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301244&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 969",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "背面玻璃损坏",
+                "price": "RMB 1,298",
+                "sortOrder": "14"
+              },
+              {
+                "serviceLabel": "后置相机损坏",
+                "price": "RMB 1,299",
+                "sortOrder": "12"
+              },
+              {
+                "serviceLabel": "屏幕损坏",
+                "price": "RMB 2,698",
+                "sortOrder": "10"
+              },
+              {
+                "serviceLabel": "屏幕和背面玻璃损坏",
+                "price": "RMB 3,429",
+                "sortOrder": "8"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 6,498",
                 "sortOrder": "4"
               }
             ]
