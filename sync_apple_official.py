@@ -179,7 +179,7 @@ def generate_flat_prices(catalog):
                         else:
                             ac_fee = 368
                     elif cat_name == "Apple Watch":
-                        if any(k in m_name for k in ["Hermès", "hermes", "Ultra", "Edition", "钛金属", "陶瓷", "不锈钢"]):
+                        if any(k in m_name for k in ["Hermès", "Hermes", "Ultra", "Edition", "钛金属", "陶瓷", "不锈钢", "Titanium", "Ceramic"]):
                             ac_fee = 628
                         else:
                             ac_fee = 528
