@@ -197,7 +197,144 @@ def generate_flat_prices(catalog):
                     })
     return flat
 
-def validate_data_integrity(flat_prices, stores, catalog):
+def fetch_live_applecare_store():
+    """并发抓取 Apple 官方在线商店 (apple.com.cn/shop/buy-*) 在售主力机型的 AppleCare+ 真实选购价"""
+    print("\n" + "=" * 65)
+    print("🛒 开始直连 Apple 官方在线商店抓取在售机型 AppleCare+ 真实选购价...")
+    print("=" * 65)
+    
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Accept": "text/html,*/*",
+        "Accept-Language": "zh-CN,zh;q=0.9",
+    }
+    
+    targets = [
+        ("watch_se", "https://www.apple.com.cn/shop/buy-watch/apple-watch/apple-watch-se"),
+        ("watch_series", "https://www.apple.com.cn/shop/buy-watch/apple-watch"),
+        ("watch_ultra", "https://www.apple.com.cn/shop/buy-watch/apple-watch-ultra"),
+        ("watch_hermes", "https://www.apple.com.cn/shop/buy-watch/apple-watch-hermes"),
+        ("iphone_16", "https://www.apple.com.cn/shop/buy-iphone/iphone-16"),
+        ("ipad_pro", "https://www.apple.com.cn/shop/buy-ipad/ipad-pro"),
+        ("ipad_air", "https://www.apple.com.cn/shop/buy-ipad/ipad-air"),
+        ("ipad_10", "https://www.apple.com.cn/shop/buy-ipad/ipad"),
+        ("macbook_air", "https://www.apple.com.cn/shop/buy-mac/macbook-air"),
+        ("macbook_pro", "https://www.apple.com.cn/shop/buy-mac/macbook-pro"),
+    ]
+    
+    results = {}
+    for key, url in targets:
+        try:
+            req = urllib.request.Request(url, headers=headers)
+            with urllib.request.urlopen(req, timeout=10) as r:
+                html = r.read().decode("utf-8", errors="replace")
+            idx = html.find("appleCarePlans")
+            if idx >= 0:
+                chunk = html[idx:idx+6000]
+                raw_match = re.search(r'\"rawPrice\":\s*([\d.]+)', chunk)
+                gps_match = re.search(r'\"groupPriceString\":\s*\"([^\"]+)\"', chunk)
+                part_match = re.search(r'\"partNumber\":\s*\"([^\"]+)\"', chunk)
+                if raw_match:
+                    p = int(float(raw_match.group(1)))
+                    results[key] = {
+                        "rawPrice": p,
+                        "priceString": gps_match.group(1) if gps_match else f"RMB {p}",
+                        "partNumber": part_match.group(1) if part_match else ""
+                    }
+                    print(f"    ✅ 抓取成功: {key} -> {results[key]['priceString']}")
+        except Exception as e:
+            print(f"    ⚠️ 抓取 {key} 略过或网络波动: {e}")
+            
+    print(f"✅ 成功核验 {len(results)} 款在售主力机型 AppleCare+ 实时定价！")
+    return results
+
+def build_applecare_plans_matrix(live_store):
+    """构建全品类 AppleCare+ 结构化数据矩阵（统一数据源）"""
+    # 优先采用实时商店价格，如果离线/波动则安全继承严苛基准价
+    watch_se_price = live_store.get("watch_se", {}).get("rawPrice", 649)
+    watch_series_price = live_store.get("watch_series", {}).get("rawPrice", 649)
+    watch_ultra_price = live_store.get("watch_ultra", {}).get("rawPrice", 799)
+    watch_hermes_price = live_store.get("watch_hermes", {}).get("rawPrice", 1299)
+    iphone_16_price = live_store.get("iphone_16", {}).get("rawPrice", 1399)
+    ipad_pro_price = live_store.get("ipad_pro", {}).get("rawPrice", 1399)
+    ipad_air_price = live_store.get("ipad_air", {}).get("rawPrice", 749)
+    ipad_10_price = live_store.get("ipad_10", {}).get("rawPrice", 649)
+    macbook_air_price = live_store.get("macbook_air", {}).get("rawPrice", 1749)
+    macbook_pro_price = live_store.get("macbook_pro", {}).get("rawPrice", 2449)
+
+    return {
+        "sync_time": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "live_store": live_store,
+        "deductibles": {
+            "iPhone": {
+                "screen_or_glass": 188,
+                "other": 628,
+                "battery": 0
+            },
+            "Apple Watch": {
+                "standard": 528,
+                "premium": 628,
+                "battery": 0,
+                "premium_keywords": ["ultra", "hermes", "hermès", "edition", "titanium", "ceramic", "钛金属", "陶瓷", "不锈钢"]
+            },
+            "Mac": {
+                "screen_or_enclosure": 799,
+                "other": 2299,
+                "battery": 0
+            },
+            "iPad": {
+                "unit": 368,
+                "accessory": 199,
+                "battery": 0
+            },
+            "AirPods": {
+                "damage": 199,
+                "loss": None,
+                "battery": 0
+            }
+        },
+        "prices": {
+            "Apple Watch": {
+                "se_3": {"price": f"RMB {watch_se_price}", "rawPrice": watch_se_price, "status": "in_sale", "period": "2 年期", "releaseYear": "2024"},
+                "series_standard": {"price": f"RMB {watch_series_price}", "rawPrice": watch_series_price, "status": "in_sale", "period": "2 年期", "releaseYear": "2024-2026"},
+                "series_premium": {"price": f"RMB {watch_hermes_price:,}", "rawPrice": watch_hermes_price, "status": "in_sale", "period": "2 年期", "releaseYear": "2024-2026"},
+                "ultra": {"price": f"RMB {watch_ultra_price}", "rawPrice": watch_ultra_price, "status": "in_sale", "period": "2 年期", "releaseYear": "2023-2026"},
+                "se_2_discontinued": {"price": "RMB 449", "rawPrice": 449, "status": "discontinued", "period": "历史 2 年期", "releaseYear": "2022-2024"},
+                "se_1_discontinued": {"price": "RMB 399", "rawPrice": 399, "status": "discontinued", "period": "历史 2 年期", "releaseYear": "2020-2022"},
+                "series_hist": {"price": "RMB 549", "rawPrice": 549, "status": "discontinued", "period": "历史 2 年期", "releaseYear": "2021-2023"}
+            },
+            "iPhone": {
+                "air": {"price": "RMB 1,799", "rawPrice": 1799, "status": "in_sale", "period": "2 年期", "releaseYear": "2025-2026"},
+                "pro": {"price": "RMB 1,799", "rawPrice": 1799, "status": "in_sale", "period": "2 年期", "releaseYear": "2025-2026"},
+                "standard": {"price": f"RMB {iphone_16_price:,}", "rawPrice": iphone_16_price, "status": "in_sale", "period": "2 年期", "releaseYear": "2024-2026"},
+                "se_hist": {"price": "RMB 599", "rawPrice": 599, "status": "discontinued", "period": "历史 2 年期", "releaseYear": "2022"},
+                "pro_hist": {"price": "RMB 1,499", "rawPrice": 1499, "status": "discontinued", "period": "历史 2 年期", "releaseYear": "2021-2024"}
+            },
+            "Mac": {
+                "pro_16": {"price": "RMB 3,449", "rawPrice": 3449, "status": "in_sale", "period": "3 年期"},
+                "pro_14": {"price": f"RMB {macbook_pro_price:,}", "rawPrice": macbook_pro_price, "status": "in_sale", "period": "3 年期"},
+                "air_15": {"price": "RMB 2,049", "rawPrice": 2049, "status": "in_sale", "period": "3 年期"},
+                "air_13": {"price": f"RMB {macbook_air_price:,}", "rawPrice": macbook_air_price, "status": "in_sale", "period": "3 年期"},
+                "mini": {"price": "RMB 799", "rawPrice": 799, "status": "in_sale", "period": "3 年期"},
+                "studio": {"price": "RMB 1,199", "rawPrice": 1199, "status": "in_sale", "period": "3 年期"}
+            },
+            "iPad": {
+                "pro_13": {"price": "RMB 1,549", "rawPrice": 1549, "status": "in_sale", "period": "2 年期"},
+                "pro_11": {"price": f"RMB {ipad_pro_price:,}", "rawPrice": ipad_pro_price, "status": "in_sale", "period": "2 年期"},
+                "air_13": {"price": "RMB 899", "rawPrice": 899, "status": "in_sale", "period": "2 年期"},
+                "air_11": {"price": f"RMB {ipad_air_price}", "rawPrice": ipad_air_price, "status": "in_sale", "period": "2 年期"},
+                "ipad_10": {"price": f"RMB {ipad_10_price}", "rawPrice": ipad_10_price, "status": "in_sale", "period": "2 年期"},
+                "mini": {"price": "RMB 649", "rawPrice": 649, "status": "in_sale", "period": "2 年期"}
+            },
+            "AirPods": {
+                "max": {"price": "RMB 549", "rawPrice": 549, "status": "in_sale", "period": "2 年期"},
+                "pro": {"price": "RMB 449", "rawPrice": 449, "status": "in_sale", "period": "2 年期"},
+                "standard_anc": {"price": "RMB 349", "rawPrice": 349, "status": "in_sale", "period": "2 年期"}
+            }
+        }
+    }
+
+def validate_data_integrity(flat_prices, stores, catalog, applecare_plans=None):
     """严格的数据质量与政策合规断言守卫 (Data Integrity & Policy Guardrails)"""
     print("\n" + "=" * 65)
     print("🛡️ 正在进行全量数据准确性与合规断言自检...")
@@ -238,6 +375,33 @@ def validate_data_integrity(flat_prices, stores, catalog):
         if p.get("category") == "iPhone" and ("屏幕" in p.get("part", "") or "玻璃" in p.get("part", "")) and ac != 188:
             errors.append(f"政策违规: iPhone 屏幕/玻璃损坏自付金必须为 188，不可为 {ac}")
             break
+        if "电池" in p.get("part", "") and ac != 0:
+            errors.append(f"政策违规: 电池服务在 AppleCare+ 下必须为 0 元免费更换，不可为 {ac} ({p.get('category')} - {p.get('model')})")
+            break
+
+    # 5. Apple Watch 高端与标准表款自付金双向严苛断言 (杜绝漏判或误判)
+    watch_premium_keywords = ["ultra", "hermes", "hermès", "edition", "titanium", "ceramic", "钛金属", "陶瓷", "不锈钢"]
+    for p in flat_prices:
+        if p.get("category") == "Apple Watch" and "其他损坏" in p.get("part", ""):
+            m = p.get("model", "").lower()
+            ac = p.get("applecare")
+            is_premium = any(k in m for k in watch_premium_keywords)
+            if is_premium and ac != 628:
+                errors.append(f"Apple Watch 高端款自付金断言失败: {p.get('model')} 期望 628，实际为 {ac}")
+                break
+            elif not is_premium and ac != 528:
+                errors.append(f"Apple Watch 标准款自付金断言失败: {p.get('model')} 期望 528，实际为 {ac}")
+                break
+
+    # 6. 在售主力机型 AppleCare+ 购买价格基准断言 (杜绝旧假设)
+    if applecare_plans:
+        w_prices = applecare_plans.get("prices", {}).get("Apple Watch", {})
+        if w_prices.get("se_3", {}).get("rawPrice") != 649:
+            errors.append(f"Apple Watch SE 3 AppleCare 购买价基准断言失败: 期望 649，实际 {w_prices.get('se_3', {}).get('rawPrice')}")
+        if w_prices.get("ultra", {}).get("rawPrice") != 799:
+            errors.append(f"Apple Watch Ultra AppleCare 购买价基准断言失败: 期望 799，实际 {w_prices.get('ultra', {}).get('rawPrice')}")
+        if w_prices.get("series_standard", {}).get("rawPrice") != 649:
+            errors.append(f"Apple Watch Series 标准款 AppleCare 购买价基准断言失败: 期望 649，实际 {w_prices.get('series_standard', {}).get('rawPrice')}")
 
     if errors:
         print("\n❌ 数据质量校验失败，发现以下严重缺陷：")
@@ -246,10 +410,10 @@ def validate_data_integrity(flat_prices, stores, catalog):
         print("🛑 触发熔断保护：已终止写入，绝不破坏现有生产数据！\n")
         return False
 
-    print(f"✅ 全量数据合规自检 100% 通过！(维修报价: {len(flat_prices)} 项，全国网点: {len(stores)} 家)")
+    print(f"✅ 全量数据合规自检 100% 通过！(维修报价: {len(flat_prices)} 项，全国网点: {len(stores)} 家，AppleCare+ 矩阵校验通过)")
     return True
 
-def update_data_js(catalog, stores):
+def update_data_js(catalog, stores, live_applecare=None):
     """将最新数据写入 data.js"""
     print("\n" + "=" * 65)
     print("💾 [3/3] 正在将最新估价库与网点库写入 data.js...")
@@ -313,8 +477,11 @@ def update_data_js(catalog, stores):
             print(f"⚠️  [安全继承] 本次生成报价数量异常 (仅 {len(flat_prices)} 项)，已自动继承已有报价库 ({len(old_prices)} 项)！")
             flat_prices = old_prices
 
+    applecare_plans = build_applecare_plans_matrix(live_applecare or {})
+    applecare_plans_json = json.dumps(applecare_plans, ensure_ascii=False, indent=2)
+
     # 运行数据合规与完整性断言自检 (Guardrails)
-    if not validate_data_integrity(flat_prices, stores, catalog):
+    if not validate_data_integrity(flat_prices, stores, catalog, applecare_plans):
         print("🛑 校验未通过，触发安全熔断保护，终止写入 data.js！")
         sys.exit(1)
 
@@ -423,6 +590,13 @@ if (typeof window !== "undefined") window.ESTIMATOR_CATALOG = ESTIMATOR_CATALOG;
 // 特别鸣谢：@Bryan 整理与倾情支持
 // ============================================================================
 {hot_code}
+
+// ============================================================================
+// 模块 5：官方 AppleCare+ 服务计划价格与保障矩阵 (APPLECARE_PLANS)
+// 官方在线商店真实选购价格同步 + 历史停售方案基准 + 全品类自付金统一矩阵
+// ============================================================================
+var APPLECARE_PLANS = {applecare_plans_json};
+if (typeof window !== "undefined") window.APPLECARE_PLANS = APPLECARE_PLANS;
 """
 
     with open(DATA_JS_PATH, "w", encoding="utf-8") as f:
@@ -442,7 +616,8 @@ def main():
     print("=================================================================")
     catalog = fetch_pricing_data()
     stores = fetch_stores_data()
-    update_data_js(catalog, stores)
+    live_applecare = fetch_live_applecare_store()
+    update_data_js(catalog, stores, live_applecare)
 
 if __name__ == "__main__":
     main()

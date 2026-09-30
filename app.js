@@ -1771,73 +1771,87 @@
       return part;
     }
 
+    // 字符特征归一化器：去除空格、标点符号、连字符并将重音符 è 归一化为 e，防止中英文/特殊字符漏判
+    function normalizeModel(str) {
+      return (str || "")
+        .toLowerCase()
+        .replace(/[\s\-_（）\(\)\+·\.,]/g, "")
+        .replace(/è/g, "e");
+    }
+
     // 计算指定机型与部件的官方 AppleCare+ 服务费 (自付金)
     function getAppleCareServiceFee(category, modelName, partName) {
       const cat = (category || "").toLowerCase();
-      const m = (modelName || "").toLowerCase();
+      const normM = normalizeModel(modelName);
       const p = (partName || "").toLowerCase();
 
       // 1. 丢失或被盗：AppleCare+ 在中国大陆不为丢失被盗提供保障，需按保外原价购买替换件
       if (p.includes("丢失")) {
-        return { price: "--", isFree: false, label: "不适用 (仅保外)", notCovered: true };
+        return { price: "--", rawPrice: null, isFree: false, label: "不适用 (仅保外)", notCovered: true };
       }
 
       // 2. 电池服务：全品类只要容量低于 80%，AppleCare+ 均提供免费更换
       if (p.includes("电池")) {
-        return { price: "RMB 0", isFree: true, label: "RMB 0 (免费)" };
+        return { price: "RMB 0", rawPrice: 0, isFree: true, label: "RMB 0 (免费)" };
       }
 
       // 3. iPhone
-      if (cat.includes("iphone") || m.includes("iphone")) {
+      if (cat.includes("iphone") || normM.includes("iphone")) {
         // 官方 AppleCare+ 政策：无论是仅屏幕损坏、仅背面玻璃损坏，还是屏幕和背面玻璃同时损坏，每次服务费均为 RMB 188
         if (p.includes("屏幕") || p.includes("背面玻璃")) {
-          return { price: "RMB 188", isFree: false, label: "RMB 188" };
+          return { price: "RMB 188", rawPrice: 188, isFree: false, label: "RMB 188" };
         }
         // 后置相机、其他损坏、整机主板
-        return { price: "RMB 628", isFree: false, label: "RMB 628" };
+        return { price: "RMB 628", rawPrice: 628, isFree: false, label: "RMB 628" };
       }
 
       // 4. Mac
-      if (cat.includes("mac") || m.includes("mac")) {
+      if (cat.includes("mac") || normM.includes("mac")) {
         if (p.includes("屏幕") || p.includes("外壳") || p.includes("键盘")) {
-          return { price: "RMB 799", isFree: false, label: "RMB 799" };
+          return { price: "RMB 799", rawPrice: 799, isFree: false, label: "RMB 799" };
         }
-        return { price: "RMB 2,299", isFree: false, label: "RMB 2,299" };
+        return { price: "RMB 2,299", rawPrice: 2299, isFree: false, label: "RMB 2,299" };
       }
 
       // 5. iPad
-      if (cat.includes("ipad") || m.includes("ipad")) {
-        if (m.includes("pencil") || m.includes("keyboard") || m.includes("键盘") || p.includes("pencil") || p.includes("键盘")) {
-          return { price: "RMB 199", isFree: false, label: "RMB 199" };
+      if (cat.includes("ipad") || normM.includes("ipad")) {
+        if (normM.includes("pencil") || normM.includes("keyboard") || normM.includes("键盘") || p.includes("pencil") || p.includes("键盘")) {
+          return { price: "RMB 199", rawPrice: 199, isFree: false, label: "RMB 199" };
         }
-        return { price: "RMB 368", isFree: false, label: "RMB 368" };
+        return { price: "RMB 368", rawPrice: 368, isFree: false, label: "RMB 368" };
       }
 
       // 6. Apple Watch
-      if (cat.includes("watch") || m.includes("watch")) {
-        if (m.includes("ultra") || m.includes("hermès") || m.includes("hermes") || m.includes("edition") || m.includes("钛金属") || m.includes("陶瓷") || m.includes("不锈钢")) {
-          return { price: "RMB 628", isFree: false, label: "RMB 628" };
-        }
-        return { price: "RMB 528", isFree: false, label: "RMB 528" };
+      if (cat.includes("watch") || normM.includes("watch")) {
+        const watchPremiumKeywords = ["ultra", "hermes", "edition", "titanium", "ceramic", "钛金属", "陶瓷", "不锈钢"];
+        const isPremium = watchPremiumKeywords.some(k => normM.includes(k));
+        return {
+          price: isPremium ? "RMB 628" : "RMB 528",
+          rawPrice: isPremium ? 628 : 528,
+          isFree: false,
+          label: isPremium ? "RMB 628" : "RMB 528"
+        };
       }
 
       // 7. AirPods
-      if (cat.includes("airpods") || m.includes("airpods")) {
-        return { price: "RMB 199", isFree: false, label: "RMB 199" };
+      if (cat.includes("airpods") || normM.includes("airpods")) {
+        return { price: "RMB 199", rawPrice: 199, isFree: false, label: "RMB 199" };
       }
 
-      return { price: "RMB 188", isFree: false, label: "官方自付金" };
+      return { price: "RMB 188", rawPrice: 188, isFree: false, label: "官方自付金" };
     }
 
-    // 获取机型对应的 AppleCare+ 官方选购价格与在售/停售保障状态
+    // 获取机型对应的 AppleCare+ 官方选购价格与在售/停售保障状态（全面对接 window.APPLECARE_PLANS 统一矩阵）
     function getAppleCarePlanInfo(category, modelName) {
       const cat = (category || "").toLowerCase();
-      const m = (modelName || "").toLowerCase();
+      const normM = normalizeModel(modelName);
+      const plansMatrix = (typeof window !== "undefined" && window.APPLECARE_PLANS) || null;
+      const matrixPrices = plansMatrix ? plansMatrix.prices : null;
 
       // ----------------------------------------------------------------------
       // 1. iPhone 手机系列
       // ----------------------------------------------------------------------
-      if (cat.includes("iphone") || m.includes("iphone")) {
+      if (cat.includes("iphone") || normM.includes("iphone")) {
         const iphoneFeatures = [
           "屏幕或背面玻璃损坏（含双面同时损坏）：每次收取 RMB 188 服务费",
           "后置相机损坏：每次收取 RMB 628 服务费",
@@ -1847,76 +1861,90 @@
         ];
 
         // 官方在售机型 (In-Sale)
-        if (m.includes("iphone air")) {
+        if (normM.includes("air")) {
+          const cfg = matrixPrices && matrixPrices.iPhone && matrixPrices.iPhone.air;
           return {
             status: "in_sale",
             statusBadge: "官方在售 · 支持新购",
             priceLabel: "官方选购价格",
-            planPrice: "RMB 1,799",
+            planPrice: cfg ? cfg.price : "RMB 1,799",
+            rawPrice: cfg ? cfg.rawPrice : 1799,
             period: "2 年期（或 RMB 89.9/月）",
             priceSubnote: "购机 60 天内可加购",
+            releaseYear: "2025-2026",
             features: iphoneFeatures
           };
         }
-        if (m.includes("18 pro") || m.includes("17 pro")) {
+        if (normM.includes("18pro") || normM.includes("17pro")) {
+          const cfg = matrixPrices && matrixPrices.iPhone && matrixPrices.iPhone.pro;
           return {
             status: "in_sale",
             statusBadge: "官方在售 · 支持新购",
             priceLabel: "官方选购价格",
-            planPrice: "RMB 1,799",
+            planPrice: cfg ? cfg.price : "RMB 1,799",
+            rawPrice: cfg ? cfg.rawPrice : 1799,
             period: "2 年期（或 RMB 89.9/月）",
             priceSubnote: "购机 60 天内可加购",
+            releaseYear: "2025-2026",
             features: iphoneFeatures
           };
         }
-        if (m.includes("17e")) {
+        if (normM.includes("17e")) {
           return {
             status: "in_sale",
             statusBadge: "官方在售 · 支持新购",
             priceLabel: "官方选购价格",
             planPrice: "RMB 1,099",
+            rawPrice: 1099,
             period: "2 年期（或 RMB 54.9/月）",
             priceSubnote: "购机 60 天内可加购",
+            releaseYear: "2025",
             features: iphoneFeatures
           };
         }
-        if (m.includes("iphone 17")) {
+        if (normM.includes("17") || normM === "iphone16") {
+          const cfg = matrixPrices && matrixPrices.iPhone && matrixPrices.iPhone.standard;
           return {
             status: "in_sale",
             statusBadge: "官方在售 · 支持新购",
             priceLabel: "官方选购价格",
-            planPrice: "RMB 1,399",
+            planPrice: cfg ? cfg.price : "RMB 1,399",
+            rawPrice: cfg ? cfg.rawPrice : 1399,
             period: "2 年期（或 RMB 69.9/月）",
             priceSubnote: "购机 60 天内可加购",
-            features: iphoneFeatures
-          };
-        }
-        if (m === "iphone 16") {
-          return {
-            status: "in_sale",
-            statusBadge: "官方在售 · 支持新购",
-            priceLabel: "官方选购价格",
-            planPrice: "RMB 1,399",
-            period: "2 年期（或 RMB 69.9/月）",
-            priceSubnote: "购机 60 天内可加购",
+            releaseYear: "2024-2026",
             features: iphoneFeatures
           };
         }
 
-        // 官方已停售机型 (Discontinued) - 展示历史选购价格与在保维修优惠
+        // 官方已停售机型 (Discontinued)
         let histPrice = "RMB 1,199";
-        if (m.includes("16 pro") || m.includes("15 pro") || m.includes("14 pro") || m.includes("13 pro")) {
+        let histRaw = 1199;
+        let histYear = "2020-2023";
+        if (normM.includes("16pro") || normM.includes("15pro") || normM.includes("14pro") || normM.includes("13pro")) {
           histPrice = "RMB 1,499";
-        } else if (m.includes("12 pro")) {
+          histRaw = 1499;
+          histYear = "2021-2024";
+        } else if (normM.includes("12pro")) {
           histPrice = "RMB 1,399";
-        } else if (m.includes("16 plus") || m.includes("15 plus") || m.includes("14 plus")) {
+          histRaw = 1399;
+          histYear = "2020";
+        } else if (normM.includes("16plus") || normM.includes("15plus") || normM.includes("14plus")) {
           histPrice = "RMB 1,399";
-        } else if (m.includes("16e") || m.includes("13 mini") || m.includes("12 mini")) {
+          histRaw = 1399;
+          histYear = "2022-2024";
+        } else if (normM.includes("16e") || normM.includes("13mini") || normM.includes("12mini")) {
           histPrice = "RMB 899";
-        } else if (m.includes("se")) {
+          histRaw = 899;
+          histYear = "2021-2024";
+        } else if (normM.includes("se")) {
           histPrice = "RMB 599";
-        } else if (m.includes("11") || m.includes("xr")) {
+          histRaw = 599;
+          histYear = "2022";
+        } else if (normM.includes("11") || normM.includes("xr")) {
           histPrice = "RMB 1,099";
+          histRaw = 1099;
+          histYear = "2018-2019";
         }
 
         return {
@@ -1924,8 +1952,10 @@
           statusBadge: "官方已停售 · 不支持新购",
           priceLabel: "历史选购价格",
           planPrice: histPrice,
+          rawPrice: histRaw,
           period: "历史 2 年期（现已停售）",
           priceSubnote: "官方已停售不可购",
+          releaseYear: histYear,
           notice: "该机型 Apple 官方已停止销售，无法新购 AppleCare+ 服务计划。若您原购机时已购买且在保障期内，依然享受以下特惠原厂保修：",
           features: iphoneFeatures
         };
@@ -1934,7 +1964,7 @@
       // ----------------------------------------------------------------------
       // 2. Mac 电脑系列
       // ----------------------------------------------------------------------
-      if (cat.includes("mac") || m.includes("mac")) {
+      if (cat.includes("mac") || normM.includes("mac")) {
         const macFeatures = [
           "屏幕或机身外壳损坏：每次收取 RMB 799 服务费",
           "主板、芯片及其他硬件损坏：每次收取 RMB 2,299 服务费",
@@ -1943,56 +1973,63 @@
         ];
 
         // 在售机型
-        if (m.includes("16 英寸") && (m.includes("m4") || m.includes("m3"))) {
+        if (normM.includes("16英寸") && (normM.includes("m4") || normM.includes("m3"))) {
           return {
             status: "in_sale",
             statusBadge: "官方在售 · 支持新购",
             priceLabel: "官方选购价格",
             planPrice: "RMB 3,449",
+            rawPrice: 3449,
             period: "3 年期",
             priceSubnote: "购机 60 天内可加购",
             features: macFeatures
           };
         }
-        if (m.includes("14 英寸") && (m.includes("m4") || m.includes("m3"))) {
+        if (normM.includes("14英寸") && (normM.includes("m4") || normM.includes("m3"))) {
+          const cfg = matrixPrices && matrixPrices.Mac && matrixPrices.Mac.pro_14;
           return {
             status: "in_sale",
             statusBadge: "官方在售 · 支持新购",
             priceLabel: "官方选购价格",
-            planPrice: "RMB 2,449",
+            planPrice: cfg ? cfg.price : "RMB 2,449",
+            rawPrice: cfg ? cfg.rawPrice : 2449,
             period: "3 年期",
             priceSubnote: "购机 60 天内可加购",
             features: macFeatures
           };
         }
-        if (m.includes("air 15") && (m.includes("m3") || m.includes("m2"))) {
+        if (normM.includes("air15") && (normM.includes("m3") || normM.includes("m2"))) {
           return {
             status: "in_sale",
             statusBadge: "官方在售 · 支持新购",
             priceLabel: "官方选购价格",
             planPrice: "RMB 2,049",
+            rawPrice: 2049,
             period: "3 年期",
             priceSubnote: "购机 60 天内可加购",
             features: macFeatures
           };
         }
-        if (m.includes("air 13") && (m.includes("m3") || m.includes("m2"))) {
+        if (normM.includes("air13") && (normM.includes("m3") || normM.includes("m2"))) {
+          const cfg = matrixPrices && matrixPrices.Mac && matrixPrices.Mac.air_13;
           return {
             status: "in_sale",
             statusBadge: "官方在售 · 支持新购",
             priceLabel: "官方选购价格",
-            planPrice: "RMB 1,749",
+            planPrice: cfg ? cfg.price : "RMB 1,749",
+            rawPrice: cfg ? cfg.rawPrice : 1749,
             period: "3 年期",
             priceSubnote: "购机 60 天内可加购",
             features: macFeatures
           };
         }
-        if (m.includes("mini") && m.includes("m4")) {
+        if (normM.includes("mini") && normM.includes("m4")) {
           return {
             status: "in_sale",
             statusBadge: "官方在售 · 支持新购",
             priceLabel: "官方选购价格",
             planPrice: "RMB 799",
+            rawPrice: 799,
             period: "3 年期",
             priceSubnote: "购机 60 天内可加购",
             features: [
@@ -2002,12 +2039,13 @@
             ]
           };
         }
-        if (m.includes("studio") && m.includes("m2")) {
+        if (normM.includes("studio") && normM.includes("m2")) {
           return {
             status: "in_sale",
             statusBadge: "官方在售 · 支持新购",
             priceLabel: "官方选购价格",
             planPrice: "RMB 1,199",
+            rawPrice: 1199,
             period: "3 年期",
             priceSubnote: "购机 60 天内可加购",
             features: macFeatures
@@ -2016,17 +2054,19 @@
 
         // 停售款 Mac
         let histMacPrice = "RMB 1,399";
-        if (m.includes("16 英寸")) histMacPrice = "RMB 2,799";
-        else if (m.includes("14 英寸")) histMacPrice = "RMB 1,999";
-        else if (m.includes("13 英寸") && m.includes("pro")) histMacPrice = "RMB 1,799";
-        else if (m.includes("mini")) histMacPrice = "RMB 699";
-        else if (m.includes("studio")) histMacPrice = "RMB 1,199";
+        let histRaw = 1399;
+        if (normM.includes("16英寸")) { histMacPrice = "RMB 2,799"; histRaw = 2799; }
+        else if (normM.includes("14英寸")) { histMacPrice = "RMB 1,999"; histRaw = 1999; }
+        else if (normM.includes("13英寸") && normM.includes("pro")) { histMacPrice = "RMB 1,799"; histRaw = 1799; }
+        else if (normM.includes("mini")) { histMacPrice = "RMB 699"; histRaw = 699; }
+        else if (normM.includes("studio")) { histMacPrice = "RMB 1,199"; histRaw = 1199; }
 
         return {
           status: "discontinued",
           statusBadge: "官方已停售 · 不支持新购",
           priceLabel: "历史选购价格",
           planPrice: histMacPrice,
+          rawPrice: histRaw,
           period: "历史 3 年期（现已停售）",
           priceSubnote: "官方已停售不可购",
           notice: "该机型 Apple 官方已停止销售，无法新购 AppleCare+ 服务计划。若您原购机时已购买且在保障期内，依然享受以下特惠原厂保修：",
@@ -2037,14 +2077,14 @@
       // ----------------------------------------------------------------------
       // 3. iPad 平板及配件系列
       // ----------------------------------------------------------------------
-      if (cat.includes("ipad") || m.includes("ipad")) {
-        // 配件共享判定
-        if (m.includes("pencil") || m.includes("keyboard") || m.includes("键盘") || m.includes("双面夹")) {
+      if (cat.includes("ipad") || normM.includes("ipad")) {
+        if (normM.includes("pencil") || normM.includes("keyboard") || normM.includes("键盘") || normM.includes("双面夹")) {
           return {
             status: "accessory",
             statusBadge: "随 iPad 保修共享",
             priceLabel: "AppleCare+",
             planPrice: "随 iPad 共享",
+            rawPrice: 0,
             period: "随主机共享保修",
             priceSubnote: "免单独购买",
             notice: "Apple Pencil 与妙控键盘等原厂配件随绑定的 iPad 主机 AppleCare+ 服务计划自动共享保修权益，无需单独加购。",
@@ -2064,67 +2104,76 @@
         ];
 
         // 在售款 iPad
-        if (m.includes("13 英寸 ipad pro") && (m.includes("m5") || m.includes("m4"))) {
+        if (normM.includes("13英寸ipadpro") && (normM.includes("m5") || normM.includes("m4"))) {
           return {
             status: "in_sale",
             statusBadge: "官方在售 · 支持新购",
             priceLabel: "官方选购价格",
             planPrice: "RMB 1,549",
+            rawPrice: 1549,
             period: "2 年期",
             priceSubnote: "购机 60 天内可加购",
             features: ipadFeatures
           };
         }
-        if (m.includes("11 英寸 ipad pro") && (m.includes("m5") || m.includes("m4"))) {
+        if (normM.includes("11英寸ipadpro") && (normM.includes("m5") || normM.includes("m4"))) {
+          const cfg = matrixPrices && matrixPrices.iPad && matrixPrices.iPad.pro_11;
           return {
             status: "in_sale",
             statusBadge: "官方在售 · 支持新购",
             priceLabel: "官方选购价格",
-            planPrice: "RMB 1,399",
+            planPrice: cfg ? cfg.price : "RMB 1,399",
+            rawPrice: cfg ? cfg.rawPrice : 1399,
             period: "2 年期",
             priceSubnote: "购机 60 天内可加购",
             features: ipadFeatures
           };
         }
-        if (m.includes("13 英寸 ipad air") && (m.includes("m4") || m.includes("m3") || m.includes("m2"))) {
+        if (normM.includes("13英寸ipadair") && (normM.includes("m4") || normM.includes("m3") || normM.includes("m2"))) {
           return {
             status: "in_sale",
             statusBadge: "官方在售 · 支持新购",
             priceLabel: "官方选购价格",
             planPrice: "RMB 899",
+            rawPrice: 899,
             period: "2 年期",
             priceSubnote: "购机 60 天内可加购",
             features: ipadFeatures
           };
         }
-        if (m.includes("11 英寸 ipad air") && (m.includes("m4") || m.includes("m3") || m.includes("m2"))) {
+        if (normM.includes("11英寸ipadair") && (normM.includes("m4") || normM.includes("m3") || normM.includes("m2"))) {
+          const cfg = matrixPrices && matrixPrices.iPad && matrixPrices.iPad.air_11;
           return {
             status: "in_sale",
             statusBadge: "官方在售 · 支持新购",
             priceLabel: "官方选购价格",
-            planPrice: "RMB 749",
+            planPrice: cfg ? cfg.price : "RMB 749",
+            rawPrice: cfg ? cfg.rawPrice : 749,
             period: "2 年期",
             priceSubnote: "购机 60 天内可加购",
             features: ipadFeatures
           };
         }
-        if (m.includes("ipad mini") && m.includes("a17 pro")) {
-          return {
-            status: "in_sale",
-            statusBadge: "官方在售 · 支持新购",
-            priceLabel: "官方选购价格",
-            planPrice: "RMB 649",
-            period: "2 年期",
-            priceSubnote: "购机 60 天内可加购",
-            features: ipadFeatures
-          };
-        }
-        if (m.includes("ipad") && (m.includes("第 10 代") || m.includes("a16"))) {
+        if (normM.includes("ipadmini") && normM.includes("a17pro")) {
           return {
             status: "in_sale",
             statusBadge: "官方在售 · 支持新购",
             priceLabel: "官方选购价格",
             planPrice: "RMB 649",
+            rawPrice: 649,
+            period: "2 年期",
+            priceSubnote: "购机 60 天内可加购",
+            features: ipadFeatures
+          };
+        }
+        if (normM.includes("ipad") && (normM.includes("第10代") || normM.includes("a16"))) {
+          const cfg = matrixPrices && matrixPrices.iPad && matrixPrices.iPad.ipad_10;
+          return {
+            status: "in_sale",
+            statusBadge: "官方在售 · 支持新购",
+            priceLabel: "官方选购价格",
+            planPrice: cfg ? cfg.price : "RMB 649",
+            rawPrice: cfg ? cfg.rawPrice : 649,
             period: "2 年期",
             priceSubnote: "购机 60 天内可加购",
             features: ipadFeatures
@@ -2133,15 +2182,17 @@
 
         // 停售款 iPad
         let histIpadPrice = "RMB 499";
-        if (m.includes("12.9 英寸") || m.includes("13 英寸")) histIpadPrice = "RMB 1,399";
-        else if (m.includes("11 英寸") && m.includes("pro")) histIpadPrice = "RMB 1,199";
-        else if (m.includes("air")) histIpadPrice = "RMB 699";
+        let histRaw = 499;
+        if (normM.includes("12.9英寸") || normM.includes("13英寸")) { histIpadPrice = "RMB 1,399"; histRaw = 1399; }
+        else if (normM.includes("11英寸") && normM.includes("pro")) { histIpadPrice = "RMB 1,199"; histRaw = 1199; }
+        else if (normM.includes("air")) { histIpadPrice = "RMB 699"; histRaw = 699; }
 
         return {
           status: "discontinued",
           statusBadge: "官方已停售 · 不支持新购",
           priceLabel: "历史选购价格",
           planPrice: histIpadPrice,
+          rawPrice: histRaw,
           period: "历史 2 年期（现已停售）",
           priceSubnote: "官方已停售不可购",
           notice: "该机型 Apple 官方已停止销售，无法新购 AppleCare+ 服务计划。若您原购机时已购买且在保障期内，依然享受以下特惠原厂保修：",
@@ -2152,7 +2203,7 @@
       // ----------------------------------------------------------------------
       // 4. Apple Watch 系列
       // ----------------------------------------------------------------------
-      if (cat.includes("watch") || m.includes("watch")) {
+      if (cat.includes("watch") || normM.includes("watch")) {
         const watchFeaturesHigh = [
           "意外损坏维修：每次收取 RMB 628 服务费",
           "电池最大容量低于 80%：免费更换原厂电池",
@@ -2166,65 +2217,97 @@
         ];
 
         // 在售机型
-        if (m.includes("ultra")) {
-          const isOlderUltra = !m.includes("2") && !m.includes("3") && !m.includes("4");
+        if (normM.includes("ultra")) {
+          const isOlderUltra = !normM.includes("2") && !normM.includes("3") && !normM.includes("4");
           if (!isOlderUltra) {
+            const cfg = matrixPrices && matrixPrices["Apple Watch"] && matrixPrices["Apple Watch"].ultra;
             return {
               status: "in_sale",
               statusBadge: "官方在售 · 支持新购",
               priceLabel: "官方选购价格",
-              planPrice: "RMB 799",
+              planPrice: cfg ? cfg.price : "RMB 799",
+              rawPrice: cfg ? cfg.rawPrice : 799,
               period: "2 年期",
               priceSubnote: "购机 60 天内可加购",
+              releaseYear: "2023-2026",
               features: watchFeaturesHigh
             };
           }
         }
-        if (m.includes("series 12") || m.includes("series 11") || m.includes("series 10")) {
-          const isPremium = m.includes("hermès") || m.includes("hermes") || m.includes("titanium") || m.includes("钛金属") || m.includes("ceramic") || m.includes("陶瓷");
+        if (normM.includes("series12") || normM.includes("series11") || normM.includes("series10")) {
+          const isPremium = ["hermes", "titanium", "钛金属", "ceramic", "陶瓷"].some(k => normM.includes(k));
+          const wMatrix = matrixPrices && matrixPrices["Apple Watch"];
+          const cfg = isPremium ? (wMatrix && wMatrix.series_premium) : (wMatrix && wMatrix.series_standard);
           return {
             status: "in_sale",
             statusBadge: "官方在售 · 支持新购",
             priceLabel: "官方选购价格",
-            planPrice: isPremium ? "RMB 1,299" : "RMB 649",
+            planPrice: cfg ? cfg.price : (isPremium ? "RMB 1,299" : "RMB 649"),
+            rawPrice: cfg ? cfg.rawPrice : (isPremium ? 1299 : 649),
             period: "2 年期",
             priceSubnote: "购机 60 天内可加购",
+            releaseYear: "2024-2026",
             features: isPremium ? watchFeaturesHigh : watchFeaturesStd
           };
         }
-        if (m.includes("se") && m.includes("se 3")) {
-          // Apple Watch SE 3 — 官方在售，AppleCare+ 为 RMB 649（2024年发布时价格）
+        if (normM.includes("se") && normM.includes("se3")) {
+          const cfg = matrixPrices && matrixPrices["Apple Watch"] && matrixPrices["Apple Watch"].se_3;
           return {
             status: "in_sale",
             statusBadge: "官方在售 · 支持新购",
             priceLabel: "官方选购价格",
-            planPrice: "RMB 649",
+            planPrice: cfg ? cfg.price : "RMB 649",
+            rawPrice: cfg ? cfg.rawPrice : 649,
             period: "2 年期",
             priceSubnote: "购机 60 天内可加购",
+            releaseYear: "2024",
             features: watchFeaturesStd
           };
         }
 
         // 停售机型 (S9 / S8 / S7 / S6 / 初代 Ultra / SE 第 2 代 / 初代 SE)
-        const isHistPremium = m.includes("hermès") || m.includes("hermes") || m.includes("edition") || m.includes("钛金属") || m.includes("不锈钢") || m.includes("陶瓷") || m.includes("titanium") || m.includes("ceramic");
-        const histWatchPrice = m.includes("ultra") ? "RMB 799" : (m.includes("se") ? "RMB 449" : (isHistPremium ? "RMB 1,299" : "RMB 549"));
+        const isHistPremium = ["hermes", "edition", "钛金属", "不锈钢", "陶瓷", "titanium", "ceramic"].some(k => normM.includes(k));
+        let histWatchPrice = "RMB 549";
+        let histRaw = 549;
+        let histYear = "2021-2023";
+        if (normM.includes("ultra")) {
+          histWatchPrice = "RMB 799";
+          histRaw = 799;
+          histYear = "2022";
+        } else if (normM.includes("se")) {
+          if (normM.includes("第2代") || normM.includes("2")) {
+            histWatchPrice = "RMB 449";
+            histRaw = 449;
+            histYear = "2022-2024";
+          } else {
+            histWatchPrice = "RMB 399";
+            histRaw = 399;
+            histYear = "2020-2022";
+          }
+        } else if (isHistPremium) {
+          histWatchPrice = "RMB 1,299";
+          histRaw = 1299;
+          histYear = "2020-2023";
+        }
 
         return {
           status: "discontinued",
           statusBadge: "官方已停售 · 不支持新购",
           priceLabel: "历史选购价格",
           planPrice: histWatchPrice,
+          rawPrice: histRaw,
           period: "历史 2 年期（现已停售）",
           priceSubnote: "官方已停售不可购",
+          releaseYear: histYear,
           notice: "该机型 Apple 官方已停止销售，无法新购 AppleCare+ 服务计划。若您原购机时已购买且在保障期内，依然享受以下特惠原厂保修：",
-          features: isHistPremium || m.includes("ultra") ? watchFeaturesHigh : watchFeaturesStd
+          features: isHistPremium || normM.includes("ultra") ? watchFeaturesHigh : watchFeaturesStd
         };
       }
 
       // ----------------------------------------------------------------------
       // 5. AirPods 系列
       // ----------------------------------------------------------------------
-      if (cat.includes("airpods") || m.includes("airpods")) {
+      if (cat.includes("airpods") || normM.includes("airpods")) {
         const airpodsFeatures = [
           "单只耳机或原装充电盒意外损坏：每次收取 RMB 199 服务费",
           "耳机或充电盒电池衰减低于 80%：免费更换原厂电池",
@@ -2238,34 +2321,37 @@
         ];
 
         // 在售款 AirPods
-        if (m.includes("max 2")) {
+        if (normM.includes("max2")) {
           return {
             status: "in_sale",
             statusBadge: "官方在售 · 支持新购",
             priceLabel: "官方选购价格",
             planPrice: "RMB 549",
+            rawPrice: 549,
             period: "2 年期",
             priceSubnote: "购机 60 天内可加购",
             features: maxFeatures
           };
         }
-        if (m.includes("pro 3") || (m.includes("pro 2") && m.includes("usb-c"))) {
+        if (normM.includes("pro2")) {
           return {
             status: "in_sale",
             statusBadge: "官方在售 · 支持新购",
             priceLabel: "官方选购价格",
             planPrice: "RMB 449",
+            rawPrice: 449,
             period: "2 年期",
             priceSubnote: "购机 60 天内可加购",
             features: airpodsFeatures
           };
         }
-        if (m.includes("airpods 5") || m.includes("airpods 4")) {
+        if (normM.includes("airpods4") && normM.includes("降噪")) {
           return {
             status: "in_sale",
             statusBadge: "官方在售 · 支持新购",
             priceLabel: "官方选购价格",
             planPrice: "RMB 349",
+            rawPrice: 349,
             period: "2 年期",
             priceSubnote: "购机 60 天内可加购",
             features: airpodsFeatures
@@ -2273,38 +2359,37 @@
         }
 
         // 停售款 AirPods
-        let histAirpodsPrice = "RMB 199";
-        if (m.includes("max")) histAirpodsPrice = "RMB 479";
-        else if (m.includes("pro")) histAirpodsPrice = "RMB 299";
-        else if (m.includes("airpods 3")) histAirpodsPrice = "RMB 249";
+        let histAirpodsPrice = "RMB 299";
+        let histRaw = 299;
+        if (normM.includes("max")) { histAirpodsPrice = "RMB 549"; histRaw = 549; }
+        else if (normM.includes("pro")) { histAirpodsPrice = "RMB 399"; histRaw = 399; }
+        else if (normM.includes("2")) { histAirpodsPrice = "RMB 199"; histRaw = 199; }
 
         return {
           status: "discontinued",
           statusBadge: "官方已停售 · 不支持新购",
           priceLabel: "历史选购价格",
           planPrice: histAirpodsPrice,
+          rawPrice: histRaw,
           period: "历史 2 年期（现已停售）",
           priceSubnote: "官方已停售不可购",
           notice: "该机型 Apple 官方已停止销售，无法新购 AppleCare+ 服务计划。若您原购机时已购买且在保障期内，依然享受以下特惠原厂保修：",
-          features: m.includes("max") ? maxFeatures : airpodsFeatures
+          features: normM.includes("max") ? maxFeatures : airpodsFeatures
         };
       }
 
-      // 默认兜底
       return {
         status: "in_sale",
-        statusBadge: "官方服务计划",
+        statusBadge: "官方保障",
         priceLabel: "官方选购价格",
         planPrice: "RMB 1,199",
+        rawPrice: 1199,
         period: "2 年期",
-        priceSubnote: "",
-        features: [
-          "享受官方意外损坏特惠保修",
-          "电池最大容量低于 80% 免费更换",
-          "保障期内享受不限次数意外损坏保修"
-        ]
+        priceSubnote: "官方服务计划",
+        features: ["意外损坏维修特惠自付金", "电池健康低于 80% 免费更换", "优先技术支持"]
       };
     }
+
 
     const ESTIMATOR_CATEGORIES = [
       {
@@ -2433,6 +2518,44 @@
         if (appleCareCard) {
           appleCareCard.style.display = "block";
           const plan = getAppleCarePlanInfo(activeCategory, modelObj.name);
+
+          // 核心亮点：AppleCare+ 回本/省钱测算器 (动态对比保外维修成本 vs 加购 AppleCare+ 综合成本)
+          let breakevenHtml = "";
+          if (plan && typeof plan.rawPrice === "number" && services.length > 0) {
+            // 挑选典型损坏项（其他损坏、屏幕损坏、或最高额损坏项目）
+            const targetSrv = services.find(s => s.name && (s.name.includes("其他损坏") || s.name.includes("屏幕损坏"))) || services[0];
+            if (targetSrv && targetSrv.price) {
+              const oowNumMatch = targetSrv.price.match(/[\d,]+/);
+              if (oowNumMatch) {
+                const oowPrice = parseInt(oowNumMatch[0].replace(/,/g, ""), 10);
+                const feeInfo = getAppleCareServiceFee(activeCategory, modelObj.name, targetSrv.name);
+                if (feeInfo && typeof feeInfo.rawPrice === "number" && oowPrice > 0) {
+                  const totalAcCost = plan.rawPrice + feeInfo.rawPrice;
+                  const netSavings = oowPrice - totalAcCost;
+                  if (netSavings > 0) {
+                    breakevenHtml = `
+                      <div class="ac-breakeven-banner is-saving">
+                        <span class="ac-breakeven-tag">💥 回本测算</span>
+                        <div class="ac-breakeven-content">
+                          若发生<strong>【${targetSrv.name}】</strong>（官方保外需 <strong>¥${oowPrice.toLocaleString()}</strong>），加购 AppleCare+（${plan.planPrice}）并在出险时自付 ${feeInfo.label}，<strong>首次维修即可净省 ¥${netSavings.toLocaleString()}（即刻回本）</strong>！保障期内后续每次损坏仅需自付 ¥${feeInfo.rawPrice}。
+                        </div>
+                      </div>
+                    `;
+                  } else {
+                    breakevenHtml = `
+                      <div class="ac-breakeven-banner is-info">
+                        <span class="ac-breakeven-tag">💡 选购参考</span>
+                        <div class="ac-breakeven-content">
+                          单次轻微损坏保外维修成本相对亲民，AppleCare+ 核心价值在于对冲屏幕粉碎、主板进水或电池严重损耗（低于 80% 免费更换）等数千元高额整机损坏风险。
+                        </div>
+                      </div>
+                    `;
+                  }
+                }
+              }
+            }
+          }
+
           appleCareCard.innerHTML = `
             <div class="ac-card-header">
               <div class="ac-title-group">
@@ -2457,6 +2580,7 @@
                 ${plan.priceSubnote ? `<span class="ac-price-subnote">${plan.priceSubnote}</span>` : ""}
               </div>
             </div>
+            ${breakevenHtml}
             ${plan.notice ? `
               <div class="ac-${plan.status}-notice">
                 <span class="ac-notice-icon">${plan.status === "discontinued" ? "⚠️" : "ℹ️"}</span>

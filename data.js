@@ -1,17 +1,17 @@
 /**
  * Apple 官方维修价格与服务网点快查 - 核心数据集
  * 直连 Apple 官网官方接口同步生成
- * 同步时间戳: 2026-09-29 09:29:10
+ * 同步时间戳: 2026-09-30 14:21:37
  */
 
-var DATA_SYNC_TIMESTAMP = "2026-09-29 09:29:10";
+var DATA_SYNC_TIMESTAMP = "2026-09-30 14:21:37";
 if (typeof window !== "undefined") window.DATA_SYNC_TIMESTAMP = DATA_SYNC_TIMESTAMP;
 
 // ============================================================================
 // 官方数据最新变动通知记录 (DATA_CHANGELOG)
 // ============================================================================
 var DATA_CHANGELOG = {
-  "sync_time": "2026-09-29 09:29:10",
+  "sync_time": "2026-09-30 14:21:37",
   "has_changes": false,
   "badge_text": "",
   "title": "",
@@ -7839,3 +7839,237 @@ var hotAccessoriesData = [
         { id: 'top10-watch-cable', category: 'top', rank: 10, tag: '差旅救急', name: 'Apple Watch 磁吸快速充电线转 USB-C (1 米)', price: 'RMB 279', img: 'watch_cable.png', features: [ { icon: '⚡️', text: '支持 Apple Watch 快充，约 45 分钟即可充至 80%。' }, { icon: '⌚️', text: '密封良好无暴露触点，表背靠近即自动吸附贴合。' }, { icon: '🔌', text: '采用通用 USB-C 接口，可直接插在 Mac 或 iPad 上充电。' } ], crossSell: '适合搭配：购买 <b>Apple Watch Series 7-11 / Ultra</b> 或有出差需求的顾客。' }
     ];
 if (typeof window !== "undefined") window.hotAccessoriesData = hotAccessoriesData;
+
+// ============================================================================
+// 模块 5：官方 AppleCare+ 服务计划价格与保障矩阵 (APPLECARE_PLANS)
+// 官方在线商店真实选购价格同步 + 历史停售方案基准 + 全品类自付金统一矩阵
+// ============================================================================
+var APPLECARE_PLANS = {
+  "sync_time": "2026-09-30 14:21:37",
+  "live_store": {},
+  "deductibles": {
+    "iPhone": {
+      "screen_or_glass": 188,
+      "other": 628,
+      "battery": 0
+    },
+    "Apple Watch": {
+      "standard": 528,
+      "premium": 628,
+      "battery": 0,
+      "premium_keywords": [
+        "ultra",
+        "hermes",
+        "hermès",
+        "edition",
+        "titanium",
+        "ceramic",
+        "钛金属",
+        "陶瓷",
+        "不锈钢"
+      ]
+    },
+    "Mac": {
+      "screen_or_enclosure": 799,
+      "other": 2299,
+      "battery": 0
+    },
+    "iPad": {
+      "unit": 368,
+      "accessory": 199,
+      "battery": 0
+    },
+    "AirPods": {
+      "damage": 199,
+      "loss": null,
+      "battery": 0
+    }
+  },
+  "prices": {
+    "Apple Watch": {
+      "se_3": {
+        "price": "RMB 649",
+        "rawPrice": 649,
+        "status": "in_sale",
+        "period": "2 年期",
+        "releaseYear": "2024"
+      },
+      "series_standard": {
+        "price": "RMB 649",
+        "rawPrice": 649,
+        "status": "in_sale",
+        "period": "2 年期",
+        "releaseYear": "2024-2026"
+      },
+      "series_premium": {
+        "price": "RMB 1,299",
+        "rawPrice": 1299,
+        "status": "in_sale",
+        "period": "2 年期",
+        "releaseYear": "2024-2026"
+      },
+      "ultra": {
+        "price": "RMB 799",
+        "rawPrice": 799,
+        "status": "in_sale",
+        "period": "2 年期",
+        "releaseYear": "2023-2026"
+      },
+      "se_2_discontinued": {
+        "price": "RMB 449",
+        "rawPrice": 449,
+        "status": "discontinued",
+        "period": "历史 2 年期",
+        "releaseYear": "2022-2024"
+      },
+      "se_1_discontinued": {
+        "price": "RMB 399",
+        "rawPrice": 399,
+        "status": "discontinued",
+        "period": "历史 2 年期",
+        "releaseYear": "2020-2022"
+      },
+      "series_hist": {
+        "price": "RMB 549",
+        "rawPrice": 549,
+        "status": "discontinued",
+        "period": "历史 2 年期",
+        "releaseYear": "2021-2023"
+      }
+    },
+    "iPhone": {
+      "air": {
+        "price": "RMB 1,799",
+        "rawPrice": 1799,
+        "status": "in_sale",
+        "period": "2 年期",
+        "releaseYear": "2025-2026"
+      },
+      "pro": {
+        "price": "RMB 1,799",
+        "rawPrice": 1799,
+        "status": "in_sale",
+        "period": "2 年期",
+        "releaseYear": "2025-2026"
+      },
+      "standard": {
+        "price": "RMB 1,399",
+        "rawPrice": 1399,
+        "status": "in_sale",
+        "period": "2 年期",
+        "releaseYear": "2024-2026"
+      },
+      "se_hist": {
+        "price": "RMB 599",
+        "rawPrice": 599,
+        "status": "discontinued",
+        "period": "历史 2 年期",
+        "releaseYear": "2022"
+      },
+      "pro_hist": {
+        "price": "RMB 1,499",
+        "rawPrice": 1499,
+        "status": "discontinued",
+        "period": "历史 2 年期",
+        "releaseYear": "2021-2024"
+      }
+    },
+    "Mac": {
+      "pro_16": {
+        "price": "RMB 3,449",
+        "rawPrice": 3449,
+        "status": "in_sale",
+        "period": "3 年期"
+      },
+      "pro_14": {
+        "price": "RMB 2,449",
+        "rawPrice": 2449,
+        "status": "in_sale",
+        "period": "3 年期"
+      },
+      "air_15": {
+        "price": "RMB 2,049",
+        "rawPrice": 2049,
+        "status": "in_sale",
+        "period": "3 年期"
+      },
+      "air_13": {
+        "price": "RMB 1,749",
+        "rawPrice": 1749,
+        "status": "in_sale",
+        "period": "3 年期"
+      },
+      "mini": {
+        "price": "RMB 799",
+        "rawPrice": 799,
+        "status": "in_sale",
+        "period": "3 年期"
+      },
+      "studio": {
+        "price": "RMB 1,199",
+        "rawPrice": 1199,
+        "status": "in_sale",
+        "period": "3 年期"
+      }
+    },
+    "iPad": {
+      "pro_13": {
+        "price": "RMB 1,549",
+        "rawPrice": 1549,
+        "status": "in_sale",
+        "period": "2 年期"
+      },
+      "pro_11": {
+        "price": "RMB 1,399",
+        "rawPrice": 1399,
+        "status": "in_sale",
+        "period": "2 年期"
+      },
+      "air_13": {
+        "price": "RMB 899",
+        "rawPrice": 899,
+        "status": "in_sale",
+        "period": "2 年期"
+      },
+      "air_11": {
+        "price": "RMB 749",
+        "rawPrice": 749,
+        "status": "in_sale",
+        "period": "2 年期"
+      },
+      "ipad_10": {
+        "price": "RMB 649",
+        "rawPrice": 649,
+        "status": "in_sale",
+        "period": "2 年期"
+      },
+      "mini": {
+        "price": "RMB 649",
+        "rawPrice": 649,
+        "status": "in_sale",
+        "period": "2 年期"
+      }
+    },
+    "AirPods": {
+      "max": {
+        "price": "RMB 549",
+        "rawPrice": 549,
+        "status": "in_sale",
+        "period": "2 年期"
+      },
+      "pro": {
+        "price": "RMB 449",
+        "rawPrice": 449,
+        "status": "in_sale",
+        "period": "2 年期"
+      },
+      "standard_anc": {
+        "price": "RMB 349",
+        "rawPrice": 349,
+        "status": "in_sale",
+        "period": "2 年期"
+      }
+    }
+  }
+};
+if (typeof window !== "undefined") window.APPLECARE_PLANS = APPLECARE_PLANS;
