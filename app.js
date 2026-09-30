@@ -2192,21 +2192,22 @@
             features: isPremium ? watchFeaturesHigh : watchFeaturesStd
           };
         }
-        if (m.includes("se") && (m.includes("se 3") || m.includes("第 2 代"))) {
+        if (m.includes("se") && m.includes("se 3")) {
+          // Apple Watch SE 3 — 官方在售，AppleCare+ 为 RMB 649（2024年发布时价格）
           return {
             status: "in_sale",
             statusBadge: "官方在售 · 支持新购",
             priceLabel: "官方选购价格",
-            planPrice: "RMB 399",
+            planPrice: "RMB 649",
             period: "2 年期",
             priceSubnote: "购机 60 天内可加购",
             features: watchFeaturesStd
           };
         }
 
-        // 停售机型 (S9 / S8 / S7 / S6 / 初代 Ultra / 初代 SE)
-        const isHistPremium = m.includes("hermès") || m.includes("hermes") || m.includes("edition") || m.includes("钛金属") || m.includes("不锈钢") || m.includes("陶瓷");
-        const histWatchPrice = m.includes("ultra") ? "RMB 799" : (m.includes("se") ? "RMB 399" : (isHistPremium ? "RMB 1,299" : "RMB 529"));
+        // 停售机型 (S9 / S8 / S7 / S6 / 初代 Ultra / SE 第 2 代 / 初代 SE)
+        const isHistPremium = m.includes("hermès") || m.includes("hermes") || m.includes("edition") || m.includes("钛金属") || m.includes("不锈钢") || m.includes("陶瓷") || m.includes("titanium") || m.includes("ceramic");
+        const histWatchPrice = m.includes("ultra") ? "RMB 799" : (m.includes("se") ? "RMB 449" : (isHistPremium ? "RMB 1,299" : "RMB 549"));
 
         return {
           status: "discontinued",
