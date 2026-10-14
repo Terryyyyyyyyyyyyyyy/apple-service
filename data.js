@@ -1,17 +1,17 @@
 /**
  * Apple 官方维修价格与服务网点快查 - 核心数据集
  * 直连 Apple 官网官方接口同步生成
- * 同步时间戳: 2026-10-13 10:07:46
+ * 同步时间戳: 2026-10-14 08:24:47
  */
 
-var DATA_SYNC_TIMESTAMP = "2026-10-13 10:07:46";
+var DATA_SYNC_TIMESTAMP = "2026-10-14 08:24:47";
 if (typeof window !== "undefined") window.DATA_SYNC_TIMESTAMP = DATA_SYNC_TIMESTAMP;
 
 // ============================================================================
 // 官方数据最新变动通知记录 (DATA_CHANGELOG)
 // ============================================================================
 var DATA_CHANGELOG = {
-  "sync_time": "2026-10-13 10:07:46",
+  "sync_time": "2026-10-14 08:24:47",
   "has_changes": false,
   "badge_text": "",
   "title": "",
@@ -7343,8 +7343,8 @@ var storesData = [
     "address": "浙江省温州市鹿城区府东路333号印象城1楼23号",
     "phone": "0577-89791553",
     "geo": {
-      "lat": 27.981855,
-      "lng": 120.705116
+      "lat": 27.984815,
+      "lng": 120.701181
     }
   },
   {
@@ -7857,7 +7857,7 @@ if (typeof window !== "undefined") window.hotAccessoriesData = hotAccessoriesDat
 // 官方在线商店真实选购价格同步 + 历史停售方案基准 + 全品类自付金统一矩阵
 // ============================================================================
 var APPLECARE_PLANS = {
-  "sync_time": "2026-10-13 10:07:46",
+  "sync_time": "2026-10-14 08:24:47",
   "live_store": {
     "watch_se": {
       "rawPrice": 649,
