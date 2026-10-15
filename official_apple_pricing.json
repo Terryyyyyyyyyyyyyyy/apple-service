@@ -5,6 +5,69 @@
     "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=PL133&size=240x240",
     "products": [
       {
+        "product_tag_id": "TAG_1789624518328",
+        "product_eng_title": "iPhone Duo",
+        "product_loc_title": "iPhone Duo",
+        "children_present": true,
+        "sort_order": "30",
+        "isDefault": true,
+        "showEstimateDisclaimer": false,
+        "childrenProducts": [
+          {
+            "product_tag_id": "TAG_1789624549749",
+            "product_eng_title": "iPhone Duo",
+            "product_loc_title": "iPhone Duo",
+            "children_present": false,
+            "sort_order": "2",
+            "isDefault": true,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301318&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "表层损坏",
+                "price": "RMB 398",
+                "sortOrder": "70"
+              },
+              {
+                "serviceLabel": "背面玻璃损坏",
+                "price": "RMB 1,598",
+                "sortOrder": "61"
+              },
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 1,898",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "后置相机损坏",
+                "price": "RMB 1,798",
+                "sortOrder": "12"
+              },
+              {
+                "serviceLabel": "外屏损坏",
+                "price": "RMB 3,198",
+                "sortOrder": "11"
+              },
+              {
+                "serviceLabel": "外屏和背面玻璃损坏",
+                "price": "RMB 4,298",
+                "sortOrder": "9"
+              },
+              {
+                "serviceLabel": "内屏损坏",
+                "price": "RMB 7,998",
+                "sortOrder": "7"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 11,998",
+                "sortOrder": "4"
+              }
+            ]
+          }
+        ]
+      },
+      {
         "product_tag_id": "TAG_1789103410026",
         "product_eng_title": "iPhone 18 Pro",
         "product_loc_title": "iPhone 18 Pro",
