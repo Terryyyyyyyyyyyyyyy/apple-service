@@ -1,17 +1,17 @@
 /**
  * Apple 官方维修价格与服务网点快查 - 核心数据集
  * 直连 Apple 官网官方接口同步生成
- * 同步时间戳: 2026-10-19 08:30:52
+ * 同步时间戳: 2026-10-20 08:12:25
  */
 
-var DATA_SYNC_TIMESTAMP = "2026-10-19 08:30:52";
+var DATA_SYNC_TIMESTAMP = "2026-10-20 08:12:25";
 if (typeof window !== "undefined") window.DATA_SYNC_TIMESTAMP = DATA_SYNC_TIMESTAMP;
 
 // ============================================================================
 // 官方数据最新变动通知记录 (DATA_CHANGELOG)
 // ============================================================================
 var DATA_CHANGELOG = {
-  "sync_time": "2026-10-19 08:30:52",
+  "sync_time": "2026-10-20 08:12:25",
   "has_changes": false,
   "badge_text": "",
   "title": "",
@@ -5724,6 +5724,18 @@ var storesData = [
     }
   },
   {
+    "name": "直信创邺－重庆大西洋国际店",
+    "type": "Apple 授权服务提供商 (AASP)",
+    "city": "重庆",
+    "district": "九龙坡区",
+    "address": "重庆市九龙坡区渝州路街道科园一路2号大西洋国际大厦2501号",
+    "phone": "023-60332633",
+    "geo": {
+      "lat": 29.532034,
+      "lng": 106.484693
+    }
+  },
+  {
     "name": "Apple 武汉",
     "type": "Apple Store 直营店",
     "city": "武汉",
@@ -7608,18 +7620,6 @@ var storesData = [
     }
   },
   {
-    "name": "酷动－福州万象城店",
-    "type": "Apple 授权服务提供商 (AASP)",
-    "city": "福州",
-    "district": "台江区",
-    "address": "福建省福州市台江区上海街道西环中路691号万象商业广场第一层编号105B号商铺",
-    "phone": "0591-83734358",
-    "geo": {
-      "lat": 26.064668,
-      "lng": 119.290057
-    }
-  },
-  {
     "name": "品丰科技－绍兴苏宁广场店－Apple 优质合作商",
     "type": "Apple 优质合作商 (AASP)",
     "city": "绍兴",
@@ -7925,7 +7925,7 @@ if (typeof window !== "undefined") window.hotAccessoriesData = hotAccessoriesDat
 // 官方在线商店真实选购价格同步 + 历史停售方案基准 + 全品类自付金统一矩阵
 // ============================================================================
 var APPLECARE_PLANS = {
-  "sync_time": "2026-10-19 08:30:52",
+  "sync_time": "2026-10-20 08:12:25",
   "live_store": {
     "watch_se": {
       "rawPrice": 649,
