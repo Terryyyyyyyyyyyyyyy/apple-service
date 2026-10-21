@@ -164,7 +164,8 @@ def generate_flat_prices(catalog):
                     elif "电池" in srv_name:
                         ac_fee = 0
                     elif cat_name == "iPhone":
-                        if "屏幕" in srv_name or "玻璃" in srv_name:
+                        # 针对折叠双屏 (如 iPhone Duo)：表层损坏、外屏损坏、背面玻璃损坏、外屏和背面玻璃损坏为 188；内屏损坏与其他损坏为 628
+                        if "表层" in srv_name or "外屏" in srv_name or ("屏幕" in srv_name and "内屏" not in srv_name) or "玻璃" in srv_name:
                             ac_fee = 188
                         else:
                             ac_fee = 628
@@ -223,6 +224,42 @@ def fetch_live_applecare_store():
     ]
     
     results = {}
+
+    # 1. 直连 Apple Store MCM 核心 API 快速核验在售 iPhone 旗舰 (iPhone Duo / Air / 18 Pro)
+    mcm_url = "https://www.apple.com.cn/shop/mcm/product-price?parts=SHK93,SWYM2,SHHY3"
+    try:
+        req = urllib.request.Request(mcm_url, headers=headers)
+        with urllib.request.urlopen(req, timeout=10) as r:
+            mcm_data = json.loads(r.read().decode("utf-8"))
+            items = mcm_data.get("items", {})
+            if "SHK93" in items:
+                v = int(items["SHK93"].get("price", {}).get("value", 2599))
+                results["iphone_duo"] = {
+                    "rawPrice": v,
+                    "priceString": f"RMB {v:,}",
+                    "partNumber": "SHK93"
+                }
+                print(f"    ✅ MCM 接口精准核验: iphone_duo -> RMB {v:,}")
+            if "SWYM2" in items:
+                v = int(items["SWYM2"].get("price", {}).get("value", 1799))
+                results["iphone_air"] = {
+                    "rawPrice": v,
+                    "priceString": f"RMB {v:,}",
+                    "partNumber": "SWYM2"
+                }
+                print(f"    ✅ MCM 接口精准核验: iphone_air -> RMB {v:,}")
+            if "SHHY3" in items:
+                v = int(items["SHHY3"].get("price", {}).get("value", 1799))
+                results["iphone_18_pro"] = {
+                    "rawPrice": v,
+                    "priceString": f"RMB {v:,}",
+                    "partNumber": "SHHY3"
+                }
+                print(f"    ✅ MCM 接口精准核验: iphone_18_pro -> RMB {v:,}")
+    except Exception as e:
+        print(f"    ⚠️ MCM 接口价格抓取略过或网络波动: {e}")
+
+    # 2. 网页解析抓取其他在售主力机型
     for key, url in targets:
         try:
             req = urllib.request.Request(url, headers=headers)
@@ -255,6 +292,9 @@ def build_applecare_plans_matrix(live_store):
     watch_series_price = live_store.get("watch_series", {}).get("rawPrice", 649)
     watch_ultra_price = live_store.get("watch_ultra", {}).get("rawPrice", 799)
     watch_hermes_price = live_store.get("watch_hermes", {}).get("rawPrice", 1299)
+    iphone_duo_price = live_store.get("iphone_duo", {}).get("rawPrice", 2599)
+    iphone_air_price = live_store.get("iphone_air", {}).get("rawPrice", 1799)
+    iphone_18_pro_price = live_store.get("iphone_18_pro", {}).get("rawPrice", 1799)
     iphone_16_price = live_store.get("iphone_16", {}).get("rawPrice", 1399)
     ipad_pro_price = live_store.get("ipad_pro", {}).get("rawPrice", 1399)
     ipad_air_price = live_store.get("ipad_air", {}).get("rawPrice", 749)
@@ -304,8 +344,9 @@ def build_applecare_plans_matrix(live_store):
                 "series_hist": {"price": "RMB 549", "rawPrice": 549, "status": "discontinued", "period": "历史 2 年期", "releaseYear": "2021-2023"}
             },
             "iPhone": {
-                "air": {"price": "RMB 1,799", "rawPrice": 1799, "status": "in_sale", "period": "2 年期", "releaseYear": "2025-2026"},
-                "pro": {"price": "RMB 1,799", "rawPrice": 1799, "status": "in_sale", "period": "2 年期", "releaseYear": "2025-2026"},
+                "duo": {"price": f"RMB {iphone_duo_price:,}", "rawPrice": iphone_duo_price, "status": "in_sale", "period": "2 年期", "releaseYear": "2026"},
+                "air": {"price": f"RMB {iphone_air_price:,}", "rawPrice": iphone_air_price, "status": "in_sale", "period": "2 年期", "releaseYear": "2025-2026"},
+                "pro": {"price": f"RMB {iphone_18_pro_price:,}", "rawPrice": iphone_18_pro_price, "status": "in_sale", "period": "2 年期", "releaseYear": "2025-2026"},
                 "standard": {"price": f"RMB {iphone_16_price:,}", "rawPrice": iphone_16_price, "status": "in_sale", "period": "2 年期", "releaseYear": "2024-2026"},
                 "se_hist": {"price": "RMB 599", "rawPrice": 599, "status": "discontinued", "period": "历史 2 年期", "releaseYear": "2022"},
                 "pro_hist": {"price": "RMB 1,499", "rawPrice": 1499, "status": "discontinued", "period": "历史 2 年期", "releaseYear": "2021-2024"}
@@ -350,7 +391,7 @@ def validate_data_integrity(flat_prices, stores, catalog, applecare_plans=None):
 
     # 2. 关键重点机型存在性守卫
     models = {p.get("model") for p in flat_prices}
-    essential_models = ["iPhone Air", "iPhone 18 Pro Max", "iPhone 17", "iPhone 16", "13 英寸 iPad Pro（M4）无线局域网机型"]
+    essential_models = ["iPhone Duo", "iPhone Air", "iPhone 18 Pro Max", "iPhone 17", "iPhone 16", "13 英寸 iPad Pro（M4）无线局域网机型"]
     for em in essential_models:
         if em not in models:
             errors.append(f"关键重点机型缺失: {em}")
@@ -372,9 +413,14 @@ def validate_data_integrity(flat_prices, stores, catalog, applecare_plans=None):
         if "丢失" in p.get("part", "") and ac is not None:
             errors.append(f"政策违规: AirPods 丢失必须为保外不适用，不可为 {ac}")
             break
-        if p.get("category") == "iPhone" and ("屏幕" in p.get("part", "") or "玻璃" in p.get("part", "")) and ac != 188:
-            errors.append(f"政策违规: iPhone 屏幕/玻璃损坏自付金必须为 188，不可为 {ac}")
-            break
+        if p.get("category") == "iPhone":
+            part = p.get("part", "")
+            if ("表层" in part or "外屏" in part or ("屏幕" in part and "内屏" not in part) or "玻璃" in part) and ac != 188:
+                errors.append(f"政策违规: iPhone 屏幕/外屏/表层/玻璃损坏自付金必须为 188，不可为 {ac} ({p.get('model')} - {part})")
+                break
+            if "内屏" in part and ac != 628:
+                errors.append(f"政策违规: iPhone 内屏损坏自付金必须为 628，不可为 {ac} ({p.get('model')} - {part})")
+                break
         if "电池" in p.get("part", "") and ac != 0:
             errors.append(f"政策违规: 电池服务在 AppleCare+ 下必须为 0 元免费更换，不可为 {ac} ({p.get('category')} - {p.get('model')})")
             break
@@ -402,6 +448,12 @@ def validate_data_integrity(flat_prices, stores, catalog, applecare_plans=None):
             errors.append(f"Apple Watch Ultra AppleCare 购买价基准断言失败: 期望 799，实际 {w_prices.get('ultra', {}).get('rawPrice')}")
         if w_prices.get("series_standard", {}).get("rawPrice") != 649:
             errors.append(f"Apple Watch Series 标准款 AppleCare 购买价基准断言失败: 期望 649，实际 {w_prices.get('series_standard', {}).get('rawPrice')}")
+
+        ip_prices = applecare_plans.get("prices", {}).get("iPhone", {})
+        if ip_prices.get("duo", {}).get("rawPrice") != 2599:
+            errors.append(f"iPhone Duo AppleCare 购买价基准断言失败: 期望 2599，实际 {ip_prices.get('duo', {}).get('rawPrice')}")
+        if ip_prices.get("air", {}).get("rawPrice") != 1799:
+            errors.append(f"iPhone Air AppleCare 购买价基准断言失败: 期望 1799，实际 {ip_prices.get('air', {}).get('rawPrice')}")
 
     if errors:
         print("\n❌ 数据质量校验失败，发现以下严重缺陷：")

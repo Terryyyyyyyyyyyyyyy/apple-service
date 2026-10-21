@@ -8,8 +8,8 @@
   const CATEGORIES = ["全部", "iPhone", "Mac", "iPad", "Apple Watch", "AirPods"];
 
   const SERIES_MAP = {
-    "全部": ["全部系列", "iPhone 16", "iPhone 15", "MacBook Pro", "MacBook Air", "iPad Pro", "Apple Watch"],
-    "iPhone": ["全部 iPhone", "iPhone 16 系列", "iPhone 15 系列", "iPhone 14 系列", "iPhone 13 / SE 系列"],
+    "全部": ["全部系列", "iPhone Duo", "iPhone 16", "iPhone 15", "MacBook Pro", "MacBook Air", "iPad Pro", "Apple Watch"],
+    "iPhone": ["全部 iPhone", "iPhone Duo", "iPhone 16 系列", "iPhone 15 系列", "iPhone 14 系列", "iPhone 13 / SE 系列"],
     "Mac": ["全部 Mac", "MacBook Pro 系列", "MacBook Air 系列", "桌面 Mac (mini)"],
     "iPad": ["全部 iPad", "iPad Pro 系列", "iPad Air 系列", "iPad / mini 系列"],
     "Apple Watch": ["全部手表", "Ultra 系列", "Series 10 系列", "SE 系列"],
@@ -19,7 +19,7 @@
   const PART_FILTERS = [
     { id: "all", label: "全部配件" },
     { id: "battery", label: "🔋 电池", keywords: ["电池"] },
-    { id: "screen", label: "📱 屏幕", keywords: ["屏幕"] },
+    { id: "screen", label: "📱 屏幕", keywords: ["屏幕", "外屏", "内屏", "表层"] },
     { id: "backglass", label: "🪟 背面玻璃", keywords: ["背面玻璃"] },
     { id: "camera", label: "📷 相机", keywords: ["相机"] },
     { id: "other", label: "⚙️ 主板/整机", keywords: ["其他损坏", "主板", "整机", "外壳", "电源", "置换", "综合维修", "耳机损坏"] }
@@ -268,8 +268,11 @@
   // 配件分类图标
   function getPartIcon(partName) {
     if (partName.includes("电池")) return "🔋";
+    if (partName.includes("外屏") && partName.includes("背面玻璃")) return "📱+🪟";
     if (partName.includes("屏幕") && partName.includes("背面玻璃")) return "📱+🪟";
-    if (partName.includes("屏幕")) return "📱";
+    if (partName.includes("内屏")) return "📖";
+    if (partName.includes("外屏") || partName.includes("屏幕")) return "📱";
+    if (partName.includes("表层")) return "🛡️";
     if (partName.includes("背面玻璃")) return "🪟";
     if (partName.includes("相机")) return "📷";
     if (partName.includes("主板")) return "🔌";
@@ -281,6 +284,7 @@
   // 系列匹配判定
   function matchSeries(model, series) {
     if (!series || series.startsWith("全部")) return true;
+    if (series === "iPhone Duo") return model.includes("Duo");
     if (series === "iPhone 16" || series === "iPhone 16 系列") return model.includes("iPhone 16");
     if (series === "iPhone 15" || series === "iPhone 15 系列") return model.includes("iPhone 15");
     if (series === "iPhone 14 系列") return model.includes("iPhone 14");
@@ -1763,6 +1767,10 @@
     // 格式化部件名称为官网规范术语
     function normalizePartName(part) {
       if (part.includes("电池")) return "电池服务";
+      if (part.includes("外屏") && part.includes("背面玻璃")) return "外屏和背面玻璃损坏";
+      if (part.includes("外屏")) return "外屏损坏";
+      if (part.includes("内屏")) return "内屏损坏";
+      if (part.includes("表层")) return "表层损坏";
       if (part.includes("屏幕维修") || part === "屏幕") return "屏幕损坏";
       if (part.includes("背面玻璃") && part.includes("屏幕")) return "屏幕和背面玻璃损坏";
       if (part.includes("背面玻璃")) return "背面玻璃损坏";
@@ -1797,11 +1805,13 @@
 
       // 3. iPhone
       if (cat.includes("iphone") || normM.includes("iphone")) {
-        // 官方 AppleCare+ 政策：无论是仅屏幕损坏、仅背面玻璃损坏，还是屏幕和背面玻璃同时损坏，每次服务费均为 RMB 188
-        if (p.includes("屏幕") || p.includes("背面玻璃")) {
+        // 官方 AppleCare+ 政策：
+        // 针对折叠双屏 (如 iPhone Duo)：表层损坏、外屏损坏、背面玻璃损坏、外屏和背面玻璃损坏服务费均为 RMB 188；内屏损坏与其他损坏为 RMB 628
+        // 针对常规直板 iPhone：屏幕损坏、背面玻璃损坏、屏幕和背面玻璃损坏服务费均为 RMB 188
+        if (p.includes("表层") || p.includes("外屏") || (p.includes("屏幕") && !p.includes("内屏")) || p.includes("背面玻璃")) {
           return { price: "RMB 188", rawPrice: 188, isFree: false, label: "RMB 188" };
         }
-        // 后置相机、其他损坏、整机主板
+        // 内屏损坏、后置相机、其他损坏、整机主板
         return { price: "RMB 628", rawPrice: 628, isFree: false, label: "RMB 628" };
       }
 
@@ -1861,6 +1871,27 @@
         ];
 
         // 官方在售机型 (In-Sale)
+        if (normM.includes("duo")) {
+          const cfg = matrixPrices && matrixPrices.iPhone && matrixPrices.iPhone.duo;
+          return {
+            status: "in_sale",
+            statusBadge: "官方在售 · 支持新购",
+            priceLabel: "官方选购价格",
+            planPrice: cfg ? cfg.price : "RMB 2,599",
+            rawPrice: cfg ? cfg.rawPrice : 2599,
+            period: "2 年期（或 RMB 129.9/月）",
+            priceSubnote: "购机 60 天内可加购",
+            releaseYear: "2026",
+            features: [
+              "表层损坏（外保护层）：每次收取 RMB 188 服务费",
+              "外屏或背面玻璃损坏：每次收取 RMB 188 服务费",
+              "内屏损坏：每次收取 RMB 628 服务费",
+              "后置相机损坏 / 其他损坏：每次收取 RMB 628 服务费",
+              "电池最大容量低于 80%：免费更换原厂电池",
+              "保障期内享受不限次数意外损坏保修与 24/7 优先技术支持"
+            ]
+          };
+        }
         if (normM.includes("air")) {
           const cfg = matrixPrices && matrixPrices.iPhone && matrixPrices.iPhone.air;
           return {
