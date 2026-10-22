@@ -5013,6 +5013,619 @@ body {
 
 
 
+/* ================================================================
+   V4.0: 官方免费服务计划提醒横幅 (Estimator Program Banner)
+   ================================================================ */
+.estimator-program-banner {
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, rgba(255, 149, 0, 0.08) 0%, rgba(255, 204, 0, 0.12) 100%);
+  border: 1px solid rgba(255, 149, 0, 0.3);
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  animation: bannerFadeSlide 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes bannerFadeSlide {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.program-banner-inner {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.program-banner-inner .program-icon {
+  font-size: 24px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.program-banner-inner .program-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.program-banner-inner .program-info strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 3px;
+}
+
+.program-banner-inner .program-info p {
+  margin: 0;
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.btn-program-check {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px;
+  background: var(--apple-orange);
+  color: #ffffff;
+  font-size: 12.5px;
+  font-weight: 600;
+  border-radius: var(--radius-pill);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.btn-program-check:hover {
+  background: #e08500;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 149, 0, 0.3);
+}
+
+@media (max-width: 640px) {
+  .program-banner-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .btn-program-check {
+    align-self: flex-start;
+  }
+}
+
+/* ================================================================
+   V4.0: 序列号快捷查询栏 (Serial Number Checker Bar)
+   ================================================================ */
+.sn-checker-bar {
+  margin: 18px 0 22px 0;
+  padding: 12px 16px;
+  background: var(--bg-hover);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+}
+
+.sn-checker-bar:focus-within {
+  border-color: var(--apple-blue);
+  background: var(--bg-card-solid);
+  box-shadow: 0 0 0 3px var(--apple-blue-light);
+}
+
+.sn-checker-inner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sn-checker-inner .sn-icon {
+  font-size: 16px;
+  color: var(--text-secondary);
+  flex-shrink: 0;
+}
+
+.sn-checker-inner .sn-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  outline: none;
+  min-width: 0;
+}
+
+.sn-checker-inner .sn-input::placeholder {
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  color: var(--text-tertiary);
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.btn-check-coverage {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 15px;
+  background: var(--apple-blue);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-pill);
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all var(--transition-fast);
+}
+
+.btn-check-coverage:hover {
+  background: var(--apple-blue-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 113, 227, 0.3);
+}
+
+.sn-helper-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--border-color);
+  font-size: 11.5px;
+}
+
+.sn-helper-btn {
+  background: none;
+  border: none;
+  color: var(--apple-blue);
+  cursor: pointer;
+  padding: 0;
+  font-size: 11.5px;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.sn-helper-btn:hover {
+  opacity: 0.8;
+}
+
+.sn-saved-hint {
+  color: var(--apple-green);
+  font-size: 11px;
+  font-weight: 500;
+}
+
+/* ================================================================
+   V4.0: 多项故障维修预算工具栏与复选框 (Multi-Cost Summary & Row Checkbox)
+   ================================================================ */
+.part-select-cb-wrap {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.part-select-cb {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: var(--apple-blue);
+  border-radius: 4px;
+}
+
+.quote-item-row.selected {
+  background: var(--apple-blue-light) !important;
+  border-left: 3px solid var(--apple-blue);
+}
+
+.multi-cost-summary-bar {
+  margin-top: 14px;
+  padding: 14px 18px;
+  background: var(--bg-hover);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  animation: fadeIn 0.2s ease;
+}
+
+.multi-cost-summary-bar .summary-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.multi-cost-summary-bar .summary-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  background: var(--bg-card-solid);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-pill);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.multi-cost-summary-bar .summary-breakdown {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.multi-cost-summary-bar .sum-label {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.multi-cost-summary-bar .sum-label strong {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+
+.multi-cost-summary-bar .text-danger {
+  color: #ff3b30;
+}
+
+.multi-cost-summary-bar .text-success {
+  color: var(--apple-green);
+}
+
+.multi-cost-summary-bar .summary-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.bundle-saving-pill {
+  padding: 4px 12px;
+  background: var(--apple-green-light);
+  color: var(--apple-green);
+  border-radius: var(--radius-pill);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+.btn-wechat-text {
+  padding: 6px 14px;
+  font-size: 12.5px;
+}
+
+@media (max-width: 640px) {
+  .multi-cost-summary-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .multi-cost-summary-bar .summary-right {
+    justify-content: space-between;
+  }
+}
+
+/* ================================================================
+   V4.0: 官方免费服务与召回计划专区 (Free Service Programs Hub)
+   ================================================================ */
+.programs-intro-card {
+  background: var(--bg-card-solid);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 24px 28px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.programs-intro-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.programs-intro-icon {
+  font-size: 32px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.programs-intro-text h2 {
+  margin: 0 0 6px 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.programs-intro-text p {
+  margin: 0;
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.programs-filter-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.program-search-box {
+  position: relative;
+  flex: 1;
+  max-width: 480px;
+}
+
+.program-search-box .search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-tertiary);
+  pointer-events: none;
+}
+
+.program-search-input {
+  width: 100%;
+  padding: 10px 14px 10px 36px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-color);
+  background: var(--bg-hover);
+  color: var(--text-primary);
+  font-size: 13.5px;
+  outline: none;
+  transition: all var(--transition-fast);
+  box-sizing: border-box;
+}
+
+.program-search-input:focus {
+  border-color: var(--apple-blue);
+  background: var(--bg-card-solid);
+  box-shadow: 0 0 0 3px var(--apple-blue-light);
+}
+
+.programs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 18px;
+}
+
+.program-card {
+  background: var(--bg-card-solid);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-fast);
+}
+
+.program-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(0, 113, 227, 0.3);
+}
+
+.program-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.program-card-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.35;
+}
+
+.program-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 9px;
+  border-radius: var(--radius-pill);
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.program-badge.free {
+  background: var(--apple-green-light);
+  color: var(--apple-green);
+}
+
+.program-badge.active {
+  background: var(--apple-blue-light);
+  color: var(--apple-blue);
+}
+
+.program-badge.expiring {
+  background: rgba(255, 149, 0, 0.12);
+  color: var(--apple-orange);
+}
+
+.program-models-tag {
+  display: inline-block;
+  font-size: 12px;
+  color: var(--text-secondary);
+  background: var(--bg-hover);
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.program-card-symptom {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0 0 16px 0;
+  flex: 1;
+}
+
+.program-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 14px;
+  border-top: 1px solid var(--border-color);
+  font-size: 12px;
+  color: var(--text-tertiary);
+}
+
+.btn-program-detail {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--apple-blue);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 12.5px;
+}
+
+.btn-program-detail:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 640px) {
+  .programs-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ================================================================
+   V4.0: 原生级地图导航底部动作面板 (Map Action Sheet)
+   ================================================================ */
+.map-sheet-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 10000;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  animation: fadeIn 0.2s ease;
+}
+
+.map-sheet-card {
+  width: 100%;
+  max-width: 540px;
+  background: var(--bg-card-solid);
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+  border: 1px solid var(--border-color);
+  border-bottom: none;
+  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.15);
+  padding: 16px 20px 28px 20px;
+  animation: sheetSlideUp 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes sheetSlideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+.map-sheet-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.map-sheet-title {
+  margin: 0 0 4px 0;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.map-sheet-sub {
+  margin: 0;
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.map-options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.map-option-btn {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 16px;
+  background: var(--bg-hover);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  color: var(--text-primary);
+  transition: all var(--transition-fast);
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.map-option-btn:hover {
+  background: var(--apple-blue-light);
+  border-color: var(--apple-blue);
+  transform: translateY(-1px);
+}
+
+.map-opt-icon {
+  font-size: 24px;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.map-opt-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.map-opt-text strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.map-opt-text span {
+  display: block;
+  font-size: 11.5px;
+  color: var(--text-secondary);
+}
+
+.map-opt-arrow {
+  color: var(--text-tertiary);
+  font-size: 18px;
+  font-weight: 400;
+}
+
 </style>
 </head>
 <body>
@@ -5176,6 +5789,16 @@ body {
           <span>💡 热门配件</span>
           <span class="tab-badge" id="hotacc-count-badge">23</span>
         </button>
+        <button
+          class="main-tab-btn"
+          id="tab-programs"
+          data-tab="programs"
+          role="tab"
+          aria-selected="false"
+        >
+          <span>🎁 免费计划</span>
+          <span class="tab-badge" id="programs-count-badge">8</span>
+        </button>
       </div>
     </div>
 
@@ -5214,6 +5837,18 @@ body {
             <button type="button" class="issue-chip" data-issue="battery">🔋 电池老化(&lt;80%)</button>
             <button type="button" class="issue-chip" data-issue="backglass">🪞 背面玻璃碎裂</button>
             <button type="button" class="issue-chip" data-issue="other">💧 进水/其他整机损坏</button>
+          </div>
+        </div>
+
+        <!-- 官方质量/免费延长服务计划提醒横幅 (当所选机型命中时动态高亮展示) -->
+        <div id="estimator-program-banner" class="estimator-program-banner" style="display: none;">
+          <div class="program-banner-inner">
+            <span class="program-icon">🎁</span>
+            <div class="program-info">
+              <strong id="program-title">该机型符合 Apple 官方免费维修服务计划</strong>
+              <p id="program-desc">若遇指定故障（如后置相机无法对焦/黑屏），Apple 官方或授权网点将提供免费原厂检修。</p>
+            </div>
+            <a id="program-link" href="https://support.apple.com/zh-cn/service-programs" target="_blank" rel="noopener noreferrer" class="btn-program-check">核对资格 ›</a>
           </div>
         </div>
 
@@ -5282,6 +5917,29 @@ body {
           </button>
         </div>
 
+        <!-- 序列号与官方保修状态快捷查询栏 -->
+        <div class="sn-checker-bar" id="sn-checker-bar">
+          <div class="sn-checker-inner">
+            <span class="sn-icon">🔍</span>
+            <input
+              type="text"
+              id="sn-input"
+              class="sn-input"
+              placeholder="输入 10-12 位设备序列号 (S/N) 快速核对官网保修..."
+              maxlength="14"
+              autocomplete="off"
+            >
+            <button type="button" id="btn-check-coverage" class="btn-check-coverage">
+              <span>查询官方保修</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
+          </div>
+          <div class="sn-helper-row">
+            <button type="button" id="btn-how-to-find-sn" class="sn-helper-btn">如何查看本机序列号？</button>
+            <span id="sn-saved-hint" class="sn-saved-hint" style="display:none;">已记住此设备序列号</span>
+          </div>
+        </div>
+
         <!-- 官方估价结果面板 (左侧官方正品图，右侧预估费用清单与 AppleCare+) -->
         <div class="estimator-result-card" id="estimator-result-card">
           <!-- 左侧：官方设备实机渲染图 -->
@@ -5306,6 +5964,23 @@ body {
               <!-- 动态官方费用行 -->
             </div>
 
+            <!-- 多项故障组合维修预算浮动工具条 -->
+            <div id="multi-cost-summary-bar" class="multi-cost-summary-bar" style="display: none;">
+              <div class="summary-left">
+                <span class="summary-badge" id="bundle-count-badge">已选 0 项</span>
+                <div class="summary-breakdown">
+                  <span class="sum-label">保外合并: <strong class="text-danger" id="bundle-oow-total">¥0</strong></span>
+                  <span class="sum-label">AC+ 自付: <strong class="text-success" id="bundle-ac-total">¥0</strong></span>
+                </div>
+              </div>
+              <div class="summary-right">
+                <span class="bundle-saving-pill" id="bundle-saving-pill">立省 ¥0</span>
+                <button type="button" id="btn-copy-wechat-quote" class="apple-secondary-pill-btn btn-wechat-text">
+                  <span>📋 复制微信文本</span>
+                </button>
+              </div>
+            </div>
+
             <!-- 在整体维修价格下方：AppleCare+ 计划与购买价格卡片 -->
             <div class="estimator-applecare-card" id="estimator-applecare-card">
               <!-- 动态填充该机型 AppleCare+ 权益与购买价格 -->
@@ -5318,6 +5993,10 @@ body {
           <button type="button" id="btn-open-compare" class="apple-secondary-pill-btn">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px;"><rect x="2" y="3" width="8" height="18" rx="2"></rect><rect x="14" y="3" width="8" height="18" rx="2"></rect><line x1="6" y1="8" x2="6" y2="8.01"></line><line x1="18" y1="8" x2="18" y2="8.01"></line></svg>
             <span>双机横向对比</span>
+          </button>
+          <button type="button" id="btn-copy-text-quote" class="apple-secondary-pill-btn">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px;"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
+            <span>复制微信报价</span>
           </button>
           <button type="button" id="btn-estimator-share-card" class="apple-secondary-pill-btn">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px;"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
@@ -5710,6 +6389,39 @@ body {
         </div>
       </div>
     </section>
+
+    <!-- ================= 模块 5：官方免费服务与质量召回计划 ================= -->
+    <section id="section-programs" class="tab-section" style="display: none;">
+      <div class="programs-intro-card">
+        <div class="intro-icon">🎁</div>
+        <div class="intro-text">
+          <h2 class="programs-intro-title">Apple 官方在行免费服务与延保计划</h2>
+          <p class="programs-intro-desc">针对已知特定批次制造缺陷提供的 <strong>100% 官方免费原厂检修与部件更换</strong>。即使超出常规保修期，在计划适用期内均可在 Apple Store 直营店或授权网点享受免费维修！</p>
+        </div>
+      </div>
+
+      <!-- 搜索与筛选 -->
+      <div class="controls-bar">
+        <div class="search-wrapper" style="flex: 1; max-width: 100%;">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input
+            type="text"
+            id="program-search-input"
+            class="search-input"
+            placeholder="搜索服务计划机型或症状 (如 14 Plus 相机、12 听筒、AirPods 爆裂声)..."
+            aria-label="搜索服务计划"
+          >
+        </div>
+      </div>
+
+      <!-- 计划卡片网格 -->
+      <div class="programs-grid" id="programs-grid">
+        <!-- 动态渲染计划卡片 -->
+      </div>
+    </section>
   </main>
 
   <!-- 底部说明与全量离线下载环境指示器 -->
@@ -5956,6 +6668,112 @@ body {
       </div>
       <div class="modal-footer quote-card-footer">
         <a id="btn-download-quote-card" class="apple-blue-pill-btn modal-btn" download="Apple官方维修报价单.png" href="#">保存高清图片</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 全平台多地图导航 Action Sheet (Universal Navigation Sheet) -->
+  <div id="map-action-sheet" class="bottom-sheet-overlay" style="display: none;" role="dialog" aria-modal="true">
+    <div class="bottom-sheet-card map-sheet-card">
+      <div class="sheet-header-sticky">
+        <div class="drag-handle"></div>
+        <button type="button" class="sheet-close-btn" id="map-sheet-close-btn">取消</button>
+      </div>
+      <div class="map-sheet-body">
+        <div class="map-sheet-header">
+          <div class="map-sheet-icon">🧭</div>
+          <div>
+            <h3 id="map-sheet-title" class="map-sheet-title">选择导航方式</h3>
+            <p id="map-sheet-address" class="map-sheet-sub"></p>
+          </div>
+        </div>
+        <div class="map-options-list">
+          <a href="#" id="map-opt-apple" target="_blank" rel="noopener noreferrer" class="map-option-btn">
+            <span class="map-opt-icon">🍏</span>
+            <div class="map-opt-text">
+              <strong>Apple 原生地图</strong>
+              <span>iPhone / iPad / Mac 原生内置地图</span>
+            </div>
+            <span class="map-opt-arrow">›</span>
+          </a>
+          <a href="#" id="map-opt-amap" target="_blank" rel="noopener noreferrer" class="map-option-btn">
+            <span class="map-opt-icon">🧭</span>
+            <div class="map-opt-text">
+              <strong>高德地图 (Amap)</strong>
+              <span>国内主流推荐，精准车道级导航</span>
+            </div>
+            <span class="map-opt-arrow">›</span>
+          </a>
+          <a href="#" id="map-opt-baidu" target="_blank" rel="noopener noreferrer" class="map-option-btn">
+            <span class="map-opt-icon">🗺️</span>
+            <div class="map-opt-text">
+              <strong>百度地图</strong>
+              <span>支持网页版即开即走与 App 呼起</span>
+            </div>
+            <span class="map-opt-arrow">›</span>
+          </a>
+          <a href="#" id="map-opt-tencent" target="_blank" rel="noopener noreferrer" class="map-option-btn">
+            <span class="map-opt-icon">🐧</span>
+            <div class="map-opt-text">
+              <strong>腾讯地图</strong>
+              <span>微信生态内原生适配最佳</span>
+            </div>
+            <span class="map-opt-arrow">›</span>
+          </a>
+          <button type="button" id="map-opt-copy" class="map-option-btn copy-opt">
+            <span class="map-opt-icon">📋</span>
+            <div class="map-opt-text">
+              <strong>复制详细地址与坐标</strong>
+              <span>快速粘贴至微信发送给亲友</span>
+            </div>
+            <span class="map-opt-arrow">›</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 序列号 (S/N) 查找指引弹窗 (Modal) -->
+  <div id="sn-modal" class="apple-modal-overlay" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="modal-sn-title">
+    <div class="apple-modal-card">
+      <div class="modal-header">
+        <h3 id="modal-sn-title" class="modal-title">如何查找 Apple 设备序列号 (S/N)</h3>
+        <button type="button" id="modal-sn-close-btn" class="modal-close-btn" aria-label="关闭">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="identify-step-item">
+          <div class="step-icon">📱</div>
+          <div class="step-text">
+            <strong>iPhone / iPad</strong>
+            <p>打开【设置】➔【通用】➔【关于本机】，长按【序列号】即可直接拷贝；无法开机时可查看 SIM 卡托或原始包装盒条形码。</p>
+          </div>
+        </div>
+        <div class="identify-step-item">
+          <div class="step-icon">💻</div>
+          <div class="step-text">
+            <strong>Mac 电脑</strong>
+            <p>点击屏幕左上角苹果标志  ➔【关于本机】；或翻看 MacBook 机身底部小字镌刻的“Serial”。</p>
+          </div>
+        </div>
+        <div class="identify-step-item">
+          <div class="step-icon">⌚️</div>
+          <div class="step-text">
+            <strong>Apple Watch</strong>
+            <p>打开手表【设置】➔【通用】➔【关于本机】；或在表壳表带凹槽内侧激光镌刻处查看。</p>
+          </div>
+        </div>
+        <div class="identify-step-item">
+          <div class="step-icon">🎧</div>
+          <div class="step-text">
+            <strong>AirPods</strong>
+            <p>在充电盒盖内侧下方激光镌刻处；若已连接 iPhone，可在【设置】➔【蓝牙】➔ 对应 AirPods 旁边的 ⓘ 查看。</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="modal-sn-confirm-btn" class="apple-blue-pill-btn modal-btn">我知道了</button>
       </div>
     </div>
   </div>
@@ -14225,6 +15043,98 @@ if (typeof window !== "undefined") window.APPLECARE_PLANS = APPLECARE_PLANS;
   ];
   const STORE_TYPES = ["全部类型", "Apple Store 直营店", "授权服务商 (AASP)"];
 
+  // ================= 官方免费质量与服务延长计划 (Official Service Programs) =================
+  const OFFICIAL_SERVICE_PROGRAMS = [
+    {
+      id: "prog-iphone14plus-cam",
+      title: "iPhone 14 Plus 后置相机问题的服务计划",
+      category: "iPhone",
+      models: ["iPhone 14 Plus"],
+      symptom: "极少数 iPhone 14 Plus 设备的后置相机可能无法显示预览或对焦黑屏。",
+      coverage: "适用于首次零售之日起 3 年内的受影响设备",
+      type: "100% 官方免费检修",
+      badgeType: "free",
+      officialUrl: "https://support.apple.com/zh-cn/iphone-14-plus-service-program-for-rear-camera-issue"
+    },
+    {
+      id: "prog-iphone12-receiver",
+      title: "iPhone 12 和 iPhone 12 Pro 听筒受话器模块服务计划",
+      category: "iPhone",
+      models: ["iPhone 12", "iPhone 12 Pro"],
+      symptom: "极少数 iPhone 12 / 12 Pro 听筒模块发生故障，拨打或接听电话时听筒无声音。",
+      coverage: "适用于首次零售之日起 3 年内的受影响设备",
+      type: "100% 官方免费更换",
+      badgeType: "free",
+      officialUrl: "https://support.apple.com/zh-cn/iphone-12-and-iphone-12-pro-service-program-for-no-sound-issues"
+    },
+    {
+      id: "prog-airpods-pro-sound",
+      title: "AirPods Pro 声音问题的服务计划",
+      category: "AirPods",
+      models: ["AirPods Pro (第 1 代)", "AirPods Pro"],
+      symptom: "受影响设备可能出现爆裂声或静电噪音，在嘈杂环境、运动中加剧；或主动降噪失效。",
+      coverage: "适用于首次零售之日起 3 年内的受影响耳机（单个或成对）",
+      type: "100% 官方免费更换",
+      badgeType: "free",
+      officialUrl: "https://support.apple.com/zh-cn/service-programs"
+    },
+    {
+      id: "prog-watch-s6-screen",
+      title: "Apple Watch Series 6 黑屏问题的服务计划",
+      category: "Watch",
+      models: ["Apple Watch Series 6"],
+      symptom: "极少数 40 毫米 Apple Watch Series 6 屏幕可能会永久变黑空白。",
+      coverage: "适用于首次零售之日起 3 年内的受影响设备",
+      type: "100% 官方免费维修",
+      badgeType: "free",
+      officialUrl: "https://support.apple.com/zh-cn/apple-watch-series-6-service-program-for-blank-screen-issue"
+    },
+    {
+      id: "prog-ipad-air3-blank",
+      title: "iPad Air (第 3 代) 黑屏空白问题的服务计划",
+      category: "iPad",
+      models: ["iPad Air (第 3 代)"],
+      symptom: "在某些情况下，极少数 iPad Air (第 3 代) 设备的屏幕可能会永久变黑空白或闪烁。",
+      coverage: "适用于首次零售之日起 2 年内的受影响设备",
+      type: "100% 官方免费维修",
+      badgeType: "free",
+      officialUrl: "https://support.apple.com/zh-cn/ipad-air-3rd-gen-program-for-blank-screen-issue"
+    },
+    {
+      id: "prog-macbook-15-battery",
+      title: "15 英寸 MacBook Pro 电池召回计划",
+      category: "Mac",
+      models: ["MacBook Pro (15 英寸, 2015)"],
+      symptom: "极少数老款 15 英寸 MacBook Pro 电池可能过热造成安全隐患。",
+      coverage: "全球范围免费为合格设备更换原厂安全电池",
+      type: "100% 免费电池更换",
+      badgeType: "free",
+      officialUrl: "https://support.apple.com/zh-cn/15-inch-macbook-pro-battery-recall"
+    },
+    {
+      id: "prog-ac-wall-plug",
+      title: "Apple 交流电源插头转换器更换计划",
+      category: "Mac",
+      models: ["Mac", "iPad"],
+      symptom: "设计用于欧洲大陆、澳大利亚、新西兰、韩国、阿根廷和巴西的双插转换器存在破损触电隐患。",
+      coverage: "官方终身免费更换为经重新设计的新款转换器",
+      type: "终身免费更换",
+      badgeType: "free",
+      officialUrl: "https://support.apple.com/zh-cn/ac-wall-plug-adapter"
+    },
+    {
+      id: "prog-smart-battery-case",
+      title: "iPhone XS、XS Max 和 XR 智能电池壳更换计划",
+      category: "iPhone",
+      models: ["iPhone XS", "iPhone XS Max", "iPhone XR"],
+      symptom: "部分智能电池壳可能出现无法充电或断断续续充电问题。",
+      coverage: "适用于首次零售之日起 2 年内受影响的电池壳",
+      type: "100% 官方免费更换",
+      badgeType: "free",
+      officialUrl: "https://support.apple.com/zh-cn/iphone-xs-xs-max-xr-smart-battery-case-replacement-program"
+    }
+  ];
+
   // ================= 官方“选取你的设备”互动估价器配置 =================
   const ESTIMATOR_SERIES = [
     {
@@ -14819,12 +15729,13 @@ if (typeof window !== "undefined") window.APPLECARE_PLANS = APPLECARE_PLANS;
     }
 
     function render() {
-      // 1. Tab 切换状态 (支持四大核心模块)
+      // 1. Tab 切换状态 (支持五大核心模块)
       const tabs = [
         { id: "prices", tabEl: document.getElementById("tab-prices") || document.getElementById("tab-btn-prices"), secEl: document.getElementById("section-prices") },
         { id: "stores", tabEl: document.getElementById("tab-stores") || document.getElementById("tab-btn-stores"), secEl: document.getElementById("section-stores") },
         { id: "thirdparty", tabEl: document.getElementById("tab-thirdparty"), secEl: document.getElementById("section-thirdparty") },
-        { id: "hotacc", tabEl: document.getElementById("tab-hotacc"), secEl: document.getElementById("section-hotacc") }
+        { id: "hotacc", tabEl: document.getElementById("tab-hotacc"), secEl: document.getElementById("section-hotacc") },
+        { id: "programs", tabEl: document.getElementById("tab-programs"), secEl: document.getElementById("section-programs") }
       ];
 
       tabs.forEach((t) => {
@@ -14850,6 +15761,12 @@ if (typeof window !== "undefined") window.APPLECARE_PLANS = APPLECARE_PLANS;
       if (tpBadge) tpBadge.innerText = state.thirdPartyBrands.length;
       const hotBadge = document.getElementById("hotacc-count-badge");
       if (hotBadge) hotBadge.innerText = state.hotAccessoriesData.length;
+      const programsBadge = document.getElementById("programs-count-badge");
+      if (programsBadge) programsBadge.innerText = OFFICIAL_SERVICE_PROGRAMS.length;
+
+      if (state.activeTab === "programs" && window.__renderPrograms) {
+        window.__renderPrograms();
+      }
 
       // 3. 价格分类 Pills
       const catContainer = document.getElementById("category-pills");
@@ -15042,7 +15959,7 @@ if (typeof window !== "undefined") window.APPLECARE_PLANS = APPLECARE_PLANS;
       } else {
         storeEmpty.style.display = "none";
         storesGrid.innerHTML = filteredStores
-          .map((store) => {
+          .map((store, index) => {
             const isAppleStore = store.type.includes("Apple Store");
             const badgeClass = isAppleStore ? "apple-store" : "aasp";
             const mapUrl = getMapUrl(store);
@@ -15066,7 +15983,7 @@ if (typeof window !== "undefined") window.APPLECARE_PLANS = APPLECARE_PLANS;
               <div class="store-actions">
                 <a href="tel:${store.phone}" class="btn-phone">📞 电话</a>
                 <button type="button" class="btn-copy-phone" data-copy="${store.phone}" title="点击复制电话号码">📋 复制号码</button>
-                <a href="${mapUrl}" target="_blank" rel="noopener noreferrer" class="btn-nav">导航 ↗</a>
+                <a href="${mapUrl}" data-store-idx="${index}" class="btn-nav">导航 ↗</a>
                 <a href="https://getsupport.apple.com" target="_blank" rel="noopener noreferrer" class="btn-official-booking">预约 </a>
               </div>
             </div>
@@ -15087,6 +16004,16 @@ if (typeof window !== "undefined") window.APPLECARE_PLANS = APPLECARE_PLANS;
             if (btnPhone) {
               const txt = btnPhone.getAttribute("data-copy");
               if (txt) copyToClipboard(txt, "已复制网点电话号码");
+              return;
+            }
+            const btnNav = e.target.closest(".btn-nav");
+            if (btnNav) {
+              e.preventDefault();
+              const sIdx = parseInt(btnNav.getAttribute("data-store-idx"), 10);
+              const store = filteredStores[sIdx];
+              if (store && window.openMapActionSheet) {
+                window.openMapActionSheet(store);
+              }
               return;
             }
           });
@@ -16891,13 +17818,39 @@ if (typeof window !== "undefined") window.APPLECARE_PLANS = APPLECARE_PLANS;
         const filteredServices = services.filter(item => matchesIssue(item.name, activeIssue));
         const displayServices = (filteredServices.length > 0) ? filteredServices : services;
 
-        // 渲染每一项官方服务价格行：左侧服务项，右侧并列展示【保外预估】与【AppleCare+ 服务费】
-        pricingList.innerHTML = displayServices.map((item) => {
+        // 官方质量/免费延长服务计划提醒检查
+        const progBanner = document.getElementById("estimator-program-banner");
+        if (progBanner) {
+          const matchedProg = OFFICIAL_SERVICE_PROGRAMS.find(p =>
+            p.models.some(m => modelObj.name.toLowerCase().includes(m.toLowerCase()) || m.toLowerCase().includes(modelObj.name.toLowerCase()))
+          );
+          if (matchedProg) {
+            progBanner.style.display = "block";
+            const pTitle = document.getElementById("program-title");
+            const pDesc = document.getElementById("program-desc");
+            const pLink = document.getElementById("program-link");
+            if (pTitle) pTitle.textContent = `该机型符合【${matchedProg.title}】`;
+            if (pDesc) pDesc.textContent = `${matchedProg.symptom} (${matchedProg.coverage})`;
+            if (pLink) pLink.href = matchedProg.officialUrl;
+          } else {
+            progBanner.style.display = "none";
+          }
+        }
+
+        // 渲染每一项官方服务价格行：左侧服务项与多项预算勾选框，右侧并列展示【保外预估】与【AppleCare+ 服务费】
+        pricingList.innerHTML = displayServices.map((item, idx) => {
           const acFee = getAppleCareServiceFee(activeCategory, modelObj.name, item.name);
           const acClass = acFee.isFree ? "is-free" : (acFee.notCovered ? "is-na" : "");
           const isFocus = (activeIssue !== "all" && matchesIssue(item.name, activeIssue)) ? "is-issue-focus" : "";
+          const rawOowMatch = item.price.match(/[\d,]+/);
+          const rawOow = rawOowMatch ? parseInt(rawOowMatch[0].replace(/,/g, ""), 10) : 0;
+          const rawAc = typeof acFee.rawPrice === "number" ? acFee.rawPrice : 0;
+
           return `
-            <div class="quote-item-row ${isFocus}">
+            <div class="quote-item-row ${isFocus}" data-srv-idx="${idx}">
+              <div class="part-select-cb-wrap">
+                <input type="checkbox" class="part-select-cb" data-srv-name="${item.name}" data-oow-price="${rawOow}" data-ac-fee="${rawAc}" data-price-str="${item.price}" data-ac-label="${acFee.label}" title="勾选加入多项组合维修预算">
+              </div>
               <span class="quote-part-name">${item.name}</span>
               <div class="quote-price-group">
                 <span class="price-val-out">${item.price}</span>
@@ -16906,6 +17859,10 @@ if (typeof window !== "undefined") window.APPLECARE_PLANS = APPLECARE_PLANS;
             </div>
           `;
         }).join("");
+
+        // 每次重新渲染报价时隐藏多项预算工具条
+        const summaryBar = document.getElementById("multi-cost-summary-bar");
+        if (summaryBar) summaryBar.style.display = "none";
 
         // 在整体维修价格下方，渲染该机型对应的 AppleCare+ 官方选购价格与保障权益卡片
         if (appleCareCard) {
@@ -17594,6 +18551,217 @@ if (typeof window !== "undefined") window.APPLECARE_PLANS = APPLECARE_PLANS;
         btnShareCard.addEventListener("click", () => {
           if (navigator.vibrate) navigator.vibrate(12);
           generateAndOpenQuoteCard();
+        });
+      }
+
+      // ================================================================
+      // V4.0 多项故障组合维修预算浮动工具条计算逻辑
+      // ================================================================
+      function updateMultiCostSummary() {
+        const summaryBar = document.getElementById("multi-cost-summary-bar");
+        if (!summaryBar || !pricingList) return;
+
+        const checkedBoxes = Array.from(pricingList.querySelectorAll(".part-select-cb:checked"));
+        pricingList.querySelectorAll(".quote-item-row").forEach(row => {
+          const cb = row.querySelector(".part-select-cb");
+          row.classList.toggle("selected", cb && cb.checked);
+        });
+
+        if (checkedBoxes.length === 0) {
+          summaryBar.style.display = "none";
+          return;
+        }
+
+        summaryBar.style.display = "flex";
+        let totalOow = 0;
+        let totalAc = 0;
+
+        checkedBoxes.forEach(cb => {
+          totalOow += parseInt(cb.getAttribute("data-oow-price") || "0", 10);
+          totalAc += parseInt(cb.getAttribute("data-ac-fee") || "0", 10);
+        });
+
+        const totalSavings = Math.max(0, totalOow - totalAc);
+        const countBadge = document.getElementById("bundle-count-badge");
+        const oowTotalEl = document.getElementById("bundle-oow-total");
+        const acTotalEl = document.getElementById("bundle-ac-total");
+        const savingPill = document.getElementById("bundle-saving-pill");
+
+        if (countBadge) countBadge.textContent = `已选 ${checkedBoxes.length} 项`;
+        if (oowTotalEl) oowTotalEl.textContent = `¥${totalOow.toLocaleString()}`;
+        if (acTotalEl) acTotalEl.textContent = `¥${totalAc.toLocaleString()}`;
+        if (savingPill) {
+          savingPill.textContent = `立省 ¥${totalSavings.toLocaleString()}`;
+          savingPill.style.display = totalSavings > 0 ? "inline-block" : "none";
+        }
+      }
+
+      if (pricingList) {
+        pricingList.addEventListener("change", (e) => {
+          if (e.target && e.target.classList.contains("part-select-cb")) {
+            if (navigator.vibrate) navigator.vibrate(8);
+            updateMultiCostSummary();
+          }
+        });
+      }
+
+      // ================================================================
+      // V4.0 一键生成微信文本格式报价单 (WeChat Text Quote)
+      // ================================================================
+      function copyWeChatTextQuote() {
+        if (!currentQuoteModel) {
+          showToast("报价提示", "请先在上方选取设备机型！", "⚠️");
+          return;
+        }
+
+        const model = currentQuoteModel;
+        const plan = currentQuotePlan;
+        const now = new Date();
+        const dateStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+
+        const checkedBoxes = Array.from(pricingList ? pricingList.querySelectorAll(".part-select-cb:checked") : []);
+        let servicesToReport = [];
+
+        if (checkedBoxes.length > 0) {
+          servicesToReport = checkedBoxes.map(cb => ({
+            name: cb.getAttribute("data-srv-name"),
+            price: cb.getAttribute("data-price-str"),
+            acLabel: cb.getAttribute("data-ac-label")
+          }));
+        } else {
+          servicesToReport = (currentQuoteServices || []).slice(0, 6).map(s => {
+            const acFee = getAppleCareServiceFee(activeCategory, model.name, s.name);
+            return {
+              name: s.name,
+              price: s.price,
+              acLabel: acFee.label
+            };
+          });
+        }
+
+        let lines = [];
+        lines.push(` Apple 官方维修预估报价单`);
+        lines.push(`━━━━━━━━━━━━━━━━━━━━━`);
+        lines.push(`📱 设备机型：${model.name}`);
+        lines.push(`📅 报价时间：${dateStr}`);
+        lines.push(``);
+        lines.push(`【官方原厂配件维修费用】`);
+        servicesToReport.forEach(item => {
+          lines.push(`• ${item.name}：保外预估 ${item.price} ｜ AC+自付 ${item.acLabel}`);
+        });
+
+        if (checkedBoxes.length > 1) {
+          let sumOow = 0;
+          let sumAc = 0;
+          checkedBoxes.forEach(cb => {
+            sumOow += parseInt(cb.getAttribute("data-oow-price") || "0", 10);
+            sumAc += parseInt(cb.getAttribute("data-ac-fee") || "0", 10);
+          });
+          lines.push(`─────────────────────`);
+          lines.push(`📊 多项合并保外总额：¥${sumOow.toLocaleString()}`);
+          lines.push(`🛡️ AppleCare+ 合并自付：¥${sumAc.toLocaleString()}`);
+          lines.push(`✨ AC+ 单次维修净省：¥${Math.max(0, sumOow - sumAc).toLocaleString()}`);
+        }
+
+        if (plan) {
+          lines.push(``);
+          lines.push(`【AppleCare+ 官方保障】`);
+          lines.push(`• 官方售价：${plan.planPrice} (${plan.period})`);
+          lines.push(`• 核心权益：原厂正品配件、无限次意外损坏特惠维修、电池容量<80%免费更换`);
+          if (plan.status === "in_sale") {
+            lines.push(`• 选购条件：购机 60 天内可于【设置-关于本机】或致电 400-666-8800 添加`);
+          }
+        }
+
+        lines.push(``);
+        lines.push(`💡 官方提示：前往 Apple 直营店 Genius Bar 或官方授权服务网点前，请提前通过 iCloud 备份数据，并携带有效购机发票与身份证件。`);
+
+        const quoteText = lines.join("\n");
+        copyToClipboard(quoteText, "已复制微信文本报价单，长按即可粘贴发送！");
+      }
+
+      const btnCopyWechatQuote = document.getElementById("btn-copy-wechat-quote");
+      if (btnCopyWechatQuote) {
+        btnCopyWechatQuote.addEventListener("click", () => {
+          if (navigator.vibrate) navigator.vibrate(10);
+          copyWeChatTextQuote();
+        });
+      }
+
+      const btnCopyTextQuote = document.getElementById("btn-copy-text-quote");
+      if (btnCopyTextQuote) {
+        btnCopyTextQuote.addEventListener("click", () => {
+          if (navigator.vibrate) navigator.vibrate(10);
+          copyWeChatTextQuote();
+        });
+      }
+
+      // ================================================================
+      // V4.0 序列号与官方保修状态快捷查询栏 (S/N Coverage Checker)
+      // ================================================================
+      const snInput = document.getElementById("sn-input");
+      const btnCheckCoverage = document.getElementById("btn-check-coverage");
+      const btnHowToFindSn = document.getElementById("btn-how-to-find-sn");
+      const snSavedHint = document.getElementById("sn-saved-hint");
+      const snModal = document.getElementById("sn-modal");
+      const modalSnCloseBtn = document.getElementById("modal-sn-close-btn");
+      const modalSnConfirmBtn = document.getElementById("modal-sn-confirm-btn");
+
+      if (snInput) {
+        const lastSn = localStorage.getItem("apple_last_sn");
+        if (lastSn) {
+          snInput.value = lastSn;
+          if (snSavedHint) snSavedHint.style.display = "inline";
+        }
+
+        snInput.addEventListener("input", (e) => {
+          e.target.value = e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, "");
+          if (snSavedHint) snSavedHint.style.display = "none";
+        });
+      }
+
+      if (btnCheckCoverage && snInput) {
+        btnCheckCoverage.addEventListener("click", () => {
+          const sn = snInput.value.trim().toUpperCase();
+          if (!sn || sn.length < 8) {
+            showToast("输入提示", "请输入有效的 10-12 位 Apple 设备序列号 (S/N)", "⚠️");
+            snInput.focus();
+            return;
+          }
+
+          localStorage.setItem("apple_last_sn", sn);
+          if (snSavedHint) snSavedHint.style.display = "inline";
+
+          navigator.clipboard.writeText(sn).catch(() => {});
+          showToast("序列号已复制", `已复制序列号 ${sn}，正在前往 Apple 官网查询...`, "📋");
+
+          setTimeout(() => {
+            window.open("https://checkcoverage.apple.com/?locale=zh_CN", "_blank");
+          }, 300);
+        });
+      }
+
+      if (btnHowToFindSn && snModal) {
+        btnHowToFindSn.addEventListener("click", () => {
+          snModal.style.display = "flex";
+        });
+      }
+
+      if (modalSnCloseBtn && snModal) {
+        modalSnCloseBtn.addEventListener("click", () => {
+          snModal.style.display = "none";
+        });
+      }
+
+      if (modalSnConfirmBtn && snModal) {
+        modalSnConfirmBtn.addEventListener("click", () => {
+          snModal.style.display = "none";
+        });
+      }
+
+      if (snModal) {
+        snModal.addEventListener("click", (e) => {
+          if (e.target === snModal) snModal.style.display = "none";
         });
       }
 
@@ -18582,6 +19750,134 @@ if (typeof window !== "undefined") window.APPLECARE_PLANS = APPLECARE_PLANS;
       });
     }
 
+    // ================================================================
+    // V4.0 原生级地图导航动作面板 (Universal Map Navigation Action Sheet)
+    // ================================================================
+    function initMapActionSheet() {
+      const sheetOverlay = document.getElementById("map-action-sheet");
+      const sheetCloseBtn = document.getElementById("map-sheet-close-btn");
+      const sheetTitle = document.getElementById("map-sheet-title");
+      const sheetAddress = document.getElementById("map-sheet-address");
+      const optApple = document.getElementById("map-opt-apple");
+      const optAmap = document.getElementById("map-opt-amap");
+      const optBaidu = document.getElementById("map-opt-baidu");
+      const optTencent = document.getElementById("map-opt-tencent");
+      const optCopy = document.getElementById("map-opt-copy");
+
+      if (!sheetOverlay) return;
+
+      let currentStore = null;
+
+      window.openMapActionSheet = function(store) {
+        if (!store) return;
+        currentStore = store;
+
+        if (sheetTitle) sheetTitle.textContent = `导航前往 · ${store.name}`;
+        if (sheetAddress) sheetAddress.textContent = `${store.city} · ${store.address}`;
+
+        const q = encodeURIComponent(`${store.name} ${store.address}`);
+        const lat = (store.geo && store.geo.lat) ? store.geo.lat : 31.568;
+        const lng = (store.geo && store.geo.lng) ? store.geo.lng : 120.301;
+
+        if (optApple) {
+          optApple.href = `https://maps.apple.com/?q=${q}&ll=${lat},${lng}`;
+        }
+        if (optAmap) {
+          optAmap.href = `https://uri.amap.com/marker?position=${lng},${lat}&name=${q}&coordinate=gaode&callnative=1`;
+        }
+        if (optBaidu) {
+          optBaidu.href = `https://api.map.baidu.com/marker?location=${lat},${lng}&title=${encodeURIComponent(store.name)}&content=${encodeURIComponent(store.address)}&output=html`;
+        }
+        if (optTencent) {
+          optTencent.href = `https://apis.map.qq.com/uri/v1/marker?marker=coord:${lat},${lng};title=${encodeURIComponent(store.name)};addr=${encodeURIComponent(store.address)}&referer=apple_service_hub`;
+        }
+
+        sheetOverlay.style.display = "flex";
+      };
+
+      function closeSheet() {
+        sheetOverlay.style.display = "none";
+      }
+
+      if (sheetCloseBtn) sheetCloseBtn.addEventListener("click", closeSheet);
+      sheetOverlay.addEventListener("click", (e) => {
+        if (e.target === sheetOverlay) closeSheet();
+      });
+
+      if (optCopy) {
+        optCopy.addEventListener("click", () => {
+          if (!currentStore) return;
+          const lat = (currentStore.geo && currentStore.geo.lat) ? currentStore.geo.lat : "";
+          const lng = (currentStore.geo && currentStore.geo.lng) ? currentStore.geo.lng : "";
+          const text = `${currentStore.name}\n详细地址：${currentStore.address}\nGPS 坐标：${lat}, ${lng}\n服务电话：${currentStore.phone}`;
+          copyToClipboard(text, "已复制网点完整名称、详细地址与 GPS 坐标！");
+          closeSheet();
+        });
+      }
+    }
+
+    // ================================================================
+    // V4.0 Apple 官方免费延长服务与召回计划专区 (Free Service Programs Hub)
+    // ================================================================
+    function initServicePrograms() {
+      const grid = document.getElementById("programs-grid");
+      const searchInput = document.getElementById("program-search-input");
+      if (!grid) return;
+
+      function renderPrograms(query = "") {
+        const q = (query || "").trim().toLowerCase();
+        const filtered = OFFICIAL_SERVICE_PROGRAMS.filter(p => {
+          if (!q) return true;
+          return p.title.toLowerCase().includes(q) ||
+                 p.symptom.toLowerCase().includes(q) ||
+                 p.models.some(m => m.toLowerCase().includes(q)) ||
+                 p.category.toLowerCase().includes(q);
+        });
+
+        if (filtered.length === 0) {
+          grid.innerHTML = `
+            <div class="empty-quote-tip" style="padding: 48px 24px; text-align: center; color: var(--text-tertiary); grid-column: 1 / -1; background: var(--bg-card-solid); border-radius: var(--radius-md); border: 1px dashed var(--border-color);">
+              <div style="font-size: 32px; margin-bottom: 12px;">🔍</div>
+              <strong style="font-size: 16px; color: var(--text-primary); display: block; margin-bottom: 6px;">未检索到匹配的官方服务计划</strong>
+              <p style="margin: 0; font-size: 13px;">可尝试搜索其他机型（如 iPhone 14 Plus、AirPods、Watch）或故障表现，也可直接前往 Apple 官方支持网站核验。</p>
+            </div>
+          `;
+          return;
+        }
+
+        grid.innerHTML = filtered.map(p => {
+          return `
+            <div class="program-card">
+              <div>
+                <div class="program-card-header">
+                  <h3 class="program-card-title">${p.title}</h3>
+                  <span class="program-badge ${p.badgeType}">${p.type}</span>
+                </div>
+                <div class="program-models-tag">涉及机型：${p.models.join("、")}</div>
+                <p class="program-card-symptom"><strong>故障表现：</strong>${p.symptom}</p>
+              </div>
+              <div class="program-card-footer">
+                <span>⏱️ ${p.coverage}</span>
+                <a href="${p.officialUrl}" target="_blank" rel="noopener noreferrer" class="btn-program-detail">
+                  <span>官网核验详情</span>
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </a>
+              </div>
+            </div>
+          `;
+        }).join("");
+      }
+
+      if (searchInput) {
+        searchInput.addEventListener("input", (e) => {
+          renderPrograms(e.target.value);
+        });
+      }
+
+      window.__renderPrograms = renderPrograms;
+      renderPrograms();
+    }
+
     // 更新全网同步时间戳显示
     function updateSyncTimestampDisplay() {
       const syncTime = (typeof DATA_SYNC_TIMESTAMP !== "undefined") ? DATA_SYNC_TIMESTAMP : "";
@@ -18603,6 +19899,8 @@ if (typeof window !== "undefined") window.APPLECARE_PLANS = APPLECARE_PLANS;
     initComparison();
     initChecklist();
     initMobileThumbDock();
+    initMapActionSheet();
+    initServicePrograms();
     updateSyncTimestampDisplay();
     render();
   }

@@ -4992,3 +4992,616 @@ body {
 
 
 
+
+/* ================================================================
+   V4.0: 官方免费服务计划提醒横幅 (Estimator Program Banner)
+   ================================================================ */
+.estimator-program-banner {
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, rgba(255, 149, 0, 0.08) 0%, rgba(255, 204, 0, 0.12) 100%);
+  border: 1px solid rgba(255, 149, 0, 0.3);
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  animation: bannerFadeSlide 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes bannerFadeSlide {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.program-banner-inner {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.program-banner-inner .program-icon {
+  font-size: 24px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.program-banner-inner .program-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.program-banner-inner .program-info strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 3px;
+}
+
+.program-banner-inner .program-info p {
+  margin: 0;
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.btn-program-check {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px;
+  background: var(--apple-orange);
+  color: #ffffff;
+  font-size: 12.5px;
+  font-weight: 600;
+  border-radius: var(--radius-pill);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.btn-program-check:hover {
+  background: #e08500;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 149, 0, 0.3);
+}
+
+@media (max-width: 640px) {
+  .program-banner-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .btn-program-check {
+    align-self: flex-start;
+  }
+}
+
+/* ================================================================
+   V4.0: 序列号快捷查询栏 (Serial Number Checker Bar)
+   ================================================================ */
+.sn-checker-bar {
+  margin: 18px 0 22px 0;
+  padding: 12px 16px;
+  background: var(--bg-hover);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+}
+
+.sn-checker-bar:focus-within {
+  border-color: var(--apple-blue);
+  background: var(--bg-card-solid);
+  box-shadow: 0 0 0 3px var(--apple-blue-light);
+}
+
+.sn-checker-inner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sn-checker-inner .sn-icon {
+  font-size: 16px;
+  color: var(--text-secondary);
+  flex-shrink: 0;
+}
+
+.sn-checker-inner .sn-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  outline: none;
+  min-width: 0;
+}
+
+.sn-checker-inner .sn-input::placeholder {
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  color: var(--text-tertiary);
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.btn-check-coverage {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 15px;
+  background: var(--apple-blue);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-pill);
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all var(--transition-fast);
+}
+
+.btn-check-coverage:hover {
+  background: var(--apple-blue-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 113, 227, 0.3);
+}
+
+.sn-helper-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--border-color);
+  font-size: 11.5px;
+}
+
+.sn-helper-btn {
+  background: none;
+  border: none;
+  color: var(--apple-blue);
+  cursor: pointer;
+  padding: 0;
+  font-size: 11.5px;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.sn-helper-btn:hover {
+  opacity: 0.8;
+}
+
+.sn-saved-hint {
+  color: var(--apple-green);
+  font-size: 11px;
+  font-weight: 500;
+}
+
+/* ================================================================
+   V4.0: 多项故障维修预算工具栏与复选框 (Multi-Cost Summary & Row Checkbox)
+   ================================================================ */
+.part-select-cb-wrap {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.part-select-cb {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: var(--apple-blue);
+  border-radius: 4px;
+}
+
+.quote-item-row.selected {
+  background: var(--apple-blue-light) !important;
+  border-left: 3px solid var(--apple-blue);
+}
+
+.multi-cost-summary-bar {
+  margin-top: 14px;
+  padding: 14px 18px;
+  background: var(--bg-hover);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  animation: fadeIn 0.2s ease;
+}
+
+.multi-cost-summary-bar .summary-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.multi-cost-summary-bar .summary-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  background: var(--bg-card-solid);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-pill);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.multi-cost-summary-bar .summary-breakdown {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.multi-cost-summary-bar .sum-label {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.multi-cost-summary-bar .sum-label strong {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+
+.multi-cost-summary-bar .text-danger {
+  color: #ff3b30;
+}
+
+.multi-cost-summary-bar .text-success {
+  color: var(--apple-green);
+}
+
+.multi-cost-summary-bar .summary-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.bundle-saving-pill {
+  padding: 4px 12px;
+  background: var(--apple-green-light);
+  color: var(--apple-green);
+  border-radius: var(--radius-pill);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+.btn-wechat-text {
+  padding: 6px 14px;
+  font-size: 12.5px;
+}
+
+@media (max-width: 640px) {
+  .multi-cost-summary-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .multi-cost-summary-bar .summary-right {
+    justify-content: space-between;
+  }
+}
+
+/* ================================================================
+   V4.0: 官方免费服务与召回计划专区 (Free Service Programs Hub)
+   ================================================================ */
+.programs-intro-card {
+  background: var(--bg-card-solid);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 24px 28px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.programs-intro-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.programs-intro-icon {
+  font-size: 32px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.programs-intro-text h2 {
+  margin: 0 0 6px 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.programs-intro-text p {
+  margin: 0;
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.programs-filter-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.program-search-box {
+  position: relative;
+  flex: 1;
+  max-width: 480px;
+}
+
+.program-search-box .search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-tertiary);
+  pointer-events: none;
+}
+
+.program-search-input {
+  width: 100%;
+  padding: 10px 14px 10px 36px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-color);
+  background: var(--bg-hover);
+  color: var(--text-primary);
+  font-size: 13.5px;
+  outline: none;
+  transition: all var(--transition-fast);
+  box-sizing: border-box;
+}
+
+.program-search-input:focus {
+  border-color: var(--apple-blue);
+  background: var(--bg-card-solid);
+  box-shadow: 0 0 0 3px var(--apple-blue-light);
+}
+
+.programs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 18px;
+}
+
+.program-card {
+  background: var(--bg-card-solid);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-fast);
+}
+
+.program-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(0, 113, 227, 0.3);
+}
+
+.program-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.program-card-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.35;
+}
+
+.program-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 9px;
+  border-radius: var(--radius-pill);
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.program-badge.free {
+  background: var(--apple-green-light);
+  color: var(--apple-green);
+}
+
+.program-badge.active {
+  background: var(--apple-blue-light);
+  color: var(--apple-blue);
+}
+
+.program-badge.expiring {
+  background: rgba(255, 149, 0, 0.12);
+  color: var(--apple-orange);
+}
+
+.program-models-tag {
+  display: inline-block;
+  font-size: 12px;
+  color: var(--text-secondary);
+  background: var(--bg-hover);
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.program-card-symptom {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0 0 16px 0;
+  flex: 1;
+}
+
+.program-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 14px;
+  border-top: 1px solid var(--border-color);
+  font-size: 12px;
+  color: var(--text-tertiary);
+}
+
+.btn-program-detail {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--apple-blue);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 12.5px;
+}
+
+.btn-program-detail:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 640px) {
+  .programs-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ================================================================
+   V4.0: 原生级地图导航底部动作面板 (Map Action Sheet)
+   ================================================================ */
+.map-sheet-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 10000;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  animation: fadeIn 0.2s ease;
+}
+
+.map-sheet-card {
+  width: 100%;
+  max-width: 540px;
+  background: var(--bg-card-solid);
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+  border: 1px solid var(--border-color);
+  border-bottom: none;
+  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.15);
+  padding: 16px 20px 28px 20px;
+  animation: sheetSlideUp 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes sheetSlideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+.map-sheet-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.map-sheet-title {
+  margin: 0 0 4px 0;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.map-sheet-sub {
+  margin: 0;
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.map-options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.map-option-btn {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 16px;
+  background: var(--bg-hover);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  color: var(--text-primary);
+  transition: all var(--transition-fast);
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.map-option-btn:hover {
+  background: var(--apple-blue-light);
+  border-color: var(--apple-blue);
+  transform: translateY(-1px);
+}
+
+.map-opt-icon {
+  font-size: 24px;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.map-opt-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.map-opt-text strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.map-opt-text span {
+  display: block;
+  font-size: 11.5px;
+  color: var(--text-secondary);
+}
+
+.map-opt-arrow {
+  color: var(--text-tertiary);
+  font-size: 18px;
+  font-weight: 400;
+}

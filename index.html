@@ -179,6 +179,16 @@
           <span>💡 热门配件</span>
           <span class="tab-badge" id="hotacc-count-badge">23</span>
         </button>
+        <button
+          class="main-tab-btn"
+          id="tab-programs"
+          data-tab="programs"
+          role="tab"
+          aria-selected="false"
+        >
+          <span>🎁 免费计划</span>
+          <span class="tab-badge" id="programs-count-badge">8</span>
+        </button>
       </div>
     </div>
 
@@ -217,6 +227,18 @@
             <button type="button" class="issue-chip" data-issue="battery">🔋 电池老化(&lt;80%)</button>
             <button type="button" class="issue-chip" data-issue="backglass">🪞 背面玻璃碎裂</button>
             <button type="button" class="issue-chip" data-issue="other">💧 进水/其他整机损坏</button>
+          </div>
+        </div>
+
+        <!-- 官方质量/免费延长服务计划提醒横幅 (当所选机型命中时动态高亮展示) -->
+        <div id="estimator-program-banner" class="estimator-program-banner" style="display: none;">
+          <div class="program-banner-inner">
+            <span class="program-icon">🎁</span>
+            <div class="program-info">
+              <strong id="program-title">该机型符合 Apple 官方免费维修服务计划</strong>
+              <p id="program-desc">若遇指定故障（如后置相机无法对焦/黑屏），Apple 官方或授权网点将提供免费原厂检修。</p>
+            </div>
+            <a id="program-link" href="https://support.apple.com/zh-cn/service-programs" target="_blank" rel="noopener noreferrer" class="btn-program-check">核对资格 ›</a>
           </div>
         </div>
 
@@ -285,6 +307,29 @@
           </button>
         </div>
 
+        <!-- 序列号与官方保修状态快捷查询栏 -->
+        <div class="sn-checker-bar" id="sn-checker-bar">
+          <div class="sn-checker-inner">
+            <span class="sn-icon">🔍</span>
+            <input
+              type="text"
+              id="sn-input"
+              class="sn-input"
+              placeholder="输入 10-12 位设备序列号 (S/N) 快速核对官网保修..."
+              maxlength="14"
+              autocomplete="off"
+            >
+            <button type="button" id="btn-check-coverage" class="btn-check-coverage">
+              <span>查询官方保修</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
+          </div>
+          <div class="sn-helper-row">
+            <button type="button" id="btn-how-to-find-sn" class="sn-helper-btn">如何查看本机序列号？</button>
+            <span id="sn-saved-hint" class="sn-saved-hint" style="display:none;">已记住此设备序列号</span>
+          </div>
+        </div>
+
         <!-- 官方估价结果面板 (左侧官方正品图，右侧预估费用清单与 AppleCare+) -->
         <div class="estimator-result-card" id="estimator-result-card">
           <!-- 左侧：官方设备实机渲染图 -->
@@ -309,6 +354,23 @@
               <!-- 动态官方费用行 -->
             </div>
 
+            <!-- 多项故障组合维修预算浮动工具条 -->
+            <div id="multi-cost-summary-bar" class="multi-cost-summary-bar" style="display: none;">
+              <div class="summary-left">
+                <span class="summary-badge" id="bundle-count-badge">已选 0 项</span>
+                <div class="summary-breakdown">
+                  <span class="sum-label">保外合并: <strong class="text-danger" id="bundle-oow-total">¥0</strong></span>
+                  <span class="sum-label">AC+ 自付: <strong class="text-success" id="bundle-ac-total">¥0</strong></span>
+                </div>
+              </div>
+              <div class="summary-right">
+                <span class="bundle-saving-pill" id="bundle-saving-pill">立省 ¥0</span>
+                <button type="button" id="btn-copy-wechat-quote" class="apple-secondary-pill-btn btn-wechat-text">
+                  <span>📋 复制微信文本</span>
+                </button>
+              </div>
+            </div>
+
             <!-- 在整体维修价格下方：AppleCare+ 计划与购买价格卡片 -->
             <div class="estimator-applecare-card" id="estimator-applecare-card">
               <!-- 动态填充该机型 AppleCare+ 权益与购买价格 -->
@@ -321,6 +383,10 @@
           <button type="button" id="btn-open-compare" class="apple-secondary-pill-btn">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px;"><rect x="2" y="3" width="8" height="18" rx="2"></rect><rect x="14" y="3" width="8" height="18" rx="2"></rect><line x1="6" y1="8" x2="6" y2="8.01"></line><line x1="18" y1="8" x2="18" y2="8.01"></line></svg>
             <span>双机横向对比</span>
+          </button>
+          <button type="button" id="btn-copy-text-quote" class="apple-secondary-pill-btn">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px;"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
+            <span>复制微信报价</span>
           </button>
           <button type="button" id="btn-estimator-share-card" class="apple-secondary-pill-btn">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px;"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
@@ -713,6 +779,39 @@
         </div>
       </div>
     </section>
+
+    <!-- ================= 模块 5：官方免费服务与质量召回计划 ================= -->
+    <section id="section-programs" class="tab-section" style="display: none;">
+      <div class="programs-intro-card">
+        <div class="intro-icon">🎁</div>
+        <div class="intro-text">
+          <h2 class="programs-intro-title">Apple 官方在行免费服务与延保计划</h2>
+          <p class="programs-intro-desc">针对已知特定批次制造缺陷提供的 <strong>100% 官方免费原厂检修与部件更换</strong>。即使超出常规保修期，在计划适用期内均可在 Apple Store 直营店或授权网点享受免费维修！</p>
+        </div>
+      </div>
+
+      <!-- 搜索与筛选 -->
+      <div class="controls-bar">
+        <div class="search-wrapper" style="flex: 1; max-width: 100%;">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input
+            type="text"
+            id="program-search-input"
+            class="search-input"
+            placeholder="搜索服务计划机型或症状 (如 14 Plus 相机、12 听筒、AirPods 爆裂声)..."
+            aria-label="搜索服务计划"
+          >
+        </div>
+      </div>
+
+      <!-- 计划卡片网格 -->
+      <div class="programs-grid" id="programs-grid">
+        <!-- 动态渲染计划卡片 -->
+      </div>
+    </section>
   </main>
 
   <!-- 底部说明与全量离线下载环境指示器 -->
@@ -959,6 +1058,112 @@
       </div>
       <div class="modal-footer quote-card-footer">
         <a id="btn-download-quote-card" class="apple-blue-pill-btn modal-btn" download="Apple官方维修报价单.png" href="#">保存高清图片</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 全平台多地图导航 Action Sheet (Universal Navigation Sheet) -->
+  <div id="map-action-sheet" class="bottom-sheet-overlay" style="display: none;" role="dialog" aria-modal="true">
+    <div class="bottom-sheet-card map-sheet-card">
+      <div class="sheet-header-sticky">
+        <div class="drag-handle"></div>
+        <button type="button" class="sheet-close-btn" id="map-sheet-close-btn">取消</button>
+      </div>
+      <div class="map-sheet-body">
+        <div class="map-sheet-header">
+          <div class="map-sheet-icon">🧭</div>
+          <div>
+            <h3 id="map-sheet-title" class="map-sheet-title">选择导航方式</h3>
+            <p id="map-sheet-address" class="map-sheet-sub"></p>
+          </div>
+        </div>
+        <div class="map-options-list">
+          <a href="#" id="map-opt-apple" target="_blank" rel="noopener noreferrer" class="map-option-btn">
+            <span class="map-opt-icon">🍏</span>
+            <div class="map-opt-text">
+              <strong>Apple 原生地图</strong>
+              <span>iPhone / iPad / Mac 原生内置地图</span>
+            </div>
+            <span class="map-opt-arrow">›</span>
+          </a>
+          <a href="#" id="map-opt-amap" target="_blank" rel="noopener noreferrer" class="map-option-btn">
+            <span class="map-opt-icon">🧭</span>
+            <div class="map-opt-text">
+              <strong>高德地图 (Amap)</strong>
+              <span>国内主流推荐，精准车道级导航</span>
+            </div>
+            <span class="map-opt-arrow">›</span>
+          </a>
+          <a href="#" id="map-opt-baidu" target="_blank" rel="noopener noreferrer" class="map-option-btn">
+            <span class="map-opt-icon">🗺️</span>
+            <div class="map-opt-text">
+              <strong>百度地图</strong>
+              <span>支持网页版即开即走与 App 呼起</span>
+            </div>
+            <span class="map-opt-arrow">›</span>
+          </a>
+          <a href="#" id="map-opt-tencent" target="_blank" rel="noopener noreferrer" class="map-option-btn">
+            <span class="map-opt-icon">🐧</span>
+            <div class="map-opt-text">
+              <strong>腾讯地图</strong>
+              <span>微信生态内原生适配最佳</span>
+            </div>
+            <span class="map-opt-arrow">›</span>
+          </a>
+          <button type="button" id="map-opt-copy" class="map-option-btn copy-opt">
+            <span class="map-opt-icon">📋</span>
+            <div class="map-opt-text">
+              <strong>复制详细地址与坐标</strong>
+              <span>快速粘贴至微信发送给亲友</span>
+            </div>
+            <span class="map-opt-arrow">›</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 序列号 (S/N) 查找指引弹窗 (Modal) -->
+  <div id="sn-modal" class="apple-modal-overlay" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="modal-sn-title">
+    <div class="apple-modal-card">
+      <div class="modal-header">
+        <h3 id="modal-sn-title" class="modal-title">如何查找 Apple 设备序列号 (S/N)</h3>
+        <button type="button" id="modal-sn-close-btn" class="modal-close-btn" aria-label="关闭">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="identify-step-item">
+          <div class="step-icon">📱</div>
+          <div class="step-text">
+            <strong>iPhone / iPad</strong>
+            <p>打开【设置】➔【通用】➔【关于本机】，长按【序列号】即可直接拷贝；无法开机时可查看 SIM 卡托或原始包装盒条形码。</p>
+          </div>
+        </div>
+        <div class="identify-step-item">
+          <div class="step-icon">💻</div>
+          <div class="step-text">
+            <strong>Mac 电脑</strong>
+            <p>点击屏幕左上角苹果标志  ➔【关于本机】；或翻看 MacBook 机身底部小字镌刻的“Serial”。</p>
+          </div>
+        </div>
+        <div class="identify-step-item">
+          <div class="step-icon">⌚️</div>
+          <div class="step-text">
+            <strong>Apple Watch</strong>
+            <p>打开手表【设置】➔【通用】➔【关于本机】；或在表壳表带凹槽内侧激光镌刻处查看。</p>
+          </div>
+        </div>
+        <div class="identify-step-item">
+          <div class="step-icon">🎧</div>
+          <div class="step-text">
+            <strong>AirPods</strong>
+            <p>在充电盒盖内侧下方激光镌刻处；若已连接 iPhone，可在【设置】➔【蓝牙】➔ 对应 AirPods 旁边的 ⓘ 查看。</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="modal-sn-confirm-btn" class="apple-blue-pill-btn modal-btn">我知道了</button>
       </div>
     </div>
   </div>
