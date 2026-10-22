@@ -4332,5 +4332,663 @@ body {
   justify-content: center;
 }
 
+/* ==========================================================================
+   V3.0 全局常驻智能搜索 Omnibox
+   ========================================================================== */
+.global-omnibox-wrapper {
+  position: relative;
+  max-width: 760px;
+  margin: 0 auto 16px auto;
+  z-index: 50;
+}
+
+.omnibox-inner {
+  display: flex;
+  align-items: center;
+  background: var(--bg-card);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-pill);
+  padding: 8px 18px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all var(--transition-fast);
+}
+
+.omnibox-inner:focus-within {
+  border-color: var(--apple-blue);
+  box-shadow: 0 0 0 4px var(--apple-blue-light), 0 8px 24px rgba(0, 0, 0, 0.08);
+  background: var(--bg-card-solid);
+}
+
+.omnibox-icon {
+  display: flex;
+  align-items: center;
+  color: var(--text-secondary);
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.global-omnibox-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: var(--text-primary);
+  font-size: 15px;
+  font-family: inherit;
+  outline: none;
+  padding: 4px 0;
+}
+
+.global-omnibox-input::placeholder {
+  color: var(--text-tertiary);
+  font-size: 13.5px;
+}
+
+.omnibox-clear-btn {
+  background: none;
+  border: none;
+  color: var(--text-tertiary);
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: color var(--transition-fast);
+}
+
+.omnibox-clear-btn:hover {
+  color: var(--text-primary);
+}
+
+.omnibox-suggestions {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  background: var(--bg-card-solid);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  max-height: 360px;
+  overflow-y: auto;
+  z-index: 100;
+  padding: 8px;
+}
+
+.omnibox-sugg-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.omnibox-sugg-item:hover,
+.omnibox-sugg-item.active {
+  background: var(--apple-blue-light);
+}
+
+.sugg-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sugg-icon {
+  font-size: 16px;
+}
+
+.sugg-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.sugg-sub {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-left: 6px;
+}
+
+.sugg-badge {
+  font-size: 11.5px;
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   V3.0 故障导向直觉查价流 (Issue-First Triage)
+   ========================================================================== */
+.issue-triage-panel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px dashed var(--border-color);
+}
+
+.issue-triage-label {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.issue-triage-scroll {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.issue-triage-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.issue-chip {
+  padding: 5px 12px;
+  background: var(--bg-secondary);
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.issue-chip:hover {
+  color: var(--text-primary);
+  background: var(--bg-card-solid);
+  border-color: var(--border-color);
+}
+
+.issue-chip.active {
+  background: var(--apple-blue);
+  color: #ffffff;
+  border-color: var(--apple-blue);
+  box-shadow: 0 2px 8px var(--apple-blue-light);
+}
+
+/* ==========================================================================
+   V3.0 到店避坑自检清单 (Pre-service Checklist)
+   ========================================================================== */
+.checklist-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-base);
+}
+
+.checklist-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.checklist-title-wrap {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.checklist-icon {
+  font-size: 24px;
+  line-height: 1;
+}
+
+.checklist-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 4px 0;
+}
+
+.checklist-desc {
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.checklist-progress-pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg-secondary);
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.checklist-progress-bar {
+  width: 60px;
+  height: 6px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+#checklist-progress-fill {
+  height: 100%;
+  background: var(--apple-green);
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.checklist-items-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+}
+
+.checklist-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 14px;
+  background: var(--bg-card-solid);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  user-select: none;
+}
+
+.checklist-item:hover {
+  border-color: var(--apple-blue);
+  transform: translateY(-1px);
+}
+
+.checklist-checkbox {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--apple-green);
+  margin-top: 2px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.checklist-item-content {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.checklist-item-content strong {
+  font-size: 13.5px;
+  color: var(--text-primary);
+  transition: color var(--transition-fast);
+}
+
+.checklist-item-content span {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.checklist-item.is-checked {
+  background: var(--apple-green-light);
+  border-color: rgba(52, 199, 89, 0.3);
+}
+
+.checklist-item.is-checked .checklist-item-content strong {
+  color: var(--apple-green);
+  text-decoration: line-through;
+}
+
+/* ==========================================================================
+   V3.0 双机横向对比模态框 (Side-by-Side Model Comparison)
+   ========================================================================== */
+.compare-modal-card {
+  max-width: 760px;
+  width: 94%;
+}
+
+.compare-modal-body {
+  padding: 20px;
+  max-height: 72vh;
+  overflow-y: auto;
+}
+
+.compare-selectors-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.compare-select-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.compare-col-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.compare-vs-badge {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--text-tertiary);
+  padding: 6px 10px;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-pill);
+  margin-top: 18px;
+}
+
+.compare-results-wrap {
+  background: var(--bg-card-solid);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.compare-table th {
+  background: var(--bg-secondary);
+  padding: 12px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.compare-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 13.5px;
+  color: var(--text-primary);
+}
+
+.compare-table tr:last-child td {
+  border-bottom: none;
+}
+
+.compare-diff-pill {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.compare-diff-pill.cheaper {
+  background: var(--apple-green-light);
+  color: var(--apple-green);
+}
+
+.compare-diff-pill.pricier {
+  background: rgba(255, 59, 48, 0.12);
+  color: #ff3b30;
+}
+
+.compare-diff-pill.same {
+  background: var(--bg-secondary);
+  color: var(--text-tertiary);
+}
+
+.compare-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ==========================================================================
+   V3.0 分享卡模式切换 (全项核验单 vs 单项聚焦海报)
+   ========================================================================== */
+.quote-card-mode-bar {
+  display: flex;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-pill);
+  padding: 3px;
+  margin-bottom: 14px;
+  gap: 4px;
+  justify-content: center;
+}
+
+.quote-mode-pill {
+  flex: 1;
+  padding: 7px 12px;
+  border: none;
+  background: transparent;
+  border-radius: var(--radius-pill);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.quote-mode-pill.active {
+  background: var(--bg-card-solid);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-sm);
+}
+
+.quote-focused-part-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.focused-part-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.small-select {
+  padding: 6px 12px;
+  font-size: 13px;
+  border-radius: var(--radius-sm);
+  max-width: 200px;
+}
+
+/* ==========================================================================
+   V3.0 移动端“拇指热区”底部悬浮快捷操作坞 (Mobile Thumb Dock)
+   ========================================================================== */
+.mobile-thumb-dock {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .mobile-thumb-dock {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--bg-card);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border-top: 1px solid var(--border-color);
+    padding: 6px 12px calc(6px + env(safe-area-inset-bottom, 0px)) 12px;
+    z-index: 999;
+    justify-content: space-around;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.06);
+  }
+
+  .dock-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    padding: 4px 10px;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: all var(--transition-fast);
+    flex: 1;
+    max-width: 64px;
+  }
+
+  .dock-btn:active {
+    transform: scale(0.92);
+  }
+
+  .dock-btn.active {
+    color: var(--apple-blue);
+  }
+
+  .dock-icon {
+    font-size: 18px;
+    line-height: 1;
+    margin-bottom: 2px;
+  }
+
+  .dock-label {
+    font-size: 10.5px;
+    font-weight: 600;
+  }
+
+  /* 留出底部 dock 安全距离 */
+  body {
+    padding-bottom: calc(65px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+/* ==========================================================================
+   V3.0 网点一键复制与 AC+ 60天补购测算器
+   ========================================================================== */
+.btn-copy-address,
+.btn-copy-phone {
+  background: none;
+  border: none;
+  color: var(--text-tertiary);
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 11.5px;
+  transition: all var(--transition-fast);
+  margin-left: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.btn-copy-address:hover,
+.btn-copy-phone:hover {
+  color: var(--apple-blue);
+  background: var(--apple-blue-light);
+}
+
+.ac-countdown-box {
+  margin-top: 14px;
+  padding: 14px 16px;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+}
+
+.countdown-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.countdown-title {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.countdown-badge {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: var(--radius-pill);
+}
+
+.countdown-badge.valid {
+  background: var(--apple-green-light);
+  color: var(--apple-green);
+}
+
+.countdown-badge.expired {
+  background: rgba(255, 59, 48, 0.12);
+  color: #ff3b30;
+}
+
+.countdown-inputs {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+  font-size: 12.5px;
+  color: var(--text-secondary);
+}
+
+.countdown-date-picker {
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-card-solid);
+  color: var(--text-primary);
+  font-size: 12.5px;
+  outline: none;
+}
+
+.countdown-guide {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* 数字等宽与微动效 */
+.price-val-out,
+.price-val-ac,
+.ac-price-number,
+.roi-bar-labels strong {
+  font-variant-numeric: tabular-nums;
+}
+
+.device-official-photo {
+  transition: opacity 0.2s ease, transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.pricing-table-list {
+  transition: opacity 0.15s ease;
+}
+
+
 
 

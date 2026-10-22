@@ -4352,6 +4352,664 @@ body {
   justify-content: center;
 }
 
+/* ==========================================================================
+   V3.0 全局常驻智能搜索 Omnibox
+   ========================================================================== */
+.global-omnibox-wrapper {
+  position: relative;
+  max-width: 760px;
+  margin: 0 auto 16px auto;
+  z-index: 50;
+}
+
+.omnibox-inner {
+  display: flex;
+  align-items: center;
+  background: var(--bg-card);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-pill);
+  padding: 8px 18px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all var(--transition-fast);
+}
+
+.omnibox-inner:focus-within {
+  border-color: var(--apple-blue);
+  box-shadow: 0 0 0 4px var(--apple-blue-light), 0 8px 24px rgba(0, 0, 0, 0.08);
+  background: var(--bg-card-solid);
+}
+
+.omnibox-icon {
+  display: flex;
+  align-items: center;
+  color: var(--text-secondary);
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.global-omnibox-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: var(--text-primary);
+  font-size: 15px;
+  font-family: inherit;
+  outline: none;
+  padding: 4px 0;
+}
+
+.global-omnibox-input::placeholder {
+  color: var(--text-tertiary);
+  font-size: 13.5px;
+}
+
+.omnibox-clear-btn {
+  background: none;
+  border: none;
+  color: var(--text-tertiary);
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: color var(--transition-fast);
+}
+
+.omnibox-clear-btn:hover {
+  color: var(--text-primary);
+}
+
+.omnibox-suggestions {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  background: var(--bg-card-solid);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  max-height: 360px;
+  overflow-y: auto;
+  z-index: 100;
+  padding: 8px;
+}
+
+.omnibox-sugg-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.omnibox-sugg-item:hover,
+.omnibox-sugg-item.active {
+  background: var(--apple-blue-light);
+}
+
+.sugg-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sugg-icon {
+  font-size: 16px;
+}
+
+.sugg-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.sugg-sub {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-left: 6px;
+}
+
+.sugg-badge {
+  font-size: 11.5px;
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   V3.0 故障导向直觉查价流 (Issue-First Triage)
+   ========================================================================== */
+.issue-triage-panel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px dashed var(--border-color);
+}
+
+.issue-triage-label {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.issue-triage-scroll {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.issue-triage-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.issue-chip {
+  padding: 5px 12px;
+  background: var(--bg-secondary);
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.issue-chip:hover {
+  color: var(--text-primary);
+  background: var(--bg-card-solid);
+  border-color: var(--border-color);
+}
+
+.issue-chip.active {
+  background: var(--apple-blue);
+  color: #ffffff;
+  border-color: var(--apple-blue);
+  box-shadow: 0 2px 8px var(--apple-blue-light);
+}
+
+/* ==========================================================================
+   V3.0 到店避坑自检清单 (Pre-service Checklist)
+   ========================================================================== */
+.checklist-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-base);
+}
+
+.checklist-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.checklist-title-wrap {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.checklist-icon {
+  font-size: 24px;
+  line-height: 1;
+}
+
+.checklist-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 4px 0;
+}
+
+.checklist-desc {
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.checklist-progress-pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg-secondary);
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.checklist-progress-bar {
+  width: 60px;
+  height: 6px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+#checklist-progress-fill {
+  height: 100%;
+  background: var(--apple-green);
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.checklist-items-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+}
+
+.checklist-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 14px;
+  background: var(--bg-card-solid);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  user-select: none;
+}
+
+.checklist-item:hover {
+  border-color: var(--apple-blue);
+  transform: translateY(-1px);
+}
+
+.checklist-checkbox {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--apple-green);
+  margin-top: 2px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.checklist-item-content {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.checklist-item-content strong {
+  font-size: 13.5px;
+  color: var(--text-primary);
+  transition: color var(--transition-fast);
+}
+
+.checklist-item-content span {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.checklist-item.is-checked {
+  background: var(--apple-green-light);
+  border-color: rgba(52, 199, 89, 0.3);
+}
+
+.checklist-item.is-checked .checklist-item-content strong {
+  color: var(--apple-green);
+  text-decoration: line-through;
+}
+
+/* ==========================================================================
+   V3.0 双机横向对比模态框 (Side-by-Side Model Comparison)
+   ========================================================================== */
+.compare-modal-card {
+  max-width: 760px;
+  width: 94%;
+}
+
+.compare-modal-body {
+  padding: 20px;
+  max-height: 72vh;
+  overflow-y: auto;
+}
+
+.compare-selectors-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.compare-select-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.compare-col-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.compare-vs-badge {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--text-tertiary);
+  padding: 6px 10px;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-pill);
+  margin-top: 18px;
+}
+
+.compare-results-wrap {
+  background: var(--bg-card-solid);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.compare-table th {
+  background: var(--bg-secondary);
+  padding: 12px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.compare-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 13.5px;
+  color: var(--text-primary);
+}
+
+.compare-table tr:last-child td {
+  border-bottom: none;
+}
+
+.compare-diff-pill {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.compare-diff-pill.cheaper {
+  background: var(--apple-green-light);
+  color: var(--apple-green);
+}
+
+.compare-diff-pill.pricier {
+  background: rgba(255, 59, 48, 0.12);
+  color: #ff3b30;
+}
+
+.compare-diff-pill.same {
+  background: var(--bg-secondary);
+  color: var(--text-tertiary);
+}
+
+.compare-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ==========================================================================
+   V3.0 分享卡模式切换 (全项核验单 vs 单项聚焦海报)
+   ========================================================================== */
+.quote-card-mode-bar {
+  display: flex;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-pill);
+  padding: 3px;
+  margin-bottom: 14px;
+  gap: 4px;
+  justify-content: center;
+}
+
+.quote-mode-pill {
+  flex: 1;
+  padding: 7px 12px;
+  border: none;
+  background: transparent;
+  border-radius: var(--radius-pill);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.quote-mode-pill.active {
+  background: var(--bg-card-solid);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-sm);
+}
+
+.quote-focused-part-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.focused-part-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.small-select {
+  padding: 6px 12px;
+  font-size: 13px;
+  border-radius: var(--radius-sm);
+  max-width: 200px;
+}
+
+/* ==========================================================================
+   V3.0 移动端“拇指热区”底部悬浮快捷操作坞 (Mobile Thumb Dock)
+   ========================================================================== */
+.mobile-thumb-dock {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .mobile-thumb-dock {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--bg-card);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border-top: 1px solid var(--border-color);
+    padding: 6px 12px calc(6px + env(safe-area-inset-bottom, 0px)) 12px;
+    z-index: 999;
+    justify-content: space-around;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.06);
+  }
+
+  .dock-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    padding: 4px 10px;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: all var(--transition-fast);
+    flex: 1;
+    max-width: 64px;
+  }
+
+  .dock-btn:active {
+    transform: scale(0.92);
+  }
+
+  .dock-btn.active {
+    color: var(--apple-blue);
+  }
+
+  .dock-icon {
+    font-size: 18px;
+    line-height: 1;
+    margin-bottom: 2px;
+  }
+
+  .dock-label {
+    font-size: 10.5px;
+    font-weight: 600;
+  }
+
+  /* 留出底部 dock 安全距离 */
+  body {
+    padding-bottom: calc(65px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+/* ==========================================================================
+   V3.0 网点一键复制与 AC+ 60天补购测算器
+   ========================================================================== */
+.btn-copy-address,
+.btn-copy-phone {
+  background: none;
+  border: none;
+  color: var(--text-tertiary);
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 11.5px;
+  transition: all var(--transition-fast);
+  margin-left: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.btn-copy-address:hover,
+.btn-copy-phone:hover {
+  color: var(--apple-blue);
+  background: var(--apple-blue-light);
+}
+
+.ac-countdown-box {
+  margin-top: 14px;
+  padding: 14px 16px;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+}
+
+.countdown-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.countdown-title {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.countdown-badge {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: var(--radius-pill);
+}
+
+.countdown-badge.valid {
+  background: var(--apple-green-light);
+  color: var(--apple-green);
+}
+
+.countdown-badge.expired {
+  background: rgba(255, 59, 48, 0.12);
+  color: #ff3b30;
+}
+
+.countdown-inputs {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+  font-size: 12.5px;
+  color: var(--text-secondary);
+}
+
+.countdown-date-picker {
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-card-solid);
+  color: var(--text-primary);
+  font-size: 12.5px;
+  outline: none;
+}
+
+.countdown-guide {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* 数字等宽与微动效 */
+.price-val-out,
+.price-val-ac,
+.ac-price-number,
+.roi-bar-labels strong {
+  font-variant-numeric: tabular-nums;
+}
+
+.device-official-photo {
+  transition: opacity 0.2s ease, transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.pricing-table-list {
+  transition: opacity 0.15s ease;
+}
+
+
 
 
 
@@ -4431,6 +5089,34 @@ body {
         <h1 class="hero-title">Apple 官方服务快查</h1>
       </div>
     </section>
+
+    <!-- 全局常驻智能搜索 Omnibox (带别名解析与双向联动) -->
+    <div class="global-omnibox-wrapper" id="global-omnibox-wrapper">
+      <div class="omnibox-inner">
+        <span class="omnibox-icon">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </span>
+        <input
+          type="text"
+          id="global-omnibox-input"
+          class="global-omnibox-input"
+          placeholder="智能快查：输入机型或故障（如 16pm 换屏、Duo、MacBook 电池、无锡直营店）..."
+          autocomplete="off"
+          aria-label="全局智能搜索"
+        >
+        <button type="button" id="global-omnibox-clear" class="omnibox-clear-btn" style="display:none;" aria-label="清空搜索">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <!-- 即时联想建议浮层 -->
+      <div id="omnibox-suggestions" class="omnibox-suggestions" style="display:none;"></div>
+    </div>
 
     <!-- 热门机型秒选气泡快捷栏 (Quick Hot Model Selector) -->
     <div class="hot-chips-bar" id="hot-chips-bar">
@@ -4517,6 +5203,18 @@ body {
       <div class="apple-estimator-card">
         <div class="estimator-header">
           <h2 class="estimator-title">选取你的设备</h2>
+        </div>
+
+        <!-- 故障导向直觉查价流 (Issue-First Triage) -->
+        <div class="issue-triage-panel" id="issue-triage-panel">
+          <span class="issue-triage-label">🎯 常见故障速查:</span>
+          <div class="issue-triage-scroll" role="toolbar" aria-label="故障速查模式">
+            <button type="button" class="issue-chip active" data-issue="all">全部故障</button>
+            <button type="button" class="issue-chip" data-issue="screen">📱 屏幕碎裂</button>
+            <button type="button" class="issue-chip" data-issue="battery">🔋 电池老化(&lt;80%)</button>
+            <button type="button" class="issue-chip" data-issue="backglass">🪞 背面玻璃碎裂</button>
+            <button type="button" class="issue-chip" data-issue="other">💧 进水/其他整机损坏</button>
+          </div>
         </div>
 
         <!-- 1. 大品类快捷切换 (iPhone / Mac / iPad / Watch / AirPods) - 原生内置 Apple SF Symbols 矢量图标 -->
@@ -4617,6 +5315,10 @@ body {
 
         <!-- 底部行动按钮 -->
         <div class="estimator-action-bar">
+          <button type="button" id="btn-open-compare" class="apple-secondary-pill-btn">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px;"><rect x="2" y="3" width="8" height="18" rx="2"></rect><rect x="14" y="3" width="8" height="18" rx="2"></rect><line x1="6" y1="8" x2="6" y2="8.01"></line><line x1="18" y1="8" x2="18" y2="8.01"></line></svg>
+            <span>双机横向对比</span>
+          </button>
           <button type="button" id="btn-estimator-share-card" class="apple-secondary-pill-btn">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px;"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
             <span>生成微信报价分享卡</span>
@@ -4793,6 +5495,60 @@ body {
               <polyline points="7 7 17 7 17 17"></polyline>
             </svg>
           </a>
+        </div>
+      </div>
+
+      <!-- 官方到店维修前 · 5 项必备避坑自检清单 (Pre-service Checklist) -->
+      <div class="checklist-card" id="pre-service-checklist">
+        <div class="checklist-header">
+          <div class="checklist-title-wrap">
+            <span class="checklist-icon"></span>
+            <div>
+              <h3 class="checklist-title">到店维修前 · 5 项必备避坑自检</h3>
+              <p class="checklist-desc">为避免因缺少证件或未解除绑定导致无法受理、白跑一趟，请在到店前逐一核对：</p>
+            </div>
+          </div>
+          <div class="checklist-progress-pill">
+            <span id="checklist-progress-text">0 / 5 已核对</span>
+            <div class="checklist-progress-bar"><div id="checklist-progress-fill" style="width: 0%;"></div></div>
+          </div>
+        </div>
+        <div class="checklist-items-grid">
+          <label class="checklist-item">
+            <input type="checkbox" class="checklist-checkbox" data-index="0">
+            <div class="checklist-item-content">
+              <strong>💾 完整备份整机数据</strong>
+              <span>更换主板、屏幕或重装固件可能清除数据，请务必提前通过 iCloud 或电脑完成完整备份。</span>
+            </div>
+          </label>
+          <label class="checklist-item">
+            <input type="checkbox" class="checklist-checkbox" data-index="1">
+            <div class="checklist-item-content">
+              <strong>🔓 关闭【查找】功能 (Find My)</strong>
+              <span>更换核心原厂部件（屏幕/电池/主板）的 Apple 官方硬性要求（设置 ➔ Apple ID ➔ 查找 ➔ 关闭）。</span>
+            </div>
+          </label>
+          <label class="checklist-item">
+            <input type="checkbox" class="checklist-checkbox" data-index="2">
+            <div class="checklist-item-content">
+              <strong>🪪 携带本人有效身份证件</strong>
+              <span>Apple Store 直营店 Genius Bar 天才吧及授权商核销保修、签收或取件时需出示有效身份证件。</span>
+            </div>
+          </label>
+          <label class="checklist-item">
+            <input type="checkbox" class="checklist-checkbox" data-index="3">
+            <div class="checklist-item-content">
+              <strong>🧾 备齐原购机发票或电子发票凭证</strong>
+              <span>如遇保修争议或主要部件延长保修服务计划，官方网点需核验原始购买发票或电商电子发票。</span>
+            </div>
+          </label>
+          <label class="checklist-item">
+            <input type="checkbox" class="checklist-checkbox" data-index="4">
+            <div class="checklist-item-content">
+              <strong>⏱️ 确认预约时间并提前 10 分钟到店</strong>
+              <span>维修高峰期直营店无预约通常无法接待，建议点击下方网点卡片中的【预约 】提前锁定席位。</span>
+            </div>
+          </label>
         </div>
       </div>
 
@@ -5131,6 +5887,43 @@ body {
     </div>
   </div>
 
+  <!-- 双机横向对比模态框 (Side-by-Side Model Comparison) -->
+  <div id="compare-modal" class="apple-modal-overlay" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="modal-compare-title">
+    <div class="apple-modal-card compare-modal-card">
+      <div class="modal-header">
+        <h3 id="modal-compare-title" class="modal-title">⚖️ Apple 双机型官方维修与服务横向对比</h3>
+        <button type="button" id="btn-close-compare" class="modal-close-btn" aria-label="关闭">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="modal-body compare-modal-body">
+        <!-- 双机选择器 -->
+        <div class="compare-selectors-row">
+          <div class="compare-select-col">
+            <label for="compare-select-a" class="compare-col-label">设备 A (基准机型)</label>
+            <select id="compare-select-a" class="apple-select-input"></select>
+          </div>
+          <div class="compare-vs-badge">VS</div>
+          <div class="compare-select-col">
+            <label for="compare-select-b" class="compare-col-label">设备 B (对比机型)</label>
+            <select id="compare-select-b" class="apple-select-input"></select>
+          </div>
+        </div>
+
+        <!-- 对比数据网格 -->
+        <div class="compare-results-wrap" id="compare-results-wrap">
+          <!-- 动态渲染对比表格与差值 -->
+        </div>
+      </div>
+      <div class="modal-footer compare-footer">
+        <button type="button" id="btn-export-compare" class="apple-secondary-pill-btn">
+          <span>📤 导出双机对比海报</span>
+        </button>
+        <button type="button" id="btn-compare-done" class="apple-blue-pill-btn modal-btn">完成对比</button>
+      </div>
+    </div>
+  </div>
+
   <!-- 微信高清维修报价分享卡弹窗 (Canvas Modal) -->
   <div id="quote-card-modal" class="apple-modal-overlay" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="modal-quote-card-title">
     <div class="apple-modal-card quote-card-modal-body">
@@ -5141,6 +5934,21 @@ body {
         </button>
       </div>
       <div class="modal-body quote-card-scroll-area">
+        <!-- 模式切换分段控件 -->
+        <div class="quote-card-mode-bar">
+          <button type="button" class="quote-mode-pill active" data-mode="full" id="btn-mode-full">
+            <span>📋 整机全项核验单</span>
+          </button>
+          <button type="button" class="quote-mode-pill" data-mode="focused" id="btn-mode-focused">
+            <span>🎯 指定部件极简海报</span>
+          </button>
+        </div>
+        <!-- 单项海报模式下的部件选择器 -->
+        <div class="quote-focused-part-row" id="quote-focused-part-row" style="display: none;">
+          <span class="focused-part-label">聚焦展示部件:</span>
+          <select id="quote-focused-part-select" class="apple-select-input small-select"></select>
+        </div>
+
         <div class="quote-card-preview-wrap">
           <img id="quote-card-img" class="quote-card-img" alt="官方维修报价卡预览" />
         </div>
@@ -5152,6 +5960,30 @@ body {
     </div>
   </div>
 
+  <!-- 移动端“拇指热区”底部悬浮快捷操作坞 (Mobile Thumb Dock) -->
+  <nav class="mobile-thumb-dock" id="mobile-thumb-dock" aria-label="快捷操作坞">
+    <button type="button" class="dock-btn active" data-action="estimator">
+      <span class="dock-icon">🛠️</span>
+      <span class="dock-label">估价</span>
+    </button>
+    <button type="button" class="dock-btn" data-action="compare">
+      <span class="dock-icon">⚖️</span>
+      <span class="dock-label">对比</span>
+    </button>
+    <button type="button" class="dock-btn" data-action="stores">
+      <span class="dock-icon">📍</span>
+      <span class="dock-label">网点</span>
+    </button>
+    <button type="button" class="dock-btn" data-action="checklist">
+      <span class="dock-icon">📋</span>
+      <span class="dock-label">避坑自检</span>
+    </button>
+    <button type="button" class="dock-btn" data-action="share">
+      <span class="dock-icon">📤</span>
+      <span class="dock-label">分享卡</span>
+    </button>
+  </nav>
+
   <!-- 全局 Toast 提示容器 -->
   <div id="toast-container" class="toast-container" aria-live="polite"></div>
 
@@ -5161,17 +5993,17 @@ body {
 /**
  * Apple 官方维修价格与服务网点快查 - 核心数据集
  * 直连 Apple 官网官方接口同步生成
- * 同步时间戳: 2026-10-22 09:39:39
+ * 同步时间戳: 2026-10-22 10:57:34
  */
 
-var DATA_SYNC_TIMESTAMP = "2026-10-22 09:39:39";
+var DATA_SYNC_TIMESTAMP = "2026-10-22 10:57:34";
 if (typeof window !== "undefined") window.DATA_SYNC_TIMESTAMP = DATA_SYNC_TIMESTAMP;
 
 // ============================================================================
 // 官方数据最新变动通知记录 (DATA_CHANGELOG)
 // ============================================================================
 var DATA_CHANGELOG = {
-  "sync_time": "2026-10-22 09:39:39",
+  "sync_time": "2026-10-22 10:57:34",
   "has_changes": false,
   "badge_text": "",
   "title": "",
@@ -13085,7 +13917,7 @@ if (typeof window !== "undefined") window.hotAccessoriesData = hotAccessoriesDat
 // 官方在线商店真实选购价格同步 + 历史停售方案基准 + 全品类自付金统一矩阵
 // ============================================================================
 var APPLECARE_PLANS = {
-  "sync_time": "2026-10-22 09:39:39",
+  "sync_time": "2026-10-22 10:57:34",
   "live_store": {
     "iphone_duo": {
       "rawPrice": 2599,
@@ -13116,41 +13948,6 @@ var APPLECARE_PLANS = {
       "rawPrice": 799,
       "priceString": "RMB 799",
       "partNumber": "SH0M3CH/A"
-    },
-    "watch_hermes": {
-      "rawPrice": 1299,
-      "priceString": "RMB 1,299 或 RMB 55/月 (24 期)",
-      "partNumber": "SH413CH/A"
-    },
-    "iphone_16": {
-      "rawPrice": 1399,
-      "priceString": "RMB 1,399 或 RMB 59/月 (24 期)",
-      "partNumber": "SNH72CH/A"
-    },
-    "ipad_pro": {
-      "rawPrice": 1399,
-      "priceString": "RMB 1,399 或 RMB 59/月 (24 期)",
-      "partNumber": "SXQK2CH/A"
-    },
-    "ipad_air": {
-      "rawPrice": 749,
-      "priceString": "RMB 749",
-      "partNumber": "SCVE3CH/A"
-    },
-    "ipad_10": {
-      "rawPrice": 649,
-      "priceString": "RMB 649",
-      "partNumber": "SUY32CH/A"
-    },
-    "macbook_air": {
-      "rawPrice": 1749,
-      "priceString": "RMB 1749 起 ",
-      "partNumber": "SCWA3CH/A"
-    },
-    "macbook_pro": {
-      "rawPrice": 2449,
-      "priceString": "RMB 2449 起 ",
-      "partNumber": "SXKK2CH/A"
     }
   },
   "deductibles": {
@@ -14261,10 +15058,14 @@ if (typeof window !== "undefined") window.APPLECARE_PLANS = APPLECARE_PLANS;
                   <span class="store-type-badge ${badgeClass}">${store.type}</span>
                 </div>
                 <div class="store-location">📍 ${store.city} · ${store.district} ${distBadge}</div>
-                <div class="store-address">${store.address}</div>
+                <div class="store-address">
+                  ${store.address}
+                  <button type="button" class="btn-copy-address" data-copy="${store.address.replace(/"/g, '&quot;')}" title="点击复制详细地址">📋 复制</button>
+                </div>
               </div>
               <div class="store-actions">
                 <a href="tel:${store.phone}" class="btn-phone">📞 电话</a>
+                <button type="button" class="btn-copy-phone" data-copy="${store.phone}" title="点击复制电话号码">📋 复制号码</button>
                 <a href="${mapUrl}" target="_blank" rel="noopener noreferrer" class="btn-nav">导航 ↗</a>
                 <a href="https://getsupport.apple.com" target="_blank" rel="noopener noreferrer" class="btn-official-booking">预约 </a>
               </div>
@@ -14272,6 +15073,24 @@ if (typeof window !== "undefined") window.APPLECARE_PLANS = APPLECARE_PLANS;
           `;
           })
           .join("");
+
+        if (storesGrid && !storesGrid.__copyBound) {
+          storesGrid.__copyBound = true;
+          storesGrid.addEventListener("click", (e) => {
+            const btnAddr = e.target.closest(".btn-copy-address");
+            if (btnAddr) {
+              const txt = btnAddr.getAttribute("data-copy");
+              if (txt) copyToClipboard(txt, "已复制网点详细地址，可直接发给微信好友");
+              return;
+            }
+            const btnPhone = e.target.closest(".btn-copy-phone");
+            if (btnPhone) {
+              const txt = btnPhone.getAttribute("data-copy");
+              if (txt) copyToClipboard(txt, "已复制网点电话号码");
+              return;
+            }
+          });
+        }
       }
 
       // 8. 模块 3：第三方在售配件售后列表渲染
@@ -14899,6 +15718,39 @@ if (typeof window !== "undefined") window.APPLECARE_PLANS = APPLECARE_PLANS;
         toast.classList.add("hide");
         setTimeout(() => toast.remove(), 280);
       }, duration);
+    }
+
+    // 工具函数：一键安全复制文本
+    function copyToClipboard(text, successMsg) {
+      if (!text) return;
+      const feedback = () => {
+        if (navigator.vibrate) navigator.vibrate(10);
+        showToast("已复制到剪贴板", successMsg || text, "📋");
+      };
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(feedback).catch(() => {
+          fallbackCopy(text, feedback);
+        });
+      } else {
+        fallbackCopy(text, feedback);
+      }
+    }
+
+    function fallbackCopy(text, callback) {
+      try {
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        ta.style.position = "fixed";
+        ta.style.opacity = "0";
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        document.body.removeChild(ta);
+        if (callback) callback();
+      } catch (e) {
+        showToast("复制提示", "请长按选中文本手动复制", "ℹ️");
+      }
     }
 
     // 官方数据同步按钮交互 (提供极佳的触感与更新反馈)
@@ -16024,12 +16876,28 @@ if (typeof window !== "undefined") window.APPLECARE_PLANS = APPLECARE_PLANS;
           return;
         }
 
+        // 故障导向过滤与高亮
+        const activeIssue = window.__activeIssueFilter || "all";
+        function matchesIssue(serviceName, issue) {
+          if (!issue || issue === "all") return true;
+          const s = (serviceName || "").toLowerCase();
+          if (issue === "screen") return s.includes("屏") || s.includes("显示");
+          if (issue === "battery") return s.includes("电池");
+          if (issue === "backglass") return s.includes("背面玻璃") || s.includes("后盖");
+          if (issue === "other") return s.includes("其他损坏") || s.includes("主板") || s.includes("相机") || s.includes("表层") || s.includes("丢失");
+          return true;
+        }
+
+        const filteredServices = services.filter(item => matchesIssue(item.name, activeIssue));
+        const displayServices = (filteredServices.length > 0) ? filteredServices : services;
+
         // 渲染每一项官方服务价格行：左侧服务项，右侧并列展示【保外预估】与【AppleCare+ 服务费】
-        pricingList.innerHTML = services.map((item) => {
+        pricingList.innerHTML = displayServices.map((item) => {
           const acFee = getAppleCareServiceFee(activeCategory, modelObj.name, item.name);
           const acClass = acFee.isFree ? "is-free" : (acFee.notCovered ? "is-na" : "");
+          const isFocus = (activeIssue !== "all" && matchesIssue(item.name, activeIssue)) ? "is-issue-focus" : "";
           return `
-            <div class="quote-item-row">
+            <div class="quote-item-row ${isFocus}">
               <span class="quote-part-name">${item.name}</span>
               <div class="quote-price-group">
                 <span class="price-val-out">${item.price}</span>
@@ -16054,8 +16922,14 @@ if (typeof window !== "undefined") window.APPLECARE_PLANS = APPLECARE_PLANS;
           let decisionAdvisorHtml = "";
 
           if (plan && typeof plan.rawPrice === "number" && services.length > 0) {
-            // 挑选典型损坏项（内屏损坏、其他损坏、外屏或屏幕损坏）
-            const targetSrv = services.find(s => s.name && (s.name.includes("内屏") || s.name.includes("其他损坏") || s.name.includes("外屏") || s.name.includes("屏幕损坏"))) || services[0];
+            // 挑选典型损坏项（根据当前选定故障动态选定，或默认内屏/其他/外屏）
+            let targetSrv = null;
+            if (activeIssue !== "all" && filteredServices.length > 0) {
+              targetSrv = filteredServices[0];
+            } else {
+              targetSrv = services.find(s => s.name && (s.name.includes("内屏") || s.name.includes("其他损坏") || s.name.includes("外屏") || s.name.includes("屏幕损坏"))) || services[0];
+            }
+
             if (targetSrv && targetSrv.price) {
               const oowNumMatch = targetSrv.price.match(/[\d,]+/);
               if (oowNumMatch) {
@@ -16143,6 +17017,35 @@ if (typeof window !== "undefined") window.APPLECARE_PLANS = APPLECARE_PLANS;
             }
           }
 
+          // 核心亮点 3：AppleCare+ 60天补购时效测算器
+          let countdownHtml = "";
+          if (plan && plan.status === "in_sale") {
+            const todayStr = new Date().toISOString().split("T")[0];
+            const defaultPurchaseDate = new Date(Date.now() - 15 * 86400000).toISOString().split("T")[0];
+            countdownHtml = `
+              <div class="ac-countdown-box" id="ac-countdown-box">
+                <div class="countdown-head">
+                  <div class="countdown-title">
+                    <span>⏳</span> AppleCare+ 60 天补购时效测算
+                  </div>
+                  <div id="countdown-status-badge" class="countdown-badge valid">
+                    ✅ 距补购截止还剩 45 天
+                  </div>
+                </div>
+                <div class="countdown-inputs">
+                  <label for="purchase-date-picker">选择购机日期：</label>
+                  <input type="date" id="purchase-date-picker" class="countdown-date-picker" value="${defaultPurchaseDate}" max="${todayStr}">
+                </div>
+                <div id="countdown-guide-text" class="countdown-guide">
+                  💡 <strong>官方 3 步合规补购指引</strong>：<br>
+                  1. 📱 <strong>设备本机直购</strong>：打开【设置】➔【通用】➔【关于本机】➔ 点击【可添加 AppleCare+】直接在线购买；<br>
+                  2. 📞 <strong>致电官方热线</strong>：拨打 Apple 官方电话 400-666-8800，工程师远程运行硬件诊断后电话付款绑定；<br>
+                  3.  <strong>直营店现场添加</strong>：预约前往 Apple Store 直营店 Genius Bar 天才吧，出示购机凭证由专家验机录入。
+                </div>
+              </div>
+            `;
+          }
+
           appleCareCard.innerHTML = `
             <div class="ac-card-header">
               <div class="ac-title-group">
@@ -16169,6 +17072,7 @@ if (typeof window !== "undefined") window.APPLECARE_PLANS = APPLECARE_PLANS;
             </div>
             ${visualRoiHtml}
             ${decisionAdvisorHtml}
+            ${countdownHtml}
             ${plan.notice ? `
               <div class="ac-${plan.status}-notice">
                 <span class="ac-notice-icon">${plan.status === "discontinued" ? "⚠️" : "ℹ️"}</span>
@@ -16184,6 +17088,39 @@ if (typeof window !== "undefined") window.APPLECARE_PLANS = APPLECARE_PLANS;
               `).join("")}
             </div>
           `;
+
+          const datePicker = document.getElementById("purchase-date-picker");
+          if (datePicker) {
+            datePicker.addEventListener("change", (e) => {
+              const pVal = e.target.value;
+              if (!pVal) return;
+              const pDate = new Date(pVal);
+              const now = new Date();
+              const diffDays = Math.floor((now - pDate) / (1000 * 60 * 60 * 24));
+              const remainingDays = 60 - diffDays;
+              const badgeEl = document.getElementById("countdown-status-badge");
+              const guideEl = document.getElementById("countdown-guide-text");
+              if (!badgeEl || !guideEl) return;
+              if (remainingDays >= 0) {
+                badgeEl.className = "countdown-badge valid";
+                badgeEl.innerHTML = `✅ 距补购截止还剩 ${remainingDays} 天`;
+                guideEl.innerHTML = `
+                  💡 <strong>官方 3 步合规补购指引</strong>：<br>
+                  1. 📱 <strong>设备本机直购</strong>：打开【设置】➔【通用】➔【关于本机】➔ 点击【可添加 AppleCare+】直接在线购买；<br>
+                  2. 📞 <strong>致电官方热线</strong>：拨打 Apple 官方电话 400-666-8800，工程师远程运行硬件诊断后电话付款绑定；<br>
+                  3.  <strong>直营店现场添加</strong>：预约前往 Apple Store 直营店 Genius Bar 天才吧，出示购机凭证由专家验机录入。
+                `;
+              } else {
+                badgeEl.className = "countdown-badge expired";
+                badgeEl.innerHTML = `⚠️ 已超 60 天期限 (已购 ${diffDays} 天)`;
+                guideEl.innerHTML = `
+                  ⚠️ <strong>官方补购提示</strong>：<br>
+                  该设备购买已超过 60 天，根据 Apple 官方政策已无法后补 AppleCare+。<br>
+                  建议日常佩戴官方保护壳膜，防范意外跌落；若未来电池健康度衰减至 80% 以下，可直接享受 Apple 原厂换电。
+                `;
+              }
+            });
+          }
         }
       }
 
@@ -16282,25 +17219,31 @@ if (typeof window !== "undefined") window.APPLECARE_PLANS = APPLECARE_PLANS;
       }
 
       // ================================================================
-      // 核心特性：Canvas 纯前端高清微信报价分享卡生成引擎
+      // 核心特性：Canvas 纯前端高清微信报价分享卡生成引擎 (支持全项单 & 极简单项海报)
       // ================================================================
-      function generateAndOpenQuoteCard() {
-        if (!currentQuoteModel) {
-          showToast("提示", "请先选取机型以生成官方报价卡", "ℹ️");
-          return;
+      let quoteCardMode = "full"; // "full" | "focused"
+
+      function drawRoundRect(ctx, x, y, w, h, r, fillColor, strokeColor) {
+        ctx.beginPath();
+        ctx.moveTo(x + r, y);
+        ctx.arcTo(x + w, y, x + w, y + h, r);
+        ctx.arcTo(x + w, y + h, x, y + h, r);
+        ctx.arcTo(x, y + h, x, y, r);
+        ctx.arcTo(x, y, x + w, y, r);
+        ctx.closePath();
+        if (fillColor) {
+          ctx.fillStyle = fillColor;
+          ctx.fill();
         }
+        if (strokeColor) {
+          ctx.strokeStyle = strokeColor;
+          ctx.lineWidth = 1.5;
+          ctx.stroke();
+        }
+      }
 
-        const modal = document.getElementById("quote-card-modal");
-        const imgEl = document.getElementById("quote-card-img");
-        const downloadBtn = document.getElementById("btn-download-quote-card");
-        if (!modal || !imgEl) return;
-
-        const model = currentQuoteModel;
-        const services = currentQuoteServices || [];
-        const plan = currentQuotePlan || {};
-        const syncTime = (typeof DATA_SYNC_TIMESTAMP !== "undefined") ? DATA_SYNC_TIMESTAMP : "2026";
-
-        // 创建离屏高清 Canvas (Retina 750px 宽)
+      // 模式 A：经典整机全项核验单
+      function drawFullCard(model, services, plan, syncTime) {
         const canvas = document.createElement("canvas");
         const ctx = canvas.getContext("2d");
         const W = 750;
@@ -16310,25 +17253,6 @@ if (typeof window !== "undefined") window.APPLECARE_PLANS = APPLECARE_PLANS;
 
         canvas.width = W;
         canvas.height = totalH;
-
-        function drawRoundRect(x, y, w, h, r, fillColor, strokeColor) {
-          ctx.beginPath();
-          ctx.moveTo(x + r, y);
-          ctx.arcTo(x + w, y, x + w, y + h, r);
-          ctx.arcTo(x + w, y + h, x, y + h, r);
-          ctx.arcTo(x, y + h, x, y, r);
-          ctx.arcTo(x, y, x + w, y, r);
-          ctx.closePath();
-          if (fillColor) {
-            ctx.fillStyle = fillColor;
-            ctx.fill();
-          }
-          if (strokeColor) {
-            ctx.strokeStyle = strokeColor;
-            ctx.lineWidth = 1.5;
-            ctx.stroke();
-          }
-        }
 
         // 1. 整体底色
         ctx.fillStyle = "#f5f5f7";
@@ -16344,21 +17268,21 @@ if (typeof window !== "undefined") window.APPLECARE_PLANS = APPLECARE_PLANS;
         ctx.fillText(`官方直连数据 · 同步于 ${syncTime}`, 45, 96);
 
         // 认证徽章
-        drawRoundRect(W - 195, 42, 150, 36, 18, "#e8e8ed", null);
+        drawRoundRect(ctx, W - 195, 42, 150, 36, 18, "#e8e8ed", null);
         ctx.fillStyle = "#0071e3";
         ctx.font = "bold 13px -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif";
         ctx.fillText("✓ 原厂认证数据", W - 180, 65);
 
         // 3. 设备信息主卡片
         let currY = 125;
-        drawRoundRect(35, currY, W - 70, 130, 20, "#ffffff", "#e5e5ea");
+        drawRoundRect(ctx, 35, currY, W - 70, 130, 20, "#ffffff", "#e5e5ea");
 
         ctx.fillStyle = "#1d1d1f";
         ctx.font = "bold 32px -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'PingFang SC', sans-serif";
         ctx.fillText(model.name, 60, currY + 52);
 
         const statusText = plan.statusBadge || "官方在售";
-        drawRoundRect(60, currY + 70, 140, 28, 14, "#e1f5fe", null);
+        drawRoundRect(ctx, 60, currY + 70, 140, 28, 14, "#e1f5fe", null);
         ctx.fillStyle = "#0071e3";
         ctx.font = "bold 12.5px -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif";
         ctx.fillText(statusText, 72, currY + 89);
@@ -16381,11 +17305,11 @@ if (typeof window !== "undefined") window.APPLECARE_PLANS = APPLECARE_PLANS;
         // 4. 服务明细表
         currY += 150;
         const tableCardH = 60 + services.length * rowH;
-        drawRoundRect(35, currY, W - 70, tableCardH, 20, "#ffffff", "#e5e5ea");
+        drawRoundRect(ctx, 35, currY, W - 70, tableCardH, 20, "#ffffff", "#e5e5ea");
 
         // 表头
         ctx.fillStyle = "#f8f8fa";
-        drawRoundRect(35, currY, W - 70, 48, 20, "#f8f8fa", null);
+        drawRoundRect(ctx, 35, currY, W - 70, 48, 20, "#f8f8fa", null);
         ctx.fillRect(35, currY + 28, W - 70, 20);
 
         ctx.fillStyle = "#86868b";
@@ -16420,7 +17344,7 @@ if (typeof window !== "undefined") window.APPLECARE_PLANS = APPLECARE_PLANS;
 
           const acLabel = fee.label || "RMB 188";
           if (fee.isFree) {
-            drawRoundRect(W - 145, rowY + 22, 85, 28, 14, "rgba(52, 199, 89, 0.15)", null);
+            drawRoundRect(ctx, W - 145, rowY + 22, 85, 28, 14, "rgba(52, 199, 89, 0.15)", null);
             ctx.fillStyle = "#34c759";
             ctx.font = "bold 13px -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif";
             ctx.fillText("¥0 免费", W - 80, rowY + 41);
@@ -16439,7 +17363,7 @@ if (typeof window !== "undefined") window.APPLECARE_PLANS = APPLECARE_PLANS;
         const grad = ctx.createLinearGradient(35, currY, W - 35, currY);
         grad.addColorStop(0, "#e8f8ed");
         grad.addColorStop(1, "#e5f1ff");
-        drawRoundRect(35, currY, W - 70, 72, 16, grad, "rgba(52, 199, 89, 0.3)");
+        drawRoundRect(ctx, 35, currY, W - 70, 72, 16, grad, "rgba(52, 199, 89, 0.3)");
 
         ctx.fillStyle = "#1d1d1f";
         ctx.font = "bold 15px -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif";
@@ -16456,6 +17380,152 @@ if (typeof window !== "undefined") window.APPLECARE_PLANS = APPLECARE_PLANS;
         ctx.fillText("注：本报价直连 Apple 官方支持系统 (support.apple.com) 实时同步，最终费用以 Apple 直营店检测为准。", 45, currY);
         ctx.fillText("数据支持：Apple 官方服务快查系统 · 涵盖全国 304 家原厂认证网点与 590+ 项官方报价", 45, currY + 20);
 
+        return canvas;
+      }
+
+      // 模式 B：指定部件极简大字海报
+      function drawFocusedCard(model, targetSrv, plan, syncTime) {
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+        const W = 750;
+        const totalH = 880;
+        canvas.width = W;
+        canvas.height = totalH;
+
+        // 1. 底色
+        ctx.fillStyle = "#f5f5f7";
+        ctx.fillRect(0, 0, W, totalH);
+
+        // 2. 顶部标头
+        ctx.fillStyle = "#1d1d1f";
+        ctx.font = "bold 26px -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'PingFang SC', sans-serif";
+        ctx.fillText(" Apple 官方维修 · 专项报价单", 45, 65);
+
+        ctx.fillStyle = "#86868b";
+        ctx.font = "14px -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'PingFang SC', sans-serif";
+        ctx.fillText(`官方直连数据 · 同步于 ${syncTime}`, 45, 96);
+
+        drawRoundRect(ctx, W - 195, 42, 150, 36, 18, "#e8e8ed", null);
+        ctx.fillStyle = "#0071e3";
+        ctx.font = "bold 13px -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif";
+        ctx.fillText("✓ 原厂认证数据", W - 180, 65);
+
+        // 3. 设备卡片
+        let currY = 125;
+        drawRoundRect(ctx, 35, currY, W - 70, 110, 20, "#ffffff", "#e5e5ea");
+        ctx.fillStyle = "#1d1d1f";
+        ctx.font = "bold 32px -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'PingFang SC', sans-serif";
+        ctx.fillText(model.name, 60, currY + 50);
+
+        drawRoundRect(ctx, 60, currY + 66, 130, 28, 14, "#e1f5fe", null);
+        ctx.fillStyle = "#0071e3";
+        ctx.font = "bold 12.5px -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif";
+        ctx.fillText(plan.statusBadge || "官方在售", 72, currY + 85);
+
+        ctx.fillStyle = "#86868b";
+        ctx.font = "13px -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif";
+        ctx.textAlign = "right";
+        ctx.fillText("AppleCare+ 选购价", W - 60, currY + 48);
+        ctx.fillStyle = "#1d1d1f";
+        ctx.font = "bold 24px -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif";
+        ctx.fillText(plan.planPrice || "--", W - 60, currY + 80);
+        ctx.textAlign = "left";
+
+        // 4. 聚焦核心部件大卡片
+        currY += 130;
+        drawRoundRect(ctx, 35, currY, W - 70, 310, 20, "#ffffff", "#e5e5ea");
+
+        ctx.fillStyle = "#86868b";
+        ctx.font = "bold 14px -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif";
+        ctx.fillText("维修故障项目", 60, currY + 40);
+
+        ctx.fillStyle = "#1d1d1f";
+        ctx.font = "bold 26px -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif";
+        ctx.fillText(targetSrv.name, 60, currY + 80);
+
+        const fee = getAppleCareServiceFee(activeCategory, model.name, targetSrv.name);
+
+        // 双栏大数字对比
+        // 保外自费
+        drawRoundRect(ctx, 55, currY + 105, 305, 110, 14, "#fff5f5", "rgba(255, 59, 48, 0.2)");
+        ctx.fillStyle = "#86868b";
+        ctx.font = "13px -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif";
+        ctx.fillText("官方保外预估费用", 75, currY + 138);
+
+        ctx.fillStyle = "#ff3b30";
+        ctx.font = "bold 34px -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif";
+        ctx.fillText(targetSrv.price, 75, currY + 184);
+
+        // AppleCare+ 自付
+        drawRoundRect(ctx, 385, currY + 105, 310, 110, 14, "#f0f8ff", "rgba(0, 113, 227, 0.2)");
+        ctx.fillStyle = "#86868b";
+        ctx.font = "13px -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif";
+        ctx.fillText("AppleCare+ 特惠自付", 405, currY + 138);
+
+        ctx.fillStyle = "#0071e3";
+        ctx.font = "bold 34px -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif";
+        ctx.fillText(fee.isFree ? "¥0 免费" : fee.label, 405, currY + 184);
+
+        // 立省横幅
+        let saveText = "加购 AppleCare+ 享特惠原厂保修";
+        const oowMatch = targetSrv.price.match(/[\d,]+/);
+        if (oowMatch && typeof fee.rawPrice === "number") {
+          const oow = parseInt(oowMatch[0].replace(/,/g, ""), 10);
+          const saved = oow - fee.rawPrice;
+          if (saved > 0) {
+            const pct = Math.round((saved / oow) * 100);
+            saveText = `💡 若已购 AppleCare+：单次出险特惠即立省 ¥${saved.toLocaleString()} (直降 ${pct}%)`;
+          }
+        }
+        drawRoundRect(ctx, 55, currY + 230, W - 110, 56, 12, "#e8f8ed", "rgba(52, 199, 89, 0.3)");
+        ctx.fillStyle = "#1d1d1f";
+        ctx.font = "bold 14px -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif";
+        ctx.fillText(saveText, 75, currY + 265);
+
+        // 5. 原厂品质保障卡
+        currY += 330;
+        drawRoundRect(ctx, 35, currY, W - 70, 140, 20, "#ffffff", "#e5e5ea");
+        ctx.fillStyle = "#1d1d1f";
+        ctx.font = "bold 16px -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif";
+        ctx.fillText(" Apple 官方原厂服务承诺", 60, currY + 38);
+
+        ctx.fillStyle = "#555558";
+        ctx.font = "13px -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif";
+        ctx.fillText("✓ 100% 严选 Apple 原厂零配件，精密仪器原厂压合与气密性重置", 60, currY + 68);
+        ctx.fillText("✓ 保持原彩显示 (True Tone)、人脸识别 (Face ID) 与高标准防尘抗水", 60, currY + 95);
+        ctx.fillText("✓ 系统绝不弹“未知部件”风险警告，享原厂 90 天官方保修延展", 60, currY + 122);
+
+        // 6. 底部
+        currY += 160;
+        ctx.fillStyle = "#86868b";
+        ctx.font = "11.5px -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif";
+        ctx.fillText("注：本报价直连 Apple 官方支持系统 (support.apple.com) 实时同步，最终费用以 Apple 直营店检测为准。", 45, currY);
+        ctx.fillText("数据支持：Apple 官方服务快查系统 · 涵盖全国 304 家原厂认证网点与 590+ 项官方报价", 45, currY + 20);
+
+        return canvas;
+      }
+
+      function renderQuoteCardImage() {
+        if (!currentQuoteModel) return;
+        const imgEl = document.getElementById("quote-card-img");
+        const downloadBtn = document.getElementById("btn-download-quote-card");
+        if (!imgEl) return;
+
+        const model = currentQuoteModel;
+        const services = currentQuoteServices || [];
+        const plan = currentQuotePlan || {};
+        const syncTime = (typeof DATA_SYNC_TIMESTAMP !== "undefined") ? DATA_SYNC_TIMESTAMP : "2026";
+
+        let canvas;
+        if (quoteCardMode === "focused") {
+          const partSelect = document.getElementById("quote-focused-part-select");
+          const selIdx = partSelect ? parseInt(partSelect.value, 10) || 0 : 0;
+          const targetSrv = services[selIdx] || services[0] || { name: "屏幕损坏", price: "RMB 2,698" };
+          canvas = drawFocusedCard(model, targetSrv, plan, syncTime);
+        } else {
+          canvas = drawFullCard(model, services, plan, syncTime);
+        }
+
         try {
           const dataUrl = canvas.toDataURL("image/png");
           imgEl.src = dataUrl;
@@ -16463,10 +17533,59 @@ if (typeof window !== "undefined") window.APPLECARE_PLANS = APPLECARE_PLANS;
             downloadBtn.href = dataUrl;
             downloadBtn.download = `Apple官方维修报价单_${model.name}.png`;
           }
-          modal.style.display = "flex";
         } catch (e) {
           showToast("生成失败", "无法导出图片，请稍后重试", "⚠️");
         }
+      }
+
+      function generateAndOpenQuoteCard() {
+        if (!currentQuoteModel) {
+          showToast("提示", "请先选取机型以生成官方报价卡", "ℹ️");
+          return;
+        }
+
+        const modal = document.getElementById("quote-card-modal");
+        if (!modal) return;
+
+        const partSelect = document.getElementById("quote-focused-part-select");
+        if (partSelect && currentQuoteServices) {
+          partSelect.innerHTML = currentQuoteServices.map((s, idx) => `
+            <option value="${idx}">${s.name} (${s.price})</option>
+          `).join("");
+        }
+
+        renderQuoteCardImage();
+        modal.style.display = "flex";
+      }
+
+      // 绑定模式切换分段按钮
+      const btnModeFull = document.getElementById("btn-mode-full");
+      const btnModeFocused = document.getElementById("btn-mode-focused");
+      const focusedPartRow = document.getElementById("quote-focused-part-row");
+      const focusedPartSelect = document.getElementById("quote-focused-part-select");
+
+      if (btnModeFull && btnModeFocused) {
+        btnModeFull.addEventListener("click", () => {
+          quoteCardMode = "full";
+          btnModeFull.classList.add("active");
+          btnModeFocused.classList.remove("active");
+          if (focusedPartRow) focusedPartRow.style.display = "none";
+          renderQuoteCardImage();
+        });
+
+        btnModeFocused.addEventListener("click", () => {
+          quoteCardMode = "focused";
+          btnModeFocused.classList.add("active");
+          btnModeFull.classList.remove("active");
+          if (focusedPartRow) focusedPartRow.style.display = "flex";
+          renderQuoteCardImage();
+        });
+      }
+
+      if (focusedPartSelect) {
+        focusedPartSelect.addEventListener("change", () => {
+          renderQuoteCardImage();
+        });
       }
 
       // 绑定生成微信分享报价卡按钮
@@ -16477,6 +17596,101 @@ if (typeof window !== "undefined") window.APPLECARE_PLANS = APPLECARE_PLANS;
           generateAndOpenQuoteCard();
         });
       }
+
+      // 绑定打开双机对比按钮
+      const btnOpenCompare = document.getElementById("btn-open-compare");
+      if (btnOpenCompare) {
+        btnOpenCompare.addEventListener("click", () => {
+          if (navigator.vibrate) navigator.vibrate(10);
+          if (window.openCompareModal) {
+            window.openCompareModal(currentQuoteModel ? currentQuoteModel.name : "");
+          }
+        });
+      }
+
+      // 绑定故障导向速查标签点击 (Issue-First Triage)
+      const issuePanel = document.getElementById("issue-triage-panel");
+      if (issuePanel) {
+        issuePanel.addEventListener("click", (e) => {
+          const chip = e.target.closest(".issue-chip");
+          if (!chip) return;
+          const issue = chip.getAttribute("data-issue");
+          if (!issue) return;
+          if (navigator.vibrate) navigator.vibrate(10);
+          window.__activeIssueFilter = issue;
+          issuePanel.querySelectorAll(".issue-chip").forEach(c => {
+            c.classList.toggle("active", c === chip);
+          });
+          const seriesList = getSeriesList();
+          const sIdx = parseInt(seriesSelect.value, 10) || 0;
+          const mIdx = parseInt(modelSelect.value, 10) || 0;
+          if (seriesList[sIdx] && seriesList[sIdx].models && seriesList[sIdx].models[mIdx]) {
+            renderEstimatorQuote(seriesList[sIdx].models[mIdx]);
+          }
+        });
+      }
+
+      // 全局联动 API：供 Omnibox 和其他模块直接驱动估价器
+      window.switchEstimatorTo = function (modelName, partName) {
+        if (!modelName) return;
+        const norm = modelName.toLowerCase();
+        let targetCat = "iPhone";
+        let targetSeries = null;
+        let targetModel = null;
+
+        for (const [cat, seriesArr] of Object.entries(catalogData)) {
+          for (const s of seriesArr) {
+            for (const m of s.models) {
+              if (m.name.toLowerCase() === norm || m.name.toLowerCase().includes(norm) || norm.includes(m.name.toLowerCase())) {
+                targetCat = cat;
+                targetSeries = s;
+                targetModel = m;
+                break;
+              }
+            }
+            if (targetModel) break;
+          }
+          if (targetModel) break;
+        }
+
+        if (targetModel) {
+          activeCategory = targetCat;
+          renderCategoryBar();
+          const sList = getSeriesList();
+          const sIdx = sList.findIndex(s => s.series === targetSeries.series);
+          const foundSIdx = sIdx >= 0 ? sIdx : 0;
+          populateSeriesDropdown();
+          seriesSelect.value = String(foundSIdx);
+          updateModelsForSeries(foundSIdx);
+
+          const mIdx = sList[foundSIdx].models.findIndex(m => m.name === targetModel.name);
+          if (mIdx >= 0) {
+            modelSelect.value = String(mIdx);
+            renderEstimatorQuote(sList[foundSIdx].models[mIdx]);
+          }
+
+          if (partName) {
+            let pIssue = "all";
+            const pn = partName.toLowerCase();
+            if (pn.includes("屏")) pIssue = "screen";
+            else if (pn.includes("电池")) pIssue = "battery";
+            else if (pn.includes("玻璃") || pn.includes("后盖")) pIssue = "backglass";
+            else if (pn.includes("其他") || pn.includes("主板")) pIssue = "other";
+
+            window.__activeIssueFilter = pIssue;
+            const issueChips = document.querySelectorAll(".issue-chip");
+            issueChips.forEach(c => {
+              c.classList.toggle("active", c.getAttribute("data-issue") === pIssue);
+            });
+            renderEstimatorQuote(targetModel);
+          }
+
+          const card = document.getElementById("estimator-result-card");
+          if (card) {
+            card.scrollIntoView({ behavior: "smooth", block: "nearest" });
+          }
+        }
+      };
 
       const quoteModal = document.getElementById("quote-card-modal");
       const btnCloseQuote = document.getElementById("btn-close-quote-card");
@@ -16728,6 +17942,646 @@ if (typeof window !== "undefined") window.APPLECARE_PLANS = APPLECARE_PLANS;
       }
     }
 
+    // ================================================================
+    // V3.0 全局常驻智能搜索 Omnibox (别名解析、联想建议、与估价器/网点深度双向联动)
+    // ================================================================
+    function initOmnibox() {
+      const input = document.getElementById("global-omnibox-input");
+      const clearBtn = document.getElementById("global-omnibox-clear");
+      const suggBox = document.getElementById("omnibox-suggestions");
+      if (!input || !suggBox) return;
+
+      const catalogData = (typeof ESTIMATOR_CATALOG !== "undefined") ? ESTIMATOR_CATALOG : {};
+      const allStores = state.storesData || [];
+
+      // 扁平化全量可检索设备列表
+      const allDevices = [];
+      for (const [cat, seriesArr] of Object.entries(catalogData)) {
+        for (const s of seriesArr) {
+          for (const m of s.models) {
+            allDevices.push({
+              name: m.name,
+              category: cat,
+              series: s.series,
+              imageUrl: m.imageUrl,
+              services: m.services || []
+            });
+          }
+        }
+      }
+
+      function closeSuggestions() {
+        suggBox.style.display = "none";
+        suggBox.innerHTML = "";
+      }
+
+      function handleSearchInput() {
+        const rawVal = input.value.trim();
+        if (!rawVal) {
+          if (clearBtn) clearBtn.style.display = "none";
+          closeSuggestions();
+          return;
+        }
+
+        if (clearBtn) clearBtn.style.display = "flex";
+
+        // 利用 SEARCH_ALIASES 进行扩展转换
+        let expanded = rawVal.toLowerCase();
+        for (const [alias, canonical] of Object.entries(SEARCH_ALIASES)) {
+          if (expanded.includes(alias)) {
+            expanded = expanded.replace(new RegExp(alias, "g"), canonical);
+          }
+        }
+
+        const queryTokens = expanded.split(/\s+/).filter(Boolean);
+
+        // 1. 匹配机型 (前 4 项)
+        const matchedDevices = allDevices.filter(d => {
+          const text = `${d.name} ${d.series} ${d.category}`.toLowerCase();
+          return queryTokens.some(t => text.includes(t));
+        }).slice(0, 4);
+
+        // 2. 匹配网点/城市 (前 3 项)
+        const matchedStores = allStores.filter(st => {
+          const text = `${st.name} ${st.city} ${st.district} ${st.address}`.toLowerCase();
+          return queryTokens.some(t => text.includes(t));
+        }).slice(0, 3);
+
+        if (matchedDevices.length === 0 && matchedStores.length === 0) {
+          suggBox.innerHTML = `
+            <div class="omnibox-sugg-item" style="cursor: default; color: var(--text-tertiary);">
+              <span>未找到直接匹配的机型或网点，可尝试输入 “16pm 换屏”、“电池”、“无锡”</span>
+            </div>
+          `;
+          suggBox.style.display = "block";
+          return;
+        }
+
+        let html = "";
+        if (matchedDevices.length > 0) {
+          html += matchedDevices.map(d => {
+            const hasBattery = queryTokens.some(t => t.includes("电池"));
+            const hasScreen = queryTokens.some(t => t.includes("屏"));
+            let partHint = "";
+            if (hasBattery) partHint = " · 换电池";
+            else if (hasScreen) partHint = " · 换屏幕";
+
+            return `
+              <div class="omnibox-sugg-item" data-type="device" data-name="${d.name}" data-part="${hasBattery ? '电池' : (hasScreen ? '屏幕' : '')}">
+                <div class="sugg-left">
+                  <span class="sugg-icon">📱</span>
+                  <span class="sugg-text">${d.name}<strong class="text-primary">${partHint}</strong></span>
+                  <span class="sugg-sub">${d.series}</span>
+                </div>
+                <span class="sugg-badge">${d.category}</span>
+              </div>
+            `;
+          }).join("");
+        }
+
+        if (matchedStores.length > 0) {
+          html += matchedStores.map(st => `
+            <div class="omnibox-sugg-item" data-type="store" data-store-name="${st.name}" data-city="${st.city}">
+              <div class="sugg-left">
+                <span class="sugg-icon">📍</span>
+                <span class="sugg-text">${st.name}</span>
+                <span class="sugg-sub">${st.city} · ${st.district}</span>
+              </div>
+              <span class="sugg-badge">${st.type.includes("Apple Store") ? "直营店" : "AASP"}</span>
+            </div>
+          `).join("");
+        }
+
+        suggBox.innerHTML = html;
+        suggBox.style.display = "block";
+      }
+
+      let debounceTimer = null;
+      input.addEventListener("input", () => {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(handleSearchInput, 150);
+      });
+
+      if (clearBtn) {
+        clearBtn.addEventListener("click", () => {
+          input.value = "";
+          clearBtn.style.display = "none";
+          closeSuggestions();
+          input.focus();
+        });
+      }
+
+      suggBox.addEventListener("click", (e) => {
+        const item = e.target.closest(".omnibox-sugg-item");
+        if (!item) return;
+        const type = item.getAttribute("data-type");
+        if (navigator.vibrate) navigator.vibrate(10);
+
+        if (type === "device") {
+          const modelName = item.getAttribute("data-name");
+          const part = item.getAttribute("data-part");
+          if (window.switchEstimatorTo) {
+            window.switchEstimatorTo(modelName, part);
+          }
+          // 切换到维修价格标签
+          const tabBtn = document.getElementById("tab-prices");
+          if (tabBtn) tabBtn.click();
+          closeSuggestions();
+        } else if (type === "store") {
+          const storeName = item.getAttribute("data-store-name");
+          const city = item.getAttribute("data-city");
+          const storeTab = document.getElementById("tab-stores");
+          if (storeTab) storeTab.click();
+          const storeInput = document.getElementById("store-search-input");
+          if (storeInput) {
+            storeInput.value = storeName || city;
+            state.storeSearchKeyword = storeName || city;
+            render();
+          }
+          const storesSec = document.getElementById("section-stores");
+          if (storesSec) {
+            storesSec.scrollIntoView({ behavior: "smooth" });
+          }
+          closeSuggestions();
+        }
+      });
+
+      // 回车触发首项匹配
+      input.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          const firstItem = suggBox.querySelector(".omnibox-sugg-item[data-type]");
+          if (firstItem) {
+            firstItem.click();
+          } else {
+            // 同步到下方 explorer 搜索框
+            const explorerInput = document.getElementById("search-input");
+            if (explorerInput) {
+              explorerInput.value = input.value;
+              state.searchKeyword = input.value;
+              render();
+              const toggleBtn = document.getElementById("toggle-explorer-btn");
+              const expContent = document.getElementById("explorer-content");
+              if (toggleBtn && expContent && expContent.style.display === "none") {
+                toggleBtn.click();
+              }
+            }
+            closeSuggestions();
+          }
+        } else if (e.key === "Escape") {
+          closeSuggestions();
+        }
+      });
+
+      document.addEventListener("click", (e) => {
+        if (!e.target.closest(".global-omnibox-wrapper")) {
+          closeSuggestions();
+        }
+      });
+    }
+
+    // ================================================================
+    // V3.0 双机横向对比模态框系统 (Side-by-Side Model Comparison)
+    // ================================================================
+    function initComparison() {
+      const modal = document.getElementById("compare-modal");
+      const btnClose = document.getElementById("btn-close-compare");
+      const btnDone = document.getElementById("btn-compare-done");
+      const btnExport = document.getElementById("btn-export-compare");
+      const selectA = document.getElementById("compare-select-a");
+      const selectB = document.getElementById("compare-select-b");
+      const resultsWrap = document.getElementById("compare-results-wrap");
+      if (!modal || !selectA || !selectB || !resultsWrap) return;
+
+      const catalogData = (typeof ESTIMATOR_CATALOG !== "undefined") ? ESTIMATOR_CATALOG : {};
+      const allModels = [];
+
+      for (const [cat, seriesArr] of Object.entries(catalogData)) {
+        for (const s of seriesArr) {
+          for (const m of s.models) {
+            allModels.push({
+              name: m.name,
+              category: cat,
+              series: s.series,
+              imageUrl: m.imageUrl,
+              services: m.services || []
+            });
+          }
+        }
+      }
+
+      // 填充下拉选项
+      const optionsHtml = allModels.map((m, idx) => `
+        <option value="${idx}">[${m.category}] ${m.name}</option>
+      `).join("");
+
+      selectA.innerHTML = optionsHtml;
+      selectB.innerHTML = optionsHtml;
+
+      function getServicePrice(modelObj, keyword) {
+        if (!modelObj || !modelObj.services) return { text: "--", num: 0 };
+        const s = modelObj.services.find(item => item.name && item.name.includes(keyword));
+        if (!s) return { text: "--", num: 0 };
+        const numMatch = s.price.match(/[\d,]+/);
+        const num = numMatch ? parseInt(numMatch[0].replace(/,/g, ""), 10) : 0;
+        return { text: s.price, num };
+      }
+
+      function renderCompareTable() {
+        const idxA = parseInt(selectA.value, 10) || 0;
+        const idxB = parseInt(selectB.value, 10) || 0;
+        const modelA = allModels[idxA];
+        const modelB = allModels[idxB];
+        if (!modelA || !modelB) return;
+
+        const planA = getAppleCarePlanInfo(modelA.category, modelA.name);
+        const planB = getAppleCarePlanInfo(modelB.category, modelB.name);
+
+        const itemsToCompare = [
+          { title: "📱 屏幕 / 外屏更换", key: "屏" },
+          { title: "🔋 官方电池换新", key: "电池" },
+          { title: "🪞 背面玻璃更换", key: "背面玻璃" },
+          { title: "💧 其他损坏 (整机维修)", key: "其他损坏" }
+        ];
+
+        let rowsHtml = "";
+        itemsToCompare.forEach(item => {
+          const pA = getServicePrice(modelA, item.key);
+          const pB = getServicePrice(modelB, item.key);
+          const diff = pB.num - pA.num;
+          let diffHtml = "";
+          if (pA.num > 0 && pB.num > 0) {
+            if (diff > 0) {
+              diffHtml = `<span class="compare-diff-pill pricier">+¥${diff.toLocaleString()} (高出)</span>`;
+            } else if (diff < 0) {
+              diffHtml = `<span class="compare-diff-pill cheaper">-¥${Math.abs(diff).toLocaleString()} (更实惠)</span>`;
+            } else {
+              diffHtml = `<span class="compare-diff-pill same">持平</span>`;
+            }
+          } else {
+            diffHtml = `<span class="compare-diff-pill same">--</span>`;
+          }
+
+          rowsHtml += `
+            <tr>
+              <td><strong>${item.title}</strong></td>
+              <td>${pA.text}</td>
+              <td>${pB.text}</td>
+              <td>${diffHtml}</td>
+            </tr>
+          `;
+        });
+
+        // AppleCare+ 购买价格行
+        const acDiff = (planB.rawPrice || 0) - (planA.rawPrice || 0);
+        let acDiffHtml = "";
+        if (planA.rawPrice && planB.rawPrice) {
+          if (acDiff > 0) {
+            acDiffHtml = `<span class="compare-diff-pill pricier">+¥${acDiff.toLocaleString()}</span>`;
+          } else if (acDiff < 0) {
+            acDiffHtml = `<span class="compare-diff-pill cheaper">-¥${Math.abs(acDiff).toLocaleString()}</span>`;
+          } else {
+            acDiffHtml = `<span class="compare-diff-pill same">同价</span>`;
+          }
+        }
+
+        rowsHtml += `
+          <tr style="background: var(--bg-secondary);">
+            <td><strong>🛡️ AppleCare+ 官方选购价</strong></td>
+            <td><strong>${planA.planPrice}</strong> (${planA.period})</td>
+            <td><strong>${planB.planPrice}</strong> (${planB.period})</td>
+            <td>${acDiffHtml}</td>
+          </tr>
+        `;
+
+        resultsWrap.innerHTML = `
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th style="width: 28%;">维修 / 保障项目</th>
+                <th style="width: 25%;">${modelA.name}</th>
+                <th style="width: 25%;">${modelB.name}</th>
+                <th style="width: 22%;">B 较 A 差值</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${rowsHtml}
+            </tbody>
+          </table>
+        `;
+      }
+
+      selectA.addEventListener("change", renderCompareTable);
+      selectB.addEventListener("change", renderCompareTable);
+
+      window.openCompareModal = function (preferredModelA) {
+        if (preferredModelA) {
+          const idx = allModels.findIndex(m => m.name === preferredModelA);
+          if (idx >= 0) selectA.value = String(idx);
+          // 挑选对照机型 (优先上一代或临近机型)
+          const idxB = (idx + 1 < allModels.length) ? idx + 1 : 0;
+          selectB.value = String(idxB);
+        }
+        renderCompareTable();
+        modal.style.display = "flex";
+      };
+
+      function closeCompareModal() {
+        modal.style.display = "none";
+      }
+
+      if (btnClose) btnClose.addEventListener("click", closeCompareModal);
+      if (btnDone) btnDone.addEventListener("click", closeCompareModal);
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) closeCompareModal();
+      });
+
+      // 导出双机对比海报
+      if (btnExport) {
+        btnExport.addEventListener("click", () => {
+          const idxA = parseInt(selectA.value, 10) || 0;
+          const idxB = parseInt(selectB.value, 10) || 0;
+          const modelA = allModels[idxA];
+          const modelB = allModels[idxB];
+          if (!modelA || !modelB) return;
+
+          const planA = getAppleCarePlanInfo(modelA.category, modelA.name);
+          const planB = getAppleCarePlanInfo(modelB.category, modelB.name);
+
+          const canvas = document.createElement("canvas");
+          const ctx = canvas.getContext("2d");
+          const W = 750;
+          const totalH = 860;
+          canvas.width = W;
+          canvas.height = totalH;
+
+          function drawRoundRectLocal(x, y, w, h, r, fillColor, strokeColor) {
+            ctx.beginPath();
+            ctx.moveTo(x + r, y);
+            ctx.arcTo(x + w, y, x + w, y + h, r);
+            ctx.arcTo(x + w, y + h, x, y + h, r);
+            ctx.arcTo(x, y + h, x, y, r);
+            ctx.arcTo(x, y, x + w, y, r);
+            ctx.closePath();
+            if (fillColor) { ctx.fillStyle = fillColor; ctx.fill(); }
+            if (strokeColor) { ctx.strokeStyle = strokeColor; ctx.lineWidth = 1.5; ctx.stroke(); }
+          }
+
+          ctx.fillStyle = "#f5f5f7";
+          ctx.fillRect(0, 0, W, totalH);
+
+          // 顶部
+          ctx.fillStyle = "#1d1d1f";
+          ctx.font = "bold 26px -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'PingFang SC', sans-serif";
+          ctx.fillText("⚖️ Apple 官方双机型服务对比", 45, 65);
+
+          ctx.fillStyle = "#86868b";
+          ctx.font = "14px -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif";
+          ctx.fillText("官方直连数据 · 双机维修与 AppleCare+ 横向比对", 45, 96);
+
+          // 双机卡片
+          let currY = 125;
+          const colW = (W - 90) / 2;
+
+          drawRoundRectLocal(35, currY, colW, 110, 16, "#ffffff", "#e5e5ea");
+          ctx.fillStyle = "#0071e3";
+          ctx.font = "bold 12px -apple-system, BlinkMacSystemFont, sans-serif";
+          ctx.fillText("基准机型 A", 55, currY + 32);
+          ctx.fillStyle = "#1d1d1f";
+          ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif";
+          ctx.fillText(modelA.name, 55, currY + 65);
+          ctx.fillStyle = "#86868b";
+          ctx.font = "12px -apple-system, BlinkMacSystemFont, sans-serif";
+          ctx.fillText(`AC+: ${planA.planPrice}`, 55, currY + 92);
+
+          drawRoundRectLocal(55 + colW, currY, colW, 110, 16, "#ffffff", "#e5e5ea");
+          ctx.fillStyle = "#34c759";
+          ctx.font = "bold 12px -apple-system, BlinkMacSystemFont, sans-serif";
+          ctx.fillText("对比机型 B", 75 + colW, currY + 32);
+          ctx.fillStyle = "#1d1d1f";
+          ctx.font = "bold 20px -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif";
+          ctx.fillText(modelB.name, 75 + colW, currY + 65);
+          ctx.fillStyle = "#86868b";
+          ctx.font = "12px -apple-system, BlinkMacSystemFont, sans-serif";
+          ctx.fillText(`AC+: ${planB.planPrice}`, 75 + colW, currY + 92);
+
+          // 对比表格卡片
+          currY += 130;
+          drawRoundRectLocal(35, currY, W - 70, 460, 20, "#ffffff", "#e5e5ea");
+
+          // 表头
+          ctx.fillStyle = "#86868b";
+          ctx.font = "bold 13px -apple-system, BlinkMacSystemFont, sans-serif";
+          ctx.fillText("维修项目", 60, currY + 36);
+          ctx.fillText(modelA.name, 260, currY + 36);
+          ctx.fillText(modelB.name, 440, currY + 36);
+          ctx.fillText("差值", 620, currY + 36);
+
+          const items = [
+            { name: "屏幕损坏", key: "屏" },
+            { name: "电池服务", key: "电池" },
+            { name: "背面玻璃", key: "背面玻璃" },
+            { name: "其他损坏", key: "其他损坏" }
+          ];
+
+          let rY = currY + 70;
+          items.forEach((it, idx) => {
+            const pA = getServicePrice(modelA, it.key);
+            const pB = getServicePrice(modelB, it.key);
+            const diff = pB.num - pA.num;
+
+            ctx.strokeStyle = "#f0f0f2";
+            ctx.beginPath();
+            ctx.moveTo(55, rY);
+            ctx.lineTo(W - 55, rY);
+            ctx.stroke();
+
+            ctx.fillStyle = "#1d1d1f";
+            ctx.font = "500 15px -apple-system, BlinkMacSystemFont, sans-serif";
+            ctx.fillText(it.name, 60, rY + 40);
+
+            ctx.fillStyle = "#333336";
+            ctx.fillText(pA.text, 260, rY + 40);
+            ctx.fillText(pB.text, 440, rY + 40);
+
+            if (pA.num > 0 && pB.num > 0) {
+              if (diff > 0) {
+                ctx.fillStyle = "#ff3b30";
+                ctx.fillText(`+¥${diff}`, 620, rY + 40);
+              } else if (diff < 0) {
+                ctx.fillStyle = "#34c759";
+                ctx.fillText(`-¥${Math.abs(diff)}`, 620, rY + 40);
+              } else {
+                ctx.fillStyle = "#86868b";
+                ctx.fillText("持平", 620, rY + 40);
+              }
+            } else {
+              ctx.fillStyle = "#86868b";
+              ctx.fillText("--", 620, rY + 40);
+            }
+
+            rY += 68;
+          });
+
+          // AC+ 购买价格行
+          ctx.strokeStyle = "#e5e5ea";
+          ctx.beginPath();
+          ctx.moveTo(55, rY);
+          ctx.lineTo(W - 55, rY);
+          ctx.stroke();
+
+          ctx.fillStyle = "#0071e3";
+          ctx.font = "bold 15px -apple-system, BlinkMacSystemFont, sans-serif";
+          ctx.fillText("AppleCare+", 60, rY + 40);
+          ctx.fillText(planA.planPrice, 260, rY + 40);
+          ctx.fillText(planB.planPrice, 440, rY + 40);
+
+          const acD = (planB.rawPrice || 0) - (planA.rawPrice || 0);
+          if (acD > 0) {
+            ctx.fillStyle = "#ff3b30";
+            ctx.fillText(`+¥${acD}`, 620, rY + 40);
+          } else if (acD < 0) {
+            ctx.fillStyle = "#34c759";
+            ctx.fillText(`-¥${Math.abs(acD)}`, 620, rY + 40);
+          } else {
+            ctx.fillStyle = "#86868b";
+            ctx.fillText("同价", 620, rY + 40);
+          }
+
+          // 底部注脚
+          currY += 485;
+          ctx.fillStyle = "#86868b";
+          ctx.font = "11.5px -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif";
+          ctx.fillText("注：官方直连数据实时同步，双机差值供购机与维修决策参考，最终费用以 Apple 直营店为准。", 45, currY);
+
+          try {
+            const dataUrl = canvas.toDataURL("image/png");
+            const qImg = document.getElementById("quote-card-img");
+            const qModal = document.getElementById("quote-card-modal");
+            const qDl = document.getElementById("btn-download-quote-card");
+            if (qImg && qModal) {
+              qImg.src = dataUrl;
+              if (qDl) {
+                qDl.href = dataUrl;
+                qDl.download = `Apple双机维修对比_${modelA.name}_VS_${modelB.name}.png`;
+              }
+              closeCompareModal();
+              qModal.style.display = "flex";
+            }
+          } catch (e) {
+            showToast("生成失败", "无法导出对比图片", "⚠️");
+          }
+        });
+      }
+    }
+
+    // ================================================================
+    // V3.0 到店维修前 · 5 项必备避坑自检清单 (Pre-service Checklist)
+    // ================================================================
+    function initChecklist() {
+      const container = document.getElementById("pre-service-checklist");
+      if (!container) return;
+
+      const checkboxes = container.querySelectorAll(".checklist-checkbox");
+      const progressText = document.getElementById("checklist-progress-text");
+      const progressFill = document.getElementById("checklist-progress-fill");
+
+      const STORAGE_KEY = "apple_pre_service_checklist";
+      let savedState = [];
+      try {
+        savedState = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+      } catch (e) {
+        savedState = [];
+      }
+
+      function updateChecklistUI() {
+        let checkedCount = 0;
+        checkboxes.forEach((cb, idx) => {
+          const item = cb.closest(".checklist-item");
+          if (cb.checked) {
+            checkedCount++;
+            if (item) item.classList.add("is-checked");
+          } else {
+            if (item) item.classList.remove("is-checked");
+          }
+        });
+
+        const total = checkboxes.length || 5;
+        const pct = Math.round((checkedCount / total) * 100);
+
+        if (progressText) {
+          progressText.textContent = `${checkedCount} / ${total} 已核对`;
+        }
+        if (progressFill) {
+          progressFill.style.width = `${pct}%`;
+        }
+
+        const stateToSave = Array.from(checkboxes).map(cb => cb.checked);
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(stateToSave));
+        } catch (e) {}
+      }
+
+      checkboxes.forEach((cb, idx) => {
+        if (savedState[idx]) {
+          cb.checked = true;
+        }
+        cb.addEventListener("change", () => {
+          if (navigator.vibrate) navigator.vibrate(10);
+          updateChecklistUI();
+          const allChecked = Array.from(checkboxes).every(c => c.checked);
+          if (allChecked) {
+            showToast("🎉 材料已备齐", "所有 5 项自检已全部核对无误，可放心前往 Apple 官方网点！", "");
+          }
+        });
+      });
+
+      updateChecklistUI();
+    }
+
+    // ================================================================
+    // V3.0 移动端“拇指热区”底部悬浮快捷操作坞 (Mobile Thumb Dock)
+    // ================================================================
+    function initMobileThumbDock() {
+      const dock = document.getElementById("mobile-thumb-dock");
+      if (!dock) return;
+
+      dock.addEventListener("click", (e) => {
+        const btn = e.target.closest(".dock-btn");
+        if (!btn) return;
+        const action = btn.getAttribute("data-action");
+        if (!action) return;
+
+        if (navigator.vibrate) navigator.vibrate(10);
+
+        dock.querySelectorAll(".dock-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        if (action === "estimator") {
+          const tabBtn = document.getElementById("tab-prices");
+          if (tabBtn) tabBtn.click();
+          const card = document.querySelector(".apple-estimator-card");
+          if (card) card.scrollIntoView({ behavior: "smooth" });
+        } else if (action === "compare") {
+          if (window.openCompareModal) {
+            window.openCompareModal();
+          }
+        } else if (action === "stores") {
+          const tabBtn = document.getElementById("tab-stores");
+          if (tabBtn) tabBtn.click();
+          const sec = document.getElementById("section-stores");
+          if (sec) sec.scrollIntoView({ behavior: "smooth" });
+        } else if (action === "checklist") {
+          const tabBtn = document.getElementById("tab-stores");
+          if (tabBtn) tabBtn.click();
+          const cl = document.getElementById("pre-service-checklist");
+          if (cl) cl.scrollIntoView({ behavior: "smooth" });
+        } else if (action === "share") {
+          const shareBtn = document.getElementById("btn-estimator-share-card");
+          if (shareBtn) shareBtn.click();
+        }
+      });
+    }
+
     // 更新全网同步时间戳显示
     function updateSyncTimestampDisplay() {
       const syncTime = (typeof DATA_SYNC_TIMESTAMP !== "undefined") ? DATA_SYNC_TIMESTAMP : "";
@@ -16745,6 +18599,10 @@ if (typeof window !== "undefined") window.APPLECARE_PLANS = APPLECARE_PLANS;
     initEstimator();
     initLBS();
     initChangelog();
+    initOmnibox();
+    initComparison();
+    initChecklist();
+    initMobileThumbDock();
     updateSyncTimestampDisplay();
     render();
   }
