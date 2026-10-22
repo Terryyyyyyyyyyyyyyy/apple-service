@@ -3977,5 +3977,360 @@ body {
   }
 }
 
+/* ==========================================================================
+   V2.0 Experience Overhaul Styles (Apple HIG 2.0 & Mobile Ergonomics)
+   ========================================================================== */
+
+/* 1. 热门机型秒选气泡快捷栏 (Hot Chips) */
+.hot-chips-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 1080px;
+  margin: 0 auto 16px auto;
+  padding: 0 8px;
+}
+
+.hot-chips-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.hot-chips-scroll {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 2px 2px 6px 2px;
+  scrollbar-width: none;
+}
+.hot-chips-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.hot-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 13px;
+  border-radius: var(--radius-pill);
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--text-primary);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.hot-chip:hover {
+  background: var(--bg-card-solid);
+  border-color: var(--apple-blue);
+  color: var(--apple-blue);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.hot-chip:active {
+  transform: scale(0.96);
+}
+
+/* 2. 可视化 AppleCare+ 回本测算卡片 (Visual ROI Meter) */
+.visual-roi-card {
+  margin-top: 18px;
+  border-radius: 14px;
+  padding: 16px 18px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-hover);
+  transition: all var(--transition-base);
+}
+
+.visual-roi-card.is-saving {
+  background: linear-gradient(135deg, rgba(52, 199, 89, 0.08) 0%, rgba(0, 113, 227, 0.05) 100%);
+  border-color: rgba(52, 199, 89, 0.28);
+}
+
+.roi-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.roi-header-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.roi-tag-badge {
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.roi-tag-badge.saving-badge {
+  background: var(--apple-green);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(52, 199, 89, 0.35);
+}
+
+.roi-tag-badge.normal-badge {
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+}
+
+.roi-progress-section {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 12px;
+}
+
+.roi-bar-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.text-danger {
+  color: #ff3b30;
+}
+
+.text-success {
+  color: #34c759;
+}
+
+.roi-progress-track {
+  width: 100%;
+  height: 18px;
+  background: rgba(0, 0, 0, 0.06);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+  position: relative;
+}
+
+:root[data-theme="dark"] .roi-progress-track,
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .roi-progress-track {
+    background: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.roi-progress-fill {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  border-radius: var(--radius-pill);
+  transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.roi-progress-fill.oow-fill {
+  background: linear-gradient(90deg, #ff453a, #ff6961);
+}
+
+.roi-progress-fill.ac-fill {
+  background: linear-gradient(90deg, #30d158, #34c759);
+}
+
+.roi-fill-label {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+.roi-summary-note {
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  padding-top: 4px;
+  border-top: 1px dashed var(--border-color);
+}
+
+/* 3. 决策建议卡片 (Decision Advisor) */
+.decision-advisor-card {
+  margin-top: 14px;
+  border-radius: 12px;
+  padding: 14px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.advisor-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.advisor-tag {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: var(--apple-blue-light);
+  color: var(--apple-blue);
+  font-size: 11.5px;
+  font-weight: 700;
+}
+
+.advisor-sub {
+  font-size: 11.5px;
+  color: var(--text-tertiary);
+}
+
+.advisor-content-text {
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+/* 4. 网点距离指示标签 & LBS 按钮 */
+.btn-locate-nearest {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  background: var(--apple-blue-light);
+  border: 1px solid rgba(0, 113, 227, 0.25);
+  color: var(--apple-blue);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.btn-locate-nearest:hover {
+  background: var(--apple-blue);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.btn-locate-nearest.is-located {
+  background: var(--apple-green-light);
+  border-color: rgba(52, 199, 89, 0.3);
+  color: var(--apple-green);
+}
+
+.store-distance-badge {
+  display: inline-block;
+  margin-top: 5px;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: var(--apple-blue-light);
+  color: var(--apple-blue);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.btn-official-booking {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 12px;
+  border-radius: var(--radius-pill);
+  background: var(--bg-hover);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.btn-official-booking:hover {
+  background: var(--apple-blue);
+  border-color: var(--apple-blue);
+  color: #ffffff;
+}
+
+/* 5. 微信报价卡按钮 & 模态框 */
+.apple-secondary-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 18px;
+  border-radius: var(--radius-pill);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+}
+
+.apple-secondary-pill-btn:hover {
+  background: var(--bg-card-solid);
+  border-color: var(--apple-blue);
+  color: var(--apple-blue);
+  transform: translateY(-1px);
+}
+
+.quote-card-modal-body {
+  max-width: 480px;
+  width: 92%;
+}
+
+.quote-card-scroll-area {
+  max-height: 70vh;
+  overflow-y: auto;
+  text-align: center;
+  padding: 16px;
+}
+
+.quote-card-preview-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.quote-card-img {
+  width: 100%;
+  max-width: 380px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  display: block;
+}
+
+.quote-card-hint {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 14px;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.quote-card-footer {
+  display: flex;
+  justify-content: center;
+}
+
 
 

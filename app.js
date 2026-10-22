@@ -313,10 +313,73 @@
     return target.keywords.some((kw) => partName.includes(kw));
   }
 
-  // 工具函数：获取地图跳转链接 (Apple Maps Universal Link)
+  // 智能模糊搜索别名字典 (Smart Search Aliases)
+  const SEARCH_ALIASES = {
+    "16pm": "iphone 16 pro max",
+    "16p": "iphone 16 pro",
+    "16": "iphone 16",
+    "16plus": "iphone 16 plus",
+    "15pm": "iphone 15 pro max",
+    "15p": "iphone 15 pro",
+    "15": "iphone 15",
+    "14pm": "iphone 14 pro max",
+    "14p": "iphone 14 pro",
+    "14": "iphone 14",
+    "13pm": "iphone 13 pro max",
+    "13p": "iphone 13 pro",
+    "13": "iphone 13",
+    "duo": "iphone duo",
+    "air": "iphone air",
+    "pm": "pro max",
+    "u2": "ultra 2",
+    "ultra2": "ultra 2",
+    "u1": "ultra",
+    "s10": "series 10",
+    "s9": "series 9",
+    "se3": "watch se",
+    "se2": "watch se",
+    "mbp16": "macbook pro 16",
+    "mbp14": "macbook pro 14",
+    "mba15": "macbook air 15",
+    "mba13": "macbook air 13",
+    "换屏": "屏幕",
+    "碎屏": "屏幕",
+    "内屏": "内屏",
+    "外屏": "外屏",
+    "换电池": "电池",
+    "电池健康": "电池",
+    "后盖": "背面玻璃",
+    "后壳": "背面玻璃",
+    "镜头": "相机",
+    "主板": "其他损坏",
+    "进水": "其他损坏"
+  };
+
+  // 经纬度大圆距离测算函数 (Haversine Formula)
+  function getDistanceFromLatLngInKm(lat1, lon1, lat2, lon2) {
+    const R = 6371;
+    const dLat = (lat2 - lat1) * (Math.PI / 180);
+    const dLon = (lon2 - lon1) * (Math.PI / 180);
+    const a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) *
+      Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return R * c;
+  }
+
+  // 工具函数：获取地图跳转链接 (自适应 Apple Maps / 高德地图)
   function getMapUrl(store) {
     const query = encodeURIComponent(`${store.name} ${store.address}`);
-    return `https://maps.apple.com/?q=${query}&ll=${store.geo.lat},${store.geo.lng}`;
+    if (store.geo && store.geo.lat && store.geo.lng) {
+      const isIOS = typeof navigator !== "undefined" && /iPad|iPhone|iPod/.test(navigator.userAgent);
+      if (isIOS) {
+        return `https://maps.apple.com/?q=${query}&ll=${store.geo.lat},${store.geo.lng}`;
+      } else {
+        return `https://uri.amap.com/marker?position=${store.geo.lng},${store.geo.lat}&name=${query}`;
+      }
+    }
+    return `https://maps.apple.com/?q=${query}`;
   }
 
   // 工具函数：深色模式切换
@@ -438,22 +501,48 @@
       thirdPartySearchQuery: "",
       thirdPartyBrands: window.thirdPartyBrands || (typeof thirdPartyBrands !== "undefined" ? thirdPartyBrands : []),
       hotAccSubTab: "top",
-      hotAccessoriesData: window.hotAccessoriesData || (typeof hotAccessoriesData !== "undefined" ? hotAccessoriesData : [])
+      hotAccessoriesData: window.hotAccessoriesData || (typeof hotAccessoriesData !== "undefined" ? hotAccessoriesData : []),
+      userLocation: null,
+      sortByDistance: false
     };
 
-    // 筛选维修价格
+    // 筛选维修价格 (引入智能别名展开与多维度容错)
     function getFilteredPrices() {
-      const q = state.priceSearchQuery.trim().toLowerCase();
+      const rawQ = state.priceSearchQuery.trim().toLowerCase();
+      if (!rawQ) {
+        return state.pricesData.filter((item) => {
+          const matchCat = state.currentCategory === "全部" || item.category === state.currentCategory;
+          const matchSer = matchSeries(item.model, state.currentSeries);
+          const matchP = matchPart(item.part, state.currentPart);
+          return matchCat && matchSer && matchP;
+        });
+      }
+
+      // 提取查询词并智能展开别名
+      const expandedQueryList = [rawQ];
+      if (SEARCH_ALIASES[rawQ]) {
+        expandedQueryList.push(SEARCH_ALIASES[rawQ]);
+      }
+      const tokens = rawQ.split(/\s+/).filter(Boolean);
+      tokens.forEach((tok) => {
+        if (SEARCH_ALIASES[tok]) {
+          expandedQueryList.push(SEARCH_ALIASES[tok]);
+        }
+      });
+
       return state.pricesData.filter((item) => {
+        const itemText = `${item.category} ${item.model} ${item.part}`.toLowerCase();
+        
+        // 匹配任意展开词组合
+        const matchSearch = expandedQueryList.some((qTerm) => {
+          const words = qTerm.split(/\s+/).filter(Boolean);
+          return words.every((w) => itemText.includes(w));
+        });
+
+        // 搜索时优先以命中关键词为主，放宽大类与配件限制防止漏检
         const matchCat = state.currentCategory === "全部" || item.category === state.currentCategory;
-        const matchSer = matchSeries(item.model, state.currentSeries);
         const matchP = matchPart(item.part, state.currentPart);
-        const matchSearch =
-          !q ||
-          item.category.toLowerCase().includes(q) ||
-          item.model.toLowerCase().includes(q) ||
-          item.part.toLowerCase().includes(q);
-        return matchCat && matchSer && matchP && matchSearch;
+        return matchSearch && matchCat && matchP;
       });
     }
 
@@ -474,10 +563,10 @@
       return Array.from(groups.values());
     }
 
-    // 筛选服务网点 (支持网点名、城市、行政区、地址多维度即时搜索)
+    // 筛选服务网点 (支持网点名、城市、行政区、地址多维度即时搜索 + 距离就近排序)
     function getFilteredStores() {
       const q = state.storeSearchQuery.trim().toLowerCase();
-      return state.storesData.filter((store) => {
+      const list = state.storesData.filter((store) => {
         const matchCity = state.currentCity === "全部" || store.city === state.currentCity;
         const matchType =
           state.currentStoreType === "全部类型" ||
@@ -492,6 +581,13 @@
           store.address.toLowerCase().includes(q);
         return matchCity && matchType && matchSearch;
       });
+
+      // 距离优先排序
+      if (state.sortByDistance) {
+        list.sort((a, b) => (a.distanceKm || 99999) - (b.distanceKm || 99999));
+      }
+
+      return list;
     }
 
     function renderCategoryBadgeClass(cat) {
@@ -762,6 +858,9 @@
             const isAppleStore = store.type.includes("Apple Store");
             const badgeClass = isAppleStore ? "apple-store" : "aasp";
             const mapUrl = getMapUrl(store);
+            const distBadge = (store.distanceKm && store.distanceKm < 9000)
+              ? `<span class="store-distance-badge">📍 距您约 ${store.distanceKm < 1 ? Math.round(store.distanceKm * 1000) + ' 米' : store.distanceKm.toFixed(1) + ' km'}</span>`
+              : "";
 
             return `
             <div class="store-card">
@@ -770,12 +869,13 @@
                   <h3 class="store-name">${store.name}</h3>
                   <span class="store-type-badge ${badgeClass}">${store.type}</span>
                 </div>
-                <div class="store-location">📍 ${store.city} · ${store.district}</div>
+                <div class="store-location">📍 ${store.city} · ${store.district} ${distBadge}</div>
                 <div class="store-address">${store.address}</div>
               </div>
               <div class="store-actions">
-                <a href="tel:${store.phone}" class="btn-phone">📞 ${store.phone}</a>
+                <a href="tel:${store.phone}" class="btn-phone">📞 电话</a>
                 <a href="${mapUrl}" target="_blank" rel="noopener noreferrer" class="btn-nav">导航 ↗</a>
+                <a href="https://getsupport.apple.com" target="_blank" rel="noopener noreferrer" class="btn-official-booking">预约 </a>
               </div>
             </div>
           `;
@@ -2455,6 +2555,9 @@
 
       const categoryBar = document.getElementById("estimator-category-bar");
       let activeCategory = "iPhone";
+      let currentQuoteModel = null;
+      let currentQuoteServices = [];
+      let currentQuotePlan = null;
 
       const catalogData = (typeof ESTIMATOR_CATALOG !== "undefined") ? ESTIMATOR_CATALOG : {};
 
@@ -2550,11 +2653,18 @@
           appleCareCard.style.display = "block";
           const plan = getAppleCarePlanInfo(activeCategory, modelObj.name);
 
-          // 核心亮点：AppleCare+ 回本/省钱测算器 (动态对比保外维修成本 vs 加购 AppleCare+ 综合成本)
-          let breakevenHtml = "";
+          // 暂存当前机型报价上下文，供微信报价卡生成器使用
+          currentQuoteModel = modelObj;
+          currentQuoteServices = services;
+          currentQuotePlan = plan;
+
+          // 核心亮点 1：AppleCare+ 可视化回本/省钱测算仪表 (Visual ROI Meter)
+          let visualRoiHtml = "";
+          let decisionAdvisorHtml = "";
+
           if (plan && typeof plan.rawPrice === "number" && services.length > 0) {
-            // 挑选典型损坏项（其他损坏、屏幕损坏、或最高额损坏项目）
-            const targetSrv = services.find(s => s.name && (s.name.includes("其他损坏") || s.name.includes("屏幕损坏"))) || services[0];
+            // 挑选典型损坏项（内屏损坏、其他损坏、外屏或屏幕损坏）
+            const targetSrv = services.find(s => s.name && (s.name.includes("内屏") || s.name.includes("其他损坏") || s.name.includes("外屏") || s.name.includes("屏幕损坏"))) || services[0];
             if (targetSrv && targetSrv.price) {
               const oowNumMatch = targetSrv.price.match(/[\d,]+/);
               if (oowNumMatch) {
@@ -2563,25 +2673,80 @@
                 if (feeInfo && typeof feeInfo.rawPrice === "number" && oowPrice > 0) {
                   const totalAcCost = plan.rawPrice + feeInfo.rawPrice;
                   const netSavings = oowPrice - totalAcCost;
-                  if (netSavings > 0) {
-                    breakevenHtml = `
-                      <div class="ac-breakeven-banner is-saving">
-                        <span class="ac-breakeven-tag">💥 回本测算</span>
-                        <div class="ac-breakeven-content">
-                          若发生<strong>【${targetSrv.name}】</strong>（官方保外需 <strong>¥${oowPrice.toLocaleString()}</strong>），加购 AppleCare+（${plan.planPrice}）并在出险时自付 ${feeInfo.label}，<strong>首次维修即可净省 ¥${netSavings.toLocaleString()}（即刻回本）</strong>！保障期内后续每次损坏仅需自付 ¥${feeInfo.rawPrice}。
+                  const roiPercent = Math.round((netSavings / plan.rawPrice) * 100);
+                  const isPositive = netSavings > 0;
+                  const acCostPercent = Math.min(100, Math.max(12, Math.round((totalAcCost / oowPrice) * 100)));
+
+                  visualRoiHtml = `
+                    <div class="visual-roi-card ${isPositive ? 'is-saving' : ''}">
+                      <div class="roi-card-header">
+                        <div class="roi-header-title">
+                          <span class="roi-icon">${isPositive ? '📊' : '💡'}</span>
+                          <span class="roi-title-text">AppleCare+ 综合回本与省钱测算</span>
+                        </div>
+                        ${isPositive ? `
+                          <div class="roi-tag-badge saving-badge">
+                            立省 ¥${netSavings.toLocaleString()} (回本率 ${roiPercent}%)
+                          </div>
+                        ` : `
+                          <div class="roi-tag-badge normal-badge">常规对冲风险</div>
+                        `}
+                      </div>
+
+                      <div class="roi-progress-section">
+                        <div class="roi-bar-labels">
+                          <span>保外维修: <strong class="text-danger">¥${oowPrice.toLocaleString()}</strong></span>
+                          <span>AC+ 总成本: <strong class="text-success">¥${totalAcCost.toLocaleString()}</strong> (${plan.planPrice} + ${feeInfo.label})</span>
+                        </div>
+                        <div class="roi-progress-track">
+                          <div class="roi-progress-fill oow-fill" style="width: 100%;">
+                            <span class="roi-fill-label">保外 100% 自费 (¥${oowPrice.toLocaleString()})</span>
+                          </div>
+                        </div>
+                        <div class="roi-progress-track ac-track">
+                          <div class="roi-progress-fill ac-fill" style="width: ${acCostPercent}%;">
+                            <span class="roi-fill-label">AC+ 综合开销仅占 ${acCostPercent}%</span>
+                          </div>
                         </div>
                       </div>
-                    `;
+
+                      <div class="roi-summary-note">
+                        ${isPositive
+                          ? `💡 <strong>单次即回本</strong>：若发生<strong>【${targetSrv.name}】</strong>，加购 AppleCare+ 首次出险即<strong>净省 ¥${netSavings.toLocaleString()}</strong>（节省额直接覆盖加购成本），后续每次损坏仅需自付 ¥${feeInfo.rawPrice}！`
+                          : `💡 <strong>对冲巨额风险</strong>：单次基础部件保外较为接近，但若遇主板损坏、相机进水或折叠屏铰链受损，AppleCare+ 能免去数千元巨额损失。`
+                        }
+                      </div>
+                    </div>
+                  `;
+
+                  // 核心亮点 2：维修 vs 换新客观决策助手 (Decision Advisor)
+                  let advisorTag = "选购建议";
+                  let advisorText = "";
+                  const norm = modelObj.name.toLowerCase();
+
+                  if (norm.includes("duo")) {
+                    advisorTag = "💎 旗舰折叠屏守护";
+                    advisorText = "折叠双屏内屏官方保外更换高达 <strong>¥7,998</strong>，整机其他损坏高达 <strong>¥11,998</strong>。极力推荐在购机 60 天内加购 AppleCare+（RMB 2,599），大幅降低双屏意外碎裂焦虑。";
+                  } else if (norm.includes("18") || norm.includes("air") || norm.includes("16 pro")) {
+                    advisorTag = "🔥 当季主力机型";
+                    advisorText = "官方在售主力机型屏幕与后置超光影镜头维修昂贵。若日常有裸机习惯或户外运动高频，强烈建议选购 AppleCare+ 获得 2 年无限次特惠维修与年年焕新权益。";
+                  } else if (norm.includes("11") || norm.includes("12") || norm.includes("xr") || norm.includes("13 mini")) {
+                    advisorTag = "⚖️ 老机型理性决策";
+                    advisorText = "此机型屏幕/主板保外官方更换费用已接近二手整机残值，重大损坏时不建议全额自费保外维修，可考虑 Apple Trade In 官方回收置换；若只是电池健康度低于 80%，换原厂电池（仅几百元）是性价比最高的满血复活方案。";
                   } else {
-                    breakevenHtml = `
-                      <div class="ac-breakeven-banner is-info">
-                        <span class="ac-breakeven-tag">💡 选购参考</span>
-                        <div class="ac-breakeven-content">
-                          单次轻微损坏保外维修成本相对亲民，AppleCare+ 核心价值在于对冲屏幕粉碎、主板进水或电池严重损耗（低于 80% 免费更换）等数千元高额整机损坏风险。
-                        </div>
-                      </div>
-                    `;
+                    advisorTag = "🛠️ 原厂服务保障";
+                    advisorText = "原厂维修采用官方 100% 匹配备件与高精度校准流程，换屏不弹未知部件警告、不丢失原彩显示（True Tone）及抗水防尘密封性。";
                   }
+
+                  decisionAdvisorHtml = `
+                    <div class="decision-advisor-card">
+                      <div class="advisor-badge-row">
+                        <span class="advisor-tag">${advisorTag}</span>
+                        <span class="advisor-sub">官方原厂服务价值参考</span>
+                      </div>
+                      <div class="advisor-content-text">${advisorText}</div>
+                    </div>
+                  `;
                 }
               }
             }
@@ -2611,7 +2776,8 @@
                 ${plan.priceSubnote ? `<span class="ac-price-subnote">${plan.priceSubnote}</span>` : ""}
               </div>
             </div>
-            ${breakevenHtml}
+            ${visualRoiHtml}
+            ${decisionAdvisorHtml}
             ${plan.notice ? `
               <div class="ac-${plan.status}-notice">
                 <span class="ac-notice-icon">${plan.status === "discontinued" ? "⚠️" : "ℹ️"}</span>
@@ -2723,6 +2889,332 @@
           }
         });
       }
+
+      // ================================================================
+      // 核心特性：Canvas 纯前端高清微信报价分享卡生成引擎
+      // ================================================================
+      function generateAndOpenQuoteCard() {
+        if (!currentQuoteModel) {
+          showToast("提示", "请先选取机型以生成官方报价卡", "ℹ️");
+          return;
+        }
+
+        const modal = document.getElementById("quote-card-modal");
+        const imgEl = document.getElementById("quote-card-img");
+        const downloadBtn = document.getElementById("btn-download-quote-card");
+        if (!modal || !imgEl) return;
+
+        const model = currentQuoteModel;
+        const services = currentQuoteServices || [];
+        const plan = currentQuotePlan || {};
+        const syncTime = (typeof DATA_SYNC_TIMESTAMP !== "undefined") ? DATA_SYNC_TIMESTAMP : "2026";
+
+        // 创建离屏高清 Canvas (Retina 750px 宽)
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+        const W = 750;
+        const rowH = 68;
+        const baseH = 540;
+        const totalH = Math.max(960, baseH + services.length * rowH);
+
+        canvas.width = W;
+        canvas.height = totalH;
+
+        function drawRoundRect(x, y, w, h, r, fillColor, strokeColor) {
+          ctx.beginPath();
+          ctx.moveTo(x + r, y);
+          ctx.arcTo(x + w, y, x + w, y + h, r);
+          ctx.arcTo(x + w, y + h, x, y + h, r);
+          ctx.arcTo(x, y + h, x, y, r);
+          ctx.arcTo(x, y, x + w, y, r);
+          ctx.closePath();
+          if (fillColor) {
+            ctx.fillStyle = fillColor;
+            ctx.fill();
+          }
+          if (strokeColor) {
+            ctx.strokeStyle = strokeColor;
+            ctx.lineWidth = 1.5;
+            ctx.stroke();
+          }
+        }
+
+        // 1. 整体底色
+        ctx.fillStyle = "#f5f5f7";
+        ctx.fillRect(0, 0, W, totalH);
+
+        // 2. 顶部品牌栏
+        ctx.fillStyle = "#1d1d1f";
+        ctx.font = "bold 26px -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'PingFang SC', sans-serif";
+        ctx.fillText(" Apple 官方维修价格核验单", 45, 65);
+
+        ctx.fillStyle = "#86868b";
+        ctx.font = "14px -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'PingFang SC', sans-serif";
+        ctx.fillText(`官方直连数据 · 同步于 ${syncTime}`, 45, 96);
+
+        // 认证徽章
+        drawRoundRect(W - 195, 42, 150, 36, 18, "#e8e8ed", null);
+        ctx.fillStyle = "#0071e3";
+        ctx.font = "bold 13px -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif";
+        ctx.fillText("✓ 原厂认证数据", W - 180, 65);
+
+        // 3. 设备信息主卡片
+        let currY = 125;
+        drawRoundRect(35, currY, W - 70, 130, 20, "#ffffff", "#e5e5ea");
+
+        ctx.fillStyle = "#1d1d1f";
+        ctx.font = "bold 32px -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'PingFang SC', sans-serif";
+        ctx.fillText(model.name, 60, currY + 52);
+
+        const statusText = plan.statusBadge || "官方在售";
+        drawRoundRect(60, currY + 70, 140, 28, 14, "#e1f5fe", null);
+        ctx.fillStyle = "#0071e3";
+        ctx.font = "bold 12.5px -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif";
+        ctx.fillText(statusText, 72, currY + 89);
+
+        // AppleCare+ 购买价格信息
+        ctx.fillStyle = "#86868b";
+        ctx.font = "13px -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif";
+        ctx.textAlign = "right";
+        ctx.fillText("AppleCare+ 官方选购价", W - 60, currY + 48);
+
+        ctx.fillStyle = "#1d1d1f";
+        ctx.font = "bold 24px -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'PingFang SC', sans-serif";
+        ctx.fillText(plan.planPrice || "--", W - 60, currY + 82);
+
+        ctx.fillStyle = "#86868b";
+        ctx.font = "12px -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif";
+        ctx.fillText(plan.period || "2 年期保障", W - 60, currY + 104);
+        ctx.textAlign = "left";
+
+        // 4. 服务明细表
+        currY += 150;
+        const tableCardH = 60 + services.length * rowH;
+        drawRoundRect(35, currY, W - 70, tableCardH, 20, "#ffffff", "#e5e5ea");
+
+        // 表头
+        ctx.fillStyle = "#f8f8fa";
+        drawRoundRect(35, currY, W - 70, 48, 20, "#f8f8fa", null);
+        ctx.fillRect(35, currY + 28, W - 70, 20);
+
+        ctx.fillStyle = "#86868b";
+        ctx.font = "bold 13px -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif";
+        ctx.fillText("维修部件 / 故障项目", 60, currY + 30);
+        ctx.textAlign = "right";
+        ctx.fillText("保外官方预估", W - 230, currY + 30);
+        ctx.fillText("AppleCare+ 自付", W - 60, currY + 30);
+        ctx.textAlign = "left";
+
+        let rowY = currY + 50;
+        services.forEach((srv, idx) => {
+          if (idx > 0) {
+            ctx.strokeStyle = "#f0f0f2";
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(55, rowY);
+            ctx.lineTo(W - 55, rowY);
+            ctx.stroke();
+          }
+
+          const fee = getAppleCareServiceFee(activeCategory, model.name, srv.name);
+
+          ctx.fillStyle = "#1d1d1f";
+          ctx.font = "500 16px -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif";
+          ctx.fillText(srv.name, 60, rowY + 42);
+
+          ctx.textAlign = "right";
+          ctx.fillStyle = "#ff3b30";
+          ctx.font = "bold 17px -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif";
+          ctx.fillText(srv.price || "--", W - 230, rowY + 42);
+
+          const acLabel = fee.label || "RMB 188";
+          if (fee.isFree) {
+            drawRoundRect(W - 145, rowY + 22, 85, 28, 14, "rgba(52, 199, 89, 0.15)", null);
+            ctx.fillStyle = "#34c759";
+            ctx.font = "bold 13px -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif";
+            ctx.fillText("¥0 免费", W - 80, rowY + 41);
+          } else {
+            ctx.fillStyle = "#0071e3";
+            ctx.font = "bold 16px -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif";
+            ctx.fillText(acLabel, W - 60, rowY + 42);
+          }
+          ctx.textAlign = "left";
+
+          rowY += rowH;
+        });
+
+        // 5. 回本与省钱高亮横幅
+        currY += tableCardH + 18;
+        const grad = ctx.createLinearGradient(35, currY, W - 35, currY);
+        grad.addColorStop(0, "#e8f8ed");
+        grad.addColorStop(1, "#e5f1ff");
+        drawRoundRect(35, currY, W - 70, 72, 16, grad, "rgba(52, 199, 89, 0.3)");
+
+        ctx.fillStyle = "#1d1d1f";
+        ctx.font = "bold 15px -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif";
+        ctx.fillText("✨ 官方服务保障价值建议", 60, currY + 30);
+
+        ctx.fillStyle = "#2c3e50";
+        ctx.font = "12.5px -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif";
+        ctx.fillText("加购 AppleCare+ 享受无限次意外损坏特惠自付金，屏幕/外壳损坏仅需 188 元。", 60, currY + 54);
+
+        // 6. 底部权威官方声明
+        currY += 92;
+        ctx.fillStyle = "#86868b";
+        ctx.font = "11.5px -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif";
+        ctx.fillText("注：本报价直连 Apple 官方支持系统 (support.apple.com) 实时同步，最终费用以 Apple 直营店检测为准。", 45, currY);
+        ctx.fillText("数据支持：Apple 官方服务快查系统 · 涵盖全国 304 家原厂认证网点与 590+ 项官方报价", 45, currY + 20);
+
+        try {
+          const dataUrl = canvas.toDataURL("image/png");
+          imgEl.src = dataUrl;
+          if (downloadBtn) {
+            downloadBtn.href = dataUrl;
+            downloadBtn.download = `Apple官方维修报价单_${model.name}.png`;
+          }
+          modal.style.display = "flex";
+        } catch (e) {
+          showToast("生成失败", "无法导出图片，请稍后重试", "⚠️");
+        }
+      }
+
+      // 绑定生成微信分享报价卡按钮
+      const btnShareCard = document.getElementById("btn-estimator-share-card");
+      if (btnShareCard) {
+        btnShareCard.addEventListener("click", () => {
+          if (navigator.vibrate) navigator.vibrate(12);
+          generateAndOpenQuoteCard();
+        });
+      }
+
+      const quoteModal = document.getElementById("quote-card-modal");
+      const btnCloseQuote = document.getElementById("btn-close-quote-card");
+      if (btnCloseQuote && quoteModal) {
+        btnCloseQuote.addEventListener("click", () => {
+          quoteModal.style.display = "none";
+        });
+      }
+      if (quoteModal) {
+        quoteModal.addEventListener("click", (e) => {
+          if (e.target === quoteModal) {
+            quoteModal.style.display = "none";
+          }
+        });
+      }
+
+      // 绑定热门机型秒选气泡点击
+      const hotChipsBar = document.getElementById("hot-chips-bar");
+      if (hotChipsBar) {
+        hotChipsBar.addEventListener("click", (e) => {
+          const chip = e.target.closest(".hot-chip");
+          if (!chip) return;
+          const targetCat = chip.getAttribute("data-category");
+          const targetSeriesName = chip.getAttribute("data-series");
+          const targetModelName = chip.getAttribute("data-model");
+          if (!targetCat) return;
+
+          if (navigator.vibrate) navigator.vibrate(10);
+
+          activeCategory = targetCat;
+          renderCategoryBar();
+
+          const sList = getSeriesList();
+          let foundSeriesIdx = 0;
+          if (targetSeriesName) {
+            const sIdx = sList.findIndex(s => s.series.includes(targetSeriesName) || targetSeriesName.includes(s.series));
+            if (sIdx >= 0) foundSeriesIdx = sIdx;
+          }
+
+          populateSeriesDropdown();
+          seriesSelect.value = String(foundSeriesIdx);
+          updateModelsForSeries(foundSeriesIdx);
+
+          if (targetModelName) {
+            const sObj = sList[foundSeriesIdx];
+            if (sObj && sObj.models) {
+              const mIdx = sObj.models.findIndex(m => m.name.includes(targetModelName) || targetModelName.includes(m.name));
+              if (mIdx >= 0) {
+                modelSelect.value = String(mIdx);
+                renderEstimatorQuote(sObj.models[mIdx]);
+              }
+            }
+          }
+
+          const card = document.getElementById("estimator-result-card");
+          if (card) {
+            card.scrollIntoView({ behavior: "smooth", block: "nearest" });
+          }
+        });
+      }
+    }
+
+    // ================================================================
+    // 原厂网点智能测距与就近定位系统 (LBS Nearest Store)
+    // ================================================================
+    function initLBS() {
+      const btnLocate = document.getElementById("btn-locate-nearest");
+      if (!btnLocate) return;
+
+      btnLocate.addEventListener("click", () => {
+        if (!navigator.geolocation) {
+          showToast("定位提示", "当前浏览器不支持或已禁用地理位置权限", "⚠️");
+          return;
+        }
+
+        btnLocate.classList.add("is-locating");
+        btnLocate.innerHTML = `
+          <svg class="sync-spin-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
+          </svg>
+          <span>正在测距...</span>
+        `;
+
+        navigator.geolocation.getCurrentPosition(
+          (pos) => {
+            const userLat = pos.coords.latitude;
+            const userLng = pos.coords.longitude;
+            state.userLocation = { lat: userLat, lng: userLng };
+            state.sortByDistance = true;
+
+            state.storesData.forEach((store) => {
+              if (store.geo && store.geo.lat && store.geo.lng) {
+                store.distanceKm = getDistanceFromLatLngInKm(userLat, userLng, store.geo.lat, store.geo.lng);
+              } else {
+                store.distanceKm = 99999;
+              }
+            });
+
+            state.currentCity = "全部";
+            render();
+
+            btnLocate.classList.remove("is-locating");
+            btnLocate.classList.add("is-located");
+            btnLocate.innerHTML = `
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>已按距离就近排序</span>
+            `;
+
+            const sorted = [...state.storesData].sort((a, b) => (a.distanceKm || 99999) - (b.distanceKm || 99999));
+            const nearest = sorted[0];
+            const distStr = nearest && nearest.distanceKm < 1 ? `${Math.round(nearest.distanceKm * 1000)}米` : `${(nearest.distanceKm || 0).toFixed(1)}公里`;
+
+            showToast("📍 智能就近定位成功", `已为您按距离优先排序，最近网点【${nearest ? nearest.name : ''}】距您约 ${distStr}`, "🎉");
+          },
+          (err) => {
+            btnLocate.classList.remove("is-locating");
+            btnLocate.innerHTML = `
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
+              </svg>
+              <span>离我最近</span>
+            `;
+            showToast("定位提示", "获取当前定位失败，已保留默认城市展示", "ℹ️");
+          },
+          { enableHighAccuracy: false, timeout: 8000, maximumAge: 60000 }
+        );
+      });
     }
 
     // ================================================================
@@ -2860,6 +3352,7 @@
     // 初始化渲染
     initCityDropdown();
     initEstimator();
+    initLBS();
     initChangelog();
     updateSyncTimestampDisplay();
     render();

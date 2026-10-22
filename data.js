@@ -1,17 +1,17 @@
 /**
  * Apple 官方维修价格与服务网点快查 - 核心数据集
  * 直连 Apple 官网官方接口同步生成
- * 同步时间戳: 2026-10-22 01:20:13
+ * 同步时间戳: 2026-10-22 09:39:39
  */
 
-var DATA_SYNC_TIMESTAMP = "2026-10-22 01:20:13";
+var DATA_SYNC_TIMESTAMP = "2026-10-22 09:39:39";
 if (typeof window !== "undefined") window.DATA_SYNC_TIMESTAMP = DATA_SYNC_TIMESTAMP;
 
 // ============================================================================
 // 官方数据最新变动通知记录 (DATA_CHANGELOG)
 // ============================================================================
 var DATA_CHANGELOG = {
-  "sync_time": "2026-10-22 01:20:13",
+  "sync_time": "2026-10-22 09:39:39",
   "has_changes": false,
   "badge_text": "",
   "title": "",
@@ -7925,7 +7925,7 @@ if (typeof window !== "undefined") window.hotAccessoriesData = hotAccessoriesDat
 // 官方在线商店真实选购价格同步 + 历史停售方案基准 + 全品类自付金统一矩阵
 // ============================================================================
 var APPLECARE_PLANS = {
-  "sync_time": "2026-10-22 01:20:13",
+  "sync_time": "2026-10-22 09:39:39",
   "live_store": {
     "iphone_duo": {
       "rawPrice": 2599,
@@ -7942,6 +7942,16 @@ var APPLECARE_PLANS = {
       "priceString": "RMB 1,799",
       "partNumber": "SHHY3"
     },
+    "watch_se": {
+      "rawPrice": 649,
+      "priceString": "RMB 649",
+      "partNumber": "SH0H3CH/A"
+    },
+    "watch_series": {
+      "rawPrice": 649,
+      "priceString": "RMB 649",
+      "partNumber": "SH0H3CH/A"
+    },
     "watch_ultra": {
       "rawPrice": 799,
       "priceString": "RMB 799",
@@ -7951,6 +7961,11 @@ var APPLECARE_PLANS = {
       "rawPrice": 1299,
       "priceString": "RMB 1,299 或 RMB 55/月 (24 期)",
       "partNumber": "SH413CH/A"
+    },
+    "iphone_16": {
+      "rawPrice": 1399,
+      "priceString": "RMB 1,399 或 RMB 59/月 (24 期)",
+      "partNumber": "SNH72CH/A"
     },
     "ipad_pro": {
       "rawPrice": 1399,
@@ -7966,6 +7981,11 @@ var APPLECARE_PLANS = {
       "rawPrice": 649,
       "priceString": "RMB 649",
       "partNumber": "SUY32CH/A"
+    },
+    "macbook_air": {
+      "rawPrice": 1749,
+      "priceString": "RMB 1749 起 ",
+      "partNumber": "SCWA3CH/A"
     },
     "macbook_pro": {
       "rawPrice": 2449,
