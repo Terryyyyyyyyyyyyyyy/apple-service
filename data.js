@@ -1,17 +1,17 @@
 /**
  * Apple 官方维修价格与服务网点快查 - 核心数据集
  * 直连 Apple 官网官方接口同步生成
- * 同步时间戳: 2026-10-22 08:20:00
+ * 同步时间戳: 2026-10-23 08:16:05
  */
 
-var DATA_SYNC_TIMESTAMP = "2026-10-22 08:20:00";
+var DATA_SYNC_TIMESTAMP = "2026-10-23 08:16:05";
 if (typeof window !== "undefined") window.DATA_SYNC_TIMESTAMP = DATA_SYNC_TIMESTAMP;
 
 // ============================================================================
 // 官方数据最新变动通知记录 (DATA_CHANGELOG)
 // ============================================================================
 var DATA_CHANGELOG = {
-  "sync_time": "2026-10-22 08:20:00",
+  "sync_time": "2026-10-23 08:16:05",
   "has_changes": false,
   "badge_text": "",
   "title": "",
@@ -5635,8 +5635,8 @@ var storesData = [
     "address": "四川省成都市武侯区人民南路四段11号附1号1栋写字楼11楼06号",
     "phone": "028-60199355",
     "geo": {
-      "lat": 30.629194,
-      "lng": 104.06746
+      "lat": 30.629197,
+      "lng": 104.067451
     }
   },
   {
@@ -7925,7 +7925,7 @@ if (typeof window !== "undefined") window.hotAccessoriesData = hotAccessoriesDat
 // 官方在线商店真实选购价格同步 + 历史停售方案基准 + 全品类自付金统一矩阵
 // ============================================================================
 var APPLECARE_PLANS = {
-  "sync_time": "2026-10-22 08:20:00",
+  "sync_time": "2026-10-23 08:16:05",
   "live_store": {
     "iphone_duo": {
       "rawPrice": 2599,
