@@ -1914,16 +1914,60 @@
         "product_loc_title": "iPad mini",
         "children_present": true,
         "sort_order": "4",
-        "isDefault": false,
+        "isDefault": true,
         "showEstimateDisclaimer": false,
         "childrenProducts": [
+          {
+            "product_tag_id": "TAG_1793080984061",
+            "product_eng_title": "iPad mini (A20 Pro) Wi-Fi",
+            "product_loc_title": "iPad mini (A20 Pro) Wi-Fi",
+            "children_present": false,
+            "sort_order": "20",
+            "isDefault": true,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301338&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 948",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 4,179",
+                "sortOrder": "4"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1793080830131",
+            "product_eng_title": "iPad mini (A20 Pro) Wi-Fi + Cellular",
+            "product_loc_title": "iPad mini (A20 Pro) Wi-Fi + Cellular",
+            "children_present": false,
+            "sort_order": "15",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301339&size=240x240",
+            "showEstimateDisclaimer": false,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 948",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏",
+                "price": "RMB 4,459",
+                "sortOrder": "4"
+              }
+            ]
+          },
           {
             "product_tag_id": "TAG_1750383130310",
             "product_eng_title": "iPad mini (A17 Pro) Wi-Fi",
             "product_loc_title": "iPad mini（A17 Pro）无线局域网机型",
             "children_present": false,
             "sort_order": "9",
-            "isDefault": true,
+            "isDefault": false,
             "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301063&size=240x240",
             "showEstimateDisclaimer": false,
             "services": [
@@ -2035,7 +2079,7 @@
         "product_loc_title": "iPad Air",
         "children_present": true,
         "sort_order": "3",
-        "isDefault": true,
+        "isDefault": false,
         "showEstimateDisclaimer": false,
         "childrenProducts": [
           {
