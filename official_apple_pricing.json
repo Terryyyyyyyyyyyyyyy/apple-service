@@ -1920,7 +1920,7 @@
           {
             "product_tag_id": "TAG_1793080984061",
             "product_eng_title": "iPad mini (A20 Pro) Wi-Fi",
-            "product_loc_title": "iPad mini (A20 Pro) Wi-Fi",
+            "product_loc_title": "iPad mini (A20 Pro) Wi-Fi 机型",
             "children_present": false,
             "sort_order": "20",
             "isDefault": true,
@@ -1942,7 +1942,7 @@
           {
             "product_tag_id": "TAG_1793080830131",
             "product_eng_title": "iPad mini (A20 Pro) Wi-Fi + Cellular",
-            "product_loc_title": "iPad mini (A20 Pro) Wi-Fi + Cellular",
+            "product_loc_title": "iPad mini (A20 Pro) Wi-Fi + 蜂窝网络机型",
             "children_present": false,
             "sort_order": "15",
             "isDefault": false,
