@@ -1,41 +1,24 @@
 /**
  * Apple 官方维修价格与服务网点快查 - 核心数据集
  * 直连 Apple 官网官方接口同步生成
- * 同步时间戳: 2026-10-30 09:38:16
+ * 同步时间戳: 2026-10-31 09:18:13
  */
 
-var DATA_SYNC_TIMESTAMP = "2026-10-30 09:38:16";
+var DATA_SYNC_TIMESTAMP = "2026-10-31 09:18:13";
 if (typeof window !== "undefined") window.DATA_SYNC_TIMESTAMP = DATA_SYNC_TIMESTAMP;
 
 // ============================================================================
 // 官方数据最新变动通知记录 (DATA_CHANGELOG)
 // ============================================================================
 var DATA_CHANGELOG = {
-  "sync_time": "2026-10-30 09:38:16",
-  "has_changes": true,
-  "badge_text": "官方有变动",
-  "title": "Apple 官网价格与机型调整提醒",
-  "summary": "本次同步检测到官方接口 0 项维修报价变动与 2 款新增机型。",
+  "sync_time": "2026-10-31 09:18:13",
+  "has_changes": false,
+  "badge_text": "",
+  "title": "",
+  "summary": "",
   "price_changes": [],
-  "new_models": [
-    {
-      "category": "",
-      "series": "",
-      "models": "iPad mini (A20 Pro) Wi-Fi + 蜂窝网络机型",
-      "note": "官方接口新增入库机型"
-    },
-    {
-      "category": "",
-      "series": "",
-      "models": "iPad mini (A20 Pro) Wi-Fi 机型",
-      "note": "官方接口新增入库机型"
-    }
-  ],
-  "store_changes": {
-    "total_stores": 307,
-    "cities": 65,
-    "status": "覆盖全国 65 个核心城市共 307 家 Apple Store 直营店与官方原厂预约送修 AASP 网点。"
-  }
+  "new_models": [],
+  "store_changes": null
 };
 if (typeof window !== "undefined") window.DATA_CHANGELOG = DATA_CHANGELOG;
 
@@ -8006,7 +7989,7 @@ if (typeof window !== "undefined") window.hotAccessoriesData = hotAccessoriesDat
 // 官方在线商店真实选购价格同步 + 历史停售方案基准 + 全品类自付金统一矩阵
 // ============================================================================
 var APPLECARE_PLANS = {
-  "sync_time": "2026-10-30 09:38:16",
+  "sync_time": "2026-10-31 09:18:13",
   "live_store": {
     "iphone_duo": {
       "rawPrice": 2599,
