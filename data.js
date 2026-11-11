@@ -1,17 +1,17 @@
 /**
  * Apple 官方维修价格与服务网点快查 - 核心数据集
  * 直连 Apple 官网官方接口同步生成
- * 同步时间戳: 2026-11-10 10:47:24
+ * 同步时间戳: 2026-11-11 10:22:52
  */
 
-var DATA_SYNC_TIMESTAMP = "2026-11-10 10:47:24";
+var DATA_SYNC_TIMESTAMP = "2026-11-11 10:22:52";
 if (typeof window !== "undefined") window.DATA_SYNC_TIMESTAMP = DATA_SYNC_TIMESTAMP;
 
 // ============================================================================
 // 官方数据最新变动通知记录 (DATA_CHANGELOG)
 // ============================================================================
 var DATA_CHANGELOG = {
-  "sync_time": "2026-11-10 10:47:24",
+  "sync_time": "2026-11-11 10:22:52",
   "has_changes": false,
   "badge_text": "",
   "title": "",
@@ -4188,7 +4188,7 @@ var pricesData = [
 if (typeof window !== "undefined") window.pricesData = pricesData;
 
 // ============================================================================
-// 模块 2：全国官方原厂认证服务网点库 (共 307 家)
+// 模块 2：全国官方原厂认证服务网点库 (共 306 家)
 // ============================================================================
 var storesData = [
   {
@@ -7732,18 +7732,6 @@ var storesData = [
     }
   },
   {
-    "name": "尚派正品－贵阳国贸逸天城店",
-    "type": "Apple 授权服务提供商 (AASP)",
-    "city": "贵阳",
-    "district": "南明区",
-    "address": "贵州省贵阳市南明区市南路42号国贸逸天城L1-122",
-    "phone": "0851-85510880",
-    "geo": {
-      "lat": 26.564218,
-      "lng": 106.723443
-    }
-  },
-  {
     "name": "立兴－贵阳智诚潮流汇店",
     "type": "Apple 授权服务提供商 (AASP)",
     "city": "贵阳",
@@ -7989,7 +7977,7 @@ if (typeof window !== "undefined") window.hotAccessoriesData = hotAccessoriesDat
 // 官方在线商店真实选购价格同步 + 历史停售方案基准 + 全品类自付金统一矩阵
 // ============================================================================
 var APPLECARE_PLANS = {
-  "sync_time": "2026-11-10 10:47:24",
+  "sync_time": "2026-11-11 10:22:52",
   "live_store": {
     "iphone_duo": {
       "rawPrice": 2599,
