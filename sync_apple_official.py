@@ -36,6 +36,12 @@ PRICING_TAGS = {
     "AirPods": "TAG_1749056323568"
 }
 
+# Apple 官方 Mac 维修估价 API Tag（支持 MacBook Pro/Air/Neo 笔记本与台式机）
+MAC_PRICING_TAGS = {
+    "Mac 笔记本电脑": "TAG_1753920674365",
+    "Mac 台式电脑": "TAG_1753920666316"
+}
+
 def fetch_pricing_data():
     """从 Apple 官网官方接口抓取四大核心品类的实时维修报价"""
     print("\n" + "=" * 65)
@@ -121,6 +127,9 @@ def fetch_pricing_data():
         if not success:
             print(f"    ❌ {cat_name} 抓取最终失败，保留本地缓存数据")
 
+    # 同步 Mac 官方维修估价库（增量合并：新增官网新款并刷新电池服务费，同时保留历史机型与屏幕/主板参考价）
+    catalog = fetch_mac_pricing_data(catalog, raw_pricing_all, headers)
+
     # 保存 raw 数据
     with open(PRICING_RAW_PATH, "w", encoding="utf-8") as f:
         json.dump(raw_pricing_all, f, ensure_ascii=False, indent=2)
@@ -129,6 +138,82 @@ def fetch_pricing_data():
     with open(CATALOG_JSON_PATH, "w", encoding="utf-8") as f:
         json.dump(catalog, f, ensure_ascii=False)
 
+    return catalog
+
+def fetch_mac_pricing_data(catalog, raw_pricing_all, headers):
+    """抓取 Apple 官方 Mac 笔记本与台式机估价 API，并与本地 Mac 历史参考价安全合并"""
+    existing_mac = catalog.get("Mac", [])
+    series_map = {s.get("series"): list(s.get("models", [])) for s in existing_mac if s.get("series")}
+    series_order = [s.get("series") for s in existing_mac if s.get("series")]
+    added_count = 0
+    updated_count = 0
+
+    mac_headers = dict(headers)
+    mac_headers["Referer"] = "https://support.apple.com/zh-cn/mac-laptops/repair"
+
+    for sub_name, tag in MAC_PRICING_TAGS.items():
+        url = f"https://support.apple.com/ols/api/pricing/products/services/pricing-estimate?locale=zh-cn&pricing_type=OOW&parent_tag_id={tag}"
+        print(f"[*] 正在抓取品类: {sub_name} (Tag: {tag})...")
+        req = urllib.request.Request(url, headers=mac_headers)
+        for attempt in range(3):
+            try:
+                with urllib.request.urlopen(req, timeout=20) as resp:
+                    if resp.status == 200:
+                        payload = json.loads(resp.read().decode("utf-8"))
+                        raw_pricing_all[sub_name] = payload
+                        for p in payload.get("products", []):
+                            series_title = p.get("product_loc_title") or p.get("product_eng_title")
+                            if not series_title:
+                                continue
+                            if series_title not in series_map:
+                                series_map[series_title] = []
+                                series_order.append(series_title)
+                            children = p.get("childrenProducts", [])
+                            items = children if children else [p]
+                            existing_models = {m.get("name"): m for m in series_map[series_title]}
+                            new_models_to_prepend = []
+                            for c in items:
+                                m_title = c.get("product_loc_title") or c.get("product_eng_title")
+                                if not m_title:
+                                    continue
+                                live_svcs = [
+                                    {"name": s.get("serviceLabel"), "price": s.get("price")}
+                                    for s in c.get("services", [])
+                                    if s.get("price") and re.search(r"\d", str(s.get("price")))
+                                ]
+                                if not live_svcs:
+                                    continue
+                                if m_title in existing_models:
+                                    ex_m = existing_models[m_title]
+                                    ex_svcs = {sv.get("name"): sv for sv in ex_m.get("services", [])}
+                                    for lsv in live_svcs:
+                                        if lsv["name"] in ex_svcs:
+                                            if ex_svcs[lsv["name"]]["price"] != lsv["price"]:
+                                                ex_svcs[lsv["name"]]["price"] = lsv["price"]
+                                                updated_count += 1
+                                        else:
+                                            ex_m.setdefault("services", []).append(lsv)
+                                            updated_count += 1
+                                    if c.get("imageUrl") and not ex_m.get("imageUrl"):
+                                        ex_m["imageUrl"] = c.get("imageUrl")
+                                else:
+                                    new_models_to_prepend.append({
+                                        "name": m_title,
+                                        "imageUrl": c.get("imageUrl", ""),
+                                        "services": live_svcs
+                                    })
+                                    added_count += 1
+                            if new_models_to_prepend:
+                                series_map[series_title] = new_models_to_prepend + series_map[series_title]
+                        print(f"    ✅ {sub_name} 同步成功")
+                        break
+            except Exception as e:
+                print(f"    ⚠️ 第 {attempt + 1} 次尝试抓取 {sub_name} 失败: {e}")
+                time.sleep(1.0)
+
+    catalog["Mac"] = [{"series": s, "models": series_map[s]} for s in series_order if series_map.get(s)]
+    if added_count or updated_count:
+        print(f"    ✅ Mac 估价库合并完成: 新增 {added_count} 款机型，更新 {updated_count} 项报价")
     return catalog
 
 def fetch_stores_data():
@@ -221,6 +306,7 @@ def fetch_live_applecare_store():
         ("ipad_10", "https://www.apple.com.cn/shop/buy-ipad/ipad"),
         ("macbook_air", "https://www.apple.com.cn/shop/buy-mac/macbook-air"),
         ("macbook_pro", "https://www.apple.com.cn/shop/buy-mac/macbook-pro"),
+        ("macbook_pro_proled", "https://www.apple.com.cn/shop/buy-mac/macbook-pro-proled-xdr"),
     ]
     
     results = {}
@@ -282,6 +368,27 @@ def fetch_live_applecare_store():
         except Exception as e:
             print(f"    ⚠️ 抓取 {key} 略过或网络波动: {e}")
             
+    # 3. 补充抓取 AppleCare 官方总览页中的 MacBook Pro 全系细分价格
+    try:
+        req = urllib.request.Request("https://www.apple.com.cn/applecare/", headers=headers)
+        with urllib.request.urlopen(req, timeout=12) as r:
+            ac_html = r.read().decode("utf-8", errors="replace")
+        mac_ac_patterns = {
+            "macbook_pro_14_m6": r"MacBook Pro 14\s*英寸\s*\(M6\).*?RMB\s*([\d,]+)",
+            "macbook_pro_14_m5_pro": r"MacBook Pro 14\s*英寸\s*\(M5 Pro/M5 Max\).*?RMB\s*([\d,]+)",
+            "macbook_pro_16": r"MacBook Pro 16\s*英寸(?!\s*\(PROLED).*?RMB\s*([\d,]+)",
+            "macbook_pro_14_proled": r"MacBook Pro 14\s*英寸\s*\(PROLED XDR[^)]*\).*?RMB\s*([\d,]+)",
+            "macbook_pro_16_proled": r"MacBook Pro 16\s*英寸\s*\(PROLED XDR[^)]*\).*?RMB\s*([\d,]+)",
+        }
+        for k, pat in mac_ac_patterns.items():
+            m = re.search(pat, ac_html, re.DOTALL)
+            if m:
+                p = int(m.group(1).replace(",", ""))
+                results[k] = {"rawPrice": p, "priceString": f"RMB {p:,}", "partNumber": ""}
+                print(f"    ✅ AppleCare 总览页核验: {k} -> RMB {p:,}")
+    except Exception as e:
+        print(f"    ⚠️ AppleCare 总览页抓取略过或网络波动: {e}")
+
     print(f"✅ 成功核验 {len(results)} 款在售主力机型 AppleCare+ 实时定价！")
     return results
 
@@ -300,7 +407,11 @@ def build_applecare_plans_matrix(live_store):
     ipad_air_price = live_store.get("ipad_air", {}).get("rawPrice", 749)
     ipad_10_price = live_store.get("ipad_10", {}).get("rawPrice", 649)
     macbook_air_price = live_store.get("macbook_air", {}).get("rawPrice", 1749)
-    macbook_pro_price = live_store.get("macbook_pro", {}).get("rawPrice", 2449)
+    macbook_pro_14_m6_price = live_store.get("macbook_pro_14_m6", {}).get("rawPrice", live_store.get("macbook_pro", {}).get("rawPrice", 2599))
+    macbook_pro_14_m5_pro_price = live_store.get("macbook_pro_14_m5_pro", {}).get("rawPrice", 2999)
+    macbook_pro_16_price = live_store.get("macbook_pro_16", {}).get("rawPrice", 3449)
+    macbook_pro_14_proled_price = live_store.get("macbook_pro_14_proled", {}).get("rawPrice", live_store.get("macbook_pro_proled", {}).get("rawPrice", 3399))
+    macbook_pro_16_proled_price = live_store.get("macbook_pro_16_proled", {}).get("rawPrice", 4099)
 
     return {
         "sync_time": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
@@ -352,8 +463,12 @@ def build_applecare_plans_matrix(live_store):
                 "pro_hist": {"price": "RMB 1,499", "rawPrice": 1499, "status": "discontinued", "period": "历史 2 年期", "releaseYear": "2021-2024"}
             },
             "Mac": {
-                "pro_16": {"price": "RMB 3,449", "rawPrice": 3449, "status": "in_sale", "period": "3 年期"},
-                "pro_14": {"price": f"RMB {macbook_pro_price:,}", "rawPrice": macbook_pro_price, "status": "in_sale", "period": "3 年期"},
+                "pro_16_proled": {"price": f"RMB {macbook_pro_16_proled_price:,}", "rawPrice": macbook_pro_16_proled_price, "status": "in_sale", "period": "3 年期"},
+                "pro_14_proled": {"price": f"RMB {macbook_pro_14_proled_price:,}", "rawPrice": macbook_pro_14_proled_price, "status": "in_sale", "period": "3 年期"},
+                "pro_16": {"price": f"RMB {macbook_pro_16_price:,}", "rawPrice": macbook_pro_16_price, "status": "in_sale", "period": "3 年期"},
+                "pro_14_m5_pro": {"price": f"RMB {macbook_pro_14_m5_pro_price:,}", "rawPrice": macbook_pro_14_m5_pro_price, "status": "in_sale", "period": "3 年期"},
+                "pro_14_m6": {"price": f"RMB {macbook_pro_14_m6_price:,}", "rawPrice": macbook_pro_14_m6_price, "status": "in_sale", "period": "3 年期"},
+                "pro_14": {"price": f"RMB {macbook_pro_14_m6_price:,}", "rawPrice": macbook_pro_14_m6_price, "status": "in_sale", "period": "3 年期"},
                 "air_15": {"price": "RMB 2,049", "rawPrice": 2049, "status": "in_sale", "period": "3 年期"},
                 "air_13": {"price": f"RMB {macbook_air_price:,}", "rawPrice": macbook_air_price, "status": "in_sale", "period": "3 年期"},
                 "mini": {"price": "RMB 799", "rawPrice": 799, "status": "in_sale", "period": "3 年期"},

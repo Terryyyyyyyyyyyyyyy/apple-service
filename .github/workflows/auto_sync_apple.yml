@@ -9,12 +9,19 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: auto-sync-apple
+  cancel-in-progress: true
+
 jobs:
   sync:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -33,6 +40,7 @@ jobs:
           if git diff --staged --quiet; then
             echo "No changes detected from Apple official API."
           else
-            git commit -m "chore(auto-sync): 自动同步 Apple 官网最新维修报价与网点数据 [skip ci]"
+            git commit -m "chore(auto-sync): 自动同步 Apple 官网最新维修报价与网点数据"
+            git pull --rebase origin "${{ github.ref_name }}" || true
             git push
           fi

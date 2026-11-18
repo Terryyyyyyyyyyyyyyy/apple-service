@@ -2267,14 +2267,67 @@
           "保障期内享受不限次数意外损坏保修与全球联保服务"
         ];
 
-        // 在售机型
-        if (normM.includes("16英寸") && (normM.includes("m4") || normM.includes("m3"))) {
+        // 在售机型 - MacBook Pro (PROLED XDR / M6 / M5 / M4 / M3)
+        if (normM.includes("proled") && normM.includes("16英寸")) {
+          const cfg = matrixPrices && matrixPrices.Mac && matrixPrices.Mac.pro_16_proled;
           return {
             status: "in_sale",
             statusBadge: "官方在售 · 支持新购",
             priceLabel: "官方选购价格",
-            planPrice: "RMB 3,449",
-            rawPrice: 3449,
+            planPrice: cfg ? cfg.price : "RMB 4,099",
+            rawPrice: cfg ? cfg.rawPrice : 4099,
+            period: "3 年期",
+            priceSubnote: "购机 60 天内可加购",
+            features: macFeatures
+          };
+        }
+        if (normM.includes("proled") && normM.includes("14英寸")) {
+          const cfg = matrixPrices && matrixPrices.Mac && matrixPrices.Mac.pro_14_proled;
+          return {
+            status: "in_sale",
+            statusBadge: "官方在售 · 支持新购",
+            priceLabel: "官方选购价格",
+            planPrice: cfg ? cfg.price : "RMB 3,399",
+            rawPrice: cfg ? cfg.rawPrice : 3399,
+            period: "3 年期",
+            priceSubnote: "购机 60 天内可加购",
+            features: macFeatures
+          };
+        }
+        if (normM.includes("16英寸") && (normM.includes("m5") || normM.includes("m4") || normM.includes("m3"))) {
+          const cfg = matrixPrices && matrixPrices.Mac && matrixPrices.Mac.pro_16;
+          return {
+            status: "in_sale",
+            statusBadge: "官方在售 · 支持新购",
+            priceLabel: "官方选购价格",
+            planPrice: cfg ? cfg.price : "RMB 3,449",
+            rawPrice: cfg ? cfg.rawPrice : 3449,
+            period: "3 年期",
+            priceSubnote: "购机 60 天内可加购",
+            features: macFeatures
+          };
+        }
+        if (normM.includes("14英寸") && (normM.includes("m5pro") || normM.includes("m5max"))) {
+          const cfg = matrixPrices && matrixPrices.Mac && matrixPrices.Mac.pro_14_m5_pro;
+          return {
+            status: "in_sale",
+            statusBadge: "官方在售 · 支持新购",
+            priceLabel: "官方选购价格",
+            planPrice: cfg ? cfg.price : "RMB 2,999",
+            rawPrice: cfg ? cfg.rawPrice : 2999,
+            period: "3 年期",
+            priceSubnote: "购机 60 天内可加购",
+            features: macFeatures
+          };
+        }
+        if (normM.includes("14英寸") && (normM.includes("m6") || normM.includes("m5"))) {
+          const cfg = matrixPrices && matrixPrices.Mac && matrixPrices.Mac.pro_14_m6;
+          return {
+            status: "in_sale",
+            statusBadge: "官方在售 · 支持新购",
+            priceLabel: "官方选购价格",
+            planPrice: cfg ? cfg.price : "RMB 2,599",
+            rawPrice: cfg ? cfg.rawPrice : 2599,
             period: "3 年期",
             priceSubnote: "购机 60 天内可加购",
             features: macFeatures
@@ -2286,8 +2339,8 @@
             status: "in_sale",
             statusBadge: "官方在售 · 支持新购",
             priceLabel: "官方选购价格",
-            planPrice: cfg ? cfg.price : "RMB 2,449",
-            rawPrice: cfg ? cfg.rawPrice : 2449,
+            planPrice: cfg ? cfg.price : "RMB 2,599",
+            rawPrice: cfg ? cfg.rawPrice : 2599,
             period: "3 年期",
             priceSubnote: "购机 60 天内可加购",
             features: macFeatures
