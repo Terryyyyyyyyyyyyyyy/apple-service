@@ -6811,96 +6811,24 @@ body {
 /**
  * Apple 官方维修价格与服务网点快查 - 核心数据集
  * 直连 Apple 官网官方接口同步生成
- * 同步时间戳: 2026-11-19 09:17:57
+ * 同步时间戳: 2026-11-19 01:35:07
  */
 
-var DATA_SYNC_TIMESTAMP = "2026-11-19 09:17:57";
+var DATA_SYNC_TIMESTAMP = "2026-11-19 01:35:07";
 if (typeof window !== "undefined") window.DATA_SYNC_TIMESTAMP = DATA_SYNC_TIMESTAMP;
 
 // ============================================================================
 // 官方数据最新变动通知记录 (DATA_CHANGELOG)
 // ============================================================================
 var DATA_CHANGELOG = {
-  "sync_time": "2026-11-19 09:17:57",
-  "has_changes": true,
-  "badge_text": "官方有变动",
-  "title": "Apple 官网价格与机型调整提醒",
-  "summary": "本次同步检测到官方接口 2 项维修报价变动与 8 款新增机型。",
-  "price_changes": [
-    {
-      "category": "Mac",
-      "model": "MacBook Pro（16 英寸 PROLED XDR，M5 Pro/M5 Max）",
-      "part": "电池服务",
-      "old_price": 1798,
-      "new_price": 1968,
-      "diff": 170,
-      "type": "up"
-    },
-    {
-      "category": "Mac",
-      "model": "MacBook Pro（16 英寸，M5 Pro/M5 Max）",
-      "part": "电池服务",
-      "old_price": 1798,
-      "new_price": 1968,
-      "diff": 170,
-      "type": "up"
-    }
-  ],
-  "new_models": [
-    {
-      "category": "",
-      "series": "",
-      "models": "MacBook Air（15 英寸，M4，2025 年）",
-      "note": "官方接口新增入库机型"
-    },
-    {
-      "category": "",
-      "series": "",
-      "models": "MacBook Pro（14 英寸，M4，2024 年）",
-      "note": "官方接口新增入库机型"
-    },
-    {
-      "category": "",
-      "series": "",
-      "models": "MacBook Air（13 英寸，M4，2025 年）",
-      "note": "官方接口新增入库机型"
-    },
-    {
-      "category": "",
-      "series": "",
-      "models": "MacBook Pro（16 英寸，2021 年机型）",
-      "note": "官方接口新增入库机型"
-    },
-    {
-      "category": "",
-      "series": "",
-      "models": "iPad mini (A20 Pro) Wi-Fi + 蜂窝网络机型",
-      "note": "官方接口新增入库机型"
-    },
-    {
-      "category": "",
-      "series": "",
-      "models": "MacBook Air（15 英寸，M3，2024 年）",
-      "note": "官方接口新增入库机型"
-    },
-    {
-      "category": "",
-      "series": "",
-      "models": "MacBook Air（15 英寸，M2，2023 年）",
-      "note": "官方接口新增入库机型"
-    },
-    {
-      "category": "",
-      "series": "",
-      "models": "MacBook Pro（16 英寸，M3，2023 年）",
-      "note": "官方接口新增入库机型"
-    }
-  ],
-  "store_changes": {
-    "total_stores": 300,
-    "cities": 65,
-    "status": "覆盖全国 65 个核心城市共 300 家 Apple Store 直营店与官方原厂预约送修 AASP 网点。"
-  }
+  "sync_time": "2026-11-19 01:35:07",
+  "has_changes": false,
+  "badge_text": "",
+  "title": "",
+  "summary": "",
+  "price_changes": [],
+  "new_models": [],
+  "store_changes": null
 };
 if (typeof window !== "undefined") window.DATA_CHANGELOG = DATA_CHANGELOG;
 
@@ -11287,7 +11215,7 @@ var pricesData = [
 if (typeof window !== "undefined") window.pricesData = pricesData;
 
 // ============================================================================
-// 模块 2：全国官方原厂认证服务网点库 (共 300 家)
+// 模块 2：全国官方原厂认证服务网点库 (共 306 家)
 // ============================================================================
 var storesData = [
   {
@@ -13523,6 +13451,42 @@ var storesData = [
     }
   },
   {
+    "name": "百邦－东莞东城店",
+    "type": "Apple 授权服务提供商 (AASP)",
+    "city": "东莞",
+    "district": "东城街道",
+    "address": "广东省东莞市东城街道鸿福东路1号国贸中心T1栋2103房",
+    "phone": "0769-26670667",
+    "geo": {
+      "lat": 23.032063,
+      "lng": 113.770495
+    }
+  },
+  {
+    "name": "酷动－东莞松山湖万象汇店－Apple 优质合作商",
+    "type": "Apple 优质合作商 (AASP)",
+    "city": "东莞",
+    "district": "松山湖高新技术产业开发区",
+    "address": "广东省东莞市松山湖新城路与科技三路交叉口西北角莞松山湖万象汇L119号商店铺",
+    "phone": "0769-26988807",
+    "geo": {
+      "lat": 22.956816,
+      "lng": 113.895762
+    }
+  },
+  {
+    "name": "飒铂－东莞厚街万达店－Apple 优质合作商",
+    "type": "Apple 优质合作商 (AASP)",
+    "city": "东莞",
+    "district": "厚街镇宝屯社区",
+    "address": "广东省东莞市厚街镇宝屯社区康乐北路6号1029-1031A",
+    "phone": "0769-83086138",
+    "geo": {
+      "lat": 22.943034,
+      "lng": 113.675062
+    }
+  },
+  {
     "name": "直信创邺－中山店",
     "type": "Apple 授权服务提供商 (AASP)",
     "city": "中山",
@@ -13880,6 +13844,30 @@ var storesData = [
     "geo": {
       "lat": 24.602722,
       "lng": 118.07633
+    }
+  },
+  {
+    "name": "品丰科技－台州黄岩吾悦广场店",
+    "type": "Apple 授权服务提供商 (AASP)",
+    "city": "台州",
+    "district": "黄岩区",
+    "address": "浙江省台州市黄岩区西城街道大桥路1号吾悦广场商铺1039号",
+    "phone": "0576-88170933",
+    "geo": {
+      "lat": 28.653674,
+      "lng": 121.260417
+    }
+  },
+  {
+    "name": "直信创邺－台州椒江店",
+    "type": "Apple 授权服务提供商 (AASP)",
+    "city": "台州",
+    "district": "椒江区",
+    "address": "浙江省台州市椒江区市府大道289号耀达大厦23-A南间",
+    "phone": "13306562557",
+    "geo": {
+      "lat": 28.651369,
+      "lng": 121.429998
     }
   },
   {
@@ -14471,6 +14459,18 @@ var storesData = [
     }
   },
   {
+    "name": "百邦－温岭店",
+    "type": "Apple 授权服务提供商 (AASP)",
+    "city": "温岭",
+    "district": "温岭中心区",
+    "address": "浙江省台州市温岭市太平街道人民西路164-166号",
+    "phone": "0576-80688660",
+    "geo": {
+      "lat": 28.364068,
+      "lng": 121.362974
+    }
+  },
+  {
     "name": "Apple 温州万象城",
     "type": "Apple Store 直营店",
     "city": "温州",
@@ -15004,7 +15004,7 @@ if (typeof window !== "undefined") window.hotAccessoriesData = hotAccessoriesDat
 // 官方在线商店真实选购价格同步 + 历史停售方案基准 + 全品类自付金统一矩阵
 // ============================================================================
 var APPLECARE_PLANS = {
-  "sync_time": "2026-11-19 09:17:57",
+  "sync_time": "2026-11-19 01:35:07",
   "live_store": {
     "iphone_duo": {
       "rawPrice": 2599,
