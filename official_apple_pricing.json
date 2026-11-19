@@ -5527,5 +5527,745 @@
         ]
       }
     ]
+  },
+  "Mac 笔记本电脑": {
+    "getSupportProductUrl": "https://getsupport.apple.com/?caller=sfaqlnd&PFC=PFC1002",
+    "helpLink": "https://support.apple.com/102604",
+    "products": [
+      {
+        "product_tag_id": "TAG_1772634287551",
+        "product_eng_title": "MacBook Neo",
+        "product_loc_title": "MacBook Neo",
+        "children_present": true,
+        "sort_order": "4",
+        "isDefault": false,
+        "showEstimateDisclaimer": false,
+        "childrenProducts": [
+          {
+            "product_tag_id": "TAG_1772634311997",
+            "product_eng_title": "MacBook Neo (13-inch, A18 Pro)",
+            "product_loc_title": "MacBook Neo（13 英寸，A18 Pro）",
+            "children_present": false,
+            "sort_order": "2",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301292&size=240x240",
+            "showEstimateDisclaimer": true,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 1,178",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏*",
+                "price": "—",
+                "sortOrder": "2"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "product_tag_id": "TAG_1753920943871",
+        "product_eng_title": "MacBook Air",
+        "product_loc_title": "MacBook Air",
+        "children_present": true,
+        "sort_order": "3",
+        "isDefault": false,
+        "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=PL200&size=240x240",
+        "showEstimateDisclaimer": false,
+        "childrenProducts": [
+          {
+            "product_tag_id": "TAG_1772602531842",
+            "product_eng_title": "MacBook Air (15-inch, M5)",
+            "product_loc_title": "MacBook Air（15 英寸，M5）",
+            "children_present": false,
+            "sort_order": "19",
+            "isDefault": true,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301287&size=240x240",
+            "showEstimateDisclaimer": true,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 1,548",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏*",
+                "price": "—",
+                "sortOrder": "2"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1772602548178",
+            "product_eng_title": "MacBook Air (13-inch, M5)",
+            "product_loc_title": "MacBook Air（13 英寸，M5）",
+            "children_present": false,
+            "sort_order": "18",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301288&size=240x240",
+            "showEstimateDisclaimer": true,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 1,418",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏*",
+                "price": "—",
+                "sortOrder": "2"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755216185653",
+            "product_eng_title": "MacBook Air (15-inch, M4, 2025)",
+            "product_loc_title": "MacBook Air（15 英寸，M4，2025 年）",
+            "children_present": false,
+            "sort_order": "17",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301087&size=240x240",
+            "showEstimateDisclaimer": true,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 1,548",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏*",
+                "price": "—",
+                "sortOrder": "2"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755216184849",
+            "product_eng_title": "MacBook Air (13-inch, M4, 2025)",
+            "product_loc_title": "MacBook Air（13 英寸，M4，2025 年）",
+            "children_present": false,
+            "sort_order": "16",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301086&size=240x240",
+            "showEstimateDisclaimer": true,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 1,418",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏*",
+                "price": "—",
+                "sortOrder": "2"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755216185453",
+            "product_eng_title": "MacBook Air (15-inch, M3, 2024)",
+            "product_loc_title": "MacBook Air（15 英寸，M3，2024 年）",
+            "children_present": false,
+            "sort_order": "15",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301020&size=240x240",
+            "showEstimateDisclaimer": true,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 1,548",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏*",
+                "price": "—",
+                "sortOrder": "2"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755216184644",
+            "product_eng_title": "MacBook Air (13-inch, M3, 2024)",
+            "product_loc_title": "MacBook Air（13 英寸，M3，2024 年）",
+            "children_present": false,
+            "sort_order": "14",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301019&size=240x240",
+            "showEstimateDisclaimer": true,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 1,258",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏*",
+                "price": "—",
+                "sortOrder": "2"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755216185250",
+            "product_eng_title": "MacBook Air (15-inch, M2, 2023)",
+            "product_loc_title": "MacBook Air（15 英寸，M2，2023 年）",
+            "children_present": false,
+            "sort_order": "13",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300954&size=240x240",
+            "showEstimateDisclaimer": true,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 1,548",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏*",
+                "price": "—",
+                "sortOrder": "2"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755216186059",
+            "product_eng_title": "MacBook Air (M2, 2022)",
+            "product_loc_title": "MacBook Air（M2，2022 年）",
+            "children_present": false,
+            "sort_order": "12",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300872&size=240x240",
+            "showEstimateDisclaimer": true,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 1,258",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏*",
+                "price": "—",
+                "sortOrder": "2"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755216185855",
+            "product_eng_title": "MacBook Air (M1, 2020)",
+            "product_loc_title": "MacBook Air（M1，2020 年）",
+            "children_present": false,
+            "sort_order": "11",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300267&size=240x240",
+            "showEstimateDisclaimer": true,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 1,258",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏*",
+                "price": "—",
+                "sortOrder": "2"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755216186664",
+            "product_eng_title": "MacBook Air (Retina, 13-inch, 2020)",
+            "product_loc_title": "MacBook Air（视网膜显示屏，13 英寸，2020 年）",
+            "children_present": false,
+            "sort_order": "10",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=508935&size=240x240",
+            "showEstimateDisclaimer": true,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 1,258",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏*",
+                "price": "—",
+                "sortOrder": "2"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755216186464",
+            "product_eng_title": "MacBook Air (Retina, 13-inch, 2019)",
+            "product_loc_title": "MacBook Air (Retina, 13-inch, 2019)",
+            "children_present": false,
+            "sort_order": "9",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=507509&size=240x240",
+            "showEstimateDisclaimer": true,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 1,258",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏*",
+                "price": "—",
+                "sortOrder": "2"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755216184035",
+            "product_eng_title": "MacBook Air (13-inch, 2017)",
+            "product_loc_title": "MacBook Air（13 英寸，2017 年）",
+            "children_present": false,
+            "sort_order": "7",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=503576&size=240x240",
+            "showEstimateDisclaimer": true,
+            "services": [
+              {
+                "serviceLabel": "其他损坏*",
+                "price": "—",
+                "sortOrder": "2"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "product_tag_id": "TAG_1753920951181",
+        "product_eng_title": "MacBook Pro",
+        "product_loc_title": "MacBook Pro",
+        "children_present": true,
+        "sort_order": "2",
+        "isDefault": true,
+        "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=PL107&size=240x240",
+        "showEstimateDisclaimer": false,
+        "childrenProducts": [
+          {
+            "product_tag_id": "TAG_1793207644458",
+            "product_eng_title": "MacBook Pro (14-inch PROLED XDR, M5 Pro/M5 Max)",
+            "product_loc_title": "MacBook Pro（14 英寸 PROLED XDR，M5 Pro/M5 Max）",
+            "children_present": false,
+            "sort_order": "155",
+            "isDefault": true,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301343&size=240x240",
+            "showEstimateDisclaimer": true,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 1,798",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏*",
+                "price": "—",
+                "sortOrder": "2"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1793207678984",
+            "product_eng_title": "MacBook Pro (16-inch PROLED XDR, M5 Pro/M5 Max)",
+            "product_loc_title": "MacBook Pro（16 英寸 PROLED XDR，M5 Pro/M5 Max）",
+            "children_present": false,
+            "sort_order": "145",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301344&size=240x240",
+            "showEstimateDisclaimer": true,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 1,968",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏*",
+                "price": "—",
+                "sortOrder": "2"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1772602625232",
+            "product_eng_title": "MacBook Pro (14-inch, M5 Pro/M5 Max)",
+            "product_loc_title": "MacBook Pro（14 英寸，M5 Pro/M5 Max）",
+            "children_present": false,
+            "sort_order": "135",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301289&size=240x240",
+            "showEstimateDisclaimer": true,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 1,798",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏*",
+                "price": "—",
+                "sortOrder": "2"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1772602645340",
+            "product_eng_title": "MacBook Pro (16-inch, M5 Pro/M5 Max)",
+            "product_loc_title": "MacBook Pro（16 英寸，M5 Pro/M5 Max）",
+            "children_present": false,
+            "sort_order": "125",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301286&size=240x240",
+            "showEstimateDisclaimer": true,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 1,968",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏*",
+                "price": "—",
+                "sortOrder": "2"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1793171489258",
+            "product_eng_title": "MacBook Pro (14-inch, M6)",
+            "product_loc_title": "MacBook Pro（14 英寸，M6）",
+            "children_present": false,
+            "sort_order": "115",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301340&size=240x240",
+            "showEstimateDisclaimer": true,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 1,798",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏*",
+                "price": "—",
+                "sortOrder": "2"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1762418360048",
+            "product_eng_title": "MacBook Pro (14-inch, M5)",
+            "product_loc_title": "MacBook Pro（14 英寸，M5）",
+            "children_present": false,
+            "sort_order": "105",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301274&size=240x240",
+            "showEstimateDisclaimer": true,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 1,798",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏*",
+                "price": "—",
+                "sortOrder": "2"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755216189887",
+            "product_eng_title": "MacBook Pro (14-inch, M4, 2024)",
+            "product_loc_title": "MacBook Pro（14 英寸，M4，2024 年）",
+            "children_present": false,
+            "sort_order": "100",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301068&size=240x240",
+            "showEstimateDisclaimer": true,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 1,968",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏*",
+                "price": "—",
+                "sortOrder": "2"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755216191714",
+            "product_eng_title": "MacBook Pro (16-inch, M4, 2024)",
+            "product_loc_title": "MacBook Pro（16 英寸，M4，2024 年）",
+            "children_present": false,
+            "sort_order": "95",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301070&size=240x240",
+            "showEstimateDisclaimer": true,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 1,968",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏*",
+                "price": "—",
+                "sortOrder": "2"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755216189687",
+            "product_eng_title": "MacBook Pro (14-inch, M3, 2023)",
+            "product_loc_title": "MacBook Pro（14 英寸，M3，2023 年）",
+            "children_present": false,
+            "sort_order": "90",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301011&size=240x240",
+            "showEstimateDisclaimer": true,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 1,968",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏*",
+                "price": "—",
+                "sortOrder": "2"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755216191507",
+            "product_eng_title": "MacBook Pro (16-inch, M3, 2023)",
+            "product_loc_title": "MacBook Pro（16 英寸，M3，2023 年）",
+            "children_present": false,
+            "sort_order": "85",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=301012&size=240x240",
+            "showEstimateDisclaimer": true,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 1,968",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏*",
+                "price": "—",
+                "sortOrder": "2"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755216189484",
+            "product_eng_title": "MacBook Pro (14-inch, M2, 2023)",
+            "product_loc_title": "MacBook Pro（14 英寸，M2，2023 年）",
+            "children_present": false,
+            "sort_order": "80",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300925&size=240x240",
+            "showEstimateDisclaimer": true,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 1,968",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏*",
+                "price": "—",
+                "sortOrder": "2"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755216191303",
+            "product_eng_title": "MacBook Pro (16-inch, M2, 2023)",
+            "product_loc_title": "MacBook Pro（16 英寸，M2，2023 年）",
+            "children_present": false,
+            "sort_order": "75",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300926&size=240x240",
+            "showEstimateDisclaimer": true,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 1,968",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏*",
+                "price": "—",
+                "sortOrder": "2"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755216188882",
+            "product_eng_title": "MacBook Pro (13-inch, M2, 2022)",
+            "product_loc_title": "MacBook Pro（13 英寸，M2，2022 年）",
+            "children_present": false,
+            "sort_order": "70",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300873&size=240x240",
+            "showEstimateDisclaimer": true,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 1,968",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏*",
+                "price": "—",
+                "sortOrder": "2"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755216188680",
+            "product_eng_title": "MacBook Pro (13-inch, M1, 2020)",
+            "product_loc_title": "MacBook Pro（13 英寸，M1，2020 年）",
+            "children_present": false,
+            "sort_order": "65",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300266&size=240x240",
+            "showEstimateDisclaimer": true,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 1,968",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏*",
+                "price": "—",
+                "sortOrder": "2"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755216189286",
+            "product_eng_title": "MacBook Pro (14-inch, 2021)",
+            "product_loc_title": "MacBook Pro（14 英寸，2021 年机型）",
+            "children_present": false,
+            "sort_order": "60",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300451&size=240x240",
+            "showEstimateDisclaimer": true,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 1,968",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏*",
+                "price": "—",
+                "sortOrder": "2"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755216191102",
+            "product_eng_title": "MacBook Pro (16-inch, 2021)",
+            "product_loc_title": "MacBook Pro（16 英寸，2021 年机型）",
+            "children_present": false,
+            "sort_order": "55",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300452&size=240x240",
+            "showEstimateDisclaimer": true,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 1,968",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏*",
+                "price": "—",
+                "sortOrder": "2"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755216188479",
+            "product_eng_title": "MacBook Pro (13-inch, 2020, Two Thunderbolt 3 Ports)",
+            "product_loc_title": "MacBook Pro（13 英寸，2020 年，两个雷雳 3 端口）",
+            "children_present": false,
+            "sort_order": "50",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300178&size=240x240",
+            "showEstimateDisclaimer": true,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 1,968",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏*",
+                "price": "—",
+                "sortOrder": "2"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755216188278",
+            "product_eng_title": "MacBook Pro (13-inch, 2020, Four Thunderbolt 3 Ports)",
+            "product_loc_title": "MacBook Pro（13 英寸，2020 年，四个雷雳 3 端口）",
+            "children_present": false,
+            "sort_order": "45",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=300177&size=240x240",
+            "showEstimateDisclaimer": true,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 1,968",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏*",
+                "price": "—",
+                "sortOrder": "2"
+              }
+            ]
+          },
+          {
+            "product_tag_id": "TAG_1755216190900",
+            "product_eng_title": "MacBook Pro (16-inch, 2019)",
+            "product_loc_title": "MacBook Pro（16 英寸，2019 年）",
+            "children_present": false,
+            "sort_order": "25",
+            "isDefault": false,
+            "imageUrl": "https://cdsassets.apple.com/content/services/pub/image?productid=508192&size=240x240",
+            "showEstimateDisclaimer": true,
+            "services": [
+              {
+                "serviceLabel": "电池服务",
+                "price": "RMB 1,968",
+                "sortOrder": "50"
+              },
+              {
+                "serviceLabel": "其他损坏*",
+                "price": "—",
+                "sortOrder": "2"
+              }
+            ]
+          }
+        ]
+      }
+    ]
   }
 }
