@@ -1,17 +1,17 @@
 /**
  * Apple 官方维修价格与服务网点快查 - 核心数据集
  * 直连 Apple 官网官方接口同步生成
- * 同步时间戳: 2026-11-20 10:56:24
+ * 同步时间戳: 2026-11-21 10:40:11
  */
 
-var DATA_SYNC_TIMESTAMP = "2026-11-20 10:56:24";
+var DATA_SYNC_TIMESTAMP = "2026-11-21 10:40:11";
 if (typeof window !== "undefined") window.DATA_SYNC_TIMESTAMP = DATA_SYNC_TIMESTAMP;
 
 // ============================================================================
 // 官方数据最新变动通知记录 (DATA_CHANGELOG)
 // ============================================================================
 var DATA_CHANGELOG = {
-  "sync_time": "2026-11-20 10:56:24",
+  "sync_time": "2026-11-21 10:40:11",
   "has_changes": false,
   "badge_text": "",
   "title": "",
@@ -4405,7 +4405,7 @@ var pricesData = [
 if (typeof window !== "undefined") window.pricesData = pricesData;
 
 // ============================================================================
-// 模块 2：全国官方原厂认证服务网点库 (共 306 家)
+// 模块 2：全国官方原厂认证服务网点库 (共 307 家)
 // ============================================================================
 var storesData = [
   {
@@ -7085,6 +7085,18 @@ var storesData = [
     }
   },
   {
+    "name": "佩知－合肥高新龙湖天街店－Apple 优质合作商",
+    "type": "Apple 优质合作商 (AASP)",
+    "city": "合肥",
+    "district": "蜀山区",
+    "address": "安徽省合肥市蜀山区石莲北路104号高新龙湖天街1F-39+40商铺",
+    "phone": "0551-68997537",
+    "geo": {
+      "lat": 31.850235,
+      "lng": 117.124992
+    }
+  },
+  {
     "name": "天音－合肥新天地广场店",
     "type": "Apple 授权服务提供商 (AASP)",
     "city": "合肥",
@@ -8194,7 +8206,7 @@ if (typeof window !== "undefined") window.hotAccessoriesData = hotAccessoriesDat
 // 官方在线商店真实选购价格同步 + 历史停售方案基准 + 全品类自付金统一矩阵
 // ============================================================================
 var APPLECARE_PLANS = {
-  "sync_time": "2026-11-20 10:56:24",
+  "sync_time": "2026-11-21 10:40:11",
   "live_store": {
     "iphone_duo": {
       "rawPrice": 2599,
